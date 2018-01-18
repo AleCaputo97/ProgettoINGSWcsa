@@ -1,16 +1,28 @@
 package default1;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JTable;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.border.EtchedBorder;
 
-public class FinestraUtente extends JFrame {
+public class FinestraUtente {
 
-	private JPanel contentPane;
+	private JFrame frame;
+	private JTextField txtNome;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -19,8 +31,8 @@ public class FinestraUtente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FinestraUtente frame = new FinestraUtente();
-					frame.setVisible(true);
+					FinestraUtente window = new FinestraUtente();
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -29,18 +41,115 @@ public class FinestraUtente extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the application.
 	 */
 	public FinestraUtente() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		
-		JComboBox comboBox = new JComboBox();
-		contentPane.add(comboBox, BorderLayout.CENTER);
+		initialize();
 	}
 
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setLayout(null);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(10, 11, 973, 481);
+		frame.getContentPane().add(tabbedPane);
+		
+		JPanel Cliente = new JPanel();
+		tabbedPane.addTab("Cliente", null, Cliente, null);
+		Cliente.setLayout(null);
+		
+		txtNome = new JTextField();
+		txtNome.setBounds(105, 11, 179, 20);
+		Cliente.add(txtNome);
+		txtNome.setColumns(10);
+		
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setBounds(10, 14, 85, 14);
+		Cliente.add(lblNome);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(105, 39, 179, 20);
+		Cliente.add(textField);
+		
+		JLabel lblCognome = new JLabel("Cognome:");
+		lblCognome.setBounds(10, 42, 85, 14);
+		Cliente.add(lblCognome);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(105, 70, 179, 20);
+		Cliente.add(textField_1);
+		
+		JLabel lblEmail = new JLabel("eMail:");
+		lblEmail.setBounds(10, 73, 85, 14);
+		Cliente.add(lblEmail);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(105, 101, 179, 20);
+		Cliente.add(textField_2);
+		
+		JLabel lblCodiceFiscale = new JLabel("Codice fiscale:");
+		lblCodiceFiscale.setBounds(10, 104, 85, 14);
+		Cliente.add(lblCodiceFiscale);
+		
+		JButton btnCerca = new JButton("Cerca");
+		btnCerca.setBounds(10, 150, 129, 23);
+		Cliente.add(btnCerca);
+		
+		JButton btnInserisci = new JButton("Inserisci");
+		btnInserisci.setBounds(155, 150, 129, 23);
+		Cliente.add(btnInserisci);
+		
+		JButton btnModifica = new JButton("Modifica");
+		btnModifica.setBounds(684, 150, 129, 23);
+		Cliente.add(btnModifica);
+		
+		JButton btnElimina = new JButton("Elimina");
+		btnElimina.setBounds(829, 150, 129, 23);
+		Cliente.add(btnElimina);
+		
+		JButton btnStatistiche = new JButton("Statistiche");
+		btnStatistiche.setBounds(684, 116, 274, 23);
+		Cliente.add(btnStatistiche);
+		
+		JButton button = new JButton("?");
+		button.setBounds(921, 10, 37, 23);
+		Cliente.add(button);
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.setBounds(831, 10, 80, 23);
+		Cliente.add(btnClear);
+		
+		table = new JTable();
+		table.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Nome", "Cognome", "eMail", "Codice fiscale", "Data di nascita"
+			}
+		));
+		table.getColumnModel().getColumn(4).setPreferredWidth(128);
+		table.setBounds(10, 204, 948, 238);
+		Cliente.add(table);
+		
+		JPanel Evento = new JPanel();
+		tabbedPane.addTab("Evento", null, Evento, null);
+		Evento.setLayout(null);
+		
+		JPanel Luogo = new JPanel();
+		tabbedPane.addTab("Luogo", null, Luogo, null);
+	}
 }
