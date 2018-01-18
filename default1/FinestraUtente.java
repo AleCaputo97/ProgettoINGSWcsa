@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JScrollPane;
+import com.github.lgooddatepicker.components.DatePicker;
 
 public class FinestraUtente {
 
@@ -134,15 +135,33 @@ public class FinestraUtente {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null},
-				{null},
-				{null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"New column"
+				"Nome", "Cognome", "eMail", "Codice fiscale", "Data di nascita"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
 		scrollPane.setViewportView(table);
+		
+		JLabel lblDataDiNascita = new JLabel("Data di nascita:");
+		lblDataDiNascita.setBounds(332, 14, 85, 14);
+		Cliente.add(lblDataDiNascita);
+		
+		DatePicker datePicker = new DatePicker();
+		datePicker.setBounds(427, 12, 132, 20);
+		Cliente.add(datePicker);
 		
 		JPanel Evento = new JPanel();
 		tabbedPane.addTab("Evento", null, Evento, null);
