@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
+import javax.swing.JScrollPane;
 
 public class FinestraUtente {
 
@@ -126,24 +127,22 @@ public class FinestraUtente {
 		btnClear.setBounds(831, 10, 80, 23);
 		Cliente.add(btnClear);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 202, 948, 240);
+		Cliente.add(scrollPane);
+		
 		table = new JTable();
-		table.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
+				{null},
+				{null},
+				{null},
 			},
 			new String[] {
-				"Nome", "Cognome", "eMail", "Codice fiscale", "Data di nascita"
+				"New column"
 			}
 		));
-		table.getColumnModel().getColumn(4).setPreferredWidth(128);
-		table.setBounds(10, 204, 948, 238);
-		Cliente.add(table);
+		scrollPane.setViewportView(table);
 		
 		JPanel Evento = new JPanel();
 		tabbedPane.addTab("Evento", null, Evento, null);
