@@ -1,4 +1,4 @@
-package com.amazonaws.samples;
+package default1;
 
 public class ciaostefix {
 	
