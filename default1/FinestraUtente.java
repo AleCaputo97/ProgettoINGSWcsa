@@ -68,13 +68,16 @@ public class FinestraUtente {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(10, 11, 973, 481);
+		tabbedPane.setFont(new Font("Product Sans", Font.PLAIN, 14));
+		tabbedPane.setBounds(10, 0, 973, 492);
 		frame.getContentPane().add(tabbedPane);
 		
 		JPanel Cliente = new JPanel();
+		Cliente.setBackground(Color.WHITE);
 		tabbedPane.addTab("Cliente", null, Cliente, null);
 		Cliente.setLayout(null);
 		
@@ -148,7 +151,7 @@ public class FinestraUtente {
 		Cliente.add(btnClear);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 202, 948, 240);
+		scrollPane.setBounds(10, 202, 948, 248);
 		Cliente.add(scrollPane);
 		
 		table = new JTable();
@@ -183,6 +186,7 @@ public class FinestraUtente {
 		Cliente.add(datePicker);
 		
 		JPanel Evento = new JPanel();
+		Evento.setBackground(Color.WHITE);
 		Evento.setLayout(null);
 		tabbedPane.addTab("Evento", null, Evento, null);
 		
@@ -280,7 +284,7 @@ public class FinestraUtente {
 		Evento.add(lblData);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 202, 948, 240);
+		scrollPane_1.setBounds(10, 202, 948, 248);
 		Evento.add(scrollPane_1);
 		
 		table_2 = new JTable();
@@ -306,6 +310,7 @@ public class FinestraUtente {
 		scrollPane_1.setViewportView(table_2);
 		
 		JPanel Luogo = new JPanel();
+		Luogo.setBackground(Color.WHITE);
 		Luogo.setLayout(null);
 		tabbedPane.addTab("Luogo", null, Luogo, null);
 		
@@ -379,7 +384,7 @@ public class FinestraUtente {
 		Luogo.add(button_14);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(10, 202, 948, 240);
+		scrollPane_2.setBounds(10, 202, 948, 248);
 		Luogo.add(scrollPane_2);
 		
 		table_1 = new JTable();
