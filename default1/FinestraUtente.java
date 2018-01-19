@@ -182,7 +182,7 @@ public class FinestraUtente {
 		Cliente.add(lblDataDiNascita);
 		
 		DatePicker datePicker = new DatePicker();
-		datePicker.setBounds(427, 12, 132, 20);
+		datePicker.setBounds(429, 11, 137, 22);
 		Cliente.add(datePicker);
 		
 		JPanel Evento = new JPanel();
@@ -263,16 +263,12 @@ public class FinestraUtente {
 		lblLuogo.setBounds(332, 14, 85, 14);
 		Evento.add(lblLuogo);
 		
-		DatePicker datePicker_2 = new DatePicker();
-		datePicker_2.setBounds(427, 71, 132, 20);
-		Evento.add(datePicker_2);
-		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(427, 10, 132, 20);
+		comboBox.setBounds(427, 10, 137, 20);
 		Evento.add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(427, 39, 132, 20);
+		comboBox_1.setBounds(427, 39, 137, 20);
 		Evento.add(comboBox_1);
 		
 		JLabel lblTipo = new JLabel("Tipo:");
@@ -308,6 +304,10 @@ public class FinestraUtente {
 			}
 		});
 		scrollPane_1.setViewportView(table_2);
+		
+		DatePicker datePicker_1 = new DatePicker();
+		datePicker_1.setBounds(427, 70, 137, 22);
+		Evento.add(datePicker_1);
 		
 		JPanel Luogo = new JPanel();
 		Luogo.setBackground(Color.WHITE);
