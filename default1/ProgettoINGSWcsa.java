@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
@@ -21,10 +22,19 @@ public class ProgettoINGSWcsa {
     
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
+		
+		 try 
+		    { 
+			  UIManager.setLookAndFeel(
+			            UIManager.getSystemLookAndFeelClassName());
+		    } 
+		    catch(Exception e){ 
+		    }
+		
 		init();
 		connessione = new DynamoDB(dynamoDB);
 		FinestraUtente window = new FinestraUtente();
-		window.frame.setVisible(true);
+		window.frmProgettoingswcsa.setVisible(true);
 	}
 
     public static void init() throws Exception {

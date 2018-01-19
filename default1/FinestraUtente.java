@@ -20,10 +20,12 @@ import javax.swing.JComboBox;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import java.awt.Font;
+import javax.swing.ListSelectionModel;
+import java.awt.Dimension;
 
 public class FinestraUtente {
 
-	public JFrame frame;
+	public JFrame frmProgettoingswcsa;
 	private JTextField txtNome;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -39,6 +41,7 @@ public class FinestraUtente {
 	private JTextField textField_9;
 	private JTextField textField_10;
 	private JTable table_1;
+	
 
 	/**
 	 * Launch the application.
@@ -56,14 +59,19 @@ public class FinestraUtente {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.WHITE);
-		frame.getContentPane().setLayout(null);
+		frmProgettoingswcsa = new JFrame();
+		frmProgettoingswcsa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmProgettoingswcsa.setResizable(false);
+		frmProgettoingswcsa.setTitle("ProgettoINGSWcsa");
+		frmProgettoingswcsa.getContentPane().setBackground(Color.WHITE);
+		frmProgettoingswcsa.getContentPane().setLayout(null);
+		frmProgettoingswcsa.setSize(1008, 575);
+		frmProgettoingswcsa.setLocationRelativeTo(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setFont(new Font("Product Sans", Font.PLAIN, 14));
 		tabbedPane.setBounds(10, 0, 973, 492);
-		frame.getContentPane().add(tabbedPane);
+		frmProgettoingswcsa.getContentPane().add(tabbedPane);
 		
 		JPanel Cliente = new JPanel();
 		Cliente.setBackground(Color.WHITE);
@@ -144,6 +152,7 @@ public class FinestraUtente {
 		Cliente.add(scrollPane);
 		
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
