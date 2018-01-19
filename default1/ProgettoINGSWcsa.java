@@ -3,7 +3,9 @@ package default1;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
- 
+
+import javax.swing.JTextField;
+
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -21,7 +23,8 @@ public class ProgettoINGSWcsa {
 		// TODO Auto-generated method stub
 		init();
 		connessione = new DynamoDB(dynamoDB);
-		new FinestraUtente();
+		FinestraUtente window = new FinestraUtente();
+		window.frame.setVisible(true);
 	}
 
     public static void init() throws Exception {

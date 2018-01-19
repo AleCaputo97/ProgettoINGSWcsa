@@ -23,7 +23,7 @@ import java.awt.Font;
 
 public class FinestraUtente {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField txtNome;
 	private JTextField textField;
 	private JTextField textField_1;
