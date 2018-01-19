@@ -23,10 +23,11 @@ public class ProgettoINGSWcsa {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		
+		
+		
 		 try 
 		    { 
-			  UIManager.setLookAndFeel(
-			            UIManager.getSystemLookAndFeelClassName());
+			  UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 		    } 
 		    catch(Exception e){ 
 		    }
@@ -35,6 +36,7 @@ public class ProgettoINGSWcsa {
 		connessione = new DynamoDB(dynamoDB);
 		FinestraUtente window = new FinestraUtente();
 		window.frmProgettoingswcsa.setVisible(true);
+		
 	}
 
     public static void init() throws Exception {
