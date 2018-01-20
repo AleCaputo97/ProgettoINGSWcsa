@@ -117,6 +117,10 @@ public class FinestraUtente {
 		Cliente.add(lblCodiceFiscale);
 		
 	    clienteData = new DatePicker();
+	    clienteData.getComponentDateTextField().addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    	}
+	    });
 		clienteData.getComponentToggleCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -127,13 +131,12 @@ public class FinestraUtente {
 		JButton clienteCerca = new JButton("Cerca");
 		clienteCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				String nome = clientetfNome.getText();
 				String data = clienteData.getText();
 				String cognome = clientetfCognome.getText();
 				String email = clientetfEmail.getText();
 				String codicefiscale = clientetfCodicefiscale.getText();
-				System.out.println("[FINESTRA UTENTE] Si vuole cercare: " + nome + cognome + email + codicefiscale + data);
+				//System.out.println("[FINESTRA UTENTE] Si vuole cercare: " + nome + cognome + email + codicefiscale + data);
 				ClienteController.cerca(nome, cognome, email, codicefiscale, data);
 
 			}

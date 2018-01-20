@@ -45,7 +45,7 @@ public class ClienteDAO {
 				   ricerca=ricerca + "AND CodiceFiscale = :cf ";
 				   }
 			   if(!(DataNascita.equals(""))) {
-				   ricerca=ricerca + "AND Data = :data ";
+				   ricerca=ricerca + "AND DataNascita = :data ";
 				   expressionAttributeValues.put(":data", DataNascita);
 				   }
 			   if(!(cognome.equals(""))) {
@@ -69,6 +69,7 @@ public class ClienteDAO {
 				      
 		   		}
 		   //costruisce la lista con i risultati da restituire
+		  // System.out.println("[DAO] Si vuole cercare: " + nome + cognome + email + CodiceFiscale + DataNascita);
 		   Item iteratorcurr;
 		   Cliente curr;
 	       while (iterator.hasNext()) {
