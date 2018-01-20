@@ -78,7 +78,7 @@ public class ClienteDAO {
 		   		}
 	}
 	
-	 public static void inserisci(String nome, String cognome, String email, String CodiceFiscale, String Data) {
+	 public static void inserisciModifica(String nome, String cognome, String email, String CodiceFiscale, String Data) {
 		    String tableName = "Cliente";
 		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		    Item item = new Item()
