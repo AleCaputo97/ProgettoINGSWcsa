@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.amazonaws.services.dynamodbv2.document.DeleteItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
@@ -91,4 +92,10 @@ public class ClienteDAO {
 		    
 		    
 		    }
+	 
+	 public static void elimina(String CodiceFiscale) {
+	        String tableName = "Cliente";
+	        Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+	        DeleteItemOutcome outcome = table.deleteItem("CodiceFiscale", CodiceFiscale);
+	        }
 }
