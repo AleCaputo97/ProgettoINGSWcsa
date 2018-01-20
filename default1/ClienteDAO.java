@@ -57,10 +57,8 @@ public class ClienteDAO {
 				   expressionAttributeValues.put(":email", email);
 				   }
 			   //rimuove i primi tre caratteri della stringa ricerca rendendola idonea alla scan con attributi
-			   System.out.println("la query creata è:" + ricerca);
 			   ricerca = ricerca.substring(3);
-			   System.out.println("la query che voglio stampare è:" + ricerca);
-			   ItemCollection<ScanOutcome> items = table.scan (
+			    ItemCollection<ScanOutcome> items = table.scan (
 				        ricerca,                                  
 				        null,
 				        null,                                          
