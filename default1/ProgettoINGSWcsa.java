@@ -35,6 +35,8 @@ public class ProgettoINGSWcsa {
 		init();
 		connessione = new DynamoDB(dynamoDB);
 		FinestraUtente window = new FinestraUtente();
+		ClienteDAO ClienteDAOcurr = new ClienteDAO();
+		ClienteController ClienteControllercurr = new ClienteController(window, ClienteDAOcurr);
 		window.frmProgettoingswcsa.setVisible(true);
 		
 	}
