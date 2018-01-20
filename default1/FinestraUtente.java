@@ -32,7 +32,7 @@ public class FinestraUtente {
 	private JTextField clientetfCognome;
 	private JTextField clientetfEmail;
 	private JTextField clientetfCodicefiscale;
-	private JTable table;
+	public static JTable clientetable;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
@@ -174,16 +174,10 @@ public class FinestraUtente {
 		scrollPane.setBounds(10, 202, 948, 248);
 		Cliente.add(scrollPane);
 		
-		table = new JTable();
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setModel(new DefaultTableModel(
+		clientetable = new JTable();
+		clientetable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		clientetable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
 			},
 			new String[] {
 				"Nome", "Cognome", "eMail", "Codice fiscale", "Data di nascita"
@@ -196,7 +190,7 @@ public class FinestraUtente {
 				return columnEditables[column];
 			}
 		});
-		scrollPane.setViewportView(table);
+		scrollPane.setViewportView(clientetable);
 		
 		JLabel lblDataDiNascita = new JLabel("Data di nascita:");
 		lblDataDiNascita.setBounds(332, 14, 85, 14);

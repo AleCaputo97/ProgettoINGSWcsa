@@ -2,6 +2,8 @@ package default1;
 
 import java.util.List;
 
+import javax.swing.table.DefaultTableModel;
+
 
 public class ClienteController {
     public FinestraUtente window;
@@ -48,9 +50,16 @@ public class ClienteController {
 		email=normalizzaEmail(email);
 		codicefiscale=normalizzaCF(codicefiscale);
 		
+		DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
+        int i;
+        int j = model.getRowCount();
+        for (i=0; i<j; i++)
+            model.removeRow(0);
+        
 		List<Cliente> risultati = ClienteDAO.cerca(nome, cognome, email, codicefiscale, data);
 		for(Cliente curr:risultati) {
-	    	   System.out.println(curr.getNome());
+			model.addRow (new Object[]{curr.getNome(), curr.getCognome(), curr.getEmail(), curr.getCodiceFiscale(), curr.getData()});
+	    	//System.out.println(curr.getNome());
 	       }
 }
 	
