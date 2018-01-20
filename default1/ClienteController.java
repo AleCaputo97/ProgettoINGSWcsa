@@ -1,7 +1,14 @@
 package default1;
 
 public class ClienteController {
-	
+    public FinestraUtente window;
+    public ClienteDAO clienteDAOcurr;
+    
+    public ClienteController(FinestraUtente Window,ClienteDAO ClienteDAOcurr) {
+    	window = Window;
+    	clienteDAOcurr = ClienteDAOcurr;
+    }
+    
 	private static String normalizza (String string) {
 		
 		if (!(string.equals("")))
