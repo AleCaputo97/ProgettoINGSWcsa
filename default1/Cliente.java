@@ -9,6 +9,15 @@ public class Cliente {
 	private String CodiceFiscale;
 	private String Data;
 	
+	//costruttore
+	public Cliente(String nome, String cognome, String email, String codicefiscale, String data) {
+		Nome=nome;
+		Cognome=cognome;
+		Email=email;
+		CodiceFiscale=codicefiscale;
+		Data=data;
+	}
+	
 	//getter
 	public String getNome() {
 		return Nome;
