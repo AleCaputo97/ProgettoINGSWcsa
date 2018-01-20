@@ -34,12 +34,6 @@ public class ClienteDAO {
 				         
 				       iterator = items.iterator();
 				   
-				       Item iteratorcurr;
-				       String c1;
-				       while (iterator.hasNext()) {
-				        iteratorcurr = iterator.next();
-				          System.out.println(iteratorcurr);
-				      }
 		   }else{ //un campo non è vuoto e deve costruire la query
 			   String ricerca = "";
 			   if(!(nome.equals(""))) {
@@ -68,7 +62,7 @@ public class ClienteDAO {
 			   System.out.println("la query che voglio stampare è:" + ricerca);
 			   ItemCollection<ScanOutcome> items = table.scan (
 				        ricerca,                                  
-				        "CodiceFiscale, Nome, Cognome, Email, DataNascita",
+				        null,
 				        null,                                          
 				        expressionAttributeValues);
 				         
