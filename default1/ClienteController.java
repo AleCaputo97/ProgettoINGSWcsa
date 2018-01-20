@@ -64,7 +64,7 @@ public class ClienteController {
 	       }
 }
 	public static void inserisci (String nome, String cognome, String email, String codicefiscale, String data) {
-		if(!(nome.equals("")&&cognome.equals("")&&email.equals("")&&codicefiscale.equals("")&&data.equals(""))) {
+		if((!nome.equals("")&&!cognome.equals("")&&!email.equals("")&&!codicefiscale.equals("")&&!data.equals(""))) {
 		nome=normalizza(nome);
 		cognome=normalizza(cognome);
 		email=normalizzaEmail(email);
