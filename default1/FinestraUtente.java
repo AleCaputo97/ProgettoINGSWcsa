@@ -22,14 +22,16 @@ import javax.swing.border.BevelBorder;
 import java.awt.Font;
 import javax.swing.ListSelectionModel;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FinestraUtente {
 
 	public JFrame frmProgettoingswcsa;
-	private JTextField txtNome;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField clientetfNome;
+	private JTextField clientetfCognome;
+	private JTextField clientetfEmail;
+	private JTextField clientetfCodicefiscale;
 	private JTable table;
 	private JTextField textField_3;
 	private JTextField textField_4;
@@ -78,74 +80,95 @@ public class FinestraUtente {
 		tabbedPane.addTab("Cliente", null, Cliente, null);
 		Cliente.setLayout(null);
 		
-		txtNome = new JTextField();
-		txtNome.setBounds(105, 11, 179, 20);
-		Cliente.add(txtNome);
-		txtNome.setColumns(10);
+		clientetfNome = new JTextField();
+		clientetfNome.setBounds(105, 11, 179, 20);
+		Cliente.add(clientetfNome);
+		clientetfNome.setColumns(10);
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(10, 14, 85, 14);
 		Cliente.add(lblNome);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(105, 39, 179, 20);
-		Cliente.add(textField);
+		clientetfCognome = new JTextField();
+		clientetfCognome.setColumns(10);
+		clientetfCognome.setBounds(105, 39, 179, 20);
+		Cliente.add(clientetfCognome);
 		
 		JLabel lblCognome = new JLabel("Cognome:");
 		lblCognome.setBounds(10, 42, 85, 14);
 		Cliente.add(lblCognome);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(105, 70, 179, 20);
-		Cliente.add(textField_1);
+		clientetfEmail = new JTextField();
+		clientetfEmail.setColumns(10);
+		clientetfEmail.setBounds(105, 70, 179, 20);
+		Cliente.add(clientetfEmail);
 		
 		JLabel lblEmail = new JLabel("eMail:");
 		lblEmail.setBounds(10, 73, 85, 14);
 		Cliente.add(lblEmail);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(105, 101, 179, 20);
-		Cliente.add(textField_2);
+		clientetfCodicefiscale = new JTextField();
+		clientetfCodicefiscale.setColumns(10);
+		clientetfCodicefiscale.setBounds(105, 101, 179, 20);
+		Cliente.add(clientetfCodicefiscale);
 		
 		JLabel lblCodiceFiscale = new JLabel("Codice fiscale:");
 		lblCodiceFiscale.setBounds(10, 104, 85, 14);
 		Cliente.add(lblCodiceFiscale);
 		
-		JButton btnCerca = new JButton("Cerca");
-		btnCerca.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnCerca.setBounds(10, 150, 129, 23);
-		Cliente.add(btnCerca);
+		DatePicker clienteData = new DatePicker();
+		clienteData.getComponentToggleCalendarButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		clienteData.setBounds(429, 11, 137, 22);
+		Cliente.add(clienteData);
 		
-		JButton btnInserisci = new JButton("Inserisci");
-		btnInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnInserisci.setBounds(155, 150, 129, 23);
-		Cliente.add(btnInserisci);
+		JButton clienteCerca = new JButton("Cerca");
+		clienteCerca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String nome = clientetfNome.getText();
+				String data = clienteData.getText();
+				String cognome = clientetfCognome.getText();
+				String email = clientetfEmail.getText();
+				String codicefiscale = clientetfCodicefiscale.getText();
+				
+				//ClienteController.Cerca(nome, cognome, email, codicefiscale, data);
+
+			}
+		});
+		clienteCerca.setFont(new Font("Tahoma", Font.BOLD, 11));
+		clienteCerca.setBounds(10, 150, 129, 23);
+		Cliente.add(clienteCerca);
 		
-		JButton btnModifica = new JButton("Modifica");
-		btnModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnModifica.setBounds(684, 150, 129, 23);
-		Cliente.add(btnModifica);
+		JButton clienteInserisci = new JButton("Inserisci");
+		clienteInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
+		clienteInserisci.setBounds(155, 150, 129, 23);
+		Cliente.add(clienteInserisci);
 		
-		JButton btnElimina = new JButton("Elimina");
-		btnElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnElimina.setBounds(829, 150, 129, 23);
-		Cliente.add(btnElimina);
+		JButton clienteModifica = new JButton("Modifica");
+		clienteModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
+		clienteModifica.setBounds(684, 150, 129, 23);
+		Cliente.add(clienteModifica);
 		
-		JButton btnStatistiche = new JButton("Statistiche");
-		btnStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnStatistiche.setBounds(684, 116, 274, 23);
-		Cliente.add(btnStatistiche);
+		JButton clienteElimina = new JButton("Elimina");
+		clienteElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
+		clienteElimina.setBounds(829, 150, 129, 23);
+		Cliente.add(clienteElimina);
 		
-		JButton button = new JButton("?");
-		button.setBounds(921, 10, 37, 23);
-		Cliente.add(button);
+		JButton clienteStatistiche = new JButton("Statistiche");
+		clienteStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
+		clienteStatistiche.setBounds(684, 116, 274, 23);
+		Cliente.add(clienteStatistiche);
 		
-		JButton btnClear = new JButton("Clear");
-		btnClear.setBounds(831, 10, 80, 23);
-		Cliente.add(btnClear);
+		JButton clienteHelp = new JButton("?");
+		clienteHelp.setBounds(921, 10, 37, 23);
+		Cliente.add(clienteHelp);
+		
+		JButton clienteClear = new JButton("Clear");
+		clienteClear.setBounds(831, 10, 80, 23);
+		Cliente.add(clienteClear);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 202, 948, 248);
@@ -179,9 +202,7 @@ public class FinestraUtente {
 		lblDataDiNascita.setBounds(332, 14, 85, 14);
 		Cliente.add(lblDataDiNascita);
 		
-		DatePicker datePicker = new DatePicker();
-		datePicker.setBounds(429, 11, 137, 22);
-		Cliente.add(datePicker);
+
 		
 		JPanel Evento = new JPanel();
 		Evento.setBackground(Color.WHITE);
@@ -225,6 +246,10 @@ public class FinestraUtente {
 		Evento.add(lblMassimoPosti);
 		
 		JButton button_1 = new JButton("Cerca");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		button_1.setBounds(10, 150, 129, 23);
 		Evento.add(button_1);
