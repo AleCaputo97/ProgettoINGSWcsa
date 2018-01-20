@@ -43,7 +43,7 @@ public class FinestraUtente {
 	private JTextField textField_9;
 	private JTextField textField_10;
 	private JTable table_1;
-	
+	public DatePicker clienteData=null;
 
 	/**
 	 * Launch the application.
@@ -116,7 +116,7 @@ public class FinestraUtente {
 		lblCodiceFiscale.setBounds(10, 104, 85, 14);
 		Cliente.add(lblCodiceFiscale);
 		
-		DatePicker clienteData = new DatePicker();
+	    clienteData = new DatePicker();
 		clienteData.getComponentToggleCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -229,7 +229,7 @@ public class FinestraUtente {
 		JLabel lblPrezzoFinale = new JLabel("Prezzo finale");
 		lblPrezzoFinale.setBounds(10, 73, 85, 14);
 		Evento.add(lblPrezzoFinale);
-		
+		///
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
 		textField_6.setBounds(105, 101, 179, 20);
