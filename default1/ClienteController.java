@@ -63,5 +63,15 @@ public class ClienteController {
 	    	//System.out.println(curr.getNome());
 	       }
 }
-	
-}
+	public static void inserisci (String nome, String cognome, String email, String codicefiscale, String data) {
+		if(!(nome.equals("")&&cognome.equals("")&&email.equals("")&&codicefiscale.equals("")&&data.equals(""))) {
+		nome=normalizza(nome);
+		cognome=normalizza(cognome);
+		email=normalizzaEmail(email);
+		codicefiscale=normalizzaCF(codicefiscale);
+		ClienteDAO.inserisciModifica(nome, cognome, email, codicefiscale, data);
+		}else {
+			System.out.println("errore, almeno uno dei campi è vuoto");
+		}
+	}
+	}
