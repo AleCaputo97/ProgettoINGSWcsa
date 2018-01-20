@@ -2,7 +2,7 @@ package default1;
 
 public class ClienteController {
 	
-	private String Normalizza (String string) {
+	private static String normalizza (String string) {
 		
 		if (!(string.equals("")))
 			string = string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
@@ -11,7 +11,7 @@ public class ClienteController {
 		
 	}
 	
-	private String NormalizzaEmail (String email) {
+	private static String normalizzaEmail (String email) {
 		
 		if (!(email.equals("")))
 			email = email.toLowerCase();
@@ -20,7 +20,7 @@ public class ClienteController {
 		
 	}
 	
-	private String NormalizzaCF (String codicefiscale) {
+	private static String normalizzaCF (String codicefiscale) {
 		
 		if (!(codicefiscale.equals("")))
 			codicefiscale = codicefiscale.toUpperCase();
@@ -31,15 +31,14 @@ public class ClienteController {
 		
 		
 
-	public void cerca (String nome, String cognome, String email, String codicefiscale, String data) {
+	public static void cerca (String nome, String cognome, String email, String codicefiscale, String data) {
 	
-		nome=Normalizza(nome);
-		cognome=Normalizza(cognome);
-		email=NormalizzaEmail(email);
-		codicefiscale=NormalizzaCF(codicefiscale);
+		nome=normalizza(nome);
+		cognome=normalizza(cognome);
+		email=normalizzaEmail(email);
+		codicefiscale=normalizzaCF(codicefiscale);
 		
-		//invoca metodo DAO
-	
+		ClienteDAO.cerca(nome, cognome, email, codicefiscale, data);
 	
 }
 	

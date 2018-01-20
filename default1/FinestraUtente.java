@@ -134,7 +134,7 @@ public class FinestraUtente {
 				String email = clientetfEmail.getText();
 				String codicefiscale = clientetfCodicefiscale.getText();
 				
-				//ClienteController.Cerca(nome, cognome, email, codicefiscale, data);
+				ClienteController.cerca(nome, cognome, email, codicefiscale, data);
 
 			}
 		});
