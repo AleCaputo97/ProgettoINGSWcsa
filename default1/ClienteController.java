@@ -1,5 +1,8 @@
 package default1;
 
+import java.util.List;
+
+
 public class ClienteController {
     public FinestraUtente window;
     public ClienteDAO clienteDAOcurr;
@@ -45,8 +48,10 @@ public class ClienteController {
 		email=normalizzaEmail(email);
 		codicefiscale=normalizzaCF(codicefiscale);
 		
-		ClienteDAO.cerca(nome, cognome, email, codicefiscale, data);
-	
+		List<Cliente> risultati = ClienteDAO.cerca(nome, cognome, email, codicefiscale, data);
+		for(Cliente curr:risultati) {
+	    	   System.out.println(curr.getNome());
+	       }
 }
 	
 }
