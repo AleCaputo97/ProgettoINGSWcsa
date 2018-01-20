@@ -429,5 +429,10 @@ public class FinestraUtente {
 			}
 		});
 		scrollPane_2.setViewportView(table_1);
+		
+		JLabel messaggio = new JLabel("");
+		messaggio.setForeground(Color.BLACK);
+		messaggio.setBounds(14, 503, 963, 22);
+		frmProgettoingswcsa.getContentPane().add(messaggio);
 	}
 }
