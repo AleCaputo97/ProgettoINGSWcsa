@@ -146,6 +146,16 @@ public class FinestraUtente {
 		Cliente.add(clienteCerca);
 		
 		JButton clienteInserisci = new JButton("Inserisci");
+		clienteInserisci.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nome = clientetfNome.getText();
+				String data = clienteData.getText();
+				String cognome = clientetfCognome.getText();
+				String email = clientetfEmail.getText();
+				String codicefiscale = clientetfCodicefiscale.getText();
+				ClienteController.inserisci(nome, cognome, email, codicefiscale, data);
+			}
+		});
 		clienteInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
 		clienteInserisci.setBounds(155, 150, 129, 23);
 		Cliente.add(clienteInserisci);
