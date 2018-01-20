@@ -7,12 +7,13 @@ import java.util.Map;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
+import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 
 public class ClienteDAO {
 	
-	public static void cerca(String CodiceFiscale, String nome, String cognome, String email, String Data) {
+	public static void cerca(String nome, String cognome, String email, String CodiceFiscale, String Data) {
 	       
 		 
 		   String tableName = "Cliente";
@@ -75,4 +76,19 @@ public class ClienteDAO {
 				       }
 		   		}
 	}
+	
+	 public static void inserisci(String nome, String cognome, String email, String CodiceFiscale, String Data) {
+		    String tableName = "Cliente";
+		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		    Item item = new Item()
+		    	    .withPrimaryKey("CodiceFiscale", CodiceFiscale)
+		    	    .withString("Nome", nome)
+		    	    .withString("Cognome", cognome)
+		    	    .withString("Email", email)
+		    	    .withString("DataNascita", Data);
+		    
+		    PutItemOutcome outcome = table.putItem(item, null, null, null);
+		    
+		    
+		    }
 }
