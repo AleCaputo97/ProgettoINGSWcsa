@@ -16,7 +16,7 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 
 public class ClienteDAO {
 	
-	public static List<Cliente> cerca(String nome, String cognome, String email, String CodiceFiscale, String Data) {
+	public static List<Cliente> cerca(String nome, String cognome, String email, String CodiceFiscale, String DataNascita) {
 	       
 		 
 		   String tableName = "Cliente";
@@ -25,7 +25,7 @@ public class ClienteDAO {
 		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto
-		   if(CodiceFiscale.equals("") && nome.equals("") && cognome.equals("") && email.equals("") && Data.equals("")) {
+		   if(CodiceFiscale.equals("") && nome.equals("") && cognome.equals("") && email.equals("") && DataNascita.equals("")) {
 			   ItemCollection<ScanOutcome> items = table.scan (
 				        null,                                  
 				        null,
@@ -44,9 +44,9 @@ public class ClienteDAO {
 				   expressionAttributeValues.put(":cf", CodiceFiscale);
 				   ricerca=ricerca + "AND CodiceFiscale = :cf ";
 				   }
-			   if(!(Data.equals(""))) {
+			   if(!(DataNascita.equals(""))) {
 				   ricerca=ricerca + "AND Data = :data ";
-				   expressionAttributeValues.put(":data", Data);
+				   expressionAttributeValues.put(":data", DataNascita);
 				   }
 			   if(!(cognome.equals(""))) {
 				   ricerca=ricerca + "AND Cognome = :cognome ";

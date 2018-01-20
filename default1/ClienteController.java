@@ -57,6 +57,7 @@ public class ClienteController {
             model.removeRow(0);
         
 		List<Cliente> risultati = ClienteDAO.cerca(nome, cognome, email, codicefiscale, data);
+		
 		for(Cliente curr:risultati) {
 			model.addRow (new Object[]{curr.getNome(), curr.getCognome(), curr.getEmail(), curr.getCodiceFiscale(), curr.getData()});
 	    	//System.out.println(curr.getNome());

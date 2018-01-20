@@ -133,7 +133,7 @@ public class FinestraUtente {
 				String cognome = clientetfCognome.getText();
 				String email = clientetfEmail.getText();
 				String codicefiscale = clientetfCodicefiscale.getText();
-				
+				System.out.println("[FINESTRA UTENTE] Si vuole cercare: " + nome + cognome + email + codicefiscale + data);
 				ClienteController.cerca(nome, cognome, email, codicefiscale, data);
 
 			}
