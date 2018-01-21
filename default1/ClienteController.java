@@ -68,4 +68,16 @@ public class ClienteController {
 			System.out.println("errore, almeno uno dei campi è vuoto");
 		}
 	}
-	}
+	
+	public static void elimina(String CodiceFiscale) {
+		ClienteDAO.elimina(CodiceFiscale);
+		DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
+        int i;
+        int j = model.getRowCount();
+        for (i=0; i<j; i++)
+            model.removeRow(0);
+		}
+	
+
+}
+	
