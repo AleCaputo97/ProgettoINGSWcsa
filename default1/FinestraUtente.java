@@ -160,22 +160,6 @@ public class FinestraUtente {
 		clienteInserisci.setBounds(155, 150, 129, 23);
 		Cliente.add(clienteInserisci);
 		
-		JButton clienteModifica = new JButton("Modifica");
-		clienteModifica.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int row = clientetable.getSelectedRow();
-				clientetfNome.setText(clientetable.getValueAt(row,clientetable.getColumn("Nome").getModelIndex()).toString());
-				clientetfCognome.setText(clientetable.getValueAt(row,clientetable.getColumn("Cognome").getModelIndex()).toString());
-				clientetfCodicefiscale.setText(clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString());
-				clienteData.setText(clientetable.getValueAt(row,clientetable.getColumn("Data di nascita").getModelIndex()).toString());
-				clientetfEmail.setText(clientetable.getValueAt(row,clientetable.getColumn("eMail").getModelIndex()).toString());
-
-			}
-		});
-		clienteModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
-		clienteModifica.setBounds(684, 150, 129, 23);
-		Cliente.add(clienteModifica);
-		
 		JButton clienteElimina = new JButton("Elimina");
 		clienteElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -193,6 +177,53 @@ public class FinestraUtente {
 		clienteStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
 		clienteStatistiche.setBounds(684, 116, 274, 23);
 		Cliente.add(clienteStatistiche);
+		
+		JButton clienteModifica = new JButton("Modifica");
+		clienteModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (clienteModifica.getText().equals("Modifica")){
+				
+				int row = clientetable.getSelectedRow();
+				clientetfNome.setText(clientetable.getValueAt(row,clientetable.getColumn("Nome").getModelIndex()).toString());
+				clientetfCognome.setText(clientetable.getValueAt(row,clientetable.getColumn("Cognome").getModelIndex()).toString());
+				clientetfCodicefiscale.setText(clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString());
+				clienteData.setText(clientetable.getValueAt(row,clientetable.getColumn("Data di nascita").getModelIndex()).toString());
+				clientetfEmail.setText(clientetable.getValueAt(row,clientetable.getColumn("eMail").getModelIndex()).toString());
+				
+				clienteCerca.setEnabled(false);
+				clienteStatistiche.setEnabled(false);
+				clienteElimina.setEnabled(false);
+				clienteInserisci.setEnabled(false);
+				
+				clienteModifica.setText("Conferma");
+				
+				}
+				else {
+					
+					clienteModifica.setText("Modifica");
+					
+					String nome = clientetfNome.getText();
+					String data = clienteData.getText();
+					String cognome = clientetfCognome.getText();
+					String email = clientetfEmail.getText();
+					String codicefiscale = clientetfCodicefiscale.getText();
+					ClienteController.inserisci(nome, cognome, email, codicefiscale, data);
+					
+					clienteCerca.setEnabled(true);
+					clienteStatistiche.setEnabled(true);
+					clienteElimina.setEnabled(true);
+					clienteInserisci.setEnabled(true);				
+					
+				}
+				
+				}
+
+			}
+		);
+		clienteModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
+		clienteModifica.setBounds(684, 150, 129, 23);
+		Cliente.add(clienteModifica);
 		
 		JButton clienteHelp = new JButton("?");
 		clienteHelp.setBounds(921, 10, 37, 23);
