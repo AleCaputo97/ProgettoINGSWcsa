@@ -36,6 +36,7 @@ public class FinestraUtente {
 	JButton clienteElimina = new JButton("Elimina");
 	JButton clienteStatistiche = new JButton("Statistiche");
 	JButton clienteClear = new JButton("Clear");
+	JButton clienteInserisci = new JButton("Inserisci");
 	public JFrame frmProgettoingswcsa;
 	private JTextField clientetfNome;
 	private JTextField clientetfCognome;
@@ -160,7 +161,6 @@ public class FinestraUtente {
 		clienteCerca.setBounds(10, 150, 129, 23);
 		Cliente.add(clienteCerca);
 		
-		JButton clienteInserisci = new JButton("Inserisci");
 		clienteInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -188,6 +188,7 @@ public class FinestraUtente {
 		        String codicefiscale = clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString();
 		        ConfermaEliminazione frame = new ConfermaEliminazione("Cliente",codicefiscale);
 				frame.setVisible(true);
+				toggle();
 			}
 		});
 		clienteElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -541,4 +542,35 @@ public class FinestraUtente {
 		messaggio.setBounds(14, 503, 963, 22);
 		frmProgettoingswcsa.getContentPane().add(messaggio);
 	}
+	
+	public void toggle() {
+		
+		if (clientetfNome.isEnabled()) {
+		clientetfNome.setEnabled(false);
+		clientetfCognome.setEnabled(false);
+		clientetfEmail.setEnabled(false);
+		clientetfCodicefiscale.setEnabled(false);
+		clienteData.setEnabled(false);
+		clienteCerca.setEnabled(false);
+		clienteModifica.setEnabled(false);
+		clienteInserisci.setEnabled(false);
+		clienteStatistiche.setEnabled(false);
+		clienteClear.setEnabled(false);
+		clienteElimina.setEnabled(false);
+		}
+		else {
+			clientetfNome.setEnabled(true);
+			clientetfCognome.setEnabled(true);
+			clientetfEmail.setEnabled(true);
+			clientetfCodicefiscale.setEnabled(true);
+			clienteData.setEnabled(true);
+			clienteCerca.setEnabled(true);
+			clienteModifica.setEnabled(true);
+			clienteInserisci.setEnabled(true);
+			clienteStatistiche.setEnabled(true);
+			clienteClear.setEnabled(true);
+			clienteElimina.setEnabled(true);
+		}
+	}
+	
 }
