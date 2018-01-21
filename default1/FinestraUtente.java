@@ -28,7 +28,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 public class FinestraUtente {
-
+	JButton clienteCerca = new JButton("Cerca");
 	public JFrame frmProgettoingswcsa;
 	private JTextField clientetfNome;
 	private JTextField clientetfCognome;
@@ -130,7 +130,7 @@ public class FinestraUtente {
 		clienteData.setBounds(429, 11, 137, 22);
 		Cliente.add(clienteData);
 		
-		JButton clienteCerca = new JButton("Cerca");
+		
 		clienteCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nome = clientetfNome.getText();
