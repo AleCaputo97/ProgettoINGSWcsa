@@ -166,7 +166,8 @@ public class FinestraUtente {
 				
 				int row = clientetable.getSelectedRow();
 		        String codicefiscale = clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString();
-				ClienteController.elimina(codicefiscale);
+		        ConfermaEliminazione frame = new ConfermaEliminazione("Cliente",codicefiscale);
+				frame.setVisible(true);
 			}
 		});
 		clienteElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
