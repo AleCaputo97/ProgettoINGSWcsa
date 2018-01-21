@@ -256,20 +256,6 @@ public class FinestraUtente {
 		Cliente.add(scrollPane);
 		
 		clientetable = new JTable();
-		clientetable.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				clienteModifica.setEnabled(true);
-				clienteElimina.setEnabled(true);
-				clienteStatistiche.setEnabled(true);
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				clienteModifica.setEnabled(false);
-				clienteElimina.setEnabled(false);
-				clienteStatistiche.setEnabled(false);
-			}
-		});
 		clientetable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		clientetable.setModel(new DefaultTableModel(
 			new Object[][] {
