@@ -140,9 +140,7 @@ public class FinestraUtente {
 		clienteCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				clienteModifica.setEnabled(false);
-				clienteElimina.setEnabled(false);
-				clienteStatistiche.setEnabled(false);
+				
 				
 				String nome = clientetfNome.getText();
 				String data = clienteData.getText();
@@ -151,6 +149,9 @@ public class FinestraUtente {
 				String codicefiscale = clientetfCodicefiscale.getText();
 				//System.out.println("[FINESTRA UTENTE] Si vuole cercare: " + nome + cognome + email + codicefiscale + data);
 				ClienteController.cerca(nome, cognome, email, codicefiscale, data);
+				clienteModifica.setEnabled(false);
+				clienteElimina.setEnabled(false);
+				clienteStatistiche.setEnabled(false);
 
 			}
 		});
@@ -287,9 +288,12 @@ public class FinestraUtente {
 		
 		clientetable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			 public void valueChanged(ListSelectionEvent event) {
-				 clienteModifica.setEnabled(true);
-				 clienteElimina.setEnabled(true);
-				 clienteStatistiche.setEnabled(true);
+				 
+				 if (clienteModifica.equals("Modifica")) {
+					 clienteModifica.setEnabled(true);
+					 clienteElimina.setEnabled(true);
+					 clienteStatistiche.setEnabled(true);
+				 }
 			 }
 			});
 		scrollPane.setViewportView(clientetable);
