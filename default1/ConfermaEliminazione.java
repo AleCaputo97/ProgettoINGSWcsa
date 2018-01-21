@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 
 public class ConfermaEliminazione extends JFrame {
 	
-	public String doveeliminare="";
+	public String doveeliminare="", elemento;
 
 	private JPanel contentPane;
 	
@@ -26,15 +26,17 @@ public class ConfermaEliminazione extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConfermaEliminazione() {
+	public ConfermaEliminazione(String DoveEliminare, String CosaEliminare) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 405, 149);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		doveeliminare = DoveEliminare;
+		elemento = CosaEliminare;
 		
-		JLabel lblSicuroDiVoler = new JLabel("Sicuro di voler eliminare $nomelemento ?");
+		JLabel lblSicuroDiVoler = new JLabel("Sicuro di voler eliminare?");
 		lblSicuroDiVoler.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblSicuroDiVoler.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSicuroDiVoler.setBounds(10, 11, 369, 29);
@@ -57,9 +59,9 @@ public class ConfermaEliminazione extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-			/*	if (doveeliminare.equals("Cliente"))
-					ClienteController.elimina();
-				else if (doveeliminare.equals("Evento"))
+				if (doveeliminare.equals("Cliente"))
+					ClienteController.elimina(elemento);
+				/*else if (doveeliminare.equals("Evento"))
 					EventoController.elimina();
 				else if (doveeliminare.equals("Luogo"))
 					LuogoController.elimina(); */
