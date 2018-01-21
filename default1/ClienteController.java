@@ -78,6 +78,7 @@ public class ClienteController {
             model.removeRow(0);
 		}
 	
+	
 
 }
 	
