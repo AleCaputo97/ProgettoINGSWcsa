@@ -200,6 +200,7 @@ public class FinestraUtente {
 				clienteElimina.setEnabled(false);
 				clienteInserisci.setEnabled(false);
 				clienteClear.setEnabled(false);
+				clientetfCodicefiscale.setEnabled(false);
 				
 				clienteModifica.setText("Conferma");
 				
@@ -220,6 +221,8 @@ public class FinestraUtente {
 					clienteElimina.setEnabled(true);
 					clienteInserisci.setEnabled(true);
 					clienteClear.setEnabled(true);
+					clientetfCodicefiscale.setEnabled(true);
+
 
 					
 				}
