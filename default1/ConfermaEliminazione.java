@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 public class ConfermaEliminazione extends JFrame {
 	
 	public String doveeliminare="", elemento;
-
+	FinestraUtente window;
 	private JPanel contentPane;
 	
 	/**
@@ -26,7 +26,7 @@ public class ConfermaEliminazione extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConfermaEliminazione(String DoveEliminare, String CosaEliminare) {
+	public ConfermaEliminazione(String DoveEliminare, String CosaEliminare, FinestraUtente Window) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 405, 149);
 		contentPane = new JPanel();
@@ -35,7 +35,7 @@ public class ConfermaEliminazione extends JFrame {
 		contentPane.setLayout(null);
 		doveeliminare = DoveEliminare;
 		elemento = CosaEliminare;
-		
+		window=Window;
 		JLabel lblSicuroDiVoler = new JLabel("Sicuro di voler eliminare?");
 		lblSicuroDiVoler.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblSicuroDiVoler.setHorizontalAlignment(SwingConstants.CENTER);
