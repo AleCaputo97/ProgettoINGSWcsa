@@ -23,9 +23,9 @@ import java.awt.Font;
 import javax.swing.ListSelectionModel;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.ActionEvent;
 
 public class FinestraUtente {
 
@@ -178,6 +178,7 @@ public class FinestraUtente {
 		Cliente.add(clienteElimina);
 		
 		JButton clienteStatistiche = new JButton("Statistiche");
+		clienteStatistiche.setEnabled(false);
 		clienteStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
 		clienteStatistiche.setBounds(684, 116, 274, 23);
 		Cliente.add(clienteStatistiche);
@@ -187,6 +188,7 @@ public class FinestraUtente {
 		Cliente.add(clienteClear);
 		
 		JButton clienteModifica = new JButton("Modifica");
+		clienteModifica.setEnabled(false);
 		clienteModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -259,12 +261,13 @@ public class FinestraUtente {
 			public void focusGained(FocusEvent e) {
 				clienteModifica.setEnabled(true);
 				clienteElimina.setEnabled(true);
+				clienteStatistiche.setEnabled(true);
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
 				clienteModifica.setEnabled(false);
 				clienteElimina.setEnabled(false);
-
+				clienteStatistiche.setEnabled(false);
 			}
 		});
 		clientetable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -282,6 +285,7 @@ public class FinestraUtente {
 				return columnEditables[column];
 			}
 		});
+		scrollPane.setViewportView(clientetable);
 		
 
 		
