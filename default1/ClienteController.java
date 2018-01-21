@@ -70,8 +70,6 @@ public class ClienteController {
 	}
 	
 	public static void elimina(String CodiceFiscale) {
-		ConfermaEliminazione frame = new ConfermaEliminazione();
-		frame.setVisible(true);
 		ClienteDAO.elimina(CodiceFiscale);
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
         int i;
