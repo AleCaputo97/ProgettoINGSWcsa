@@ -161,6 +161,17 @@ public class FinestraUtente {
 		Cliente.add(clienteInserisci);
 		
 		JButton clienteModifica = new JButton("Modifica");
+		clienteModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int row = clientetable.getSelectedRow();
+				clientetfNome.setText(clientetable.getValueAt(row,clientetable.getColumn("Nome").getModelIndex()).toString());
+				clientetfCognome.setText(clientetable.getValueAt(row,clientetable.getColumn("Cognome").getModelIndex()).toString());
+				clientetfCodicefiscale.setText(clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString());
+				clienteData.setText(clientetable.getValueAt(row,clientetable.getColumn("Data di nascita").getModelIndex()).toString());
+				clientetfEmail.setText(clientetable.getValueAt(row,clientetable.getColumn("eMail").getModelIndex()).toString());
+
+			}
+		});
 		clienteModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
 		clienteModifica.setBounds(684, 150, 129, 23);
 		Cliente.add(clienteModifica);
