@@ -163,6 +163,7 @@ public class FinestraUtente {
 		Cliente.add(clienteInserisci);
 		
 		JButton clienteElimina = new JButton("Elimina");
+		clienteElimina.setEnabled(false);
 		clienteElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -257,10 +258,13 @@ public class FinestraUtente {
 			@Override
 			public void focusGained(FocusEvent e) {
 				clienteModifica.setEnabled(true);
+				clienteElimina.setEnabled(true);
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
 				clienteModifica.setEnabled(false);
+				clienteElimina.setEnabled(false);
+
 			}
 		});
 		clientetable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
