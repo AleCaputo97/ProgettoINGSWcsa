@@ -163,7 +163,6 @@ public class FinestraUtente {
 		Cliente.add(clienteInserisci);
 		
 		JButton clienteElimina = new JButton("Elimina");
-		clienteElimina.setEnabled(false);
 		clienteElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -178,7 +177,6 @@ public class FinestraUtente {
 		Cliente.add(clienteElimina);
 		
 		JButton clienteStatistiche = new JButton("Statistiche");
-		clienteStatistiche.setEnabled(false);
 		clienteStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
 		clienteStatistiche.setBounds(684, 116, 274, 23);
 		Cliente.add(clienteStatistiche);
@@ -188,7 +186,6 @@ public class FinestraUtente {
 		Cliente.add(clienteClear);
 		
 		JButton clienteModifica = new JButton("Modifica");
-		clienteModifica.setEnabled(false);
 		clienteModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
