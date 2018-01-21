@@ -178,6 +178,10 @@ public class FinestraUtente {
 		clienteStatistiche.setBounds(684, 116, 274, 23);
 		Cliente.add(clienteStatistiche);
 		
+		JButton clienteClear = new JButton("Clear");
+		clienteClear.setBounds(831, 10, 80, 23);
+		Cliente.add(clienteClear);
+		
 		JButton clienteModifica = new JButton("Modifica");
 		clienteModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -195,6 +199,7 @@ public class FinestraUtente {
 				clienteStatistiche.setEnabled(false);
 				clienteElimina.setEnabled(false);
 				clienteInserisci.setEnabled(false);
+				clienteClear.setEnabled(false);
 				
 				clienteModifica.setText("Conferma");
 				
@@ -213,7 +218,9 @@ public class FinestraUtente {
 					clienteCerca.setEnabled(true);
 					clienteStatistiche.setEnabled(true);
 					clienteElimina.setEnabled(true);
-					clienteInserisci.setEnabled(true);				
+					clienteInserisci.setEnabled(true);
+					clienteClear.setEnabled(true);
+
 					
 				}
 				
@@ -229,9 +236,7 @@ public class FinestraUtente {
 		clienteHelp.setBounds(921, 10, 37, 23);
 		Cliente.add(clienteHelp);
 		
-		JButton clienteClear = new JButton("Clear");
-		clienteClear.setBounds(831, 10, 80, 23);
-		Cliente.add(clienteClear);
+
 		
 		JLabel lblDataDiNascita = new JLabel("Data di nascita:");
 		lblDataDiNascita.setBounds(332, 14, 85, 14);
