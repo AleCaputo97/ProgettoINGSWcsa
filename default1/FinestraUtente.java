@@ -166,6 +166,15 @@ public class FinestraUtente {
 		Cliente.add(clienteModifica);
 		
 		JButton clienteElimina = new JButton("Elimina");
+		clienteElimina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int row = clientetable.getSelectedRow();
+		        int col = clientetable.getSelectedColumn();
+		        String codicefiscale = clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString();
+				
+			}
+		});
 		clienteElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
 		clienteElimina.setBounds(829, 150, 129, 23);
 		Cliente.add(clienteElimina);
@@ -182,6 +191,10 @@ public class FinestraUtente {
 		JButton clienteClear = new JButton("Clear");
 		clienteClear.setBounds(831, 10, 80, 23);
 		Cliente.add(clienteClear);
+		
+		JLabel lblDataDiNascita = new JLabel("Data di nascita:");
+		lblDataDiNascita.setBounds(332, 14, 85, 14);
+		Cliente.add(lblDataDiNascita);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 202, 948, 248);
@@ -204,10 +217,6 @@ public class FinestraUtente {
 			}
 		});
 		scrollPane.setViewportView(clientetable);
-		
-		JLabel lblDataDiNascita = new JLabel("Data di nascita:");
-		lblDataDiNascita.setBounds(332, 14, 85, 14);
-		Cliente.add(lblDataDiNascita);
 		
 
 		
