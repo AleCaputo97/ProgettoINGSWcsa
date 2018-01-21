@@ -46,7 +46,7 @@ public class ConfermaEliminazione extends JFrame {
 		buttonno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//FinestraUtente.toggle();
+				window.toggle();
 
 				ConfermaEliminazione.super.dispose();
 				
@@ -68,7 +68,7 @@ public class ConfermaEliminazione extends JFrame {
 				else if (doveeliminare.equals("Luogo"))
 					LuogoController.elimina(); */
 				
-				//FinestraUtente.toggle();
+				window.toggle();
 
 				ConfermaEliminazione.super.dispose();
 				
