@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JScrollPane;
@@ -29,6 +32,9 @@ import java.awt.event.FocusEvent;
 
 public class FinestraUtente {
 	JButton clienteCerca = new JButton("Cerca");
+	JButton clienteModifica = new JButton("Modifica");
+	JButton clienteElimina = new JButton("Elimina");
+	JButton clienteStatistiche = new JButton("Statistiche");
 	public JFrame frmProgettoingswcsa;
 	private JTextField clientetfNome;
 	private JTextField clientetfCognome;
@@ -133,6 +139,11 @@ public class FinestraUtente {
 		
 		clienteCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				clienteModifica.setEnabled(false);
+				clienteElimina.setEnabled(false);
+				clienteStatistiche.setEnabled(false);
+				
 				String nome = clientetfNome.getText();
 				String data = clienteData.getText();
 				String cognome = clientetfCognome.getText();
@@ -150,6 +161,11 @@ public class FinestraUtente {
 		JButton clienteInserisci = new JButton("Inserisci");
 		clienteInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				clienteModifica.setEnabled(false);
+				clienteElimina.setEnabled(false);
+				clienteStatistiche.setEnabled(false);
+				
 				String nome = clientetfNome.getText();
 				String data = clienteData.getText();
 				String cognome = clientetfCognome.getText();
@@ -161,8 +177,8 @@ public class FinestraUtente {
 		clienteInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
 		clienteInserisci.setBounds(155, 150, 129, 23);
 		Cliente.add(clienteInserisci);
+		clienteElimina.setEnabled(false);
 		
-		JButton clienteElimina = new JButton("Elimina");
 		clienteElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -175,8 +191,8 @@ public class FinestraUtente {
 		clienteElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
 		clienteElimina.setBounds(829, 150, 129, 23);
 		Cliente.add(clienteElimina);
+		clienteStatistiche.setEnabled(false);
 		
-		JButton clienteStatistiche = new JButton("Statistiche");
 		clienteStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
 		clienteStatistiche.setBounds(684, 116, 274, 23);
 		Cliente.add(clienteStatistiche);
@@ -185,7 +201,7 @@ public class FinestraUtente {
 		clienteClear.setBounds(831, 10, 80, 23);
 		Cliente.add(clienteClear);
 		
-		JButton clienteModifica = new JButton("Modifica");
+		clienteModifica.setEnabled(false);
 		clienteModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -268,6 +284,14 @@ public class FinestraUtente {
 				return columnEditables[column];
 			}
 		});
+		
+		clientetable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			 public void valueChanged(ListSelectionEvent event) {
+				 clienteModifica.setEnabled(true);
+				 clienteElimina.setEnabled(true);
+				 clienteStatistiche.setEnabled(true);
+			 }
+			});
 		scrollPane.setViewportView(clientetable);
 		
 
