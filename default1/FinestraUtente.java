@@ -172,7 +172,7 @@ public class FinestraUtente {
 				int row = clientetable.getSelectedRow();
 		        int col = clientetable.getSelectedColumn();
 		        String codicefiscale = clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString();
-				
+				ClienteController.elimina(codicefiscale);
 			}
 		});
 		clienteElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
