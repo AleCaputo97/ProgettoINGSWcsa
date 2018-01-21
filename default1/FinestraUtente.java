@@ -35,6 +35,7 @@ public class FinestraUtente {
 	JButton clienteModifica = new JButton("Modifica");
 	JButton clienteElimina = new JButton("Elimina");
 	JButton clienteStatistiche = new JButton("Statistiche");
+	JButton clienteClear = new JButton("Clear");
 	public JFrame frmProgettoingswcsa;
 	private JTextField clientetfNome;
 	private JTextField clientetfCognome;
@@ -198,7 +199,15 @@ public class FinestraUtente {
 		clienteStatistiche.setBounds(684, 116, 274, 23);
 		Cliente.add(clienteStatistiche);
 		
-		JButton clienteClear = new JButton("Clear");
+		clienteClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clientetfNome.setText("");
+				clientetfCognome.setText("");
+				clientetfEmail.setText("");
+				clientetfCodicefiscale.setText("");
+				clienteData.setText("");
+			}
+		});
 		clienteClear.setBounds(831, 10, 80, 23);
 		Cliente.add(clienteClear);
 		
@@ -242,6 +251,7 @@ public class FinestraUtente {
 					clienteInserisci.setEnabled(true);
 					clienteClear.setEnabled(true);
 					clientetfCodicefiscale.setEnabled(true);
+					clienteClear.doClick();
 
 
 					
@@ -289,7 +299,7 @@ public class FinestraUtente {
 		clientetable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			 public void valueChanged(ListSelectionEvent event) {
 				 
-				 if (clienteModifica.equals("Modifica")) {
+				 if (clienteModifica.getText().equals("Modifica")) {
 					 clienteModifica.setEnabled(true);
 					 clienteElimina.setEnabled(true);
 					 clienteStatistiche.setEnabled(true);
