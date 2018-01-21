@@ -170,7 +170,6 @@ public class FinestraUtente {
 			public void actionPerformed(ActionEvent e) {
 				
 				int row = clientetable.getSelectedRow();
-		        int col = clientetable.getSelectedColumn();
 		        String codicefiscale = clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString();
 				ClienteController.elimina(codicefiscale);
 			}
