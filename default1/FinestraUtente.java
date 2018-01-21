@@ -23,6 +23,8 @@ import java.awt.Font;
 import javax.swing.ListSelectionModel;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 
 public class FinestraUtente {
@@ -251,6 +253,16 @@ public class FinestraUtente {
 		Cliente.add(scrollPane);
 		
 		clientetable = new JTable();
+		clientetable.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				clienteModifica.setEnabled(true);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				clienteModifica.setEnabled(false);
+			}
+		});
 		clientetable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		clientetable.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -266,7 +278,6 @@ public class FinestraUtente {
 				return columnEditables[column];
 			}
 		});
-		scrollPane.setViewportView(clientetable);
 		
 
 		
