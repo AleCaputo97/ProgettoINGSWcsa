@@ -150,6 +150,7 @@ public class FinestraUtente {
 				String cognome = clientetfCognome.getText();
 				String email = clientetfEmail.getText();
 				String codicefiscale = clientetfCodicefiscale.getText();
+				messaggio.setText("");
 				//System.out.println("[FINESTRA UTENTE] Si vuole cercare: " + nome + cognome + email + codicefiscale + data);
 				ClienteController.cerca(nome, cognome, email, codicefiscale, data);
 				clienteModifica.setEnabled(false);
@@ -538,6 +539,7 @@ public class FinestraUtente {
 			}
 		});
 		scrollPane_2.setViewportView(table_1);
+		messaggio.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		messaggio.setForeground(Color.BLACK);
 		messaggio.setBounds(14, 503, 963, 22);
