@@ -65,7 +65,13 @@ public class ClienteController {
 		}
 }
 	public static void inserisci (String nome, String cognome, String email, String codicefiscale, String data) {
+		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
 		if((!nome.equals("")&&!cognome.equals("")&&!email.equals("")&&!codicefiscale.equals("")&&!data.equals(""))) {
+			//Controllo successivo: mail ben posta e codice fiscale di 16 caratteri
+			if(codicefiscale.length()!=16) {
+				FinestraUtente.messaggio.setText("ERRORE: Il codice fiscale non è di 16 caratteri");
+				return;
+			}
 		nome=normalizza(nome);
 		cognome=normalizza(cognome);
 		email=normalizzaEmail(email);
