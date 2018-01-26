@@ -72,6 +72,7 @@ public class ClienteController {
 				FinestraUtente.messaggio.setText("ERRORE: Il codice fiscale non è di 16 caratteri");
 				return;
 			}
+			
 		nome=normalizza(nome);
 		cognome=normalizza(cognome);
 		email=normalizzaEmail(email);
