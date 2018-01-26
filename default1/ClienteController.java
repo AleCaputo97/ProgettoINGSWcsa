@@ -39,6 +39,12 @@ public class ClienteController {
 
 	public static void cerca (String nome, String cognome, String email, String codicefiscale, String data) {
 	
+		if (!(codicefiscale.equals(""))) {
+			if (!(codicefiscale.length()==16))
+				FinestraUtente.messaggio.setText("ERRORE: Il codice fiscale deve essere di 16 caratteri");
+		}
+		else {
+		
 		nome=normalizza(nome);
 		cognome=normalizza(cognome);
 		email=normalizzaEmail(email);
@@ -56,6 +62,7 @@ public class ClienteController {
 			model.addRow (new Object[]{curr.getNome(), curr.getCognome(), curr.getEmail(), curr.getCodiceFiscale(), curr.getData()});
 	    	//System.out.println(curr.getNome());
 	       }
+		}
 }
 	public static void inserisci (String nome, String cognome, String email, String codicefiscale, String data) {
 		if((!nome.equals("")&&!cognome.equals("")&&!email.equals("")&&!codicefiscale.equals("")&&!data.equals(""))) {
