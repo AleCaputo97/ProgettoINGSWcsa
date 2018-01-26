@@ -48,12 +48,12 @@ public class FinestraUtente {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
-	private JTable table_2;
+	public static JTable eventotable;
 	private JTextField textField_7;
 	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTextField textField_10;
-	private JTable table_1;
+	public static JTable luogotable;
 	public DatePicker clienteData=null;
 
 	/**
@@ -355,42 +355,42 @@ public class FinestraUtente {
 		lblMassimoPosti.setBounds(10, 104, 85, 14);
 		Evento.add(lblMassimoPosti);
 		
-		JButton button_1 = new JButton("Cerca");
-		button_1.addActionListener(new ActionListener() {
+		JButton eventoCerca = new JButton("Cerca");
+		eventoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_1.setBounds(10, 150, 129, 23);
-		Evento.add(button_1);
+		eventoCerca.setFont(new Font("Tahoma", Font.BOLD, 11));
+		eventoCerca.setBounds(10, 150, 129, 23);
+		Evento.add(eventoCerca);
 		
-		JButton button_2 = new JButton("Inserisci");
-		button_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_2.setBounds(155, 150, 129, 23);
-		Evento.add(button_2);
+		JButton eventoInserisci = new JButton("Inserisci");
+		eventoInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
+		eventoInserisci.setBounds(155, 150, 129, 23);
+		Evento.add(eventoInserisci);
 		
-		JButton button_3 = new JButton("Modifica");
-		button_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_3.setBounds(684, 150, 129, 23);
-		Evento.add(button_3);
+		JButton eventoModifica = new JButton("Modifica");
+		eventoModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
+		eventoModifica.setBounds(684, 150, 129, 23);
+		Evento.add(eventoModifica);
 		
-		JButton button_4 = new JButton("Elimina");
-		button_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_4.setBounds(829, 150, 129, 23);
-		Evento.add(button_4);
+		JButton eventoElimina = new JButton("Elimina");
+		eventoElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
+		eventoElimina.setBounds(829, 150, 129, 23);
+		Evento.add(eventoElimina);
 		
-		JButton button_5 = new JButton("Statistiche");
-		button_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_5.setBounds(684, 116, 274, 23);
-		Evento.add(button_5);
+		JButton eventoStatistiche = new JButton("Statistiche");
+		eventoStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
+		eventoStatistiche.setBounds(684, 116, 274, 23);
+		Evento.add(eventoStatistiche);
 		
-		JButton button_6 = new JButton("?");
-		button_6.setBounds(921, 10, 37, 23);
-		Evento.add(button_6);
+		JButton eventoHelp = new JButton("?");
+		eventoHelp.setBounds(921, 10, 37, 23);
+		Evento.add(eventoHelp);
 		
-		JButton button_7 = new JButton("Clear");
-		button_7.setBounds(831, 10, 80, 23);
-		Evento.add(button_7);
+		JButton eventoClear = new JButton("Clear");
+		eventoClear.setBounds(831, 10, 80, 23);
+		Evento.add(eventoClear);
 		
 		JLabel lblLuogo = new JLabel("Luogo");
 		lblLuogo.setBounds(332, 14, 85, 14);
@@ -416,8 +416,8 @@ public class FinestraUtente {
 		scrollPane_1.setBounds(10, 202, 948, 248);
 		Evento.add(scrollPane_1);
 		
-		table_2 = new JTable();
-		table_2.setModel(new DefaultTableModel(
+		eventotable = new JTable();
+		eventotable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
@@ -436,11 +436,11 @@ public class FinestraUtente {
 				return columnEditables[column];
 			}
 		});
-		scrollPane_1.setViewportView(table_2);
+		scrollPane_1.setViewportView(eventotable);
 		
-		DatePicker datePicker_1 = new DatePicker();
-		datePicker_1.setBounds(427, 70, 137, 22);
-		Evento.add(datePicker_1);
+		DatePicker eventoData = new DatePicker();
+		eventoData.setBounds(427, 70, 137, 22);
+		Evento.add(eventoData);
 		
 		JPanel Luogo = new JPanel();
 		Luogo.setBackground(Color.WHITE);
@@ -483,45 +483,45 @@ public class FinestraUtente {
 		label_4.setBounds(10, 104, 85, 14);
 		Luogo.add(label_4);
 		
-		JButton button_8 = new JButton("Cerca");
-		button_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_8.setBounds(10, 150, 129, 23);
-		Luogo.add(button_8);
+		JButton luogoCerca = new JButton("Cerca");
+		luogoCerca.setFont(new Font("Tahoma", Font.BOLD, 11));
+		luogoCerca.setBounds(10, 150, 129, 23);
+		Luogo.add(luogoCerca);
 		
-		JButton button_9 = new JButton("Inserisci");
-		button_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_9.setBounds(155, 150, 129, 23);
-		Luogo.add(button_9);
+		JButton luogoInserisci = new JButton("Inserisci");
+		luogoInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
+		luogoInserisci.setBounds(155, 150, 129, 23);
+		Luogo.add(luogoInserisci);
 		
-		JButton button_10 = new JButton("Modifica");
-		button_10.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_10.setBounds(684, 150, 129, 23);
-		Luogo.add(button_10);
+		JButton luogoModifica = new JButton("Modifica");
+		luogoModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
+		luogoModifica.setBounds(684, 150, 129, 23);
+		Luogo.add(luogoModifica);
 		
-		JButton button_11 = new JButton("Elimina");
-		button_11.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_11.setBounds(829, 150, 129, 23);
-		Luogo.add(button_11);
+		JButton luogoElimina = new JButton("Elimina");
+		luogoElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
+		luogoElimina.setBounds(829, 150, 129, 23);
+		Luogo.add(luogoElimina);
 		
-		JButton button_12 = new JButton("Statistiche");
-		button_12.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_12.setBounds(684, 116, 274, 23);
-		Luogo.add(button_12);
+		JButton luogoStatistiche = new JButton("Statistiche");
+		luogoStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
+		luogoStatistiche.setBounds(684, 116, 274, 23);
+		Luogo.add(luogoStatistiche);
 		
-		JButton button_13 = new JButton("?");
-		button_13.setBounds(921, 10, 37, 23);
-		Luogo.add(button_13);
+		JButton luogoHelp = new JButton("?");
+		luogoHelp.setBounds(921, 10, 37, 23);
+		Luogo.add(luogoHelp);
 		
-		JButton button_14 = new JButton("Clear");
-		button_14.setBounds(831, 10, 80, 23);
-		Luogo.add(button_14);
+		JButton luogoClear = new JButton("Clear");
+		luogoClear.setBounds(831, 10, 80, 23);
+		Luogo.add(luogoClear);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(10, 202, 948, 248);
 		Luogo.add(scrollPane_2);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
+		luogotable = new JTable();
+		luogotable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},
 				{null, null, null, null},
@@ -538,7 +538,7 @@ public class FinestraUtente {
 				return columnEditables[column];
 			}
 		});
-		scrollPane_2.setViewportView(table_1);
+		scrollPane_2.setViewportView(luogotable);
 		messaggio.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		messaggio.setForeground(Color.BLACK);
