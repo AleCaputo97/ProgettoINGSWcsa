@@ -65,6 +65,7 @@ public class ClienteController {
 		codicefiscale=normalizzaCF(codicefiscale);
 		ClienteDAO.inserisciModifica(nome, cognome, email, codicefiscale, data);
 		}else {
+			FinestraUtente.messaggio.setText("ERRORE: Almeno uno dei campi è vuoto");
 			System.out.println("errore, almeno uno dei campi è vuoto");
 		}
 	}
