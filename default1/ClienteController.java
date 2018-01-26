@@ -1,6 +1,8 @@
 package default1;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -38,10 +40,15 @@ public class ClienteController {
 		
 
 	public static void cerca (String nome, String cognome, String email, String codicefiscale, String data) {
-	
+		Pattern p= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+		if(!p.matcher(email).matches() && !(email.equals(""))) {
+			FinestraUtente.messaggio.setText("ERRORE: la mail non è nel formato testo@dominio.testo");
+			return;
+		}
 		if (!(codicefiscale.equals(""))) {
 			if (!(codicefiscale.length()==16))
 				FinestraUtente.messaggio.setText("ERRORE: Il codice fiscale deve essere di 16 caratteri");
+			
 		}
 		else {
 		
@@ -72,7 +79,11 @@ public class ClienteController {
 				FinestraUtente.messaggio.setText("ERRORE: Il codice fiscale non è di 16 caratteri");
 				return;
 			}
-			
+			Pattern p= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+			if(!p.matcher(email).matches()) {
+				FinestraUtente.messaggio.setText("ERRORE: la mail non è nel formato testo@dominio.testo");
+				return;
+			}
 		nome=normalizza(nome);
 		cognome=normalizza(cognome);
 		email=normalizzaEmail(email);
