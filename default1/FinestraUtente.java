@@ -188,6 +188,7 @@ public class FinestraUtente {
 		        String codicefiscale = clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString();
 		        ConfermaEliminazione frame = new ConfermaEliminazione("Cliente",codicefiscale,FinestraUtente.this);
 				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
 				toggle();
 			}
 		});
