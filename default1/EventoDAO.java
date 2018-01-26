@@ -73,7 +73,6 @@ public class EventoDAO {
 				      
 		   		}
 		   //costruisce la lista con i risultati da restituire
-		  // System.out.println("[DAO] Si vuole cercare: " + nome + cognome + email + CodiceFiscale + DataNascita);
 		   Item iteratorcurr;
 		   Evento curr;
 	       while (iterator.hasNext()) {
