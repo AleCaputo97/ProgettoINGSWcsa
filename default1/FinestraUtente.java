@@ -416,6 +416,7 @@ public class FinestraUtente {
 		Evento.add(eventoInserisci);
 		
 		JButton eventoModifica = new JButton("Modifica");
+		eventoModifica.setEnabled(false);
 		eventoModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -467,6 +468,7 @@ public class FinestraUtente {
 		Evento.add(eventoModifica);
 		
 		JButton eventoElimina = new JButton("Elimina");
+		eventoElimina.setEnabled(false);
 		eventoElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -484,6 +486,7 @@ public class FinestraUtente {
 		Evento.add(eventoElimina);
 		
 		JButton eventoStatistiche = new JButton("Statistiche");
+		eventoStatistiche.setEnabled(false);
 		eventoStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
 		eventoStatistiche.setBounds(684, 116, 274, 23);
 		Evento.add(eventoStatistiche);
@@ -493,6 +496,20 @@ public class FinestraUtente {
 		Evento.add(eventoHelp);
 		
 		JButton eventoClear = new JButton("Clear");
+		eventoClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				eventotfNome.setText("");
+				eventoData.setText("");
+				eventotfPrezzoiniziale.setText("");
+				eventotfPrezzofinale.setText("");
+				eventotfMassimoposti.setText("");
+				eventocbLuogo.setSelectedIndex(1);
+				eventocbTipo.setSelectedIndex(1);
+
+				
+			}
+		});
 		eventoClear.setBounds(831, 10, 80, 23);
 		Evento.add(eventoClear);
 		
