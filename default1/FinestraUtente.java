@@ -662,7 +662,7 @@ public class FinestraUtente {
 		clienteClear.setEnabled(false);
 		clienteElimina.setEnabled(false);
 		
-		eventoCerca.setEnabled(false);
+		/*eventoCerca.setEnabled(false);
 		eventoStatistiche.setEnabled(false);
 		eventoElimina.setEnabled(false);
 		eventoInserisci.setEnabled(false);
@@ -673,7 +673,7 @@ public class FinestraUtente {
 		eventocbLuogo.setEnabled(false);
 		eventotfPrezzoiniziale.setEnabled(false);
 		eventotfPrezzofinale.setEnabled(false);
-		eventotfMassimoposti.setEnabled(false);
+		eventotfMassimoposti.setEnabled(false);*/
 
 		
 		togglevar=0;
