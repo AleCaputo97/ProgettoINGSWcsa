@@ -44,10 +44,10 @@ public class FinestraUtente {
 	private JTextField clientetfEmail;
 	private JTextField clientetfCodicefiscale;
 	public static JTable clientetable;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField eventotfNome;
+	private JTextField eventotfPrezzoiniziale;
+	private JTextField eventotfPrezzofinale;
+	private JTextField eventotfMassimoposti;
 	public static JTable eventotable;
 	private JTextField textField_7;
 	private JTextField textField_8;
@@ -55,6 +55,18 @@ public class FinestraUtente {
 	private JTextField textField_10;
 	public static JTable luogotable;
 	public DatePicker clienteData=null;
+	JComboBox eventocbTipo = new JComboBox();
+	JComboBox eventocbLuogo = new JComboBox();
+	DatePicker eventoData = null;
+	JButton eventoModifica;
+	JButton eventoElimina;
+	JButton eventoStatistiche;
+	JButton eventoClear;
+	private int togglevar = 1;
+	JButton eventoInserisci;
+	JButton eventoCerca;
+
+
 
 	/**
 	 * Launch the application.
@@ -128,6 +140,7 @@ public class FinestraUtente {
 		Cliente.add(lblCodiceFiscale);
 		
 	    clienteData = new DatePicker();
+	    eventoData = new DatePicker();
 	    clienteData.getComponentDateTextField().addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    	}
@@ -319,37 +332,37 @@ public class FinestraUtente {
 		Evento.setLayout(null);
 		tabbedPane.addTab("Evento", null, Evento, null);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(105, 11, 179, 20);
-		Evento.add(textField_3);
+		eventotfNome = new JTextField();
+		eventotfNome.setColumns(10);
+		eventotfNome.setBounds(105, 11, 179, 20);
+		Evento.add(eventotfNome);
 		
 		JLabel label = new JLabel("Nome:");
 		label.setBounds(10, 14, 85, 14);
 		Evento.add(label);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(105, 39, 179, 20);
-		Evento.add(textField_4);
+		eventotfPrezzoiniziale = new JTextField();
+		eventotfPrezzoiniziale.setColumns(10);
+		eventotfPrezzoiniziale.setBounds(105, 39, 179, 20);
+		Evento.add(eventotfPrezzoiniziale);
 		
 		JLabel lblPrezzoIniziale = new JLabel("Prezzo iniziale:");
 		lblPrezzoIniziale.setBounds(10, 42, 85, 14);
 		Evento.add(lblPrezzoIniziale);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(105, 70, 179, 20);
-		Evento.add(textField_5);
+		eventotfPrezzofinale = new JTextField();
+		eventotfPrezzofinale.setColumns(10);
+		eventotfPrezzofinale.setBounds(105, 70, 179, 20);
+		Evento.add(eventotfPrezzofinale);
 		
 		JLabel lblPrezzoFinale = new JLabel("Prezzo finale");
 		lblPrezzoFinale.setBounds(10, 73, 85, 14);
 		Evento.add(lblPrezzoFinale);
 		///
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(105, 101, 179, 20);
-		Evento.add(textField_6);
+		eventotfMassimoposti = new JTextField();
+		eventotfMassimoposti.setColumns(10);
+		eventotfMassimoposti.setBounds(105, 101, 179, 20);
+		Evento.add(eventotfMassimoposti);
 		
 		JLabel lblMassimoPosti = new JLabel("Massimo posti:");
 		lblMassimoPosti.setBounds(10, 104, 85, 14);
@@ -358,6 +371,21 @@ public class FinestraUtente {
 		JButton eventoCerca = new JButton("Cerca");
 		eventoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				String nome = eventotfNome.getText();
+				String data = eventoData.getText();
+				float prezzoiniziale = Float.parseFloat(eventotfPrezzoiniziale.getText());
+				float prezzofinale = Float.parseFloat(eventotfPrezzofinale.getText());
+				int maxspettatori = Integer.parseInt(eventotfMassimoposti.getText());
+				String tipo = eventocbTipo.getSelectedItem().toString();
+				String luogo = eventocbLuogo.getSelectedItem().toString();
+				messaggio.setText("");
+
+				EventoController.cerca(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
+				eventoModifica.setEnabled(false);
+				eventoElimina.setEnabled(false);
+				eventoStatistiche.setEnabled(false);
+				
 			}
 		});
 		eventoCerca.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -365,16 +393,92 @@ public class FinestraUtente {
 		Evento.add(eventoCerca);
 		
 		JButton eventoInserisci = new JButton("Inserisci");
+		eventoInserisci.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				eventoModifica.setEnabled(false);
+				eventoElimina.setEnabled(false);
+				eventoStatistiche.setEnabled(false);
+				
+				String nome = eventotfNome.getText();
+				String data = eventoData.getText();
+				float prezzoiniziale = Float.parseFloat(eventotfPrezzoiniziale.getText());
+				float prezzofinale = Float.parseFloat(eventotfPrezzofinale.getText());
+				int maxspettatori = Integer.parseInt(eventotfMassimoposti.getText());
+				String tipo = eventocbTipo.getSelectedItem().toString();
+				String luogo = eventocbLuogo.getSelectedItem().toString();
+				EventoController.inserisci(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
+				
+			}
+		});
 		eventoInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
 		eventoInserisci.setBounds(155, 150, 129, 23);
 		Evento.add(eventoInserisci);
 		
 		JButton eventoModifica = new JButton("Modifica");
+		eventoModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (eventoModifica.getText().equals("Modifica")){
+					
+					int row = eventotable.getSelectedRow();
+					eventotfNome.setText(eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString());
+					eventoData.setText(eventotable.getValueAt(row,eventotable.getColumn("Data").getModelIndex()).toString());					
+					eventotfPrezzoiniziale.setText(eventotable.getValueAt(row,eventotable.getColumn("€ Iniziale").getModelIndex()).toString());
+					eventotfPrezzofinale.setText(eventotable.getValueAt(row,eventotable.getColumn("€ Finale").getModelIndex()).toString());
+					eventotfMassimoposti.setText(eventotable.getValueAt(row,eventotable.getColumn("Max Posti").getModelIndex()).toString());	
+					eventocbTipo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Tipo").getModelIndex()).toString());
+					eventocbLuogo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Luogo").getModelIndex()).toString());
+										
+					eventoCerca.setEnabled(false);
+					eventoStatistiche.setEnabled(false);
+					eventoElimina.setEnabled(false);
+					eventoInserisci.setEnabled(false);
+					eventoClear.setEnabled(false);
+					eventotfNome.setEnabled(false);
+					
+					eventoModifica.setText("Conferma");
+					
+					}
+					else {
+						
+						eventoModifica.setText("Modifica");
+						String nome = eventotfNome.getText();
+						String data = eventoData.getText();
+						float prezzoiniziale = Float.parseFloat(eventotfPrezzoiniziale.getText());
+						float prezzofinale = Float.parseFloat(eventotfPrezzofinale.getText());
+						int maxspettatori = Integer.parseInt(eventotfMassimoposti.getText());
+						String tipo = eventocbTipo.getSelectedItem().toString();
+						String luogo = eventocbLuogo.getSelectedItem().toString();
+						EventoController.inserisci(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
+						
+						eventoCerca.setEnabled(true);
+						eventoStatistiche.setEnabled(true);
+						eventoElimina.setEnabled(true);
+						eventoInserisci.setEnabled(true);
+						eventoClear.setEnabled(true);
+						eventotfNome.setEnabled(true);
+						eventoClear.doClick();
+				
+			}
+		}});
 		eventoModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
 		eventoModifica.setBounds(684, 150, 129, 23);
 		Evento.add(eventoModifica);
 		
 		JButton eventoElimina = new JButton("Elimina");
+		eventoElimina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int row = eventotable.getSelectedRow();
+		        String nome = eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString();
+		        ConfermaEliminazione frame = new ConfermaEliminazione("Evento",nome,FinestraUtente.this);
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				toggle();
+				
+			}
+		});
 		eventoElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
 		eventoElimina.setBounds(829, 150, 129, 23);
 		Evento.add(eventoElimina);
@@ -396,13 +500,11 @@ public class FinestraUtente {
 		lblLuogo.setBounds(332, 14, 85, 14);
 		Evento.add(lblLuogo);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(427, 10, 137, 20);
-		Evento.add(comboBox);
+		eventocbLuogo.setBounds(427, 10, 137, 20);
+		Evento.add(eventocbLuogo);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(427, 39, 137, 20);
-		Evento.add(comboBox_1);
+		eventocbTipo.setBounds(427, 39, 137, 20);
+		Evento.add(eventocbTipo);
 		
 		JLabel lblTipo = new JLabel("Tipo:");
 		lblTipo.setBounds(332, 43, 85, 14);
@@ -438,7 +540,6 @@ public class FinestraUtente {
 		});
 		scrollPane_1.setViewportView(eventotable);
 		
-		DatePicker eventoData = new DatePicker();
 		eventoData.setBounds(427, 70, 137, 22);
 		Evento.add(eventoData);
 		
@@ -548,7 +649,7 @@ public class FinestraUtente {
 	
 	public void toggle() {
 		
-		if (clientetfNome.isEnabled()) {
+		if (togglevar==1) {
 		clientetfNome.setEnabled(false);
 		clientetfCognome.setEnabled(false);
 		clientetfEmail.setEnabled(false);
@@ -560,6 +661,22 @@ public class FinestraUtente {
 		clienteStatistiche.setEnabled(false);
 		clienteClear.setEnabled(false);
 		clienteElimina.setEnabled(false);
+		
+		eventoCerca.setEnabled(false);
+		eventoStatistiche.setEnabled(false);
+		eventoElimina.setEnabled(false);
+		eventoInserisci.setEnabled(false);
+		eventoClear.setEnabled(false);
+		eventotfNome.setEnabled(false);
+		eventoData.setEnabled(false);
+		eventocbTipo.setEnabled(false);
+		eventocbLuogo.setEnabled(false);
+		eventotfPrezzoiniziale.setEnabled(false);
+		eventotfPrezzofinale.setEnabled(false);
+		eventotfMassimoposti.setEnabled(false);
+
+		
+		togglevar=0;
 		}
 		else {
 			clientetfNome.setEnabled(true);
@@ -573,6 +690,21 @@ public class FinestraUtente {
 			clienteStatistiche.setEnabled(true);
 			clienteClear.setEnabled(true);
 			clienteElimina.setEnabled(true);
+			
+			eventoCerca.setEnabled(true);
+			eventoStatistiche.setEnabled(true);
+			eventoElimina.setEnabled(true);
+			eventoInserisci.setEnabled(true);
+			eventoClear.setEnabled(true);
+			eventotfNome.setEnabled(true);
+			eventoData.setEnabled(true);
+			eventocbTipo.setEnabled(true);
+			eventocbLuogo.setEnabled(true);
+			eventotfPrezzoiniziale.setEnabled(true);
+			eventotfPrezzofinale.setEnabled(true);
+			eventotfMassimoposti.setEnabled(true);
+			
+			togglevar=1;
 		}
 	}
 	
