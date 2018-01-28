@@ -233,6 +233,13 @@ public class FinestraUtente {
 				clientetfEmail.setText("");
 				clientetfCodicefiscale.setText("");
 				clienteData.setText("");
+				
+				DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
+		        int i;
+		        int j = model.getRowCount();
+		        for (i=0; i<j; i++)
+		            model.removeRow(0);
+		        
 			}
 		});
 		clienteClear.setBounds(831, 10, 80, 23);
