@@ -38,7 +38,7 @@ public class EventoController {
 		
 		
 
-	public static void cerca (String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo) {
+	public static void cerca (String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo, String luogo) {
 		
 		nome=normalizza(nome);
 		prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
@@ -50,22 +50,21 @@ public class EventoController {
         for (i=0; i<j; i++)
             model.removeRow(0);
         
-		List<Evento> risultati = EventoDAO.cerca( nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo);
+		List<Evento> risultati = EventoDAO.cerca( nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
 		
 		for(Evento curr:risultati) {
 			model.addRow (new Object[]{curr.getNome(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo()});
 	       }
 		}
 
-	public static void inserisci (String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo) {
+	public static void inserisci (String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo, String luogo) {
 		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
-		   if(nome.equals("") && data.equals("") && prezzoiniziale==0.00 && prezzofinale==0.00 && maxspettatori==0 && tipo.equals("")) {
-			//Controllo successivo: mail ben posta e codice fiscale di 16 caratteri
+		   if(nome.equals("") && data.equals("") && prezzoiniziale==0.00 && prezzofinale==0.00 && maxspettatori==0 && tipo.equals("")&& luogo.equals("")) {
 			
 			nome=normalizza(nome);
 			prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
 			prezzofinale=normalizzaPrezzo(prezzofinale);
-		EventoDAO.inserisciModifica(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo);
+		EventoDAO.inserisciModifica(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
 		}
 		   
 		   else {

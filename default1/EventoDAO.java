@@ -16,7 +16,7 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 
 public class EventoDAO {
 	
-	public static List<Evento> cerca(String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo) {
+	public static List<Evento> cerca(String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo, String luogo) {
 	       
 		 
 		   String tableName = "Evento";
@@ -25,7 +25,7 @@ public class EventoDAO {
 		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto
-		   if(nome.equals("") && data.equals("") && prezzoiniziale==0.00 && prezzofinale==0.00 && maxspettatori==0 && tipo.equals("")) {
+		   if(nome.equals("") && data.equals("") && prezzoiniziale==0.00 && prezzofinale==0.00 && maxspettatori==0 && tipo.equals("")&& luogo.equals("")) {
 			   ItemCollection<ScanOutcome> items = table.scan (
 				        null,                                  
 				        null,
@@ -60,6 +60,10 @@ public class EventoDAO {
 				   ricerca=ricerca + "AND Tipo = :tipo ";
 				   expressionAttributeValues.put(":tipo", tipo);
 				   }
+			   if(!(luogo.equals(""))) {
+				   ricerca=ricerca + "AND Luogo = :luogo ";
+				   expressionAttributeValues.put(":luogo", luogo);
+				   }
 			   //rimuove i primi tre caratteri della stringa ricerca rendendola idonea alla scan con attributi
 			   ricerca = ricerca.substring(3);
 			    ItemCollection<ScanOutcome> items = table.scan (
@@ -77,13 +81,13 @@ public class EventoDAO {
 		   Evento curr;
 	       while (iterator.hasNext()) {
 	        iteratorcurr = iterator.next();
-	        curr=new Evento((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("Data"),(float)  iteratorcurr.get("PrezzoIniziale"),(float) iteratorcurr.get("PrezzoFinale"),(int) iteratorcurr.get("MassimoSpettatori"),(String) iteratorcurr.get("Tipo"));
+	        curr=new Evento((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("Data"),(float)  iteratorcurr.get("PrezzoIniziale"),(float) iteratorcurr.get("PrezzoFinale"),(int) iteratorcurr.get("MassimoSpettatori"),(String) iteratorcurr.get("Tipo"), (String) iteratorcurr.get("Luogo"));
 	        risultati.add(curr);
 	       }
 	   return risultati;
 	}
 	
-	 public static void inserisciModifica(String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo) {
+	 public static void inserisciModifica(String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo, String luogo) {
 		    String tableName = "Evento";
 		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		    Item item = new Item()
@@ -91,8 +95,8 @@ public class EventoDAO {
 		    	    .withString("Data", data)
 		    	    .withNumber("PrezzoIniziale", prezzoiniziale)
 		    	    .withNumber("PrezzoFinale", prezzofinale)
-		    	    .withNumber("MassimoSpettatori", maxspettatori);
-		    
+		    	    .withNumber("MassimoSpettatori", maxspettatori)
+		    		.withString("Luogo", luogo);
 		    PutItemOutcome outcome = table.putItem(item, null, null, null);
 		    
 		    

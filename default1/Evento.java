@@ -9,15 +9,17 @@ public class Evento {
 	private float PrezzoFinale;
 	private int MassimoSpettatori;
 	private String Tipo;
+	private String Luogo;
 	
 	//costruttore
-	public Evento(String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo) {
+	public Evento(String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo, String luogo) {
 		Nome=nome;
 		Data=data;
 		PrezzoIniziale=prezzoiniziale;
 		PrezzoFinale=prezzofinale;
 		MassimoSpettatori=maxspettatori;
 		Tipo=tipo;
+		Luogo=luogo;
 	}
 	
 	//getter
@@ -44,6 +46,10 @@ public class Evento {
 	public String getTipo() {
 		return Tipo;
 	}
+	
+	public String getLuogo() {
+		return Luogo;
+	}
 
 	//setter
 	public void setNome(String nome) {
@@ -69,5 +75,7 @@ public class Evento {
 	public void setTipo(String tipo) {
 		 Tipo=tipo;
 	}
-	
+	public void setLuogo(String luogo) {
+		Luogo=luogo;
+	}
 }
