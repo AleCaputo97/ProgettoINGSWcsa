@@ -42,7 +42,7 @@ public class EventoDAO {
 			   }
 			   if(!(data.equals(""))) {
 				   expressionAttributeValues.put(":data", data);
-				   ricerca=ricerca + "AND Data = :data ";
+				   ricerca=ricerca + "AND DataEvento = :data ";
 				   }
 			   if(!(prezzoiniziale==0.00)) {
 				   ricerca=ricerca + "AND PrezzoIniziale = :pi ";
@@ -92,7 +92,7 @@ public class EventoDAO {
 		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		    Item item = new Item()
 		    	    .withPrimaryKey("Nome", nome)
-		    	    .withString("Data", data)
+		    	    .withString("DataEvento", data)
 		    	    .withNumber("PrezzoIniziale", prezzoiniziale)
 		    	    .withNumber("PrezzoFinale", prezzofinale)
 		    	    .withNumber("MassimoSpettatori", maxspettatori)
