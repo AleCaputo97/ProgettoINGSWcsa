@@ -19,7 +19,7 @@ public class EventoController {
 		
 	}
 	
-	private static float normalizzaPrezzo (float prezzo) {
+	private static double normalizzaPrezzo (double prezzo) {
 		
 		DecimalFormat df = new DecimalFormat(".##");
 		df.setRoundingMode(RoundingMode.DOWN);
@@ -29,7 +29,7 @@ public class EventoController {
 		
 			prezzostringa = df.format(prezzo);
 			prezzostringa.replaceAll(",",".");
-			prezzo = Float.parseFloat(prezzostringa);
+			prezzo = Double.parseDouble(prezzostringa);
 			
 			
 		return prezzo;
@@ -38,7 +38,7 @@ public class EventoController {
 		
 		
 
-	public static void cerca (String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo, String luogo) {
+	public static void cerca (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
 		
 		nome=normalizza(nome);
 		prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
@@ -57,7 +57,7 @@ public class EventoController {
 	       }
 		}
 
-	public static void inserisci (String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo, String luogo) {
+	public static void inserisci (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
 		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
 		   if(nome.equals("") && data.equals("") && prezzoiniziale==0.00 && prezzofinale==0.00 && maxspettatori==0 && tipo.equals("")&& luogo.equals("")) {
 			

@@ -16,7 +16,7 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 
 public class EventoDAO {
 	
-	public static List<Evento> cerca(String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo, String luogo) {
+	public static List<Evento> cerca(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
 	       
 		 
 		   String tableName = "Evento";
@@ -81,13 +81,13 @@ public class EventoDAO {
 		   Evento curr;
 	       while (iterator.hasNext()) {
 	        iteratorcurr = iterator.next();
-	        curr=new Evento((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("Data"),(float)  iteratorcurr.get("PrezzoIniziale"),(float) iteratorcurr.get("PrezzoFinale"),(int) iteratorcurr.get("MassimoSpettatori"),(String) iteratorcurr.get("Tipo"), (String) iteratorcurr.get("Luogo"));
+	        curr=new Evento((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("Data"),(double)  iteratorcurr.get("PrezzoIniziale"),(double) iteratorcurr.get("PrezzoFinale"),(int) iteratorcurr.get("MassimoSpettatori"),(String) iteratorcurr.get("Tipo"), (String) iteratorcurr.get("Luogo"));
 	        risultati.add(curr);
 	       }
 	   return risultati;
 	}
 	
-	 public static void inserisciModifica(String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo, String luogo) {
+	 public static void inserisciModifica(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
 		    String tableName = "Evento";
 		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		    Item item = new Item()

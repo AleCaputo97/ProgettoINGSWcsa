@@ -5,14 +5,14 @@ public class Evento {
 	//attributi
 	private String Nome;
 	private String Data;
-	private float PrezzoIniziale;
-	private float PrezzoFinale;
+	private double PrezzoIniziale;
+	private double PrezzoFinale;
 	private int MassimoSpettatori;
 	private String Tipo;
 	private String Luogo;
 	
 	//costruttore
-	public Evento(String nome, String data, float prezzoiniziale, float prezzofinale, int maxspettatori, String tipo, String luogo) {
+	public Evento(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
 		Nome=nome;
 		Data=data;
 		PrezzoIniziale=prezzoiniziale;
@@ -31,11 +31,11 @@ public class Evento {
 		return Data;
 	}	
 	
-	public float getPrezzoIniziale() {
+	public double getPrezzoIniziale() {
 		return PrezzoIniziale;
 	}
 	
-	public float getPrezzoFinale() {
+	public double getPrezzoFinale() {
 		return PrezzoFinale;
 	}
 	
@@ -60,11 +60,11 @@ public class Evento {
 		 Data=data;
 	}
 	
-	public void setPrezzoIniziale(float prezzoiniziale) {
+	public void setPrezzoIniziale(double prezzoiniziale) {
 		PrezzoIniziale=prezzoiniziale;
 	}
 	
-	public void setPrezzoFinale(float prezzoFinale) {
+	public void setPrezzoFinale(double prezzoFinale) {
 		PrezzoFinale=prezzoFinale;
 	}
 	
