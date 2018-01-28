@@ -21,7 +21,7 @@ public class EventoController {
 	
 	private static double normalizzaPrezzo (double prezzo) {
 		
-		DecimalFormat df = new DecimalFormat(".##");
+		/*DecimalFormat df = new DecimalFormat(".##");
 		df.setRoundingMode(RoundingMode.DOWN);
 		String prezzostringa;
 		
@@ -31,7 +31,7 @@ public class EventoController {
 			prezzostringa.replaceAll(",",".");
 			prezzo = Double.parseDouble(prezzostringa);
 			
-			
+		*/	
 		return prezzo;
 			
 	}
@@ -49,11 +49,11 @@ public class EventoController {
         int j = model.getRowCount();
         for (i=0; i<j; i++)
             model.removeRow(0);
-        
+        System.out.println("prima del DAO");
 		List<Evento> risultati = EventoDAO.cerca( nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
-		
+		System.out.println("dopo DAO");
 		for(Evento curr:risultati) {
-			model.addRow (new Object[]{curr.getNome(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo()});
+			model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoFinale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo()});
 	       }
 		}
 

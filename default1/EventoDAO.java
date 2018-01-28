@@ -24,6 +24,7 @@ public class EventoDAO {
 		   List<Evento> risultati=new ArrayList<Evento>();  
 		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
+		   System.out.println("stampa1");
 		   //se ogni campo è vuoto deve svolgere una scan di tutto
 		   if(nome.equals("") && data.equals("") && prezzoiniziale==0.00 && prezzofinale==0.00 && maxspettatori==0 && tipo.equals("")&& luogo.equals("")) {
 			   ItemCollection<ScanOutcome> items = table.scan (
@@ -33,7 +34,7 @@ public class EventoDAO {
 				        null);
 				         
 				       iterator = items.iterator();
-				   
+				       System.out.println("stampa2");	   
 		   }else{ //un campo non è vuoto e deve costruire la query
 			   String ricerca = "";
 			   if(!(nome.equals(""))) {
@@ -74,16 +75,18 @@ public class EventoDAO {
 				         
 				       iterator = items.iterator();
 				   
-				      
+				       System.out.println("stampa2.1");     
 		   		}
 		   //costruisce la lista con i risultati da restituire
 		   Item iteratorcurr;
 		   Evento curr;
+		   System.out.println("stampa3");
 	       while (iterator.hasNext()) {
 	        iteratorcurr = iterator.next();
-	        curr=new Evento((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("Data"),(double)  iteratorcurr.get("PrezzoIniziale"),(double) iteratorcurr.get("PrezzoFinale"),(int) iteratorcurr.get("MassimoSpettatori"),(String) iteratorcurr.get("Tipo"), (String) iteratorcurr.get("Luogo"));
+	        curr=new Evento((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("DataEvento"),(double) Double.parseDouble(iteratorcurr.get("PrezzoIniziale").toString()),(double) Double.parseDouble(iteratorcurr.get("PrezzoFinale").toString()),(int) Integer.parseInt(iteratorcurr.get("MassimoSpettatori").toString()),(String) iteratorcurr.get("Tipo"), (String) iteratorcurr.get("Luogo"));
 	        risultati.add(curr);
 	       }
+	       System.out.println("stampa4");
 	   return risultati;
 	}
 	

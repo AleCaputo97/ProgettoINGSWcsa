@@ -29,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class FinestraUtente {
 	JButton clienteCerca = new JButton("Cerca");
@@ -151,7 +152,9 @@ public class FinestraUtente {
 		});
 		clienteData.setBounds(429, 11, 137, 22);
 		Cliente.add(clienteData);
-		
+//inizializza nelle due combobox di Evento l'elemento vuoto per la selezione
+		eventocbTipo.addItem("");
+		eventocbLuogo.addItem("");
 		
 		clienteCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -371,20 +374,25 @@ public class FinestraUtente {
 		JButton eventoCerca = new JButton("Cerca");
 		eventoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				System.out.println("appena clickato cerca");
 				String nome = eventotfNome.getText();
 				String data = eventoData.getText();
-				float prezzoiniziale = Float.parseFloat(eventotfPrezzoiniziale.getText());
-				float prezzofinale = Float.parseFloat(eventotfPrezzofinale.getText());
-				int maxspettatori = Integer.parseInt(eventotfMassimoposti.getText());
-				String tipo = eventocbTipo.getSelectedItem().toString();
-				String luogo = eventocbLuogo.getSelectedItem().toString();
+				double prezzoiniziale = 00.00;
+				if (!(eventotfPrezzoiniziale.getText().equals(""))) prezzoiniziale=Double.parseDouble(eventotfPrezzoiniziale.getText());
+				double prezzofinale = 00.00;
+				if (!(eventotfPrezzofinale.getText().equals(""))) prezzofinale=Double.parseDouble(eventotfPrezzofinale.getText());
+				int maxspettatori = 0;
+				
+				if (!(eventotfMassimoposti.getText().equals(""))) maxspettatori=Integer.parseInt(eventotfMassimoposti.getText());
+				String tipo = "", luogo = "";
+				if (!(eventocbTipo.getSelectedItem().equals(""))) tipo = eventocbTipo.getSelectedItem().toString();
+				if (!(eventocbLuogo.getSelectedItem().equals(""))) luogo = eventocbLuogo.getSelectedItem().toString();
 				messaggio.setText("");
-
-				EventoController.cerca(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
-				eventoModifica.setEnabled(false);
+				System.out.println("prima di chiamare controller");
+				EventoController.cerca(nome,  data, prezzoiniziale, prezzofinale,  maxspettatori,  tipo, luogo);
+				/*eventoModifica.setEnabled(false);
 				eventoElimina.setEnabled(false);
-				eventoStatistiche.setEnabled(false);
+				eventoStatistiche.setEnabled(false);*/
 				
 			}
 		});
