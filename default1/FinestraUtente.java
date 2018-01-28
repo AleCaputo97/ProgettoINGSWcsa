@@ -32,40 +32,47 @@ import java.awt.event.FocusEvent;
 import javax.swing.DefaultComboBoxModel;
 
 public class FinestraUtente {
+	
+	public static JLabel messaggio = new JLabel("");
+	public JFrame frmProgettoingswcsa;
+	private int togglevar = 1;
+	
+	//cliente
 	JButton clienteCerca = new JButton("Cerca");
 	JButton clienteModifica = new JButton("Modifica");
 	JButton clienteElimina = new JButton("Elimina");
 	JButton clienteStatistiche = new JButton("Statistiche");
 	JButton clienteClear = new JButton("Clear");
 	JButton clienteInserisci = new JButton("Inserisci");
-	public static JLabel messaggio = new JLabel("");
-	public JFrame frmProgettoingswcsa;
+	public static JTable clientetable;
 	private JTextField clientetfNome;
 	private JTextField clientetfCognome;
 	private JTextField clientetfEmail;
 	private JTextField clientetfCodicefiscale;
-	public static JTable clientetable;
+	public DatePicker clienteData=null;
+	
+	//evento
+	JButton eventoModifica = new JButton("Modifica");
+	JButton eventoElimina = new JButton("Elimina");
+	JButton eventoStatistiche = new JButton("Statistiche");
+	JButton eventoCerca = new JButton("Cerca");
+	JButton eventoInserisci = new JButton("Inserisci");
+	JButton eventoClear = new JButton("Clear");
+	public static JTable eventotable;
 	private JTextField eventotfNome;
 	private JTextField eventotfPrezzoiniziale;
 	private JTextField eventotfPrezzofinale;
 	private JTextField eventotfMassimoposti;
-	public static JTable eventotable;
+	JComboBox eventocbTipo = new JComboBox();
+	JComboBox eventocbLuogo = new JComboBox();
+	DatePicker eventoData = null;
+
+
+	public static JTable luogotable;
 	private JTextField textField_7;
 	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTextField textField_10;
-	public static JTable luogotable;
-	public DatePicker clienteData=null;
-	JComboBox eventocbTipo = new JComboBox();
-	JComboBox eventocbLuogo = new JComboBox();
-	DatePicker eventoData = null;
-	JButton eventoModifica;
-	JButton eventoElimina;
-	JButton eventoStatistiche;
-	JButton eventoClear;
-	private int togglevar = 1;
-	JButton eventoInserisci;
-	JButton eventoCerca;
 
 
 
@@ -371,7 +378,6 @@ public class FinestraUtente {
 		lblMassimoPosti.setBounds(10, 104, 85, 14);
 		Evento.add(lblMassimoPosti);
 		
-		JButton eventoCerca = new JButton("Cerca");
 		eventoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("appena clickato cerca");
@@ -390,9 +396,10 @@ public class FinestraUtente {
 				messaggio.setText("");
 				System.out.println("prima di chiamare controller");
 				EventoController.cerca(nome,  data, prezzoiniziale, prezzofinale,  maxspettatori,  tipo, luogo);
-				/*eventoModifica.setEnabled(false);
+				
+				eventoModifica.setEnabled(false);
 				eventoElimina.setEnabled(false);
-				eventoStatistiche.setEnabled(false);*/
+				eventoStatistiche.setEnabled(false);
 				
 			}
 		});
@@ -400,7 +407,6 @@ public class FinestraUtente {
 		eventoCerca.setBounds(10, 150, 129, 23);
 		Evento.add(eventoCerca);
 		
-		JButton eventoInserisci = new JButton("Inserisci");
 		eventoInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -423,7 +429,6 @@ public class FinestraUtente {
 		eventoInserisci.setBounds(155, 150, 129, 23);
 		Evento.add(eventoInserisci);
 		
-		JButton eventoModifica = new JButton("Modifica");
 		eventoModifica.setEnabled(false);
 		eventoModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -475,7 +480,6 @@ public class FinestraUtente {
 		eventoModifica.setBounds(684, 150, 129, 23);
 		Evento.add(eventoModifica);
 		
-		JButton eventoElimina = new JButton("Elimina");
 		eventoElimina.setEnabled(false);
 		eventoElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -493,7 +497,6 @@ public class FinestraUtente {
 		eventoElimina.setBounds(829, 150, 129, 23);
 		Evento.add(eventoElimina);
 		
-		JButton eventoStatistiche = new JButton("Statistiche");
 		eventoStatistiche.setEnabled(false);
 		eventoStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
 		eventoStatistiche.setBounds(684, 116, 274, 23);
@@ -503,7 +506,6 @@ public class FinestraUtente {
 		eventoHelp.setBounds(921, 10, 37, 23);
 		Evento.add(eventoHelp);
 		
-		JButton eventoClear = new JButton("Clear");
 		eventoClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -546,11 +548,6 @@ public class FinestraUtente {
 		eventotable = new JTable();
 		eventotable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
 			},
 			new String[] {
 				"Nome", "Luogo", "Data", "\u20AC Iniziale", "\u20AC Finale", "Max posti", "Tipo"
@@ -564,6 +561,17 @@ public class FinestraUtente {
 			}
 		});
 		scrollPane_1.setViewportView(eventotable);
+		
+		eventotable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			 public void valueChanged(ListSelectionEvent event) {
+				 
+				 if (eventoModifica.getText().equals("Modifica")) {
+					 eventoModifica.setEnabled(true);
+					 eventoElimina.setEnabled(true);
+					 eventoStatistiche.setEnabled(true);
+				 }
+			 }
+			});
 		
 		eventoData.setBounds(427, 70, 137, 22);
 		Evento.add(eventoData);
@@ -687,9 +695,10 @@ public class FinestraUtente {
 		clienteClear.setEnabled(false);
 		clienteElimina.setEnabled(false);
 		
-		/*eventoCerca.setEnabled(false);
+		eventoCerca.setEnabled(false);
 		eventoStatistiche.setEnabled(false);
 		eventoElimina.setEnabled(false);
+		eventoModifica.setEnabled(false);
 		eventoInserisci.setEnabled(false);
 		eventoClear.setEnabled(false);
 		eventotfNome.setEnabled(false);
@@ -698,7 +707,7 @@ public class FinestraUtente {
 		eventocbLuogo.setEnabled(false);
 		eventotfPrezzoiniziale.setEnabled(false);
 		eventotfPrezzofinale.setEnabled(false);
-		eventotfMassimoposti.setEnabled(false);*/
+		eventotfMassimoposti.setEnabled(false);
 
 		
 		togglevar=0;
@@ -720,6 +729,7 @@ public class FinestraUtente {
 			eventoStatistiche.setEnabled(true);
 			eventoElimina.setEnabled(true);
 			eventoInserisci.setEnabled(true);
+			eventoModifica.setEnabled(true);
 			eventoClear.setEnabled(true);
 			eventotfNome.setEnabled(true);
 			eventoData.setEnabled(true);

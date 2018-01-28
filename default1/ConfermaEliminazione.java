@@ -36,7 +36,7 @@ public class ConfermaEliminazione extends JFrame {
 		doveeliminare = DoveEliminare;
 		elemento = CosaEliminare;
 		window=Window;
-		JLabel lblSicuroDiVoler = new JLabel("Sicuro di voler eliminare?");
+		JLabel lblSicuroDiVoler = new JLabel("<html>Sicuro di voler eliminare <i>" + CosaEliminare + "</i> ?</html>");
 		lblSicuroDiVoler.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblSicuroDiVoler.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSicuroDiVoler.setBounds(10, 11, 369, 29);
