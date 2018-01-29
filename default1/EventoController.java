@@ -63,6 +63,9 @@ public class EventoController {
 			prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
 			prezzofinale=normalizzaPrezzo(prezzofinale);
 		EventoDAO.inserisciModifica(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
+		FinestraUtente.eventoClear.doClick();
+		FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento inserito correttamente </font></html>");
+
 		}
 		   
 		   else {

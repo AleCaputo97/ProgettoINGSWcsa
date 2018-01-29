@@ -35,6 +35,8 @@ public class LuogoController {
 			model.addRow (new Object[]{curr.getNome(), curr.getCittà(), curr.getStato(), curr.getIndirizzo()});
 	       }
 		
+		
+		
 }
 
 	
@@ -50,6 +52,9 @@ public class LuogoController {
 			stato=normalizza(stato);
 			indirizzo=normalizza(indirizzo);
 		LuogoDAO.inserisciModifica(nome,città,stato,indirizzo);
+		FinestraUtente.luogoClear.doClick();
+		FinestraUtente.messaggio.setText("<html><font color=\"green\">Luogo inserito correttamente </font></html>");
+
 		}else {
 			FinestraUtente.messaggio.setText("ERRORE: Almeno uno dei campi è vuoto");
 			System.out.println("errore, almeno uno dei campi è vuoto");

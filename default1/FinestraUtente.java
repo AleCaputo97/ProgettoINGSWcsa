@@ -29,9 +29,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.List;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 
 public class FinestraUtente {
 	
@@ -44,7 +51,7 @@ public class FinestraUtente {
 	JButton clienteModifica = new JButton("Modifica");
 	JButton clienteElimina = new JButton("Elimina");
 	JButton clienteStatistiche = new JButton("Statistiche");
-	JButton clienteClear = new JButton("Clear");
+	public static JButton clienteClear = new JButton("Clear");
 	JButton clienteInserisci = new JButton("Inserisci");
 	public static JTable clientetable;
 	private JTextField clientetfNome;
@@ -59,7 +66,7 @@ public class FinestraUtente {
 	JButton eventoStatistiche = new JButton("Statistiche");
 	JButton eventoCerca = new JButton("Cerca");
 	JButton eventoInserisci = new JButton("Inserisci");
-	JButton eventoClear = new JButton("Clear");
+	public static JButton eventoClear = new JButton("Clear");
 	public static JTable eventotable;
 	private JTextField eventotfNome;
 	private JTextField eventotfPrezzoiniziale;
@@ -75,13 +82,12 @@ public class FinestraUtente {
 	JButton luogoInserisci = new JButton("Inserisci");
 	JButton luogoElimina = new JButton("Elimina");
 	JButton luogoStatistiche = new JButton("Statistiche");
-	JButton luogoClear = new JButton("Clear");
+	public static JButton luogoClear = new JButton("Clear");
 	public static JTable luogotable;
 	private JTextField luogotfCitta;
 	private JTextField luogotfStato;
 	private JTextField luogotfIndirizzo;
 	private JTextField luogotfNome;
-
 
 
 	/**
@@ -108,6 +114,14 @@ public class FinestraUtente {
 		frmProgettoingswcsa.getContentPane().setLayout(null);
 		frmProgettoingswcsa.setSize(1008, 575);
 		frmProgettoingswcsa.setLocationRelativeTo(null);
+		
+		try {
+		URL url = new URL("https://raw.githubusercontent.com/AleCaputo97/ProgettoINGSWcsa/master/icon.png");
+		Image icon = ImageIO.read(url);  
+	    frmProgettoingswcsa.setIconImage(icon);
+
+		}
+	    catch(Exception e){ }
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setFont(new Font("Product Sans", Font.PLAIN, 14));
@@ -251,6 +265,7 @@ public class FinestraUtente {
 				clientetfEmail.setText("");
 				clientetfCodicefiscale.setText("");
 				clienteData.setText("");
+				messaggio.setText("");
 				
 				DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
 		        int i;
@@ -559,7 +574,8 @@ public class FinestraUtente {
 				eventotfMassimoposti.setText("");
 				eventocbLuogo.setSelectedIndex(0);
 				eventocbTipo.setSelectedIndex(0);
-				
+				messaggio.setText("");
+
 				DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
 		        int i;
 		        int j = model.getRowCount();
@@ -786,6 +802,8 @@ public class FinestraUtente {
 				luogotfCitta.setText("");
 				luogotfStato.setText("");
 				luogotfIndirizzo.setText("");
+				messaggio.setText("");
+
 				
 				DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
 		        int i;

@@ -69,6 +69,8 @@ public class ClienteController {
 			model.addRow (new Object[]{curr.getNome(), curr.getCognome(), curr.getEmail(), curr.getCodiceFiscale(), curr.getData()});
 	    	//System.out.println(curr.getNome());
 	       }
+		
+		
 		}
 }
 	public static void inserisci (String nome, String cognome, String email, String codicefiscale, String data) {
@@ -89,6 +91,9 @@ public class ClienteController {
 		email=normalizzaEmail(email);
 		codicefiscale=normalizzaCF(codicefiscale);
 		ClienteDAO.inserisciModifica(nome, cognome, email, codicefiscale, data);
+		FinestraUtente.clienteClear.doClick();
+		FinestraUtente.messaggio.setText("<html><font color=\"green\">Cliente inserito correttamente </font></html>");
+
 		}else {
 			FinestraUtente.messaggio.setText("ERRORE: Almeno uno dei campi è vuoto");
 			System.out.println("errore, almeno uno dei campi è vuoto");
