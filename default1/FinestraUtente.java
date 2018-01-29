@@ -167,8 +167,14 @@ public class FinestraUtente {
 		});
 		clienteData.setBounds(429, 11, 137, 22);
 		Cliente.add(clienteData);
-//inizializza nelle due combobox di Evento l'elemento vuoto per la selezione
+//inizializza in Evento le combobox di Tipo (valori fissi) e Luoghi disponibili per la creazione, ricerca etc. di eventi
 		eventocbTipo.addItem("");
+		eventocbTipo.addItem("Concerto");
+		eventocbTipo.addItem("Evento sportivo");
+		eventocbTipo.addItem("Teatro");
+		eventocbTipo.addItem("Convegno");
+		eventocbTipo.addItem("Mostra");
+		eventocbTipo.addItem("Altro");
 		popolaeventocbLuogo();
 		
 		clienteCerca.addActionListener(new ActionListener() {
