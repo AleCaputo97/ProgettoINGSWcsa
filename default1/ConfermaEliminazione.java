@@ -63,10 +63,10 @@ public class ConfermaEliminazione extends JFrame {
 				
 				if (doveeliminare.equals("Cliente"))
 					ClienteController.elimina(elemento);
-				/*else if (doveeliminare.equals("Evento"))
-					EventoController.elimina();
+				else if (doveeliminare.equals("Evento"))
+					EventoController.elimina(elemento);
 				else if (doveeliminare.equals("Luogo"))
-					LuogoController.elimina(); */
+					LuogoController.elimina(elemento); 
 				
 				window.toggle();
 
