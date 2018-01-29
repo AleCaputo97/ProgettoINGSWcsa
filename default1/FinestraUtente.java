@@ -539,6 +539,12 @@ public class FinestraUtente {
 				eventotfMassimoposti.setText("");
 				eventocbLuogo.setSelectedIndex(0);
 				eventocbTipo.setSelectedIndex(0);
+				
+				DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
+		        int i;
+		        int j = model.getRowCount();
+		        for (i=0; i<j; i++)
+		            model.removeRow(0);
 
 				
 			}
