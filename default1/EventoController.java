@@ -49,9 +49,7 @@ public class EventoController {
         int j = model.getRowCount();
         for (i=0; i<j; i++)
             model.removeRow(0);
-        System.out.println("prima del DAO");
-		List<Evento> risultati = EventoDAO.cerca( nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
-		System.out.println("dopo DAO");
+      List<Evento> risultati = EventoDAO.cerca( nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
 		for(Evento curr:risultati) {
 			model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoFinale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo()});
 	       }

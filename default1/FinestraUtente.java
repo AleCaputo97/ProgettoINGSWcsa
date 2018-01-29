@@ -399,7 +399,6 @@ public class FinestraUtente {
 		
 		eventoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("appena clickato cerca");
 				String nome = eventotfNome.getText();
 				String data = eventoData.getText();
 				double prezzoiniziale = 00.00;
@@ -413,7 +412,6 @@ public class FinestraUtente {
 				if (!(eventocbTipo.getSelectedItem().equals(""))) tipo = eventocbTipo.getSelectedItem().toString();
 				if (!(eventocbLuogo.getSelectedItem().equals(""))) luogo = eventocbLuogo.getSelectedItem().toString();
 				messaggio.setText("");
-				System.out.println("prima di chiamare controller");
 				EventoController.cerca(nome,  data, prezzoiniziale, prezzofinale,  maxspettatori,  tipo, luogo);
 				
 				eventoModifica.setEnabled(false);
