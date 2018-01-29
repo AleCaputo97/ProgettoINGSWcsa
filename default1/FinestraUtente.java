@@ -463,7 +463,7 @@ public class FinestraUtente {
 					eventoData.setText(eventotable.getValueAt(row,eventotable.getColumn("Data").getModelIndex()).toString());					
 					eventotfPrezzoiniziale.setText(eventotable.getValueAt(row,eventotable.getColumn("€ Iniziale").getModelIndex()).toString());
 					eventotfPrezzofinale.setText(eventotable.getValueAt(row,eventotable.getColumn("€ Finale").getModelIndex()).toString());
-					eventotfMassimoposti.setText(eventotable.getValueAt(row,eventotable.getColumn("Max Posti").getModelIndex()).toString());	
+					eventotfMassimoposti.setText(eventotable.getValueAt(row,eventotable.getColumn("Max posti").getModelIndex()).toString());	
 					eventocbTipo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Tipo").getModelIndex()).toString());
 					eventocbLuogo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Luogo").getModelIndex()).toString());
 										
