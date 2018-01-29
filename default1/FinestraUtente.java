@@ -537,8 +537,8 @@ public class FinestraUtente {
 				eventotfPrezzoiniziale.setText("");
 				eventotfPrezzofinale.setText("");
 				eventotfMassimoposti.setText("");
-				eventocbLuogo.setSelectedIndex(1);
-				eventocbTipo.setSelectedIndex(1);
+				eventocbLuogo.setSelectedIndex(0);
+				eventocbTipo.setSelectedIndex(0);
 
 				
 			}
