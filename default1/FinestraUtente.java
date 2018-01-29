@@ -660,7 +660,8 @@ public class FinestraUtente {
 				String citta = luogotfCitta.getText();
 				String stato = luogotfStato.getText();
 				String indirizzo = luogotfIndirizzo.getText();
-				LuogoController.inserisci(nome, citta, stato, indirizzo);				
+				LuogoController.inserisci(nome, citta, stato, indirizzo);	
+				popolaeventocbLuogo();
 			}
 		});
 
@@ -698,7 +699,7 @@ public class FinestraUtente {
 						String stato = luogotfStato.getText();
 						String indirizzo = luogotfIndirizzo.getText();
 						LuogoController.inserisci(nome, citta, stato, indirizzo);		
-						
+						popolaeventocbLuogo();
 						luogoCerca.setEnabled(true);
 						luogoStatistiche.setEnabled(true);
 						luogoElimina.setEnabled(true);
@@ -730,7 +731,7 @@ public class FinestraUtente {
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				toggle();
-				
+				popolaeventocbLuogo();
 			}
 		});
 		
