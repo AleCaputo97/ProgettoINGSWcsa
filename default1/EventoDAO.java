@@ -94,7 +94,8 @@ public class EventoDAO {
 		    	    .withNumber("PrezzoIniziale", prezzoiniziale)
 		    	    .withNumber("PrezzoFinale", prezzofinale)
 		    	    .withNumber("MassimoSpettatori", maxspettatori)
-		    		.withString("Luogo", luogo);
+		    		.withString("Luogo", luogo)
+		    		.withString("Tipo", tipo);
 		    PutItemOutcome outcome = table.putItem(item, null, null, null);
 		    
 		    
