@@ -57,7 +57,7 @@ public class EventoController {
 
 	public static void inserisci (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
 		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
-		   if(nome.equals("") && data.equals("") && prezzoiniziale==0.00 && prezzofinale==0.00 && maxspettatori==0 && tipo.equals("")&& luogo.equals("")) {
+		   if(!(nome.equals("")) && !(data.equals("")) && !(prezzoiniziale==0.00) && !(prezzofinale==0.00) && !(maxspettatori==0) && !(tipo.equals(""))&& !(luogo.equals(""))) {
 			
 			nome=normalizza(nome);
 			prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
