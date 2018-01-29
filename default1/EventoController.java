@@ -51,7 +51,7 @@ public class EventoController {
             model.removeRow(0);
       List<Evento> risultati = EventoDAO.cerca( nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
 		for(Evento curr:risultati) {
-			model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoFinale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo()});
+			model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo()});
 	       }
 		}
 
