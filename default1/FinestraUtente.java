@@ -696,7 +696,7 @@ public class FinestraUtente {
 					}
 					else {
 						
-						clienteModifica.setText("Modifica");
+						luogoModifica.setText("Modifica");
 						
 						String nome = luogotfNome.getText();
 						String citta = luogotfCitta.getText();
