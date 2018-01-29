@@ -405,9 +405,14 @@ public class FinestraUtente {
 		
 		eventoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				String nome = eventotfNome.getText();
 				String data = eventoData.getText();
 				double prezzoiniziale = 00.00;
+				if(isDouble(eventotfPrezzoiniziale.getText())==false || isDouble(eventotfPrezzofinale.getText())==false || isInteger(eventotfMassimoposti.getText())==false) {
+					messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
+				}
+				
 				if (!(eventotfPrezzoiniziale.getText().equals(""))) prezzoiniziale=Double.parseDouble(eventotfPrezzoiniziale.getText());
 				double prezzofinale = 00.00;
 				if (!(eventotfPrezzofinale.getText().equals(""))) prezzofinale=Double.parseDouble(eventotfPrezzofinale.getText());
@@ -423,8 +428,11 @@ public class FinestraUtente {
 				eventoModifica.setEnabled(false);
 				eventoElimina.setEnabled(false);
 				eventoStatistiche.setEnabled(false);
-				
+				}catch(Exception E) {
+					//do something
+				}
 			}
+			
 		});
 		eventoCerca.setFont(new Font("Tahoma", Font.BOLD, 11));
 		eventoCerca.setBounds(10, 150, 129, 23);
@@ -922,4 +930,22 @@ public class FinestraUtente {
 			eventocbLuogo.addItem(curr.getNome());
 		}
 	}
+	
+	public boolean isInteger (String testo) throws Exception {
+	 try {
+		  Integer.parseInt(testo);
+		  return true;
+	 }catch(Exception E) {
+		 return false;
+	 }
+	}
+	
+	public boolean isDouble (String testo) throws Exception {
+		 try {
+			  Double.parseDouble(testo);
+			  return true;
+		 }catch(Exception E) {
+			 return false;
+		 }
+		}
 }
