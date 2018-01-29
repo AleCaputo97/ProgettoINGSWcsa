@@ -66,13 +66,19 @@ public class FinestraUtente {
 	JComboBox eventocbTipo = new JComboBox();
 	JComboBox eventocbLuogo = new JComboBox();
 	DatePicker eventoData = null;
-
-
+	
+	//luogo
+	JButton luogoCerca = new JButton("Cerca");
+	JButton luogoModifica = new JButton("Modifica");
+	JButton luogoInserisci = new JButton("Inserisci");
+	JButton luogoElimina = new JButton("Elimina");
+	JButton luogoStatistiche = new JButton("Statistiche");
+	JButton luogoClear = new JButton("Clear");
 	public static JTable luogotable;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
+	private JTextField luogotfCitta;
+	private JTextField luogotfStato;
+	private JTextField luogotfIndirizzo;
+	private JTextField luogotfNome;
 
 
 
@@ -220,6 +226,10 @@ public class FinestraUtente {
 		clienteElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
 		clienteElimina.setBounds(829, 150, 129, 23);
 		Cliente.add(clienteElimina);
+		clienteStatistiche.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		clienteStatistiche.setEnabled(false);
 		
 		clienteStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -588,63 +598,147 @@ public class FinestraUtente {
 		Luogo.setLayout(null);
 		tabbedPane.addTab("Luogo", null, Luogo, null);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(105, 11, 179, 20);
-		Luogo.add(textField_7);
-		
 		JLabel label_1 = new JLabel("Nome:");
 		label_1.setBounds(10, 14, 85, 14);
 		Luogo.add(label_1);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(105, 39, 179, 20);
-		Luogo.add(textField_8);
+		luogotfCitta = new JTextField();
+		luogotfCitta.setColumns(10);
+		luogotfCitta.setBounds(105, 39, 179, 20);
+		Luogo.add(luogotfCitta);
 		
-		JLabel label_2 = new JLabel("Cognome:");
-		label_2.setBounds(10, 42, 85, 14);
-		Luogo.add(label_2);
+		JLabel lblCitt = new JLabel("Citt\u00E0:");
+		lblCitt.setBounds(10, 42, 85, 14);
+		Luogo.add(lblCitt);
 		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(105, 70, 179, 20);
-		Luogo.add(textField_9);
+		luogotfStato = new JTextField();
+		luogotfStato.setColumns(10);
+		luogotfStato.setBounds(105, 70, 179, 20);
+		Luogo.add(luogotfStato);
 		
-		JLabel label_3 = new JLabel("eMail:");
-		label_3.setBounds(10, 73, 85, 14);
-		Luogo.add(label_3);
+		JLabel lblStato = new JLabel("Stato:");
+		lblStato.setBounds(10, 73, 85, 14);
+		Luogo.add(lblStato);
 		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setBounds(105, 101, 179, 20);
-		Luogo.add(textField_10);
+		luogotfIndirizzo = new JTextField();
+		luogotfIndirizzo.setColumns(10);
+		luogotfIndirizzo.setBounds(105, 101, 179, 20);
+		Luogo.add(luogotfIndirizzo);
 		
-		JLabel label_4 = new JLabel("Codice fiscale:");
-		label_4.setBounds(10, 104, 85, 14);
-		Luogo.add(label_4);
+		JLabel lblIndirizzo = new JLabel("Indirizzo:");
+		lblIndirizzo.setBounds(10, 104, 85, 14);
+		Luogo.add(lblIndirizzo);
+		luogoCerca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String nome = luogotfNome.getText();
+				String citta = luogotfCitta.getText();
+				String stato = luogotfStato.getText();
+				String indirizzo = luogotfIndirizzo.getText();
+				messaggio.setText("");
+				LuogoController.cerca(nome, citta, stato, indirizzo);
+				luogoModifica.setEnabled(false);
+				luogoElimina.setEnabled(false);
+				luogoStatistiche.setEnabled(false);
+				
+			}
+		});
 		
-		JButton luogoCerca = new JButton("Cerca");
 		luogoCerca.setFont(new Font("Tahoma", Font.BOLD, 11));
 		luogoCerca.setBounds(10, 150, 129, 23);
 		Luogo.add(luogoCerca);
-		
-		JButton luogoInserisci = new JButton("Inserisci");
+		luogoInserisci.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				luogoModifica.setEnabled(false);
+				luogoElimina.setEnabled(false);
+				luogoStatistiche.setEnabled(false);
+				
+				String nome = luogotfNome.getText();
+				String citta = luogotfCitta.getText();
+				String stato = luogotfStato.getText();
+				String indirizzo = luogotfIndirizzo.getText();
+				LuogoController.inserisci(nome, citta, stato, indirizzo);				
+			}
+		});
+
 		luogoInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
 		luogoInserisci.setBounds(155, 150, 129, 23);
 		Luogo.add(luogoInserisci);
+		luogoModifica.setEnabled(false);
+		luogoModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (luogoModifica.getText().equals("Modifica")){
+					
+					int row = luogotable.getSelectedRow();
+					luogotfNome.setText(luogotable.getValueAt(row,luogotable.getColumn("Nome").getModelIndex()).toString());
+					luogotfCitta.setText(luogotable.getValueAt(row,luogotable.getColumn("Città").getModelIndex()).toString());
+					luogotfStato.setText(luogotable.getValueAt(row,luogotable.getColumn("Stato").getModelIndex()).toString());
+					luogotfIndirizzo.setText(luogotable.getValueAt(row,luogotable.getColumn("Indirizzo").getModelIndex()).toString());
+					
+					luogoCerca.setEnabled(false);
+					luogoStatistiche.setEnabled(false);
+					luogoElimina.setEnabled(false);
+					luogoInserisci.setEnabled(false);
+					luogoClear.setEnabled(false);
+					luogotfNome.setEnabled(false);
+					
+					luogoModifica.setText("Conferma");
+					
+					}
+					else {
+						
+						clienteModifica.setText("Modifica");
+						
+						String nome = luogotfNome.getText();
+						String citta = luogotfCitta.getText();
+						String stato = luogotfStato.getText();
+						String indirizzo = luogotfIndirizzo.getText();
+						LuogoController.inserisci(nome, citta, stato, indirizzo);		
+						
+						luogoCerca.setEnabled(true);
+						luogoStatistiche.setEnabled(true);
+						luogoElimina.setEnabled(true);
+						luogoInserisci.setEnabled(true);
+						luogoClear.setEnabled(true);
+						luogotfNome.setEnabled(true);
+						luogoClear.doClick();
+
+
+						
+					}
+					
+					}
+				
+			
+		});
 		
-		JButton luogoModifica = new JButton("Modifica");
+		
 		luogoModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
 		luogoModifica.setBounds(684, 150, 129, 23);
 		Luogo.add(luogoModifica);
+		luogoElimina.setEnabled(false);
+		luogoElimina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int row = luogotable.getSelectedRow();
+		        String nome = luogotable.getValueAt(row,luogotable.getColumn("Nome").getModelIndex()).toString();
+		        ConfermaEliminazione frame = new ConfermaEliminazione("Luogo",nome,FinestraUtente.this);
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				toggle();
+				
+			}
+		});
 		
-		JButton luogoElimina = new JButton("Elimina");
+
 		luogoElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
 		luogoElimina.setBounds(829, 150, 129, 23);
 		Luogo.add(luogoElimina);
+		luogoStatistiche.setEnabled(false);
 		
-		JButton luogoStatistiche = new JButton("Statistiche");
+
 		luogoStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
 		luogoStatistiche.setBounds(684, 116, 274, 23);
 		Luogo.add(luogoStatistiche);
@@ -653,7 +747,6 @@ public class FinestraUtente {
 		luogoHelp.setBounds(921, 10, 37, 23);
 		Luogo.add(luogoHelp);
 		
-		JButton luogoClear = new JButton("Clear");
 		luogoClear.setBounds(831, 10, 80, 23);
 		Luogo.add(luogoClear);
 		
@@ -664,9 +757,6 @@ public class FinestraUtente {
 		luogotable = new JTable();
 		luogotable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
 			},
 			new String[] {
 				"Nome", "Citt\u00E0", "Stato", "Indirizzo"
@@ -679,7 +769,24 @@ public class FinestraUtente {
 				return columnEditables[column];
 			}
 		});
+		
+		luogotable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			 public void valueChanged(ListSelectionEvent event) {
+				 
+				 if (luogoModifica.getText().equals("Modifica")) {
+					 luogoModifica.setEnabled(true);
+					 luogoElimina.setEnabled(true);
+					 luogoStatistiche.setEnabled(true);
+				 }
+			 }
+			});
+		
 		scrollPane_2.setViewportView(luogotable);
+		
+		luogotfNome = new JTextField();
+		luogotfNome.setColumns(10);
+		luogotfNome.setBounds(105, 11, 179, 20);
+		Luogo.add(luogotfNome);
 		messaggio.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		messaggio.setForeground(Color.BLACK);
@@ -701,6 +808,7 @@ public class FinestraUtente {
 		clienteStatistiche.setEnabled(false);
 		clienteClear.setEnabled(false);
 		clienteElimina.setEnabled(false);
+		clientetable.setEnabled(false);
 		
 		eventoCerca.setEnabled(false);
 		eventoStatistiche.setEnabled(false);
@@ -715,6 +823,19 @@ public class FinestraUtente {
 		eventotfPrezzoiniziale.setEnabled(false);
 		eventotfPrezzofinale.setEnabled(false);
 		eventotfMassimoposti.setEnabled(false);
+		eventotable.setEnabled(false);
+		
+		luogoCerca.setEnabled(false);
+		luogoStatistiche.setEnabled(false);
+		luogoElimina.setEnabled(false);
+		luogoModifica.setEnabled(false);
+		luogoInserisci.setEnabled(false);
+		luogoClear.setEnabled(false);
+		luogotfNome.setEnabled(false);
+		luogotfCitta.setEnabled(false);
+		luogotfStato.setEnabled(false);
+		luogotfIndirizzo.setEnabled(false);
+		luogotable.setEnabled(false);
 
 		
 		togglevar=0;
@@ -731,6 +852,7 @@ public class FinestraUtente {
 			clienteStatistiche.setEnabled(true);
 			clienteClear.setEnabled(true);
 			clienteElimina.setEnabled(true);
+			clientetable.setEnabled(true);
 			
 			eventoCerca.setEnabled(true);
 			eventoStatistiche.setEnabled(true);
@@ -745,9 +867,21 @@ public class FinestraUtente {
 			eventotfPrezzoiniziale.setEnabled(true);
 			eventotfPrezzofinale.setEnabled(true);
 			eventotfMassimoposti.setEnabled(true);
+			eventotable.setEnabled(true);
+			
+			luogoCerca.setEnabled(true);
+			luogoStatistiche.setEnabled(true);
+			luogoElimina.setEnabled(true);
+			luogoModifica.setEnabled(true);
+			luogoInserisci.setEnabled(true);
+			luogoClear.setEnabled(true);
+			luogotfNome.setEnabled(true);
+			luogotfCitta.setEnabled(true);
+			luogotfStato.setEnabled(true);
+			luogotfIndirizzo.setEnabled(true);
+			luogotable.setEnabled(true);
 			
 			togglevar=1;
 		}
 	}
-	
 }
