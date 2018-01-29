@@ -753,6 +753,22 @@ public class FinestraUtente {
 		JButton luogoHelp = new JButton("?");
 		luogoHelp.setBounds(921, 10, 37, 23);
 		Luogo.add(luogoHelp);
+		luogoClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				luogotfNome.setText("");
+				luogotfCitta.setText("");
+				luogotfStato.setText("");
+				luogotfIndirizzo.setText("");
+				
+				DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
+		        int i;
+		        int j = model.getRowCount();
+		        for (i=0; i<j; i++)
+		            model.removeRow(0);
+				
+			}
+		});
 		
 		luogoClear.setBounds(831, 10, 80, 23);
 		Luogo.add(luogoClear);
