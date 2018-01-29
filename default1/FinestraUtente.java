@@ -29,6 +29,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.List;
+
 import javax.swing.DefaultComboBoxModel;
 
 public class FinestraUtente {
@@ -167,7 +169,7 @@ public class FinestraUtente {
 		Cliente.add(clienteData);
 //inizializza nelle due combobox di Evento l'elemento vuoto per la selezione
 		eventocbTipo.addItem("");
-		eventocbLuogo.addItem("");
+		popolaeventocbLuogo();
 		
 		clienteCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -882,6 +884,15 @@ public class FinestraUtente {
 			luogotable.setEnabled(true);
 			
 			togglevar=1;
+		}
+	}
+	
+	public void popolaeventocbLuogo (){
+		eventocbLuogo.removeAllItems();
+		eventocbLuogo.addItem("");
+		List<Luogo> risultati = LuogoDAO.cerca("","","","");
+		for(Luogo curr:risultati){
+			eventocbLuogo.addItem(curr.getNome());
 		}
 	}
 }
