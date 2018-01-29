@@ -440,7 +440,11 @@ public class FinestraUtente {
 		
 		eventoInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+				if(isDouble(eventotfPrezzoiniziale.getText())==false || isDouble(eventotfPrezzofinale.getText())==false || isInteger(eventotfMassimoposti.getText())==false) {
+					messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
+					return;
+				}
 				eventoModifica.setEnabled(false);
 				eventoElimina.setEnabled(false);
 				eventoStatistiche.setEnabled(false);
@@ -453,7 +457,9 @@ public class FinestraUtente {
 				String tipo = eventocbTipo.getSelectedItem().toString();
 				String luogo = eventocbLuogo.getSelectedItem().toString();
 				EventoController.inserisci(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
-				
+				}catch(Exception e2) {
+					//do something
+				}
 			}
 		});
 		eventoInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -463,7 +469,7 @@ public class FinestraUtente {
 		eventoModifica.setEnabled(false);
 		eventoModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+			try {
 				if (eventoModifica.getText().equals("Modifica")){
 					
 					int row = eventotable.getSelectedRow();
@@ -486,7 +492,10 @@ public class FinestraUtente {
 					
 					}
 					else {
-						
+						if(isDouble(eventotfPrezzoiniziale.getText())==false || isDouble(eventotfPrezzofinale.getText())==false || isInteger(eventotfMassimoposti.getText())==false) {
+							messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
+							return;
+						}
 						eventoModifica.setText("Modifica");
 						String nome = eventotfNome.getText();
 						String data = eventoData.getText();
@@ -505,6 +514,9 @@ public class FinestraUtente {
 						eventotfNome.setEnabled(true);
 						eventoClear.doClick();
 				
+			}
+			}catch(Exception e3) {
+				//do something
 			}
 		}});
 		eventoModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
