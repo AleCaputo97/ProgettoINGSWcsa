@@ -432,33 +432,25 @@ public class FinestraUtente {
 		
 		eventoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
+					
 				String nome = eventotfNome.getText();
 				String data = eventoData.getText();
-				double prezzoiniziale = 00.00;
-					if(isDouble(eventotfPrezzoiniziale.getText())==false || isDouble(eventotfPrezzofinale.getText())==false || isInteger(eventotfMassimoposti.getText())==false) {
-						messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
-						return;
-					}
-
-				if (!(eventotfPrezzoiniziale.getText().equals(""))) prezzoiniziale=Double.parseDouble(eventotfPrezzoiniziale.getText());
-				double prezzofinale = 00.00;
-				if (!(eventotfPrezzofinale.getText().equals(""))) prezzofinale=Double.parseDouble(eventotfPrezzofinale.getText());
-				int maxspettatori = 0;
+				String prezzoiniziale = eventotfPrezzoiniziale.getText();
+				String prezzofinale = eventotfPrezzofinale.getText();
+				String maxspettatori = eventotfMassimoposti.getText();
+				String tipo = "";
+				String luogo = "";
+				if (!(eventocbTipo.getSelectedItem().equals("")))
+					tipo = eventocbTipo.getSelectedItem().toString();
+				if (!(eventocbLuogo.getSelectedItem().equals("")))
+					luogo = eventocbLuogo.getSelectedItem().toString();
 				
-				if (!(eventotfMassimoposti.getText().equals(""))) maxspettatori=Integer.parseInt(eventotfMassimoposti.getText());
-				String tipo = "", luogo = "";
-				if (!(eventocbTipo.getSelectedItem().equals(""))) tipo = eventocbTipo.getSelectedItem().toString();
-				if (!(eventocbLuogo.getSelectedItem().equals(""))) luogo = eventocbLuogo.getSelectedItem().toString();
-				messaggio.setText("");
 				EventoController.cerca(nome,  data, prezzoiniziale, prezzofinale,  maxspettatori,  tipo, luogo);
 				
 				eventoModifica.setEnabled(false);
 				eventoElimina.setEnabled(false);
 				eventoStatistiche.setEnabled(false);
-				}catch(Exception E) {
-					//do something
-				}
+
 			}
 			
 		});
@@ -468,6 +460,28 @@ public class FinestraUtente {
 		
 		eventoInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String nome = eventotfNome.getText();
+				String data = eventoData.getText();
+				String prezzoiniziale = eventotfPrezzoiniziale.getText();
+				String prezzofinale = eventotfPrezzofinale.getText();
+				String maxspettatori = eventotfMassimoposti.getText();
+				String tipo = "";
+				String luogo = "";
+				if (!(eventocbTipo.getSelectedItem().equals("")))
+					tipo = eventocbTipo.getSelectedItem().toString();
+				if (!(eventocbLuogo.getSelectedItem().equals("")))
+					luogo = eventocbLuogo.getSelectedItem().toString();
+				
+				EventoController.inserisci(nome,  data, prezzoiniziale, prezzofinale,  maxspettatori,  tipo, luogo);
+				
+				eventoModifica.setEnabled(false);
+				eventoElimina.setEnabled(false);
+				eventoStatistiche.setEnabled(false);
+				
+			}
+				
+				/*
 				try {
 				if(isDouble(eventotfPrezzoiniziale.getText())==false || isDouble(eventotfPrezzofinale.getText())==false || isInteger(eventotfMassimoposti.getText())==false) {
 					messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
@@ -488,7 +502,7 @@ public class FinestraUtente {
 				}catch(Exception e2) {
 					//do something
 				}
-			}
+			}*/
 		});
 		eventoInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
 		eventoInserisci.setBounds(155, 150, 129, 23);
