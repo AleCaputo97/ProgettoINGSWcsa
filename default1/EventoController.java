@@ -2,7 +2,10 @@ package default1;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -55,6 +58,25 @@ public class EventoController {
 	       }
 		}
 
+	public static void modifica (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
+		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
+		   if(!(nome.equals("")) && !(data.equals("")) && !(prezzoiniziale==0.00) && !(prezzofinale==0.00) && !(maxspettatori==0) && !(tipo.equals(""))&& !(luogo.equals(""))) {
+			
+			nome=normalizza(nome);
+			prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
+			prezzofinale=normalizzaPrezzo(prezzofinale);
+		EventoDAO.modifica(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
+		FinestraUtente.eventoClear.doClick();
+		FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento inserito correttamente </font></html>");
+
+		}
+		   
+		   else {
+			FinestraUtente.messaggio.setText("ERRORE: Almeno uno dei campi è vuoto");
+			System.out.println("errore, almeno uno dei campi è vuoto");
+		}
+	}
+	
 	public static void inserisci (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
 		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
 		   if(!(nome.equals("")) && !(data.equals("")) && !(prezzoiniziale==0.00) && !(prezzofinale==0.00) && !(maxspettatori==0) && !(tipo.equals(""))&& !(luogo.equals(""))) {
@@ -62,7 +84,12 @@ public class EventoController {
 			nome=normalizza(nome);
 			prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
 			prezzofinale=normalizzaPrezzo(prezzofinale);
-		EventoDAO.inserisciModifica(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
+			
+			SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
+		    Date now = new Date();
+		    String datacorrente = sdfDate.format(now);
+			
+		EventoDAO.inserisci(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo, datacorrente);
 		FinestraUtente.eventoClear.doClick();
 		FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento inserito correttamente </font></html>");
 
