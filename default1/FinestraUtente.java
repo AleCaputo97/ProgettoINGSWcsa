@@ -77,6 +77,7 @@ public class FinestraUtente {
 	JComboBox eventocbTipo = new JComboBox();
 	JComboBox eventocbLuogo = new JComboBox();
 	DatePicker eventoData = null;
+	String datacorrente = "";
 	
 	//luogo
 	JButton luogoCerca = new JButton("Cerca");
@@ -522,6 +523,8 @@ public class FinestraUtente {
 					eventotfMassimoposti.setText(eventotable.getValueAt(row,eventotable.getColumn("Max posti").getModelIndex()).toString());	
 					eventocbTipo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Tipo").getModelIndex()).toString());
 					eventocbLuogo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Luogo").getModelIndex()).toString());
+					
+					datacorrente = eventotable.getValueAt(row,eventotable.getColumn("Data Inserimento").getModelIndex()).toString();
 										
 					eventoCerca.setEnabled(false);
 					eventoStatistiche.setEnabled(false);
@@ -546,7 +549,7 @@ public class FinestraUtente {
 						int maxspettatori = Integer.parseInt(eventotfMassimoposti.getText());
 						String tipo = eventocbTipo.getSelectedItem().toString();
 						String luogo = eventocbLuogo.getSelectedItem().toString();
-						EventoController.modifica(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
+						EventoController.modifica(nome,  data, datacorrente,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
 						
 						eventoCerca.setEnabled(true);
 						eventoStatistiche.setEnabled(true);
@@ -640,13 +643,14 @@ public class FinestraUtente {
 		eventotable = new JTable();
 		eventotable.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null, null, null, null, null, null},
 			},
 			new String[] {
-				"Nome", "Luogo", "Data", "\u20AC Iniziale", "\u20AC Finale", "Max posti", "Tipo", "Prezzo corrente"
+				"Nome", "Luogo", "Data", "Data inserimento", "\u20AC Iniziale", "\u20AC Finale", "Max posti", "Tipo", "Prezzo corrente"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false, false, false
+				false, false, false, false, false, false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];

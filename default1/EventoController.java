@@ -83,9 +83,9 @@ public static void cerca (String nome, String data, String prezzoiniziale, Strin
 				differenzaOdiernaIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataCurr);
 				differenzaFinaleIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataEvento);
 		    	prezzocurr = normalizzaPrezzo(differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
-		    	model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
+		    	model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
 				}else {
-					model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile"});
+					model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile"});
 				}
       		}
 		  }catch(Exception E) {
@@ -93,14 +93,14 @@ public static void cerca (String nome, String data, String prezzoiniziale, Strin
 		  }
 		}
 
-	public static void modifica (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
+	public static void modifica (String nome, String data, String datainserimento, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
 		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
 		   if(!(nome.equals("")) && !(data.equals("")) && !(prezzoiniziale==0.00) && !(prezzofinale==0.00) && !(maxspettatori==0) && !(tipo.equals(""))&& !(luogo.equals(""))) {
 			
 			nome=normalizza(nome);
 			prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
 			prezzofinale=normalizzaPrezzo(prezzofinale);
-		EventoDAO.modifica(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
+		EventoDAO.modifica(nome,  data, datainserimento, prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
 		FinestraUtente.eventoClear.doClick();
 		FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento inserito correttamente </font></html>");
 
