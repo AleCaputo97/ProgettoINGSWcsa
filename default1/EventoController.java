@@ -41,18 +41,31 @@ public class EventoController {
 		
 		
 
-public static void cerca (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
-		
+public static void cerca (String nome, String data, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
+		try {
+				double doubleprezzoiniziale = 00.00;
+				double doubleprezzofinale = 00.00;
+				int intmaxspettatori = 0;
+					if(isDouble(prezzoiniziale)==false || isDouble(prezzofinale)==false || isInteger(maxspettatori)==false) {
+						FinestraUtente.messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
+						return;
+					}
+
+				if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale);
+
+				if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale);
+				if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);
+				
 		nome=normalizza(nome);
-		prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
-		prezzofinale=normalizzaPrezzo(prezzofinale);
+		doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
+		doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
 		
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
         int i;
         int j = model.getRowCount();
         for (i=0; i<j; i++)
             model.removeRow(0);
-      List<Evento> risultati = EventoDAO.cerca( nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
+      List<Evento> risultati = EventoDAO.cerca( nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo);
       //String prezzocurr;
       SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
       Date Datacurr = new Date();
@@ -76,6 +89,9 @@ public static void cerca (String nome, String data, double prezzoiniziale, doubl
 					model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile"});
 				}
       		}
+		  }catch(Exception E) {
+			  //
+		  }
 		}
 
 	public static void modifica (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
@@ -131,6 +147,25 @@ public static void cerca (String nome, String data, double prezzoiniziale, doubl
 		}
 	
 	
-
+	public static boolean isInteger (String testo) throws Exception {
+		 try {
+			  if(testo.equals("")) return true;
+			  Integer.parseInt(testo);
+			  return true;
+		 }catch(Exception E) {
+			 return false;
+		 }
+		}
+		
+		public static boolean isDouble (String testo) throws Exception {
+			 try {
+				  if(testo.equals("")) return true;
+					testo=testo.replaceAll(",",".");
+					Double.parseDouble(testo);
+					return true;
+			 }catch(Exception E) {
+				 return false;
+			 }
+			}
 }
 	
