@@ -118,12 +118,15 @@ public class FinestraUtente {
 		frmProgettoingswcsa.setLocationRelativeTo(null);
 		
 		try {
+			
 		URL url = new URL("https://raw.githubusercontent.com/AleCaputo97/ProgettoINGSWcsa/master/icon.png");
 		Image icon = ImageIO.read(url);  
-	    frmProgettoingswcsa.setIconImage(icon);
-
+		Image newimg = icon.getScaledInstance(32, 32,  java.awt.Image.SCALE_SMOOTH);
+	    frmProgettoingswcsa.setIconImage(newimg);
 		}
-	    catch(Exception e){ }
+	    catch(Exception e){ 
+	    	System.out.println(e);
+	    }
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setFont(new Font("Product Sans", Font.PLAIN, 14));
