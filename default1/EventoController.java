@@ -51,9 +51,8 @@ public static void cerca (String nome, String data, String prezzoiniziale, Strin
 						return;
 					}
 
-				if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale);
-
-				if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale);
+				if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale.replaceAll(",", "."));
+				if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale.replaceAll(",", "."));
 				if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);
 				
 		nome=normalizza(nome);
