@@ -26,19 +26,17 @@ public class EventoController {
 	}
 	
 	private static double normalizzaPrezzo (double prezzo) {
-		
-		DecimalFormat df = new DecimalFormat(".##");
+
+		if (!(prezzo==0.00)) {
+		DecimalFormat df = new DecimalFormat("#.##");
 		df.setRoundingMode(RoundingMode.DOWN);
 		String prezzostringa;
-		
-		if (!(prezzo==0.00)) {
 			prezzostringa = df.format(prezzo);
-			prezzostringa.replaceAll(",",".");
+			prezzostringa=prezzostringa.replaceAll(",",".");
 			prezzo = Double.parseDouble(prezzostringa);
 		}
-			
+
 		return prezzo;
-			
 	}
 		
 		
@@ -73,9 +71,9 @@ public static void cerca (String nome, String data, double prezzoiniziale, doubl
 				differenzaOdiernaIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataCurr);
 				differenzaFinaleIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataEvento);
 		    	System.out.println("evento in corso + diff od in + diff fin in" + curr.getNome() + differenzaOdiernaIniziale + differenzaFinaleIniziale);
-		    	prezzocurr = (differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
-		    	double differenza = differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale());
-		    	System.out.println("differenza e totale " + differenza + prezzocurr);
+		    	prezzocurr = normalizzaPrezzo(differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
+		    	/*double differenza = differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale());
+		    	System.out.println("differenza e totale " + differenza + prezzocurr);*/
 				model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
 				}else {
 					model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile"});
