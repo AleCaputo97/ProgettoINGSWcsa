@@ -524,7 +524,7 @@ public class FinestraUtente {
 					eventocbTipo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Tipo").getModelIndex()).toString());
 					eventocbLuogo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Luogo").getModelIndex()).toString());
 					
-					datacorrente = eventotable.getValueAt(row,eventotable.getColumn("Data Inserimento").getModelIndex()).toString();
+					datacorrente = eventotable.getValueAt(row,eventotable.getColumn("Data inserimento").getModelIndex()).toString();
 										
 					eventoCerca.setEnabled(false);
 					eventoStatistiche.setEnabled(false);
