@@ -44,7 +44,7 @@ public class EventoController {
 		
 		
 
-	public static void cerca (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
+public static void cerca (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
 		
 		nome=normalizza(nome);
 		prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
@@ -71,7 +71,10 @@ public class EventoController {
 			LocalDataEvento = LocalDate.parse(curr.getData(), formatter);
 		    differenzaOdiernaIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataCurr);
 		    differenzaFinaleIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataEvento);
-		    prezzocurr = normalizzaPrezzo(differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoIniziale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
+		   System.out.println("evento in corso + diff od in + diff fin in" + curr.getNome() + differenzaOdiernaIniziale + differenzaFinaleIniziale);
+		    prezzocurr = (differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
+		    double differenza = differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale());
+		    System.out.println("differenza e totale " + differenza + prezzocurr);
 			model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
 	       }
 		}
