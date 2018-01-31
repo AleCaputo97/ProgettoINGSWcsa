@@ -74,31 +74,61 @@ public class ClienteController {
 		}
 }
 	public static void inserisci (String nome, String cognome, String email, String codicefiscale, String data) {
-		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
-		if((!nome.equals("")&&!cognome.equals("")&&!email.equals("")&&!codicefiscale.equals("")&&!data.equals(""))) {
-			//Controllo successivo: mail ben posta e codice fiscale di 16 caratteri
-			if(codicefiscale.length()!=16) {
-				FinestraUtente.messaggio.setText("ERRORE: Il codice fiscale non è di 16 caratteri");
-				return;
-			}
-			Pattern p= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-			if(!p.matcher(email).matches()) {
-				FinestraUtente.messaggio.setText("ERRORE: la mail non è nel formato testo@dominio.testo");
-				return;
-			}
-		nome=normalizza(nome);
-		cognome=normalizza(cognome);
-		email=normalizzaEmail(email);
-		codicefiscale=normalizzaCF(codicefiscale);
-		ClienteDAO.inserisciModifica(nome, cognome, email, codicefiscale, data);
-		FinestraUtente.clienteClear.doClick();
-		FinestraUtente.messaggio.setText("<html><font color=\"green\">Cliente inserito correttamente </font></html>");
+		
+		Pattern p= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-		}else {
-			FinestraUtente.messaggio.setText("ERRORE: Almeno uno dei campi è vuoto");
-			System.out.println("errore, almeno uno dei campi è vuoto");
+		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
+		if((nome.equals("")||cognome.equals("")||email.equals("")||codicefiscale.equals("")||data.equals(""))) {
+			FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto </font></html>");
 		}
-	}
+			//Controllo successivo: mail ben posta e codice fiscale di 16 caratteri
+			else if(codicefiscale.length()!=16) {
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Il codice fiscale non è di 16 caratteri </font></html>");
+			}
+			else if(!p.matcher(email).matches()) {
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: la mail non è nel formato testo@dominio.testo </font></html>");
+			}
+			else {
+			nome=normalizza(nome);
+			cognome=normalizza(cognome);
+			email=normalizzaEmail(email);
+			codicefiscale=normalizzaCF(codicefiscale);
+			ClienteDAO.inserisciModifica(nome, cognome, email, codicefiscale, data);
+			FinestraUtente.clienteClear.doClick();
+			FinestraUtente.messaggio.setText("<html><font color=\"green\">Cliente inserito correttamente </font></html>");
+			}
+
+		}
+	
+	public static boolean modifica (String nome, String cognome, String email, String codicefiscale, String data) {
+		
+		Pattern p= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
+		if((nome.equals("")||cognome.equals("")||email.equals("")||codicefiscale.equals("")||data.equals(""))) {
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto </font></html>");
+				return false;
+		}
+			//Controllo successivo: mail ben posta e codice fiscale di 16 caratteri
+			else if(codicefiscale.length()!=16) {
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Il codice fiscale non è di 16 caratteri </font></html>");
+				return false;
+			}
+			else if(!p.matcher(email).matches()) {
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: la mail non è nel formato testo@dominio.testo </font></html>");
+				return false;
+			}
+			else {
+			nome=normalizza(nome);
+			cognome=normalizza(cognome);
+			email=normalizzaEmail(email);
+			codicefiscale=normalizzaCF(codicefiscale);
+			ClienteDAO.inserisciModifica(nome, cognome, email, codicefiscale, data);
+			FinestraUtente.clienteClear.doClick();
+			return true;
+			}
+
+		}
 	
 	public static void elimina(String CodiceFiscale) {
 		ClienteDAO.elimina(CodiceFiscale);
@@ -107,7 +137,9 @@ public class ClienteController {
         int j = model.getRowCount();
         for (i=0; i<j; i++)
             model.removeRow(0);
+		FinestraUtente.messaggio.setText("<html><font color=\"red\">Cliente eliminato correttamente </font></html>");
 		}
+
 	
 	
 

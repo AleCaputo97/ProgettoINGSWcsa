@@ -266,6 +266,9 @@ public class FinestraUtente {
 				clientetfCodicefiscale.setText("");
 				clienteData.setText("");
 				messaggio.setText("");
+				clienteModifica.setEnabled(false);
+				clienteElimina.setEnabled(false);
+				clienteStatistiche.setEnabled(false);
 				
 				DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
 		        int i;
@@ -303,14 +306,14 @@ public class FinestraUtente {
 				}
 				else {
 					
-					clienteModifica.setText("Modifica");
 					
 					String nome = clientetfNome.getText();
 					String data = clienteData.getText();
 					String cognome = clientetfCognome.getText();
 					String email = clientetfEmail.getText();
 					String codicefiscale = clientetfCodicefiscale.getText();
-					ClienteController.inserisci(nome, cognome, email, codicefiscale, data);
+					
+					if (ClienteController.modifica(nome, cognome, email, codicefiscale, data)) {
 					
 					clienteCerca.setEnabled(true);
 					clienteStatistiche.setEnabled(true);
@@ -319,12 +322,16 @@ public class FinestraUtente {
 					clienteClear.setEnabled(true);
 					clientetfCodicefiscale.setEnabled(true);
 					clienteClear.doClick();
+					clienteModifica.setText("Modifica");
+					FinestraUtente.messaggio.setText("<html><font color=\"blue\">Cliente modificato correttamente </font></html>");
+					}
+					}
 
 
 					
 				}
 				
-				}
+				
 
 			}
 		);
