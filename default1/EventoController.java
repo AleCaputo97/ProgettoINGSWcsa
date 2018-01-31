@@ -112,19 +112,30 @@ public static void cerca (String nome, String data, String prezzoiniziale, Strin
 		}
 	}
 	
-	public static void inserisci (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
+	public static void inserisci (String nome, String data, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
+		try {
 		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
-		   if(!(nome.equals("")) && !(data.equals("")) && !(prezzoiniziale==0.00) && !(prezzofinale==0.00) && !(maxspettatori==0) && !(tipo.equals(""))&& !(luogo.equals(""))) {
-			
+		   if(!(nome.equals("")) && !(data.equals("")) && !(prezzoiniziale.equals("")) && !(prezzofinale.equals("")) && !(maxspettatori.equals("")) && !(tipo.equals(""))&& !(luogo.equals(""))) {
+			   double doubleprezzoiniziale = 00.00;
+				double doubleprezzofinale = 00.00;
+				int intmaxspettatori = 0;
+					if(isDouble(prezzoiniziale)==false || isDouble(prezzofinale)==false || isInteger(maxspettatori)==false) {
+						FinestraUtente.messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
+						return;
+					}
+					if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale.replaceAll(",", "."));
+					if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale.replaceAll(",", "."));
+					if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);
+					
 			nome=normalizza(nome);
-			prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
-			prezzofinale=normalizzaPrezzo(prezzofinale);
+			doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
+			doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
 			
 			SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
 		    Date now = new Date();
 		    String datacorrente = sdfDate.format(now);
 			
-		EventoDAO.inserisci(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo, datacorrente);
+		EventoDAO.inserisci(nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo, datacorrente);
 		FinestraUtente.eventoClear.doClick();
 		FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento inserito correttamente </font></html>");
 
@@ -133,6 +144,9 @@ public static void cerca (String nome, String data, String prezzoiniziale, Strin
 		   else {
 			FinestraUtente.messaggio.setText("ERRORE: Almeno uno dei campi è vuoto");
 			System.out.println("errore, almeno uno dei campi è vuoto");
+		}
+		}catch(Exception e1) {
+			//do something
 		}
 	}
 	
