@@ -3,6 +3,9 @@ package default1;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -53,8 +56,23 @@ public class EventoController {
         for (i=0; i<j; i++)
             model.removeRow(0);
       List<Evento> risultati = EventoDAO.cerca( nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
-		for(Evento curr:risultati) {
-			model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo()});
+      //String prezzocurr;
+      SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
+      Date Datacurr = new Date();
+      String strDatacurr = sdfDate.format(Datacurr); //Data corrente nel formato cercato
+      String DataInserimento, DataEvento; //parametri che prende dalla clsse Evento
+      double prezzoIniziale, prezzoFinale;
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+      LocalDate LocalDataInserimento, LocalDataEvento, LocalDataCurr;
+      LocalDataCurr = LocalDate.parse(strDatacurr, formatter);
+      double risultato = 0, differenzaOdiernaIniziale, differenzaFinaleIniziale, prezzocurr;
+      for(Evento curr:risultati) {
+			LocalDataInserimento = LocalDate.parse(curr.getDataInserimento(), formatter);
+			LocalDataEvento = LocalDate.parse(curr.getData(), formatter);
+		    differenzaOdiernaIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataCurr);
+		    differenzaFinaleIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataEvento);
+		    prezzocurr = normalizzaPrezzo(differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoIniziale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
+			model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
 	       }
 		}
 

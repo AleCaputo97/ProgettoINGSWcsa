@@ -79,7 +79,7 @@ public class EventoDAO {
 		   Evento curr;
 	       while (iterator.hasNext()) {
 	        iteratorcurr = iterator.next();
-	        curr=new Evento((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("DataEvento"),(double) Double.parseDouble(iteratorcurr.get("PrezzoIniziale").toString()),(double) Double.parseDouble(iteratorcurr.get("PrezzoFinale").toString()),(int) Integer.parseInt(iteratorcurr.get("MassimoSpettatori").toString()),(String) iteratorcurr.get("Tipo"), (String) iteratorcurr.get("Luogo"));
+	        curr=new Evento((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("DataEvento"),(double) Double.parseDouble(iteratorcurr.get("PrezzoIniziale").toString()),(double) Double.parseDouble(iteratorcurr.get("PrezzoFinale").toString()),(int) Integer.parseInt(iteratorcurr.get("MassimoSpettatori").toString()),(String) iteratorcurr.get("Tipo"), (String) iteratorcurr.get("Luogo"), (String) iteratorcurr.get("DataInserimento"));
 	        risultati.add(curr);
 	       }
 	   return risultati;
@@ -112,7 +112,7 @@ public class EventoDAO {
 		    	    .withNumber("MassimoSpettatori", maxspettatori)
 		    		.withString("Luogo", luogo)
 		    		.withString("Tipo", tipo)
-		    		.withString("Data Inserimento", datainserimento);
+		    		.withString("DataInserimento", datainserimento);
 		    PutItemOutcome outcome = table.putItem(item, null, null, null);
 		    
 		    

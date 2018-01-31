@@ -10,9 +10,9 @@ public class Evento {
 	private int MassimoSpettatori;
 	private String Tipo;
 	private String Luogo;
-	
+	private String DataInserimento;
 	//costruttore
-	public Evento(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
+	public Evento(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo, String dataInserimento) {
 		Nome=nome;
 		Data=data;
 		PrezzoIniziale=prezzoiniziale;
@@ -20,6 +20,7 @@ public class Evento {
 		MassimoSpettatori=maxspettatori;
 		Tipo=tipo;
 		Luogo=luogo;
+		DataInserimento=dataInserimento;
 	}
 	
 	//getter
@@ -49,6 +50,9 @@ public class Evento {
 	
 	public String getLuogo() {
 		return Luogo;
+	}
+	public String getDataInserimento() {
+		return DataInserimento;
 	}
 
 	//setter
