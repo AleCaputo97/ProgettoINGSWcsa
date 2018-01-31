@@ -519,7 +519,7 @@ public class FinestraUtente {
 						int maxspettatori = Integer.parseInt(eventotfMassimoposti.getText());
 						String tipo = eventocbTipo.getSelectedItem().toString();
 						String luogo = eventocbLuogo.getSelectedItem().toString();
-						EventoController.inserisci(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
+						EventoController.modifica(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
 						
 						eventoCerca.setEnabled(true);
 						eventoStatistiche.setEnabled(true);
