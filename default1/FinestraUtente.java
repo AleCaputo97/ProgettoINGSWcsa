@@ -987,12 +987,7 @@ public class FinestraUtente {
 	public boolean isDouble (String testo) throws Exception {
 		 try {
 			  if(testo.equals("")) return true;
-			  DecimalFormat df = new DecimalFormat("#.##");
-				df.setRoundingMode(RoundingMode.DOWN);
-				String prezzostringa;
-				prezzostringa = df.format(testo);
-				prezzostringa=prezzostringa.replaceAll(",",".");
-				System.out.println("prezzostringa è" + prezzostringa);
+				testo=testo.replaceAll(",",".");
 				Double.parseDouble(testo);
 				return true;
 		 }catch(Exception E) {
