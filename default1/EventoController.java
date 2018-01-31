@@ -27,17 +27,16 @@ public class EventoController {
 	
 	private static double normalizzaPrezzo (double prezzo) {
 		
-		/*DecimalFormat df = new DecimalFormat(".##");
+		DecimalFormat df = new DecimalFormat(".##");
 		df.setRoundingMode(RoundingMode.DOWN);
 		String prezzostringa;
 		
-		if (!(prezzo==0.00)) {}
-		
+		if (!(prezzo==0.00)) {
 			prezzostringa = df.format(prezzo);
 			prezzostringa.replaceAll(",",".");
 			prezzo = Double.parseDouble(prezzostringa);
+		}
 			
-		*/	
 		return prezzo;
 			
 	}
@@ -65,18 +64,23 @@ public static void cerca (String nome, String data, double prezzoiniziale, doubl
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
       LocalDate LocalDataInserimento, LocalDataEvento, LocalDataCurr;
       LocalDataCurr = LocalDate.parse(strDatacurr, formatter);
-      double risultato = 0, differenzaOdiernaIniziale, differenzaFinaleIniziale, prezzocurr;
+      double risultato = 0, differenzaOdiernaIniziale, differenzaFinaleIniziale, prezzocurr, differenzaOdiernaFinale;
       for(Evento curr:risultati) {
 			LocalDataInserimento = LocalDate.parse(curr.getDataInserimento(), formatter);
 			LocalDataEvento = LocalDate.parse(curr.getData(), formatter);
-		    differenzaOdiernaIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataCurr);
-		    differenzaFinaleIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataEvento);
-		   System.out.println("evento in corso + diff od in + diff fin in" + curr.getNome() + differenzaOdiernaIniziale + differenzaFinaleIniziale);
-		    prezzocurr = (differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
-		    double differenza = differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale());
-		    System.out.println("differenza e totale " + differenza + prezzocurr);
-			model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
-	       }
+			differenzaOdiernaFinale = ChronoUnit.DAYS.between(LocalDataCurr, LocalDataEvento);
+			if (differenzaOdiernaFinale >= 0) {
+				differenzaOdiernaIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataCurr);
+				differenzaFinaleIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataEvento);
+		    	System.out.println("evento in corso + diff od in + diff fin in" + curr.getNome() + differenzaOdiernaIniziale + differenzaFinaleIniziale);
+		    	prezzocurr = (differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
+		    	double differenza = differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale());
+		    	System.out.println("differenza e totale " + differenza + prezzocurr);
+				model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
+				}else {
+					model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile"});
+				}
+      		}
 		}
 
 	public static void modifica (String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
