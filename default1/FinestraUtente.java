@@ -30,7 +30,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
+import java.math.RoundingMode;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import java.awt.Image;
@@ -431,10 +433,11 @@ public class FinestraUtente {
 				String nome = eventotfNome.getText();
 				String data = eventoData.getText();
 				double prezzoiniziale = 00.00;
-				if(isDouble(eventotfPrezzoiniziale.getText())==false || isDouble(eventotfPrezzofinale.getText())==false || isInteger(eventotfMassimoposti.getText())==false) {
-					messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
-				}
-				
+					if(isDouble(eventotfPrezzoiniziale.getText())==false || isDouble(eventotfPrezzofinale.getText())==false || isInteger(eventotfMassimoposti.getText())==false) {
+						messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
+						return;
+					}
+
 				if (!(eventotfPrezzoiniziale.getText().equals(""))) prezzoiniziale=Double.parseDouble(eventotfPrezzoiniziale.getText());
 				double prezzofinale = 00.00;
 				if (!(eventotfPrezzofinale.getText().equals(""))) prezzofinale=Double.parseDouble(eventotfPrezzofinale.getText());
@@ -970,6 +973,7 @@ public class FinestraUtente {
 	
 	public boolean isInteger (String testo) throws Exception {
 	 try {
+		  if(testo.equals("")) return true;
 		  Integer.parseInt(testo);
 		  return true;
 	 }catch(Exception E) {
@@ -979,8 +983,15 @@ public class FinestraUtente {
 	
 	public boolean isDouble (String testo) throws Exception {
 		 try {
-			  Double.parseDouble(testo);
-			  return true;
+			  if(testo.equals("")) return true;
+			  DecimalFormat df = new DecimalFormat("#.##");
+				df.setRoundingMode(RoundingMode.DOWN);
+				String prezzostringa;
+				prezzostringa = df.format(testo);
+				prezzostringa=prezzostringa.replaceAll(",",".");
+				System.out.println("prezzostringa è" + prezzostringa);
+				Double.parseDouble(testo);
+				return true;
 		 }catch(Exception E) {
 			 return false;
 		 }
