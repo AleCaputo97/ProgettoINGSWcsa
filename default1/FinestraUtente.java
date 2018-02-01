@@ -482,28 +482,6 @@ public class FinestraUtente {
 				
 			}
 				
-				/*
-				try {
-				if(isDouble(eventotfPrezzoiniziale.getText())==false || isDouble(eventotfPrezzofinale.getText())==false || isInteger(eventotfMassimoposti.getText())==false) {
-					messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
-					return;
-				}
-				eventoModifica.setEnabled(false);
-				eventoElimina.setEnabled(false);
-				eventoStatistiche.setEnabled(false);
-				
-				String nome = eventotfNome.getText();
-				String data = eventoData.getText();
-				float prezzoiniziale = Float.parseFloat(eventotfPrezzoiniziale.getText());
-				float prezzofinale = Float.parseFloat(eventotfPrezzofinale.getText());
-				int maxspettatori = Integer.parseInt(eventotfMassimoposti.getText());
-				String tipo = eventocbTipo.getSelectedItem().toString();
-				String luogo = eventocbLuogo.getSelectedItem().toString();
-				EventoController.inserisci(nome,  data,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
-				}catch(Exception e2) {
-					//do something
-				}
-			}*/
 		});
 		eventoInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
 		eventoInserisci.setBounds(155, 150, 129, 23);
@@ -512,7 +490,7 @@ public class FinestraUtente {
 		eventoModifica.setEnabled(false);
 		eventoModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			try {
+
 				if (eventoModifica.getText().equals("Modifica")){
 					
 					int row = eventotable.getSelectedRow();
@@ -535,35 +513,34 @@ public class FinestraUtente {
 					
 					eventoModifica.setText("Conferma");
 					
-					}
-					else {
-						if(isDouble(eventotfPrezzoiniziale.getText())==false || isDouble(eventotfPrezzofinale.getText())==false || isInteger(eventotfMassimoposti.getText())==false) {
-							messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
-							return;
-						}
-						eventoModifica.setText("Modifica");
-						String nome = eventotfNome.getText();
-						String data = eventoData.getText();
-						float prezzoiniziale = Float.parseFloat(eventotfPrezzoiniziale.getText());
-						float prezzofinale = Float.parseFloat(eventotfPrezzofinale.getText());
-						int maxspettatori = Integer.parseInt(eventotfMassimoposti.getText());
-						String tipo = eventocbTipo.getSelectedItem().toString();
-						String luogo = eventocbLuogo.getSelectedItem().toString();
-						EventoController.modifica(nome,  data, datacorrente,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
+				}
+				else {
 						
-						eventoCerca.setEnabled(true);
-						eventoStatistiche.setEnabled(true);
-						eventoElimina.setEnabled(true);
-						eventoInserisci.setEnabled(true);
-						eventoClear.setEnabled(true);
-						eventotfNome.setEnabled(true);
-						eventoClear.doClick();
-				
+					String nome = eventotfNome.getText();
+					String data = eventoData.getText();
+					String prezzoiniziale = eventotfPrezzoiniziale.getText();
+					String prezzofinale = eventotfPrezzofinale.getText();
+					String maxspettatori = eventotfMassimoposti.getText();
+					String tipo = eventocbTipo.getSelectedItem().toString();
+					String luogo = eventocbLuogo.getSelectedItem().toString();
+					
+					if (EventoController.modifica(nome,  data, datacorrente,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo)) {				
+					
+					eventoCerca.setEnabled(true);
+					eventoStatistiche.setEnabled(true);
+					eventoElimina.setEnabled(true);
+					eventoInserisci.setEnabled(true);
+					eventoClear.setEnabled(true);
+					eventotfNome.setEnabled(true);
+					eventoModifica.setText("Modifica");
+					eventoClear.doClick();
+					FinestraUtente.messaggio.setText("<html><font color=\"blue\">Evento modificato correttamente </font></html>");
+						
+					}
+				}
 			}
-			}catch(Exception e3) {
-				//do something
-			}
-		}});
+		});
+		
 		eventoModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
 		eventoModifica.setBounds(684, 150, 129, 23);
 		Evento.add(eventoModifica);
@@ -643,7 +620,6 @@ public class FinestraUtente {
 		eventotable = new JTable();
 		eventotable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null, null, null, null},
 			},
 			new String[] {
 				"Nome", "Luogo", "Data", "Data inserimento", "\u20AC Iniziale", "\u20AC Finale", "Max posti", "Tipo", "Prezzo corrente"

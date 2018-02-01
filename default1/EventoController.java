@@ -41,116 +41,152 @@ public class EventoController {
 		
 		
 
-public static void cerca (String nome, String data, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
-		try {
-				double doubleprezzoiniziale = 00.00;
-				double doubleprezzofinale = 00.00;
-				int intmaxspettatori = 0;
-					if(isDouble(prezzoiniziale)==false || isDouble(prezzofinale)==false || isInteger(maxspettatori)==false) {
-						FinestraUtente.messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
-						return;
-					}
-
-				if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale.replaceAll(",", "."));
-				if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale.replaceAll(",", "."));
-				if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);
-				
-		nome=normalizza(nome);
-		doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
-		doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
+	public static void cerca (String nome, String data, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
 		
-		DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
-        int i;
-        int j = model.getRowCount();
-        for (i=0; i<j; i++)
+		try {
+				
+			double doubleprezzoiniziale = 00.00;
+			double doubleprezzofinale = 00.00;
+			int intmaxspettatori = 0;
+			
+			if(isDouble(prezzoiniziale)==false || isDouble(prezzofinale)==false || isInteger(maxspettatori)==false) {
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!</font></html>");
+				return;
+			}
+
+			if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale.replaceAll(",", "."));
+			if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale.replaceAll(",", "."));
+			if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);
+				
+			nome=normalizza(nome);
+			doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
+			doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
+		
+			DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
+			int i;
+			int j = model.getRowCount();
+			for (i=0; i<j; i++)
             model.removeRow(0);
-      List<Evento> risultati = EventoDAO.cerca( nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo);
-      //String prezzocurr;
-      SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
-      Date Datacurr = new Date();
-      String strDatacurr = sdfDate.format(Datacurr); //Data corrente nel formato cercato
-      String DataInserimento, DataEvento; //parametri che prende dalla clsse Evento
-      double prezzoIniziale, prezzoFinale;
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
-      LocalDate LocalDataInserimento, LocalDataEvento, LocalDataCurr;
-      LocalDataCurr = LocalDate.parse(strDatacurr, formatter);
-      double risultato = 0, differenzaOdiernaIniziale, differenzaFinaleIniziale, prezzocurr, differenzaOdiernaFinale;
-      for(Evento curr:risultati) {
-			LocalDataInserimento = LocalDate.parse(curr.getDataInserimento(), formatter);
-			LocalDataEvento = LocalDate.parse(curr.getData(), formatter);
-			differenzaOdiernaFinale = ChronoUnit.DAYS.between(LocalDataCurr, LocalDataEvento);
-			if (differenzaOdiernaFinale >= 0) {
-				differenzaOdiernaIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataCurr);
-				differenzaFinaleIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataEvento);
-		    	prezzocurr = normalizzaPrezzo(differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
-		    	model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
-				}else {
+			
+			List<Evento> risultati = EventoDAO.cerca( nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo);
+			
+			//String prezzocurr;
+			SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
+			Date Datacurr = new Date();
+			String strDatacurr = sdfDate.format(Datacurr); //Data corrente nel formato cercato
+			String DataInserimento, DataEvento; //parametri che prende dalla clsse Evento
+			double prezzoIniziale, prezzoFinale;
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+			LocalDate LocalDataInserimento, LocalDataEvento, LocalDataCurr;
+			LocalDataCurr = LocalDate.parse(strDatacurr, formatter);
+			double risultato = 0, differenzaOdiernaIniziale, differenzaFinaleIniziale, prezzocurr, differenzaOdiernaFinale;
+			
+			for(Evento curr:risultati) {
+				LocalDataInserimento = LocalDate.parse(curr.getDataInserimento(), formatter);
+				LocalDataEvento = LocalDate.parse(curr.getData(), formatter);
+				differenzaOdiernaFinale = ChronoUnit.DAYS.between(LocalDataCurr, LocalDataEvento);
+			
+				if (differenzaOdiernaFinale >= 0) {
+					differenzaOdiernaIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataCurr);
+					differenzaFinaleIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataEvento);
+					prezzocurr = normalizzaPrezzo(differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
+					model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
+				}
+				else {
 					model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile"});
 				}
       		}
-		  }catch(Exception E) {
-			  //
-		  }
-		}
-
-	public static void modifica (String nome, String data, String datainserimento, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
-		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
-		   if(!(nome.equals("")) && !(data.equals("")) && !(prezzoiniziale==0.00) && !(prezzofinale==0.00) && !(maxspettatori==0) && !(tipo.equals(""))&& !(luogo.equals(""))) {
 			
-			nome=normalizza(nome);
-			prezzoiniziale=normalizzaPrezzo(prezzoiniziale);
-			prezzofinale=normalizzaPrezzo(prezzofinale);
-		EventoDAO.modifica(nome,  data, datainserimento, prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo);
-		FinestraUtente.eventoClear.doClick();
-		FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento inserito correttamente </font></html>");
-
 		}
-		   
-		   else {
-			FinestraUtente.messaggio.setText("ERRORE: Almeno uno dei campi è vuoto");
-			System.out.println("errore, almeno uno dei campi è vuoto");
+		catch(Exception E) {
+			  //
+		}
+	}
+
+	
+	public static boolean modifica (String nome, String data, String datainserimento, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
+		
+		try {
+			//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
+			if(!(nome.equals("")) && !(data.equals("")) && !(prezzoiniziale.equals("")) && !(prezzofinale.equals("")) && !(maxspettatori.equals("")) && !(tipo.equals(""))&& !(luogo.equals(""))) {
+				double doubleprezzoiniziale = 00.00;
+				double doubleprezzofinale = 00.00;
+				int intmaxspettatori = 0;
+				   
+				if(isDouble(prezzoiniziale)==false || isDouble(prezzofinale)==false || isInteger(maxspettatori)==false) {
+					FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!</font></html>");
+					return false;
+				}
+				   
+				if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale.replaceAll(",", "."));
+				if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale.replaceAll(",", "."));
+				if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);
+						
+				nome=normalizza(nome);
+				doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
+				doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
+				
+				EventoDAO.inserisciModifica(nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo, datainserimento);
+				   
+				FinestraUtente.eventoClear.doClick();
+				FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento modificato correttamente </font></html>");
+				return true;
+
+			}
+			   
+			else {
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto</font></html>");
+				return false;
+			}
+			
+		}
+		catch(Exception e1) {
+			return false;
 		}
 	}
 	
 	public static void inserisci (String nome, String data, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
+		
 		try {
 		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
-		   if(!(nome.equals("")) && !(data.equals("")) && !(prezzoiniziale.equals("")) && !(prezzofinale.equals("")) && !(maxspettatori.equals("")) && !(tipo.equals(""))&& !(luogo.equals(""))) {
-			   double doubleprezzoiniziale = 00.00;
+			if(!(nome.equals("")) && !(data.equals("")) && !(prezzoiniziale.equals("")) && !(prezzofinale.equals("")) && !(maxspettatori.equals("")) && !(tipo.equals(""))&& !(luogo.equals(""))) {
+			    double doubleprezzoiniziale = 00.00;
 				double doubleprezzofinale = 00.00;
 				int intmaxspettatori = 0;
-					if(isDouble(prezzoiniziale)==false || isDouble(prezzofinale)==false || isInteger(maxspettatori)==false) {
-						FinestraUtente.messaggio.setText("Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!");
-						return;
-					}
-					if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale.replaceAll(",", "."));
-					if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale.replaceAll(",", "."));
-					if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);
+				if(isDouble(prezzoiniziale)==false || isDouble(prezzofinale)==false || isInteger(maxspettatori)==false) {
+					FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!</font></html>");
+					return;
+				}
+				
+				if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale.replaceAll(",", "."));
+				if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale.replaceAll(",", "."));
+				if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);
 					
-			nome=normalizza(nome);
-			doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
-			doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
+				nome=normalizza(nome);
+				doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
+				doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
 			
-			SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
-		    Date now = new Date();
-		    String datacorrente = sdfDate.format(now);
+				SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
+				Date now = new Date();
+				String datacorrente = sdfDate.format(now);
 			
-		EventoDAO.inserisci(nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo, datacorrente);
-		FinestraUtente.eventoClear.doClick();
-		FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento inserito correttamente </font></html>");
+				EventoDAO.inserisciModifica(nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo, datacorrente);
+				FinestraUtente.eventoClear.doClick();
+				FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento inserito correttamente </font></html>");
 
-		}
+			}
 		   
 		   else {
-			FinestraUtente.messaggio.setText("ERRORE: Almeno uno dei campi è vuoto");
-			System.out.println("errore, almeno uno dei campi è vuoto");
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto</font></html>");
+		   }
 		}
-		}catch(Exception e1) {
+		catch(Exception e1) {
 			//do something
 		}
 	}
 	
 	public static void elimina(String Nome) {
+		
 		EventoDAO.elimina(Nome);
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
         int i;
@@ -161,24 +197,27 @@ public static void cerca (String nome, String data, String prezzoiniziale, Strin
 	
 	
 	public static boolean isInteger (String testo) throws Exception {
-		 try {
+		 
+		try {
 			  if(testo.equals("")) return true;
 			  Integer.parseInt(testo);
 			  return true;
 		 }catch(Exception E) {
 			 return false;
 		 }
-		}
+	}
 		
-		public static boolean isDouble (String testo) throws Exception {
-			 try {
-				  if(testo.equals("")) return true;
-					testo=testo.replaceAll(",",".");
-					Double.parseDouble(testo);
-					return true;
-			 }catch(Exception E) {
-				 return false;
-			 }
-			}
+	public static boolean isDouble (String testo) throws Exception {
+		
+		try {
+			if(testo.equals("")) return true;
+			testo=testo.replaceAll(",",".");
+			Double.parseDouble(testo);
+			return true;
+		}catch(Exception E) {
+			return false;
+		}
+	}
+	
 }
 	

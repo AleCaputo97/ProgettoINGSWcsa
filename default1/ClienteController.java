@@ -42,12 +42,12 @@ public class ClienteController {
 	public static void cerca (String nome, String cognome, String email, String codicefiscale, String data) {
 		Pattern p= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 		if(!p.matcher(email).matches() && !(email.equals(""))) {
-			FinestraUtente.messaggio.setText("ERRORE: la mail non è nel formato testo@dominio.testo");
+			FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: la mail non è nel formato testo@dominio.testo</font></html>");
 			return;
 		}
 		if (!(codicefiscale.equals(""))) {
 			if (!(codicefiscale.length()==16))
-				FinestraUtente.messaggio.setText("ERRORE: Il codice fiscale deve essere di 16 caratteri");
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Il codice fiscale deve essere di 16 caratteri</font></html>");
 			
 		}
 		else {

@@ -84,25 +84,8 @@ public class EventoDAO {
 	       }
 	   return risultati;
 	}
-	
-	 public static void modifica(String nome, String data, String datainserimento, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
-		    String tableName = "Evento";
-		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
-		    Item item = new Item()
-		    	    .withPrimaryKey("Nome", nome)
-		    	    .withString("DataEvento", data)
-		    	    .withNumber("PrezzoIniziale", prezzoiniziale)
-		    	    .withNumber("PrezzoFinale", prezzofinale)
-		    	    .withNumber("MassimoSpettatori", maxspettatori)
-		    		.withString("Luogo", luogo)
-		    		.withString("Tipo", tipo)
-		    		.withString("DataInserimento", datainserimento);
-		    PutItemOutcome outcome = table.putItem(item, null, null, null);
-		    
-		    
-		    }
 	 
-	 public static void inserisci(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo, String datainserimento) {
+	 public static void inserisciModifica(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo, String datainserimento) {
 		    String tableName = "Evento";
 		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		    Item item = new Item()
