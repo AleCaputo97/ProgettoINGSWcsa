@@ -58,7 +58,7 @@ public class BigliettoDAO {
 		   Biglietto curr;
 	       while (iterator.hasNext()) {
 	        iteratorcurr = iterator.next();
-	        curr=new Biglietto((String) iteratorcurr.get("NumeroBiglietto"),(String) iteratorcurr.get("CodFiscale"),(Double)  iteratorcurr.get("Prezzo"),(String) iteratorcurr.get("Luogo"),(String) iteratorcurr.get("Evento"), (String) iteratorcurr.get("DataAcquisto"));
+	        curr=new Biglietto((String) iteratorcurr.get("NumeroBiglietto"),(String) iteratorcurr.get("CodFiscale"),(double) Double.parseDouble(iteratorcurr.get("PrezzoIniziale").toString()),(String) iteratorcurr.get("Luogo"),(String) iteratorcurr.get("Evento"), (String) iteratorcurr.get("DataAcquisto"));
 	        risultati.add(curr);
 	       }
 	   return risultati;
@@ -85,9 +85,10 @@ public class BigliettoDAO {
 		   Biglietto curr;
 	       while (iterator.hasNext()) {
 	        iteratorcurr = iterator.next();
-	        curr=new Biglietto((String) iteratorcurr.get("NumeroBiglietto"),(String) iteratorcurr.get("CodFiscale"),(Double)  iteratorcurr.get("Prezzo"),(String) iteratorcurr.get("Luogo"),(String) iteratorcurr.get("Evento"), (String) iteratorcurr.get("DataAcquisto"));
+	        curr=new Biglietto((String) iteratorcurr.get("NumeroBiglietto"),(String) iteratorcurr.get("CodFiscale"),(double) Double.parseDouble(iteratorcurr.get("Prezzo").toString()),(String) iteratorcurr.get("Luogo"),(String) iteratorcurr.get("Evento"), (String) iteratorcurr.get("DataAcquisto"));
 	        risultati.add(curr);
 	       }
 	   return risultati;
-	}
+	   
+	   }
 }
