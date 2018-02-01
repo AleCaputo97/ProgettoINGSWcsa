@@ -196,6 +196,7 @@ public class EventoController {
         int j = model.getRowCount();
         for (i=0; i<j; i++)
             model.removeRow(0);
+		FinestraUtente.messaggio.setText("<html><font color=\"red\">Evento eliminato correttamente </font></html>");
 		}
 	
 	

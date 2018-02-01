@@ -782,6 +782,8 @@ public class FinestraUtente {
 				frame.setLocationRelativeTo(null);
 				toggle();
 				popolaeventocbLuogo();
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto </font></html>");
+
 			}
 		});
 		

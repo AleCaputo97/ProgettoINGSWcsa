@@ -85,6 +85,8 @@ public class LuogoController {
         int j = model.getRowCount();
         for (i=0; i<j; i++)
             model.removeRow(0);
+		FinestraUtente.messaggio.setText("<html><font color=\"red\">Luogo eliminato correttamente </font></html>");
+
 		}
 	}
 	
