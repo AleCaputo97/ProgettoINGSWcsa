@@ -202,6 +202,14 @@ public class EventoController {
 		}
 	}
 	
+	public static void eliminaPerLuogo(String Luogo) {
+		//metodo che elimina tutti gli eventi che hanno un dato luogo, non svolge alcun controllo se vi sono o meno biglietti venduti per ogni evento (invocabile solo dopo un controllo di LuogoController)
+		List<Evento> risultati = EventoDAO.cerca("","", 0.00, 0.00, 0, "", Luogo);
+		for(Evento curr:risultati) {
+			EventoDAO.elimina(curr.getNome());
+		}
+	}
+	
 	public static boolean isInteger (String testo) throws Exception {
 		 
 		try {

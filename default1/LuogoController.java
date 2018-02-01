@@ -78,6 +78,7 @@ public class LuogoController {
 	
 	public static void elimina(String nome) {
 		if (BigliettoController.isBigliettiVendutiLuogo(nome)==false) {
+		 EventoController.eliminaPerLuogo(nome);
 			LuogoDAO.elimina(nome);
 			DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
 			int i;
