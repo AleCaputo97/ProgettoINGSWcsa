@@ -65,11 +65,15 @@ public class ClienteController {
         
 		List<Cliente> risultati = ClienteDAO.cerca(nome, cognome, email, codicefiscale, data);
 		
+		if (risultati.isEmpty())
+			FinestraUtente.messaggio.setText("Nessun risultato trovato");
+		else {
+		
 		for(Cliente curr:risultati) {
 			model.addRow (new Object[]{curr.getNome(), curr.getCognome(), curr.getEmail(), curr.getCodiceFiscale(), curr.getData()});
 	    	//System.out.println(curr.getNome());
 	       }
-		
+		}
 		
 		}
 }

@@ -17,7 +17,6 @@ public class LuogoController {
 	
 	public static void cerca (String nome, String città, String stato, String indirizzo) {
 		
-		
 		nome=normalizza(nome);
 		città=normalizza(città);
 		stato=normalizza(stato);
@@ -31,37 +30,55 @@ public class LuogoController {
         
 		List<Luogo> risultati = LuogoDAO.cerca(nome,città,stato,indirizzo);
 		
-		for(Luogo curr:risultati) {
-			model.addRow (new Object[]{curr.getNome(), curr.getCittà(), curr.getStato(), curr.getIndirizzo()});
-	       }
-		
-		
+		if (risultati.isEmpty())
+			FinestraUtente.messaggio.setText("Nessun risultato trovato");
+		else {
+			for(Luogo curr:risultati) {
+				model.addRow (new Object[]{curr.getNome(), curr.getCittà(), curr.getStato(), curr.getIndirizzo()});
+			}
+		}
 		
 }
-
-	
 	
 	public static void inserisci (String nome, String città, String stato, String indirizzo) {
-		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
+		
 		if((!nome.equals("")&&!città.equals("")&&!stato.equals("")&&!indirizzo.equals(""))) {
-
-
-			
 			nome=normalizza(nome);
 			città=normalizza(città);
 			stato=normalizza(stato);
 			indirizzo=normalizza(indirizzo);
-		LuogoDAO.inserisciModifica(nome,città,stato,indirizzo);
-		FinestraUtente.luogoClear.doClick();
-		FinestraUtente.messaggio.setText("<html><font color=\"green\">Luogo inserito correttamente </font></html>");
+			
+			LuogoDAO.inserisciModifica(nome,città,stato,indirizzo);
+			FinestraUtente.luogoClear.doClick();
+			FinestraUtente.messaggio.setText("<html><font color=\"green\">Luogo inserito correttamente </font></html>");
 
-		}else {
-			FinestraUtente.messaggio.setText("ERRORE: Almeno uno dei campi è vuoto");
-			System.out.println("errore, almeno uno dei campi è vuoto");
+		}
+		else {
+			FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto </font></html>");
+		}
+	}
+	
+	public static boolean modifica (String nome, String città, String stato, String indirizzo) {
+		
+		if((!nome.equals("")&&!città.equals("")&&!stato.equals("")&&!indirizzo.equals(""))) {
+			nome=normalizza(nome);
+			città=normalizza(città);
+			stato=normalizza(stato);
+			indirizzo=normalizza(indirizzo);
+			
+			LuogoDAO.inserisciModifica(nome,città,stato,indirizzo);
+			FinestraUtente.luogoClear.doClick();
+			FinestraUtente.messaggio.setText("<html><font color=\"blue\">Luogo modificato correttamente </font></html>");
+			return true;
+		}
+		else {
+			FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto </font></html>");
+			return false;
 		}
 	}
 	
 	public static void elimina(String nome) {
+		
 		LuogoDAO.elimina(nome);
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
         int i;
@@ -69,9 +86,6 @@ public class LuogoController {
         for (i=0; i<j; i++)
             model.removeRow(0);
 		}
-	
-	
-
-}
+	}
 	
 	

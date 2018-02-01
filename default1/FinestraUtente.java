@@ -745,29 +745,26 @@ public class FinestraUtente {
 					}
 					else {
 						
-						luogoModifica.setText("Modifica");
 						
 						String nome = luogotfNome.getText();
 						String citta = luogotfCitta.getText();
 						String stato = luogotfStato.getText();
 						String indirizzo = luogotfIndirizzo.getText();
-						LuogoController.inserisci(nome, citta, stato, indirizzo);		
-						popolaeventocbLuogo();
-						luogoCerca.setEnabled(true);
-						luogoStatistiche.setEnabled(true);
-						luogoElimina.setEnabled(true);
-						luogoInserisci.setEnabled(true);
-						luogoClear.setEnabled(true);
-						luogotfNome.setEnabled(true);
-						luogoClear.doClick();
-
-
 						
+						
+						if (LuogoController.modifica(nome, citta, stato, indirizzo)) {	
+							popolaeventocbLuogo();
+							luogoCerca.setEnabled(true);
+							luogoStatistiche.setEnabled(true);
+							luogoElimina.setEnabled(true);
+							luogoInserisci.setEnabled(true);
+							luogoClear.setEnabled(true);
+							luogotfNome.setEnabled(true);
+							luogoClear.doClick();
+							luogoModifica.setText("Modifica");
+						}				
 					}
-					
-					}
-				
-			
+				}
 		});
 		
 		
@@ -810,6 +807,9 @@ public class FinestraUtente {
 				luogotfStato.setText("");
 				luogotfIndirizzo.setText("");
 				messaggio.setText("");
+				luogoModifica.setEnabled(false);
+				luogoElimina.setEnabled(false);
+				luogoStatistiche.setEnabled(false);
 
 				
 				DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();

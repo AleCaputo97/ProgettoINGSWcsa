@@ -70,33 +70,36 @@ public class EventoController {
 			
 			List<Evento> risultati = EventoDAO.cerca( nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo);
 			
+			if (risultati.isEmpty())
+				FinestraUtente.messaggio.setText("Nessun risultato trovato");
+			else {
 			//String prezzocurr;
-			SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
-			Date Datacurr = new Date();
-			String strDatacurr = sdfDate.format(Datacurr); //Data corrente nel formato cercato
-			String DataInserimento, DataEvento; //parametri che prende dalla clsse Evento
-			double prezzoIniziale, prezzoFinale;
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
-			LocalDate LocalDataInserimento, LocalDataEvento, LocalDataCurr;
-			LocalDataCurr = LocalDate.parse(strDatacurr, formatter);
-			double risultato = 0, differenzaOdiernaIniziale, differenzaFinaleIniziale, prezzocurr, differenzaOdiernaFinale;
+				SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
+				Date Datacurr = new Date();
+				String strDatacurr = sdfDate.format(Datacurr); //Data corrente nel formato cercato
+				String DataInserimento, DataEvento; //parametri che prende dalla clsse Evento
+				double prezzoIniziale, prezzoFinale;
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+				LocalDate LocalDataInserimento, LocalDataEvento, LocalDataCurr;
+				LocalDataCurr = LocalDate.parse(strDatacurr, formatter);
+				double risultato = 0, differenzaOdiernaIniziale, differenzaFinaleIniziale, prezzocurr, differenzaOdiernaFinale;
 			
-			for(Evento curr:risultati) {
-				LocalDataInserimento = LocalDate.parse(curr.getDataInserimento(), formatter);
-				LocalDataEvento = LocalDate.parse(curr.getData(), formatter);
-				differenzaOdiernaFinale = ChronoUnit.DAYS.between(LocalDataCurr, LocalDataEvento);
-			
-				if (differenzaOdiernaFinale >= 0) {
-					differenzaOdiernaIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataCurr);
-					differenzaFinaleIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataEvento);
-					prezzocurr = normalizzaPrezzo(differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
-					model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
+				for(Evento curr:risultati) {
+					LocalDataInserimento = LocalDate.parse(curr.getDataInserimento(), formatter);
+					LocalDataEvento = LocalDate.parse(curr.getData(), formatter);
+					differenzaOdiernaFinale = ChronoUnit.DAYS.between(LocalDataCurr, LocalDataEvento);
+					
+					if (differenzaOdiernaFinale >= 0) {
+						differenzaOdiernaIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataCurr);
+						differenzaFinaleIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataEvento);
+						prezzocurr = normalizzaPrezzo(differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
+						model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
+					}
+					else {
+						model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile"});
+					}
 				}
-				else {
-					model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile"});
-				}
-      		}
-			
+			}
 		}
 		catch(Exception E) {
 			  //
