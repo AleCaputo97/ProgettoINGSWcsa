@@ -59,7 +59,6 @@ public class LuogoController {
 	}
 	
 	public static boolean modifica (String nome, String città, String stato, String indirizzo) {
-		
 		if((!nome.equals("")&&!città.equals("")&&!stato.equals("")&&!indirizzo.equals(""))) {
 			nome=normalizza(nome);
 			città=normalizza(città);
@@ -78,16 +77,19 @@ public class LuogoController {
 	}
 	
 	public static void elimina(String nome) {
-		
-		LuogoDAO.elimina(nome);
-		DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
-        int i;
-        int j = model.getRowCount();
-        for (i=0; i<j; i++)
-            model.removeRow(0);
-		FinestraUtente.messaggio.setText("<html><font color=\"red\">Luogo eliminato correttamente </font></html>");
+		if (BigliettoController.isBigliettiVendutiLuogo(nome)==false) {
+			LuogoDAO.elimina(nome);
+			DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
+			int i;
+			int j = model.getRowCount();
+			for (i=0; i<j; i++)
+				model.removeRow(0);
+			FinestraUtente.messaggio.setText("<html><font color=\"red\">Luogo eliminato correttamente </font></html>");
 
+			}else {
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">Luogo non eliminabile, c'è almeno un biglietto venduto</font></html>");
+			}
 		}
-	}
 	
+	}
 	
