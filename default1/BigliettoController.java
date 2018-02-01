@@ -15,19 +15,19 @@ private static String normalizza (String string) {
 	}
 	
 	
-	private static List<Biglietto> bigliettiVendutiEvento(String evento) {
+public static List<Biglietto> bigliettiVendutiEvento(String evento) {
 		evento=normalizza(evento);
 		return BigliettoDAO.cercaPerEvento(evento);
 		
 	}
 	
-private static List<Biglietto> bigliettiVendutiLuogo(String luogo) {
+public static List<Biglietto> bigliettiVendutiLuogo(String luogo) {
 		luogo=normalizza(luogo);
 		return BigliettoDAO.cercaPerLuogo(luogo);
 		
 	}
 	
-private static boolean isBigliettiVendutiEvento(String evento) {
+public static boolean isBigliettiVendutiEvento(String evento) {
 	evento=normalizza(evento);
 	if (BigliettoDAO.cercaPerEvento(evento).isEmpty()) {
 		return false;
@@ -36,7 +36,7 @@ private static boolean isBigliettiVendutiEvento(String evento) {
 	}
 }
 
-private static boolean isBigliettiVendutiLuogo(String luogo) {
+public static boolean isBigliettiVendutiLuogo(String luogo) {
 	luogo=normalizza(luogo);
 	if (BigliettoDAO.cercaPerLuogo(luogo).isEmpty()) {
 		return false;
