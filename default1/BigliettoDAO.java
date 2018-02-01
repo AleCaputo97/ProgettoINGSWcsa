@@ -36,4 +36,58 @@ public class BigliettoDAO {
 			        table.deleteItem("NumeroBiglietto", (String) iteratorcurr.get("NumeroBiglietto"));
 			       }
 	        }
+	 
+	 public static List<Biglietto> cercaPerEvento(String evento) {
+	       
+		 
+		   String tableName = "Biglietto";
+		   Iterator<Item> iterator = null;
+		   List<Biglietto> risultati=new ArrayList<Biglietto>();  
+		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
+		   expressionAttributeValues.put(":evento", evento);
+			  
+			    ItemCollection<ScanOutcome> items = table.scan (
+				        "Evento = :evento",                                  
+				        null,
+				        null,                                          
+				        expressionAttributeValues);   
+				       iterator = items.iterator();
+		   //costruisce la lista con i risultati da restituire
+		   Item iteratorcurr;
+		   Biglietto curr;
+	       while (iterator.hasNext()) {
+	        iteratorcurr = iterator.next();
+	        curr=new Biglietto((String) iteratorcurr.get("NumeroBiglietto"),(String) iteratorcurr.get("CodFiscale"),(Double)  iteratorcurr.get("Prezzo"),(String) iteratorcurr.get("Luogo"),(String) iteratorcurr.get("Evento"), (String) iteratorcurr.get("DataAcquisto"));
+	        risultati.add(curr);
+	       }
+	   return risultati;
+	}
+	 
+	 public static List<Biglietto> cercaPerLuogo(String luogo) {
+	       
+		 
+		   String tableName = "Biglietto";
+		   Iterator<Item> iterator = null;
+		   List<Biglietto> risultati=new ArrayList<Biglietto>();  
+		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
+		   expressionAttributeValues.put(":luogo", luogo);
+			  
+			    ItemCollection<ScanOutcome> items = table.scan (
+				        "Luogo = :luogo",                                  
+				        null,
+				        null,                                          
+				        expressionAttributeValues);   
+				       iterator = items.iterator();
+		   //costruisce la lista con i risultati da restituire
+		   Item iteratorcurr;
+		   Biglietto curr;
+	       while (iterator.hasNext()) {
+	        iteratorcurr = iterator.next();
+	        curr=new Biglietto((String) iteratorcurr.get("NumeroBiglietto"),(String) iteratorcurr.get("CodFiscale"),(Double)  iteratorcurr.get("Prezzo"),(String) iteratorcurr.get("Luogo"),(String) iteratorcurr.get("Evento"), (String) iteratorcurr.get("DataAcquisto"));
+	        risultati.add(curr);
+	       }
+	   return risultati;
+	}
 }
