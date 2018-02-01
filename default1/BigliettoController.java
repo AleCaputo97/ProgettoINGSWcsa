@@ -17,31 +17,31 @@ private static String normalizza (String string) {
 	
 	private static List<Biglietto> bigliettiVendutiEvento(String evento) {
 		evento=normalizza(evento);
-		return cercaPerEvento(evento);
+		return BigliettoDAO.cercaPerEvento(evento);
 		
 	}
 	
 private static List<Biglietto> bigliettiVendutiLuogo(String luogo) {
 		luogo=normalizza(luogo);
-		return cercaPerLuogo(luogo);
+		return BigliettoDAO.cercaPerLuogo(luogo);
 		
 	}
 	
 private static boolean isBigliettiVendutiEvento(String evento) {
 	evento=normalizza(evento);
-	if (cercaPerEvento(evento)!=NULL) {
-		return true;
-	}else {
+	if (BigliettoDAO.cercaPerEvento(evento).isEmpty()) {
 		return false;
+	}else {
+		return true;
 	}
 }
 
 private static boolean isBigliettiVendutiLuogo(String luogo) {
 	luogo=normalizza(luogo);
-	if (cercaPerLuogo(luogo)!=NULL) {
-		return true;
-	}else {
+	if (BigliettoDAO.cercaPerLuogo(luogo).isEmpty()) {
 		return false;
+	}else {
+		return true;
 	}
 }
 
