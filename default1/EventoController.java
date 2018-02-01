@@ -189,16 +189,18 @@ public class EventoController {
 	}
 	
 	public static void elimina(String Nome) {
-		
-		EventoDAO.elimina(Nome);
-		DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
-        int i;
-        int j = model.getRowCount();
-        for (i=0; i<j; i++)
-            model.removeRow(0);
-		FinestraUtente.messaggio.setText("<html><font color=\"red\">Evento eliminato correttamente </font></html>");
+		if(BigliettoController.isBigliettiVendutiEvento(Nome)==false) {
+			EventoDAO.elimina(Nome);
+			DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
+			int i;
+			int j = model.getRowCount();
+			for (i=0; i<j; i++)
+				model.removeRow(0);
+			FinestraUtente.messaggio.setText("<html><font color=\"red\">Evento eliminato correttamente </font></html>");
+		}else{
+			FinestraUtente.messaggio.setText("Evento non eliminabile, c'è almeno un biglietto venduto");
 		}
-	
+	}
 	
 	public static boolean isInteger (String testo) throws Exception {
 		 
