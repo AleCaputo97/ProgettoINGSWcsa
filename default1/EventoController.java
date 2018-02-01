@@ -198,7 +198,7 @@ public class EventoController {
 				model.removeRow(0);
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">Evento eliminato correttamente </font></html>");
 		}else{
-			FinestraUtente.messaggio.setText("Evento non eliminabile, c'è almeno un biglietto venduto");
+			FinestraUtente.messaggio.setText("<html><font color=\"red\">Evento non eliminabile, c'è almeno un biglietto venduto</font></html>");
 		}
 	}
 	
