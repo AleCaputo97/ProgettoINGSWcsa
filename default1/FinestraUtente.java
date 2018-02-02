@@ -124,25 +124,7 @@ public class FinestraUtente {
 		initialize();
 	}
 
-	private static PieDataset createDataset( ) {
-	      DefaultPieDataset dataset = new DefaultPieDataset( );
-	      dataset.setValue( "IPhone 5s" , new Double( 20 ) );  
-	      dataset.setValue( "SamSung Grand" , new Double( 20 ) );   
-	      dataset.setValue( "MotoG" , new Double( 40 ) );    
-	      dataset.setValue( "Nokia Lumia" , new Double( 10 ) );  
-	      return dataset;         
-	   }
-	   
-	 private static JFreeChart createChart( PieDataset dataset ) {
-	      JFreeChart chart = ChartFactory.createPieChart(      
-	         "Mobile Sales",   // chart title 
-	         dataset,          // data    
-	         true,             // include legend   
-	         true, 
-	         false);
 
-	      return chart;
-	   }
 	
 	/**
 	 * Initialize the contents of the frame.
@@ -155,9 +137,6 @@ public class FinestraUtente {
 		frmProgettoingswcsa.getContentPane().setBackground(Color.WHITE);
 		frmProgettoingswcsa.setSize(1008, 575);
 		frmProgettoingswcsa.setLocationRelativeTo(null);
-		
-		//creazione statistiche
-	    JFreeChart chartEsempio = createChart(createDataset( ) );  
 		
 		try {
 			
@@ -914,13 +893,7 @@ public class FinestraUtente {
 		Panel statPanel = new Panel();
 		statPanel.setBounds(0, 0, 968, 425);
 		Statistiche.add(statPanel);
-       
-		
-        final ChartPanel chartPanel = new ChartPanel(chartEsempio);     
-        Statistiche.add(chartPanel);
-        statPanel.add(chartPanel);
-
-        
+        		
         JButton btnIndietro = new JButton("Indietro");
         btnIndietro.setBounds(10, 426, 89, 23);
         Statistiche.add(btnIndietro);
