@@ -1,10 +1,14 @@
 package default1;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.table.DefaultTableModel;
+
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 
 public class ClienteController {
@@ -145,7 +149,25 @@ public class ClienteController {
 		}
 
 	
-	
+	public static void generaStatisticheCliente(String CodiceFiscale) {
+		List<Biglietto> Biglietti = BigliettoController.bigliettiPerCliente(CodiceFiscale);
+		double SoldiPerMese[]= {0,0,0,0,0,0,0,0,0,0,0,0};
+		String Mese[]= {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
+		//ricerca i biglietti idonei tra quelli acquistati dal cliente e li aggiunge a soldi per mese al giusto mese
+		for(Biglietto curr:Biglietti) {
+			if(curr.getAnno()==2018) {
+				System.out.println("aggiungo all'elemento" + curr.getMese() + "i soldi" + curr.getPrezzo());
+				SoldiPerMese[curr.getMese()-1]=SoldiPerMese[curr.getMese()-1]+curr.getPrezzo();
+			}
+		}
+		
+		//for(int i=0;i<12;i++) System.out.println(SoldiPerMese[i]);
+		//popola il dataSet da passare all'istogramma con i valori di soldi e mese
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
+		for(int i=0;i<12;i++) dataset.addValue( SoldiPerMese[i] , Mese[i] , "mese");  
+		BarChart_AWT chart = new BarChart_AWT("Istogramma","Soldi spesi dal cliente", "", "Euro", dataset);
+		chart.test(chart);
+	}
 
 }
 	
