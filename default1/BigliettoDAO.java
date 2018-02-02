@@ -64,6 +64,33 @@ public class BigliettoDAO {
 	   return risultati;
 	}
 	 
+	 public static List<Biglietto> cercaPerCodiceFiscale(String cf) {
+	       
+		 
+		   String tableName = "Biglietto";
+		   Iterator<Item> iterator = null;
+		   List<Biglietto> risultati=new ArrayList<Biglietto>();  
+		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
+		   expressionAttributeValues.put(":cf", cf);
+			  
+			    ItemCollection<ScanOutcome> items = table.scan (
+				        "CodFiscale = :cf",                                  
+				        null,
+				        null,                                          
+				        expressionAttributeValues);   
+				       iterator = items.iterator();
+		   //costruisce la lista con i risultati da restituire
+		   Item iteratorcurr;
+		   Biglietto curr;
+	       while (iterator.hasNext()) {
+	        iteratorcurr = iterator.next();
+	        curr=new Biglietto((String) iteratorcurr.get("NumeroBiglietto"),(String) iteratorcurr.get("CodFiscale"),(double) Double.parseDouble(iteratorcurr.get("Prezzo").toString()),(String) iteratorcurr.get("Luogo"),(String) iteratorcurr.get("Evento"), (String) iteratorcurr.get("DataAcquisto"));
+	        risultati.add(curr);
+	       }
+	   return risultati;
+	}
+	 
 	 public static List<Biglietto> cercaPerLuogo(String luogo) {
 	       
 		 

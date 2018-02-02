@@ -13,6 +13,15 @@ private static String normalizza (String string) {
 		return string;
 		
 	}
+
+private static String normalizzaCF (String codicefiscale) {
+	
+	if (!(codicefiscale.equals("")))
+		codicefiscale = codicefiscale.toUpperCase();
+	
+	return codicefiscale;
+	
+}
 	
 	
 public static List<Biglietto> bigliettiVendutiEvento(String evento) {
@@ -43,6 +52,13 @@ public static boolean isBigliettiVendutiLuogo(String luogo) {
 	}else {
 		return true;
 	}
+}
+
+public static List<Biglietto> bigliettiPerCliente(String cf){
+	
+	cf=normalizzaCF(cf);
+	return BigliettoDAO.cercaPerCodiceFiscale(cf);
+	
 }
 
 }
