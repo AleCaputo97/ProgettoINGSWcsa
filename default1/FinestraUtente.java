@@ -2,6 +2,16 @@ package default1;
 
 import java.awt.EventQueue;
 
+import javax.swing.JPanel;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
+
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
@@ -11,6 +21,13 @@ import javax.swing.JTable;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
+
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -41,6 +58,8 @@ import java.awt.Toolkit;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
+import java.awt.Panel;
 
 public class FinestraUtente {
 	
@@ -105,6 +124,26 @@ public class FinestraUtente {
 		initialize();
 	}
 
+	private static PieDataset createDataset( ) {
+	      DefaultPieDataset dataset = new DefaultPieDataset( );
+	      dataset.setValue( "IPhone 5s" , new Double( 20 ) );  
+	      dataset.setValue( "SamSung Grand" , new Double( 20 ) );   
+	      dataset.setValue( "MotoG" , new Double( 40 ) );    
+	      dataset.setValue( "Nokia Lumia" , new Double( 10 ) );  
+	      return dataset;         
+	   }
+	   
+	 private static JFreeChart createChart( PieDataset dataset ) {
+	      JFreeChart chart = ChartFactory.createPieChart(      
+	         "Mobile Sales",   // chart title 
+	         dataset,          // data    
+	         true,             // include legend   
+	         true, 
+	         false);
+
+	      return chart;
+	   }
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -114,9 +153,11 @@ public class FinestraUtente {
 		frmProgettoingswcsa.setResizable(false);
 		frmProgettoingswcsa.setTitle("ProgettoINGSWcsa");
 		frmProgettoingswcsa.getContentPane().setBackground(Color.WHITE);
-		frmProgettoingswcsa.getContentPane().setLayout(null);
 		frmProgettoingswcsa.setSize(1008, 575);
 		frmProgettoingswcsa.setLocationRelativeTo(null);
+		
+		//creazione statistiche
+	    JFreeChart chartEsempio = createChart(createDataset( ) );  
 		
 		try {
 			
@@ -128,10 +169,11 @@ public class FinestraUtente {
 	    catch(Exception e){ 
 	    	System.out.println(e);
 	    }
+		frmProgettoingswcsa.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setFont(new Font("Product Sans", Font.PLAIN, 14));
 		tabbedPane.setBounds(10, 0, 973, 492);
+		tabbedPane.setFont(new Font("Product Sans", Font.PLAIN, 14));
 		frmProgettoingswcsa.getContentPane().add(tabbedPane);
 		
 		JPanel Cliente = new JPanel();
@@ -863,10 +905,37 @@ public class FinestraUtente {
 		luogotfNome.setColumns(10);
 		luogotfNome.setBounds(105, 11, 179, 20);
 		Luogo.add(luogotfNome);
+		
+		JPanel Statistiche = new JPanel();
+		Statistiche.setLayout(null);
+		Statistiche.setBackground(Color.WHITE);
+		tabbedPane.addTab("Statistiche", null, Statistiche, null);
+		
+		Panel statPanel = new Panel();
+		statPanel.setBounds(0, 0, 968, 425);
+		Statistiche.add(statPanel);
+       
+		
+        final ChartPanel chartPanel = new ChartPanel(chartEsempio);     
+        Statistiche.add(chartPanel);
+        statPanel.add(chartPanel);
+
+        
+        JButton btnIndietro = new JButton("Indietro");
+        btnIndietro.setBounds(10, 426, 89, 23);
+        Statistiche.add(btnIndietro);
+        
+        JButton btnAvanti = new JButton("Avanti");
+        btnAvanti.setBounds(869, 426, 89, 23);
+        Statistiche.add(btnAvanti);
+
+		
+		
+		
+		messaggio.setBounds(14, 503, 963, 22);
 		messaggio.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		messaggio.setForeground(Color.BLACK);
-		messaggio.setBounds(14, 503, 963, 22);
 		frmProgettoingswcsa.getContentPane().add(messaggio);
 	}
 	
