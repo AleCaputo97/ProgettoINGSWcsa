@@ -1,5 +1,9 @@
 package default1;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 public class Biglietto {
 	
 	//attributi
@@ -70,4 +74,17 @@ public class Biglietto {
 		DataAcquisto=dataacquisto;
 	}
 	
+	public int getMese() {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+    	LocalDate LocalDataInserimento = LocalDate.parse(getDataAcquisto(), formatter); 
+    	int mese = LocalDataInserimento.getMonthValue();
+    	return mese;
+	}	
+	
+	public int getAnno() {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+    	LocalDate LocalDataInserimento = LocalDate.parse(getDataAcquisto(), formatter); 
+    	int anno = LocalDataInserimento.getYear();
+    	return anno;
+	}
 }
