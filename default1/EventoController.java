@@ -1,5 +1,6 @@
 package default1;
 
+import java.awt.Color;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -10,8 +11,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import org.jfree.chart.ChartPanel;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 
@@ -238,7 +241,7 @@ public class EventoController {
 		}
 	}
 	
-	public static void generaStatisticheEvento(String nome, String dataInserimento, String dataEvento) {
+	public static void generaStatisticheEvento(String nome) {
 		//STATISTICA1: linechart con valore sulle x dei mesi da data inserimento evento a data stessa dell'evento con i ricavi mese per mese
 		//1: ricerca i biglietti per evento
 		List<Biglietto> Biglietti=BigliettoController.bigliettiVendutiEvento(nome);
@@ -246,7 +249,7 @@ public class EventoController {
 		int BigliettiVenduti=0;
 		double Ricavato=0;
 		//2: calcola la differenza in mesi tra data finale e iniziale
-		long n=ChronoUnit.MONTHS.between(StringToDate(dataInserimento), StringToDate(dataEvento));
+		long n=ChronoUnit.MONTHS.between(StringToDate(curr.getDataInserimento()), StringToDate(curr.getData()));
 		//3: dichiaro due array, uno per i valori e uno per mese e anno
 		String[] intervallo = null;
 		double valori[]=null;
@@ -268,7 +271,13 @@ public class EventoController {
 		}
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<n;i++) dataset.addValue( valori[i] , "plot1" , intervallo[i]);  
-		
+		LineChart chart= new LineChart( "", "", "", "Soldi", dataset);
+		ChartPanel chartPanel = new ChartPanel(chart.chart);
+		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		StatisticheEvento frame = new StatisticheEvento(chartPanel, null, Ricavato, BigliettiVenduti);
+		frame.setTitle("Statistiche relative a: " + nome);
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);	
 	}
 	
 	public static LocalDate StringToDate(String data) {
