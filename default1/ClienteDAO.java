@@ -80,6 +80,13 @@ public class ClienteDAO {
 	   return risultati;
 	}
 	
+	 public static Cliente cerca(String CodFiscale) {
+		   String tableName = "Cliente";
+		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Item item = table.getItem("CodiceFiscale", CodFiscale);
+		   return new Cliente((String) item.get("Nome"),(String) item.get("Cognome"),(String)  item.get("Email"),(String) item.get("CodiceFiscale"),(String) item.get("DataNascita"));
+	 }
+	 
 	 public static void inserisciModifica(String nome, String cognome, String email, String CodiceFiscale, String Data) {
 		    String tableName = "Cliente";
 		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
