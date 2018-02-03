@@ -9,10 +9,10 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class LineChart extends ApplicationFrame {
-	JFreeChart lineChart;
+	JFreeChart chart;
    public LineChart ( String applicationTitle , String Titolo,String asseX, String asseY, int valori[],int dimValori,String nomiValori[],String linea) {
       super(applicationTitle);
-         lineChart = ChartFactory.createLineChart(
+         chart = ChartFactory.createLineChart(
          Titolo,
          asseX,asseY,
          createDataset(valori,dimValori,nomiValori,linea),
