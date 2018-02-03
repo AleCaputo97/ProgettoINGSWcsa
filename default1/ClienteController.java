@@ -1,12 +1,15 @@
 package default1;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import org.jfree.chart.ChartPanel;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -170,8 +173,13 @@ public class ClienteController {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<12;i++) dataset.addValue( SoldiPerMese[i] , Mese[i] , "mese");  
 		BarChart_AWT chart = new BarChart_AWT("Istogramma","Soldi spesi dal cliente", "", "Euro", dataset);
-		chart.test(chart);
-	}
+		ChartPanel chartPanel = new ChartPanel(chart.chart);
+		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+
+		StatisticheCliente frame = new StatisticheCliente(chartPanel, SpesaTotale, BigliettiAcquistati);
+		frame.setTitle("Statistiche relative a: " + CodiceFiscale);
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);	}
 
 }
 	

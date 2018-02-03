@@ -10,6 +10,8 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities; 
 
 public class BarChart_AWT extends ApplicationFrame {
+	
+	JFreeChart chart;
    
    public BarChart_AWT( String applicationTitle , String chartTitle, String assex, String assey, DefaultCategoryDataset dataset) {
       super( applicationTitle );        
@@ -21,6 +23,8 @@ public class BarChart_AWT extends ApplicationFrame {
          PlotOrientation.VERTICAL,           
          true, true, false);
          
+      chart = barChart;
+      
       ChartPanel chartPanel = new ChartPanel( barChart );        
       chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );        
       setContentPane( chartPanel ); 
