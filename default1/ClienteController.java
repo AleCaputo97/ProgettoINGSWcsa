@@ -192,8 +192,10 @@ public class ClienteController {
 		String Tipo[] = {"Concerto", "Evento sportivo", "Teatro","Convegno", "Mostra", "Altro"};
 		int valori[]={num_concerti,num_eventi_sportivi,num_eventi_teatrali,num_convegni,num_mostre,num_altro};
 		PieChart piechart= new PieChart("Tipologie di biglietti acquistati", 6, Tipo, valori);
+		ChartPanel chartPanel2 = new ChartPanel(piechart.chart);
+		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
-		StatisticheCliente frame = new StatisticheCliente(chartPanel, SpesaTotale, BigliettiAcquistati);
+		StatisticheCliente frame = new StatisticheCliente(chartPanel, chartPanel2, SpesaTotale, BigliettiAcquistati);
 		frame.setTitle("Statistiche relative a: " + CodiceFiscale);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);	}

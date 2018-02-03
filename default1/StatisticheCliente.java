@@ -21,7 +21,7 @@ public class StatisticheCliente extends JFrame {
 
 	private JPanel contentPane;
 
-	public StatisticheCliente(ChartPanel chart, double soldispesi, int biglietticomprati) {
+	public StatisticheCliente(ChartPanel chart, ChartPanel chart2, double soldispesi, int biglietticomprati) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1153, 972);
 		contentPane = new JPanel();
@@ -40,6 +40,7 @@ public class StatisticheCliente extends JFrame {
 		statPanel2.setBorder(null);
 		statPanel2.setBounds(10, 471, 713, 451);
 		contentPane.add(statPanel2);
+		statPanel2.add(chart2);
 		
 		JTextPane textPaneSoldiSpesi = new JTextPane();
 		textPaneSoldiSpesi.setContentType("text/html");
