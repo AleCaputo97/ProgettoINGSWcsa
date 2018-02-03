@@ -163,7 +163,6 @@ public class ClienteController {
 			BigliettiAcquistati=BigliettiAcquistati+1;
 			SpesaTotale=SpesaTotale + curr.getPrezzo();
 			if(curr.getAnno()==2018) {
-				System.out.println("aggiungo all'elemento" + curr.getMese() + "i soldi" + curr.getPrezzo());
 				SoldiPerMese[curr.getMese()-1]=SoldiPerMese[curr.getMese()-1]+curr.getPrezzo();
 			}
 		}
