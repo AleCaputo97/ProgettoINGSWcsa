@@ -10,23 +10,19 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class LineChart extends ApplicationFrame {
 	JFreeChart chart;
-   public LineChart ( String applicationTitle , String Titolo,String asseX, String asseY, int valori[],int dimValori,String nomiValori[],String linea) {
+   public LineChart ( String applicationTitle , String Titolo,String asseX, String asseY, DefaultCategoryDataset dataset) {
       super(applicationTitle);
          chart = ChartFactory.createLineChart(
          Titolo,
          asseX,asseY,
-         createDataset(valori,dimValori,nomiValori,linea),
+         dataset,
          PlotOrientation.VERTICAL,
          true,true,false);
          
-   }
 
-   private DefaultCategoryDataset createDataset( int valori[],int dimValori,String nomiValori[],String linea ) {
-      DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-     for (int i=0;i<dimValori;i++) {
-    	 dataset.addValue( valori[i] , linea , nomiValori[i]);
-     }
-      return dataset;
+
+   ChartPanel chartPanel = new ChartPanel( chart );        
+   chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );        
+   setContentPane( chartPanel ); 
    }
-   
 }
