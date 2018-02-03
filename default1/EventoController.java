@@ -252,7 +252,7 @@ public class EventoController {
 		long n=ChronoUnit.MONTHS.between(StringToDate(curr.getDataInserimento()), StringToDate(curr.getData()));
 		//3: dichiaro due array, uno per i valori e uno per mese e anno
 		String[] intervallo = new String[(int) n];
-		double valori[]=null;
+		double valori[]=new double[(int) n];
 		int mesecurr=curr.getMese();
 		int annocurr=curr.getAnno();
 		//popolo l'array intervallo
