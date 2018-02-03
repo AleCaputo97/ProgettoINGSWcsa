@@ -61,5 +61,10 @@ public static List<Biglietto> bigliettiPerCliente(String cf){
 	
 }
 
+
+public static void eliminaBiglietti(String CodiceFiscale) {
+	BigliettoDAO.eliminaBiglietti(CodiceFiscale);
+}
+
 }
 
