@@ -13,6 +13,10 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.Table;
+
 
 public class ClienteController {
     
@@ -84,6 +88,11 @@ public class ClienteController {
 		
 		}
 }
+	
+	 public static Cliente cerca(String CodFiscale) {
+		 return ClienteDAO.cerca(CodFiscale);
+	 }
+	 
 	public static void inserisci (String nome, String cognome, String email, String codicefiscale, String data) {
 		
 		Pattern p= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
