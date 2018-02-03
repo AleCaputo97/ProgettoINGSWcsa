@@ -236,5 +236,28 @@ public class EventoController {
 		}
 	}
 	
+	public static void generaStatisticheEvento(String nome, String dataInserimento, String dataEvento) {
+		//1: ricerca i biglietti per evento
+		List<Biglietto> Biglietti=BigliettoController.bigliettiVendutiEvento(nome);
+		Evento curr=EventoController.cerca(nome);
+		//2: calcola la differenza in mesi tra data finale e iniziale
+		long n=ChronoUnit.MONTHS.between(StringToDate(dataInserimento), StringToDate(dataEvento));
+		//3: dichiaro due array, uno per i valori e uno per mese e anno
+		String[] intervallo = null;
+		int mesecurr=curr.getMese();
+		int annocurr=curr.getAnno();
+		for(int i=0;i<n;i++) {
+			intervallo[i]=mesecurr+"/"+annocurr;
+			if(mesecurr%12==0) annocurr=annocurr+1;
+		}
+	}
+	
+	public static LocalDate StringToDate(String data) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+		LocalDate LocalDataCurr;
+		LocalDataCurr = LocalDate.parse(data, formatter);
+		return LocalDataCurr;
+	}
+	
 }
 	

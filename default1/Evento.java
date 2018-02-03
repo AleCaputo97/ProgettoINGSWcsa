@@ -1,5 +1,9 @@
 package default1;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 public class Evento {
 	
 	//attributi
@@ -81,5 +85,19 @@ public class Evento {
 	}
 	public void setLuogo(String luogo) {
 		Luogo=luogo;
+	}
+	
+	public int getMese() {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+    	LocalDate LocalDataInserimento = LocalDate.parse(getData(), formatter); 
+    	int mese = LocalDataInserimento.getMonthValue();
+    	return mese;
+	}	
+	
+	public int getAnno() {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+    	LocalDate LocalDataInserimento = LocalDate.parse(getData(), formatter); 
+    	int anno = LocalDataInserimento.getYear();
+    	return anno;
 	}
 }
