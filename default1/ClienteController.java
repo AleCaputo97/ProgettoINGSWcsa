@@ -151,10 +151,14 @@ public class ClienteController {
 	
 	public static void generaStatisticheCliente(String CodiceFiscale) {
 		List<Biglietto> Biglietti = BigliettoController.bigliettiPerCliente(CodiceFiscale);
-		double SoldiPerMese[]= {0,0,0,0,0,0,0,0,0,0,0,0};
+		double SoldiPerMese[]= {0,0,0,0,0,0,0,0,0,0,0,0}, SpesaTotale=0;
+		int BigliettiAcquistati=0;
 		String Mese[]= {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
 		//ricerca i biglietti idonei tra quelli acquistati dal cliente e li aggiunge a soldi per mese al giusto mese
 		for(Biglietto curr:Biglietti) {
+			//calcola intanto quanti biglietti sono stati acquistati e la spesa totale a prescindere dall'anno
+			BigliettiAcquistati=BigliettiAcquistati++;
+			SpesaTotale=SpesaTotale + curr.getPrezzo();
 			if(curr.getAnno()==2018) {
 				System.out.println("aggiungo all'elemento" + curr.getMese() + "i soldi" + curr.getPrezzo());
 				SoldiPerMese[curr.getMese()-1]=SoldiPerMese[curr.getMese()-1]+curr.getPrezzo();
