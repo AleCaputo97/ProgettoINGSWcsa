@@ -244,11 +244,20 @@ public class EventoController {
 		long n=ChronoUnit.MONTHS.between(StringToDate(dataInserimento), StringToDate(dataEvento));
 		//3: dichiaro due array, uno per i valori e uno per mese e anno
 		String[] intervallo = null;
+		double valori[]=null;
 		int mesecurr=curr.getMese();
 		int annocurr=curr.getAnno();
+		//popolo l'array intervallo
 		for(int i=0;i<n;i++) {
 			intervallo[i]=mesecurr+"/"+annocurr;
 			if(mesecurr%12==0) annocurr=annocurr+1;
+		}
+		//popolo l'array con i valori che ottengo come numero di mesi di differenza tra la data di acquisto del biglietto e la data di inserimento dell'evento
+		for(int j=0;j<n;j++) valori[j]=0;
+		long indice=0;
+		for(Biglietto currBiglietto:Biglietti) {
+			indice=ChronoUnit.MONTHS.between(StringToDate(currBiglietto.getDataAcquisto()), StringToDate(currBiglietto.getDataAcquisto()));
+			valori[(int) indice]=valori[(int) indice]+currBiglietto.getPrezzo();
 		}
 	}
 	
