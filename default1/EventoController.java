@@ -12,6 +12,8 @@ import java.util.Locale;
 
 import javax.swing.table.DefaultTableModel;
 
+import org.jfree.data.category.DefaultCategoryDataset;
+
 
 public class EventoController {
     
@@ -237,9 +239,12 @@ public class EventoController {
 	}
 	
 	public static void generaStatisticheEvento(String nome, String dataInserimento, String dataEvento) {
+		//STATISTICA1: linechart con valore sulle x dei mesi da data inserimento evento a data stessa dell'evento con i ricavi mese per mese
 		//1: ricerca i biglietti per evento
 		List<Biglietto> Biglietti=BigliettoController.bigliettiVendutiEvento(nome);
 		Evento curr=EventoController.cerca(nome);
+		int BigliettiVenduti=0;
+		double Ricavato=0;
 		//2: calcola la differenza in mesi tra data finale e iniziale
 		long n=ChronoUnit.MONTHS.between(StringToDate(dataInserimento), StringToDate(dataEvento));
 		//3: dichiaro due array, uno per i valori e uno per mese e anno
@@ -256,9 +261,14 @@ public class EventoController {
 		for(int j=0;j<n;j++) valori[j]=0;
 		long indice=0;
 		for(Biglietto currBiglietto:Biglietti) {
+			BigliettiVenduti=BigliettiVenduti+1;
+			Ricavato=Ricavato+currBiglietto.getPrezzo();
 			indice=ChronoUnit.MONTHS.between(StringToDate(currBiglietto.getDataAcquisto()), StringToDate(currBiglietto.getDataAcquisto()));
 			valori[(int) indice]=valori[(int) indice]+currBiglietto.getPrezzo();
 		}
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
+		for(int i=0;i<n;i++) dataset.addValue( valori[i] , "plot1" , intervallo[i]);  
+		
 	}
 	
 	public static LocalDate StringToDate(String data) {
