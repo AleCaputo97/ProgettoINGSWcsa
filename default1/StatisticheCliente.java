@@ -22,7 +22,6 @@ public class StatisticheCliente extends JFrame {
 	private JPanel contentPane;
 
 	public StatisticheCliente(ChartPanel chart, ChartPanel chart2, double soldispesi, int biglietticomprati) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1153, 972);
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.GRAY);
