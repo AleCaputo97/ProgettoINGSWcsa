@@ -274,7 +274,34 @@ public class EventoController {
 		LineChart chart= new LineChart( "", "", "", "Soldi", dataset);
 		ChartPanel chartPanel = new ChartPanel(chart.chart);
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		StatisticheEvento frame = new StatisticheEvento(chartPanel, null, Ricavato, BigliettiVenduti);
+		
+		
+		//STATISTICA 2 creazione piechart età dei clienti per tale evento
+		int maggiorenni=0,minorenni=0;
+		Cliente currCliente=null;
+		SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
+        Date Datacurr = new Date();
+        String strDatacurr = sdfDate.format(Datacurr);
+				for(Biglietto currBiglietto2:Biglietti){
+					currCliente=ClienteController.cerca(currBiglietto2.getCodFiscale());
+					if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))>25){
+						maggiorenni=maggiorenni+1;
+					}else{
+						minorenni=minorenni+1;
+					}
+				}
+		String[] Età = {"Maggiorenni","Minorenni"};
+		int[] valori2 = {maggiorenni,minorenni};
+		PieChart piechart= new PieChart("Età dei clienti", 2, Età , valori2);
+				ChartPanel chartPanel2 = new ChartPanel(piechart.chart);
+				chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		
+		
+		
+		
+		
+		
+		StatisticheEvento frame = new StatisticheEvento(chartPanel, chartPanel2, Ricavato, BigliettiVenduti);
 		frame.setTitle("Statistiche relative a: " + nome);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);	
