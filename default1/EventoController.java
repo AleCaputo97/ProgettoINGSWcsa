@@ -106,6 +106,9 @@ public class EventoController {
 		}
 	}
 
+	public static Evento cerca(String Nome) {
+		return EventoDAO.cerca(Nome);
+	}
 	
 	public static boolean modifica (String nome, String data, String datainserimento, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
 		
