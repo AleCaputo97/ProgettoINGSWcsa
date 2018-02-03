@@ -87,16 +87,16 @@ public class Evento {
 		Luogo=luogo;
 	}
 	
-	public int getMese() {
+	public int getMeseInserimento() {
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
-    	LocalDate LocalDataInserimento = LocalDate.parse(getData(), formatter); 
+    	LocalDate LocalDataInserimento = LocalDate.parse(getDataInserimento(), formatter); 
     	int mese = LocalDataInserimento.getMonthValue();
     	return mese;
 	}	
 	
-	public int getAnno() {
+	public int getAnnoInserimento() {
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
-    	LocalDate LocalDataInserimento = LocalDate.parse(getData(), formatter); 
+    	LocalDate LocalDataInserimento = LocalDate.parse(getDataInserimento(), formatter); 
     	int anno = LocalDataInserimento.getYear();
     	return anno;
 	}
