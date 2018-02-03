@@ -168,7 +168,6 @@ public class ClienteController {
 			}
 		}
 		
-		//for(int i=0;i<12;i++) System.out.println(SoldiPerMese[i]);
 		//popola il dataSet da passare all'istogramma con i valori di soldi e mese
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<12;i++) dataset.addValue( SoldiPerMese[i] , Mese[i] , "mese");  
@@ -176,6 +175,24 @@ public class ClienteController {
 		ChartPanel chartPanel = new ChartPanel(chart.chart);
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 
+		//crea il PieChart con i luoghi frequentati
+		int num_concerti=0, num_eventi_sportivi=0, num_eventi_teatrali=0, num_convegni=0, num_mostre=0, num_altro=0;
+		Evento currEvento=null;
+		for(Biglietto curr:Biglietti){
+		   //query in Evento passando il nome dell'evento
+			currEvento=EventoController.cerca(curr.getEvento());
+			if(currEvento.getTipo().equals("Concerto")) num_concerti++;
+			if(currEvento.getTipo().equals("Evento sportivo")) num_eventi_sportivi++;
+			if(currEvento.getTipo().equals("Teatro")) num_eventi_teatrali++;
+			if(currEvento.getTipo().equals("Mostra")) num_mostre++;
+			if(currEvento.getTipo().equals("Convegno")) num_convegni++;
+			if(currEvento.getTipo().equals("Altro")) num_altro++;
+			}
+		//crea e popola l'array di Tipo[] e valore[]
+		String Tipo[] = {"Concerto", "Evento sportivo", "Teatro","Convegno", "Mostra", "Altro"};
+		int valori[]={num_concerti,num_eventi_sportivi,num_eventi_teatrali,num_convegni,num_mostre,num_altro};
+		PieChart piechart= new PieChart("Tipologie di biglietti acquistati", 6, Tipo, valori);
+		
 		StatisticheCliente frame = new StatisticheCliente(chartPanel, SpesaTotale, BigliettiAcquistati);
 		frame.setTitle("Statistiche relative a: " + CodiceFiscale);
 		frame.setVisible(true);
