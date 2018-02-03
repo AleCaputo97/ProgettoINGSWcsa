@@ -266,7 +266,7 @@ public class EventoController {
 			mesecurr=mesecurr+1;
 			if(mesecurr%12==0) annocurr=annocurr+1;
 		}
-		for(int i=0;i<n;i++) System.out.println(intervallo[i]);
+
 		
 		
 		//popolo l'array con i valori che ottengo come numero di mesi di differenza tra la data di acquisto del biglietto e la data di inserimento dell'evento
@@ -275,7 +275,6 @@ public class EventoController {
 		for(Biglietto currBiglietto:Biglietti) {
 			BigliettiVenduti=BigliettiVenduti+1;
 			Ricavato=Ricavato+currBiglietto.getPrezzo();
-			System.out.println("indice corrente:" + indice);
 			indice=ChronoUnit.MONTHS.between(StringToDate(curr.getDataInserimento()),StringToDate(currBiglietto.getDataAcquisto()));
 			
 			valori[(int) indice]=valori[(int) indice]+currBiglietto.getPrezzo();
@@ -289,22 +288,25 @@ public class EventoController {
 		
 		
 		//STATISTICA 2 creazione piechart età dei clienti per tale evento
-		int maggiorenni=0,minorenni=0;
+		int classe1=0,classe2=0,classe3=0;
 		Cliente currCliente=null;
 		SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
         Date Datacurr = new Date();
         String strDatacurr = sdfDate.format(Datacurr);
 				for(Biglietto currBiglietto2:Biglietti){
 					currCliente=ClienteController.cerca(currBiglietto2.getCodFiscale());
-					if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))>25){
-						maggiorenni=maggiorenni+1;
-					}else{
-						minorenni=minorenni+1;
+					if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<24){
+						classe1=classe1+1;
+					}else if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))>25 && ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<39 ) {
+						classe2=classe2+1;
+					}else {
+						classe3=classe3+1;
 					}
+				
 				}
-		String[] Età = {"Maggiorenni","Minorenni"};
-		int[] valori2 = {maggiorenni,minorenni};
-		PieChart piechart= new PieChart("Età dei clienti", 2, Età , valori2);
+		String[] Età = {"<25","(26,40)","41+"};
+		int[] valori2 = {classe1,classe2,classe3};
+		PieChart piechart= new PieChart("Età dei clienti", 3, Età , valori2);
 				ChartPanel chartPanel2 = new ChartPanel(piechart.chart);
 				chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
