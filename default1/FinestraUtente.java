@@ -584,6 +584,11 @@ public class FinestraUtente {
 		eventoElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
 		eventoElimina.setBounds(829, 150, 129, 23);
 		Evento.add(eventoElimina);
+		eventoStatistiche.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    int row = eventotable.getSelectedRow();
+			    EventoController.generaStatisticheEvento(eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString());}
+		});
 		
 		eventoStatistiche.setEnabled(false);
 		eventoStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
