@@ -277,6 +277,8 @@ public class FinestraUtente {
 		Cliente.add(clienteElimina);
 		clienteStatistiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int row = clientetable.getSelectedRow();
+				ClienteController.generaStatisticheCliente(clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString());
 			}
 		});
 		clienteStatistiche.setEnabled(false);
