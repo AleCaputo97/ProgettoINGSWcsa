@@ -275,8 +275,9 @@ public class EventoController {
 		for(Biglietto currBiglietto:Biglietti) {
 			BigliettiVenduti=BigliettiVenduti+1;
 			Ricavato=Ricavato+currBiglietto.getPrezzo();
-			indice=ChronoUnit.MONTHS.between(StringToDate(String.valueOf(curr.getMeseInserimento())),StringToDate(currBiglietto.getDataAcquisto()));
 			System.out.println("indice corrente:" + indice);
+			indice=ChronoUnit.MONTHS.between(StringToDate(curr.getDataInserimento()),StringToDate(currBiglietto.getDataAcquisto()));
+			
 			valori[(int) indice]=valori[(int) indice]+currBiglietto.getPrezzo();
 		}
 		for(int i=0;i<n;i++) System.out.println(valori[i]);
