@@ -143,7 +143,7 @@ public class ClienteController {
 	
 	public static void elimina(String CodiceFiscale) {
 		ClienteDAO.elimina(CodiceFiscale);
-		BigliettoController.elimina(CodiceFiscale);
+		BigliettoController.eliminaBiglietti(CodiceFiscale);
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
         int i;
         int j = model.getRowCount();
