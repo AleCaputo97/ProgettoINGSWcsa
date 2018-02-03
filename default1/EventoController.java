@@ -250,25 +250,36 @@ public class EventoController {
 		double Ricavato=0;
 		//2: calcola la differenza in mesi tra data finale e iniziale
 		long n=ChronoUnit.MONTHS.between(StringToDate(curr.getDataInserimento()), StringToDate(curr.getData()));
+		if(n==0) 
+			n=n+1;
+		else 
+			n=n+2;
+		
 		//3: dichiaro due array, uno per i valori e uno per mese e anno
 		String[] intervallo = new String[(int) n];
 		double valori[]=new double[(int) n];
-		int mesecurr=curr.getMese();
-		int annocurr=curr.getAnno();
+		int mesecurr=curr.getMeseInserimento();
+		int annocurr=curr.getAnnoInserimento();
 		//popolo l'array intervallo
 		for(int i=0;i<n;i++) {
 			intervallo[i]=mesecurr+"/"+annocurr;
+			mesecurr=mesecurr+1;
 			if(mesecurr%12==0) annocurr=annocurr+1;
 		}
+		for(int i=0;i<n;i++) System.out.println(intervallo[i]);
+		
+		
 		//popolo l'array con i valori che ottengo come numero di mesi di differenza tra la data di acquisto del biglietto e la data di inserimento dell'evento
 		for(int j=0;j<n;j++) valori[j]=0;
 		long indice=0;
 		for(Biglietto currBiglietto:Biglietti) {
 			BigliettiVenduti=BigliettiVenduti+1;
 			Ricavato=Ricavato+currBiglietto.getPrezzo();
-			indice=ChronoUnit.MONTHS.between(StringToDate(currBiglietto.getDataAcquisto()), StringToDate(currBiglietto.getDataAcquisto()));
+			indice=ChronoUnit.MONTHS.between(StringToDate(String.valueOf(curr.getMeseInserimento())),StringToDate(currBiglietto.getDataAcquisto()));
+			System.out.println("indice corrente:" + indice);
 			valori[(int) indice]=valori[(int) indice]+currBiglietto.getPrezzo();
 		}
+		for(int i=0;i<n;i++) System.out.println(valori[i]);
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<n;i++) dataset.addValue( valori[i] , "plot1" , intervallo[i]);  
 		LineChart chart= new LineChart( "", "", "", "Soldi", dataset);
