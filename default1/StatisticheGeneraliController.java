@@ -129,7 +129,7 @@ public class StatisticheGeneraliController {
 		int j=0;
 			for(Evento currEvento:Eventi){
 			//calcola i ricavati di evento corrente, dopodiché li inserisce nell'array
-				List<Biglietto> Biglietti = BigliettoController.bigliettiVendutiLuogo(currEvento.getNome());
+				List<Biglietto> Biglietti = BigliettoController.bigliettiVendutiEvento(currEvento.getNome());
 				for(Biglietto bigliettoCurr:Biglietti){
 					ricavatoCorrente=ricavatoCorrente+bigliettoCurr.getPrezzo();
 					}
