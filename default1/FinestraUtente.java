@@ -130,7 +130,7 @@ public class FinestraUtente {
 	 */
 	public FinestraUtente() {
 		initialize();
-		//stat4.doClick();
+		stat1.doClick();
 
 	}
 

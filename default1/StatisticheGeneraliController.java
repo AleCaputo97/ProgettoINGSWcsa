@@ -47,7 +47,7 @@ public class StatisticheGeneraliController {
 		ChartPanel chartPanel = new ChartPanel(statistica1.chart);
 		FinestraUtente.statPanel.removeAll();
 		FinestraUtente.statPanel.add(chartPanel);
-		FinestraUtente.statPanel.repaint();
+		FinestraUtente.statPanel.revalidate();
 
 		
 	}
@@ -73,7 +73,7 @@ public class StatisticheGeneraliController {
 				
 				FinestraUtente.statPanel.removeAll();
 				FinestraUtente.statPanel.add(chartPanel);
-				FinestraUtente.statPanel.repaint();
+				FinestraUtente.statPanel.revalidate();
 				
 
 		}
@@ -114,7 +114,7 @@ public class StatisticheGeneraliController {
 				chartPanel4.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 				FinestraUtente.statPanel.removeAll();
 				FinestraUtente.statPanel.add(chartPanel4);
-				FinestraUtente.statPanel.repaint();
+				FinestraUtente.statPanel.revalidate();
 		
 		
 	}
@@ -147,7 +147,7 @@ public class StatisticheGeneraliController {
 				
 				FinestraUtente.statPanel.removeAll();
 				FinestraUtente.statPanel.add(chartPanel);
-				FinestraUtente.statPanel.repaint();
+				FinestraUtente.statPanel.revalidate();
 		}
 	
 				public static LocalDate StringToDate(String data) {
