@@ -1,7 +1,10 @@
 package default1;
 import java.awt.Color;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
@@ -47,5 +50,46 @@ public class StatisticheGeneraliController {
 		
 	}
 	
+	public static void FasceEtaClienti () {
+		int classe1=0,classe2=0,classe3=0,classe4=0,classe5=0,classe6=0,classe7=0;
+		list<Cliente> Clienti=ClienteController.cercaTuttiClienti();
+		SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
+		Date Datacurr = new Date();
+		String strDatacurr = sdfDate.format(Datacurr);
+			for(Cliente currCliente:Clienti){
+				if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<9){
+							classe1=classe1+1;
+					}else if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))>10 && ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<19 ) {
+							classe2=classe2+1;
+					}else if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))>20 && ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<29 ) {
+							classe3=classe3+1;
+					}else if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))>30 && ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<39 ) {
+							classe4=classe4+1;
+					}else if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))>40 && ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<49 ) {
+							classe5=classe5+1;
+					}else if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))>50 && ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<59 ) {
+							classe6=classe6+1;
+					}else{
+							classe7=classe7+1;
+					}
+						
+						}
+				String[] Età = {"<10","(10,20)","(20,30)","(30,40)","(40,50)","(50,60)","61+"};
+				int[] valori4 = {classe1,classe2,classe3,classe4,classe5,classe6,classe7};
+				DefaultCategoryDataset dataset4 = new DefaultCategoryDataset( ); 
+				for(int i=0;i<7;i++) dataset4.addValue( valori4[i] , "plot1" , Età[i]);
+				LineChart chart4= new LineChart( "", "Fasce d'età dei clienti", "", "Numero clienti", dataset4);
+				ChartPanel chartPanel4 = new ChartPanel(chart4.chart);
+				chartPanel4.setSize(new java.awt.Dimension( 1000 , 1000 ));
+				chartPanel4.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		
+		
+	}
 	
+				public static LocalDate StringToDate(String data) {
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+					LocalDate LocalDataCurr;
+					LocalDataCurr = LocalDate.parse(data, formatter);
+					return LocalDataCurr;
+				}	
 }
