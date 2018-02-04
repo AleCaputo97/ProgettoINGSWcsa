@@ -69,7 +69,12 @@ public class FinestraUtente {
 	public static JLabel messaggio = new JLabel("");
 	public JFrame frmProgettoingswcsa;
 	private int togglevar = 1;
-	
+	public static Panel statPanel;
+	JButton stat2;
+	JButton stat1;
+	JButton stat3;
+	JButton stat4;
+
 	//cliente
 	JButton clienteCerca = new JButton("Cerca");
 	JButton clienteModifica = new JButton("Modifica");
@@ -910,17 +915,62 @@ public class FinestraUtente {
 		Statistiche.setBackground(Color.WHITE);
 		tabbedPane.addTab("Statistiche", null, Statistiche, null);
 		
-		Panel statPanel = new Panel();
+		statPanel = new Panel();
 		statPanel.setBounds(0, 0, 968, 425);
 		Statistiche.add(statPanel);
-        		
-        JButton btnIndietro = new JButton("Indietro");
-        btnIndietro.setBounds(10, 426, 89, 23);
-        Statistiche.add(btnIndietro);
-        
-        JButton btnAvanti = new JButton("Avanti");
-        btnAvanti.setBounds(869, 426, 89, 23);
-        Statistiche.add(btnAvanti);
+		
+		stat1 = new JButton("Tipo evento per luogo");
+		stat1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StatisticheGeneraliController.TipoEventoPerLuogo();
+				stat1.setEnabled(false);
+				stat2.setEnabled(true);
+				stat3.setEnabled(true);
+				stat4.setEnabled(true);
+				
+			}
+		});
+		stat1.setBounds(18, 431, 219, 23);
+		Statistiche.add(stat1);
+		
+		stat2 = new JButton("New button");
+		stat2.setEnabled(false);
+		stat2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				stat1.setEnabled(true);
+				stat2.setEnabled(false);
+				stat3.setEnabled(true);
+				stat4.setEnabled(true);
+			}
+		});
+		stat2.setBounds(255, 431, 219, 23);
+		Statistiche.add(stat2);
+		
+		stat3 = new JButton("New button");
+		stat3.setEnabled(false);
+		stat3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				stat1.setEnabled(true);
+				stat2.setEnabled(true);
+				stat3.setEnabled(false);
+				stat4.setEnabled(true);
+			}
+		});
+		stat3.setBounds(492, 431, 219, 23);
+		Statistiche.add(stat3);
+		
+		stat4 = new JButton("New button");
+		stat4.setEnabled(false);
+		stat4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				stat1.setEnabled(true);
+				stat2.setEnabled(true);
+				stat3.setEnabled(true);
+				stat4.setEnabled(false);
+			}
+		});
+		stat4.setBounds(729, 431, 219, 23);
+		Statistiche.add(stat4);
 
 		
 		

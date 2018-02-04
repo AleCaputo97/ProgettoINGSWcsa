@@ -10,6 +10,11 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+/*PerAggiungere Statistiche
+ChartPanel chartPanel = new ChartPanel(JFreeChart);
+statPanel.add(chartPanel);
+*/
+
 public class StatisticheGeneraliController {
 	
 	public static void TipoEventoPerLuogo () {
@@ -33,7 +38,12 @@ public class StatisticheGeneraliController {
 				Valori[5]=Valori[5]+1;
 				
 		}
-		PieChart statistica1 = new PieChart("Prova", 6, Tipologia, Valori);
+		PieChart statistica1 = new PieChart("Tipo evento per luogo", 6, Tipologia, Valori);
+		ChartPanel chartPanel = new ChartPanel(statistica1.chart);
+		FinestraUtente.statPanel.remove(chartPanel);
+		FinestraUtente.statPanel.add(chartPanel);
+		FinestraUtente.statPanel.repaint();
+
 		
 	}
 	
