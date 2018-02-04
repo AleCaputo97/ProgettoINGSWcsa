@@ -115,6 +115,9 @@ public class EventoController {
 		return EventoDAO.cerca(Nome);
 	}
 	
+	public static List<Evento> cercaPerLuogo(String NomeLuogo) {
+		return EventoDAO.cerca("", "", 0.00, 0.00, 0, "", NomeLuogo);
+	}
 	public static boolean modifica (String nome, String data, String datainserimento, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
 		
 		try {
