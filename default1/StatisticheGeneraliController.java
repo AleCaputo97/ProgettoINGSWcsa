@@ -141,8 +141,6 @@ public class StatisticheGeneraliController {
 				chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		}
 	
-	
-	
 				public static LocalDate StringToDate(String data) {
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
 					LocalDate LocalDataCurr;
