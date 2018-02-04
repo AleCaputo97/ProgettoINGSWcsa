@@ -170,13 +170,14 @@ public class ClienteController {
 		List<Biglietto> Biglietti = BigliettoController.bigliettiPerCliente(CodiceFiscale);
 		double SoldiPerMese[]= {0,0,0,0,0,0,0,0,0,0,0,0}, SpesaTotale=0;
 		int BigliettiAcquistati=0;
+		int annocurr=Integer.parseInt(anno);
 		String Mese[]= {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
 		//ricerca i biglietti idonei tra quelli acquistati dal cliente e li aggiunge a soldi per mese al giusto mese
 		for(Biglietto curr:Biglietti) {
 			//calcola intanto quanti biglietti sono stati acquistati e la spesa totale a prescindere dall'anno
 			BigliettiAcquistati=BigliettiAcquistati+1;
 			SpesaTotale=SpesaTotale + curr.getPrezzo();
-			if(curr.getAnno()==2018) {
+			if(curr.getAnno()==annocurr) {
 				SoldiPerMese[curr.getMese()-1]=SoldiPerMese[curr.getMese()-1]+curr.getPrezzo();
 			}
 		}
