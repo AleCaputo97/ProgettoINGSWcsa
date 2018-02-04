@@ -45,7 +45,7 @@ public class EventoController {
 	}
 		
 		
-
+	//tutte le possibili richieste della finestra utente sono gestite da questo metodo
 	public static void cerca (String nome, String data, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
 		
 		try {
@@ -110,16 +110,20 @@ public class EventoController {
 			  //
 		}
 	}
-
+	//i seguenti metodi sono necessari perché serve un valore di ritorno che è una lista di Eventi
+	//ricerca per nome soltanto
 	public static Evento cerca(String Nome) {
 		return EventoDAO.cerca(Nome);
 	}
-	
+	//ricerca per luogo
 	public static List<Evento> cercaPerLuogo(String NomeLuogo) {
 		return EventoDAO.cerca("", "", 0.00, 0.00, 0, "", NomeLuogo);
 	}
+	public static List<Evento> cercaTuttiEventi(){
+		return EventoDAO.cerca("", "", 0.00, 0.00, 0, "", "");
+	}
+	
 	public static boolean modifica (String nome, String data, String datainserimento, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
-		
 		try {
 			//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
 			if(!(nome.equals("")) && !(data.equals("")) && !(prezzoiniziale.equals("")) && !(prezzofinale.equals("")) && !(maxspettatori.equals("")) && !(tipo.equals(""))&& !(luogo.equals(""))) {
