@@ -27,7 +27,7 @@ public class StatisticheEvento extends JFrame {
 	public StatisticheEvento(ChartPanel chart, ChartPanel chart2, double soldispesi, int biglietticomprati) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 958, 527);
+		setBounds(100, 100, 1209, 527);
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -36,7 +36,7 @@ public class StatisticheEvento extends JFrame {
 		
 		JPanel statPanel1 = new JPanel();
 		statPanel1.setBorder(null);
-		statPanel1.setBounds(10, 11, 680, 430);
+		statPanel1.setBounds(10, 11, 955, 441);
 		contentPane.add(statPanel1);
 		statPanel1.add(chart);
 		
@@ -45,14 +45,14 @@ public class StatisticheEvento extends JFrame {
 		textPaneSoldiGuadagnati.setEditable(false);
 		textPaneSoldiGuadagnati.setText("<html><center><b><font face=\"Tahoma\" size=20 color=rgb(1,1,1)>€ "+ soldispesi +"</font></b></center></html>");
 		textPaneSoldiGuadagnati.setFont(new Font("Product Sans", Font.BOLD, 18));
-		textPaneSoldiGuadagnati.setBounds(720, 132, 200, 50);
+		textPaneSoldiGuadagnati.setBounds(982, 126, 200, 50);
 		contentPane.add(textPaneSoldiGuadagnati);
 		textPaneSoldiGuadagnati.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
 		JLabel lblNewLabel = new JLabel("Totale biglietti venduti");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(720, 82, 200, 27);
+		lblNewLabel.setBounds(982, 78, 200, 27);
 		contentPane.add(lblNewLabel);
 
 		JTextPane textPaneBigliettiVenduti = new JTextPane();
@@ -60,14 +60,14 @@ public class StatisticheEvento extends JFrame {
 		textPaneBigliettiVenduti.setEditable(false);
 		textPaneBigliettiVenduti.setText("<html><center><b><font face=\"Tahoma\" size=20 color=rgb(1,1,1)> "+ biglietticomprati +"</font></b></center></html>");
 		textPaneBigliettiVenduti.setFont(new Font("Product Sans", Font.BOLD, 18));
-		textPaneBigliettiVenduti.setBounds(720, 23, 200, 50);
+		textPaneBigliettiVenduti.setBounds(982, 17, 200, 50);
 		contentPane.add(textPaneBigliettiVenduti);
 		textPaneBigliettiVenduti.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
 		JLabel lblTotaleSoldiGuadagnati = new JLabel("Totale soldi guadagnati");
 		lblTotaleSoldiGuadagnati.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTotaleSoldiGuadagnati.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblTotaleSoldiGuadagnati.setBounds(720, 193, 200, 27);
+		lblTotaleSoldiGuadagnati.setBounds(982, 187, 200, 27);
 		contentPane.add(lblTotaleSoldiGuadagnati);
 		
 		JButton btn = new JButton("Età dei clienti");
@@ -88,7 +88,7 @@ public class StatisticheEvento extends JFrame {
 					}
 			}
 		});
-		btn.setBounds(10, 452, 171, 23);
+		btn.setBounds(10, 454, 171, 23);
 		contentPane.add(btn);
 	}
 }

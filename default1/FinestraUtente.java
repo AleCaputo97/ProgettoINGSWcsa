@@ -130,6 +130,8 @@ public class FinestraUtente {
 	 */
 	public FinestraUtente() {
 		initialize();
+		//stat4.doClick();
+
 	}
 
 
@@ -916,7 +918,7 @@ public class FinestraUtente {
 		tabbedPane.addTab("Statistiche", null, Statistiche, null);
 		
 		statPanel = new Panel();
-		statPanel.setBounds(0, 0, 968, 425);
+		statPanel.setBounds(0, -5, 968, 425);
 		Statistiche.add(statPanel);
 		
 		stat1 = new JButton("Tipo evento per luogo");
@@ -959,10 +961,11 @@ public class FinestraUtente {
 		stat3.setBounds(492, 431, 219, 23);
 		Statistiche.add(stat3);
 		
-		stat4 = new JButton("New button");
+		stat4 = new JButton("Fasce età clienti");
 		stat4.setEnabled(false);
 		stat4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				StatisticheGeneraliController.FasceEtaClienti();
 				stat1.setEnabled(true);
 				stat2.setEnabled(true);
 				stat3.setEnabled(true);

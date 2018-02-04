@@ -45,7 +45,7 @@ public class StatisticheGeneraliController {
 		}
 		PieChart statistica1 = new PieChart("Tipo evento per luogo", 6, Tipologia, Valori);
 		ChartPanel chartPanel = new ChartPanel(statistica1.chart);
-		FinestraUtente.statPanel.remove(chartPanel);
+		FinestraUtente.statPanel.removeAll();
 		FinestraUtente.statPanel.add(chartPanel);
 		FinestraUtente.statPanel.repaint();
 
@@ -58,7 +58,7 @@ public class StatisticheGeneraliController {
 		SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
 		Date Datacurr = new Date();
 		String strDatacurr = sdfDate.format(Datacurr);
-			for(Cliente currCliente:Clienti){
+		for(Cliente currCliente:Clienti){
 				if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<9){
 							classe1=classe1+1;
 					}else if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))>10 && ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<19 ) {
@@ -84,6 +84,9 @@ public class StatisticheGeneraliController {
 				ChartPanel chartPanel4 = new ChartPanel(chart4.chart);
 				chartPanel4.setSize(new java.awt.Dimension( 1000 , 1000 ));
 				chartPanel4.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+				FinestraUtente.statPanel.removeAll();
+				FinestraUtente.statPanel.add(chartPanel4);
+				FinestraUtente.statPanel.repaint();
 		
 		
 	}

@@ -166,7 +166,7 @@ public class ClienteController {
 		}
 
 	
-	public static void generaStatisticheCliente(String CodiceFiscale) {
+	public static void generaStatisticheCliente(String CodiceFiscale, String anno) {
 		List<Biglietto> Biglietti = BigliettoController.bigliettiPerCliente(CodiceFiscale);
 		double SoldiPerMese[]= {0,0,0,0,0,0,0,0,0,0,0,0}, SpesaTotale=0;
 		int BigliettiAcquistati=0;
@@ -208,7 +208,7 @@ public class ClienteController {
 		ChartPanel chartPanel2 = new ChartPanel(piechart.chart);
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
-		StatisticheCliente frame = new StatisticheCliente(chartPanel, chartPanel2, SpesaTotale, BigliettiAcquistati);
+		StatisticheCliente frame = new StatisticheCliente(chartPanel, chartPanel2, SpesaTotale, BigliettiAcquistati, CodiceFiscale);
 		frame.setTitle("Statistiche relative a: " + CodiceFiscale);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);	}
