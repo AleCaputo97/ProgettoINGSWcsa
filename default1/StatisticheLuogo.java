@@ -118,8 +118,9 @@ public class StatisticheLuogo extends JFrame {
 		JComboBox cbAnno = new JComboBox();
 		cbAnno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String anno = cbAnno.getSelectedItem().toString();
-				LuogoController.generaStatisticheLuogo(nome, anno);
+				//String anno = cbAnno.getSelectedItem().toString();
+				//String nome2 = nome.substring(24);
+				//LuogoController.generaStatisticheLuogo(nome, anno);
 			}
 		});
 		int year2=year-5;
