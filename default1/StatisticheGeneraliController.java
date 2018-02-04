@@ -114,6 +114,35 @@ public class StatisticheGeneraliController {
 		
 	}
 	
+	public static void EventiRicavati () {
+		List<Evento> Eventi=EventoController.cercaTuttiEventi();
+		int i=0;
+		for(Evento currEvento:Eventi) i=i+1; //numero eventi
+		String[] intervallo=new String[i];
+		double[] valori=new double[i];
+		double ricavatoCorrente=0;
+		int j=0;
+			for(Evento currEvento:Eventi){
+			//calcola i ricavati di evento corrente, dopodiché li inserisce nell'array
+				List<Biglietto> Biglietti = BigliettoController.bigliettiVendutiLuogo(currEvento.getNome());
+				for(Biglietto bigliettoCurr:Biglietti){
+					ricavatoCorrente=ricavatoCorrente+bigliettoCurr.getPrezzo();
+					}
+				intervallo[j]=currEvento.getNome();
+				valori[j]=ricavatoCorrente;
+				//prepara la prossima iterazione
+				j=j+1;
+				ricavatoCorrente=0;
+			}
+				DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
+				for(int k=0;k<i;k++) dataset.addValue( valori[k] , intervallo[k] , "Eventi");  
+				BarChart_AWT chart = new BarChart_AWT("Istogramma","Ricavato per evento", "", "Euro", dataset);
+				ChartPanel chartPanel = new ChartPanel(chart.chart);
+				chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		}
+	
+	
+	
 				public static LocalDate StringToDate(String data) {
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
 					LocalDate LocalDataCurr;
