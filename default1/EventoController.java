@@ -282,7 +282,7 @@ public class EventoController {
 			
 			valori[(int) indice]=valori[(int) indice]+currBiglietto.getPrezzo();
 		}
-		for(int i=0;i<n;i++) System.out.println(valori[i]);
+		//for(int i=0;i<n;i++) System.out.println(valori[i]);
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<n;i++) dataset.addValue( valori[i] , "plot1" , intervallo[i]);  
 		LineChart chart= new LineChart( "", "Soldi nel tempo", "", "Soldi", dataset);

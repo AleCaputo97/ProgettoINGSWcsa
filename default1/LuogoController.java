@@ -130,7 +130,6 @@ public class LuogoController {
 		ChartPanel chartPanel = new ChartPanel(chart.chart);
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
-		for(int i=0;i<12;i++) System.out.println(valori[i]);
 		//Statistica2 numero clienti del luogo per anno
 
 		List<Biglietto> Biglietti=BigliettoController.bigliettiVendutiLuogo(NomeLuogo);
