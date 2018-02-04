@@ -1,8 +1,10 @@
 package default1;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -52,7 +54,7 @@ public class StatisticheGeneraliController {
 	
 	public static void FasceEtaClienti () {
 		int classe1=0,classe2=0,classe3=0,classe4=0,classe5=0,classe6=0,classe7=0;
-		list<Cliente> Clienti=ClienteController.cercaTuttiClienti();
+		List<Cliente> Clienti=ClienteController.cercaTuttiClienti();
 		SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
 		Date Datacurr = new Date();
 		String strDatacurr = sdfDate.format(Datacurr);
