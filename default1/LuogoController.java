@@ -98,6 +98,13 @@ public class LuogoController {
 			}
 		}
 	
+	
+	 public static List<Luogo> cercaTuttiLuoghi(){
+		 return LuogoDAO.cerca("", "", "", "");
+	 }
+	 
+	
+	
 	public static void generaStatisticheLuogo(String NomeLuogo, String anno) {
 		double SpesaTotale=0,GuadagnoMedio=0;
 		List<Evento> Eventi=EventoController.cercaPerLuogo(NomeLuogo);
