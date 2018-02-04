@@ -937,6 +937,7 @@ public class FinestraUtente {
 			}
 		});
 		stat1.setBounds(18, 431, 219, 23);
+		stat1.setFocusable(false);
 		Statistiche.add(stat1);
 		
 		stat2 = new JButton("Numero eventi per luogo");
@@ -951,6 +952,7 @@ public class FinestraUtente {
 			}
 		});
 		stat2.setBounds(255, 431, 219, 23);
+		stat2.setFocusable(false);
 		Statistiche.add(stat2);
 		
 		stat3 = new JButton("Guadagno per evento");
@@ -965,6 +967,7 @@ public class FinestraUtente {
 			}
 		});
 		stat3.setBounds(492, 431, 219, 23);
+		stat3.setFocusable(false);
 		Statistiche.add(stat3);
 		
 		stat4 = new JButton("Fasce età clienti");
@@ -979,6 +982,7 @@ public class FinestraUtente {
 			}
 		});
 		stat4.setBounds(729, 431, 219, 23);
+		stat4.setFocusable(false);
 		Statistiche.add(stat4);
 
 		
@@ -989,6 +993,9 @@ public class FinestraUtente {
 		
 		messaggio.setForeground(Color.BLACK);
 		frmProgettoingswcsa.getContentPane().add(messaggio);
+
+
+
 	}
 	
 	public void toggle() {
