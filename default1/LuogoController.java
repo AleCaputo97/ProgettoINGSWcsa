@@ -123,14 +123,14 @@ public class LuogoController {
 				valori[(int) indice]=valori[(int) indice]+1;
 			}
 		}
-		for(int i=0;i<12;i++) System.out.println(valori[i]);
+		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<12;i++) dataset.addValue( valori[i] , "plot1" , intervallo[i]);  
 		LineChart chart= new LineChart( "", "Eventi ospitati nell'anno "+anno, "", "Mese", dataset);
 		ChartPanel chartPanel = new ChartPanel(chart.chart);
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
-		
+		for(int i=0;i<12;i++) System.out.println(valori[i]);
 		//Statistica2 numero clienti del luogo per anno
 
 		List<Biglietto> Biglietti=BigliettoController.bigliettiVendutiLuogo(NomeLuogo);
@@ -147,7 +147,8 @@ public class LuogoController {
 		BarChart_AWT chart2 = new BarChart_AWT("Istogramma","Numero ospiti del luogo", "", "Numero ospiti", dataset);
 		ChartPanel chartPanel2 = new ChartPanel(chart2.chart);
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		
+		chartPanel.setPreferredSize(new java.awt.Dimension( 1050 , 367 ));
+		chartPanel2.setPreferredSize(new java.awt.Dimension( 1050 , 367 ));
 		StatisticheLuogo frame = new StatisticheLuogo(chartPanel, chartPanel2, SpesaTotale, num_eventi, GuadagnoMedio, NomeLuogo);
 		frame.setTitle("Statistiche relative a: " + NomeLuogo);
 		frame.setVisible(true);
