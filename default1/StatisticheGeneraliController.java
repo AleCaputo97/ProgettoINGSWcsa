@@ -27,7 +27,7 @@ public class StatisticheGeneraliController {
 		String[] Tipologia = {"Concerto", "Evento sportivo", "Teatro", "Convegno", "Mostra","Altro"};
 		int[] Valori = {0,0,0,0,0,0};
 		
-		List<Evento> risultati = EventoDAO.cerca( "",  "",  0.0,  0.0, 0, "" ,  "");	
+		List<Evento> risultati = EventoController.cercaTuttiEventi();	
 		for(Evento curr:risultati) {
 			if (curr.getTipo().equals("Concerto"))
 				Valori[0]=Valori[0]+1;
@@ -51,6 +51,29 @@ public class StatisticheGeneraliController {
 
 		
 	}
+	
+	
+	public static void NumeroEventiLuogo () {
+		int i=0,count=0;
+		List<Luogo> Luoghi =  LuogoController.cercaTuttiLuoghi();
+		for (Luogo currluogo:Luoghi)count=count+1;
+		int[] valore=new int[(int) count];
+		String[] nomiluoghi = new String[(int) count];
+		for (Luogo currluogo2:Luoghi){
+			nomiluoghi[i]=currluogo2.getNome();
+			List<Evento> Eventi = EventoController.cercaPerLuogo(currluogo2.getNome());
+				for(Evento currevento:Eventi)valore[i]=valore[i]+1;
+			i=i+1;
+		}
+				DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
+				for(int j=0;j<count;j++) dataset.addValue( valore[i] , nomiluoghi[i] , "luogo");  
+				BarChart_AWT chart = new BarChart_AWT("Istogramma","Numero di eventi per luogo", "", "Numero", dataset);
+				ChartPanel chartPanel = new ChartPanel(chart.chart);
+				chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+
+		}
+	
+	
 	
 	public static void FasceEtaClienti () {
 		int classe1=0,classe2=0,classe3=0,classe4=0,classe5=0,classe6=0,classe7=0;
