@@ -128,6 +128,24 @@ public class LuogoController {
 		LineChart chart= new LineChart( "", "Eventi ospitati nell'anno "+anno, "", "Mese", dataset);
 		ChartPanel chartPanel = new ChartPanel(chart.chart);
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		
+		
+		//Statistica2 numero clienti del luogo per anno
+
+		List<Biglietto> Biglietti=BigliettoController.bigliettiVendutiLuogo(NomeLuogo);
+		String Mese2[]= {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
+		int ClientiPerMese[]={0,0,0,0,0,0,0,0,0,0,0,0};
+		for(Biglietto curr:Biglietti) {
+			if(curr.getAnno()==annocurr) {
+				ClientiPerMese[curr.getMese()-1]=ClientiPerMese[curr.getMese()-1]+1;
+			}
+		}
+		DefaultCategoryDataset dataset2 = new DefaultCategoryDataset( ); 
+		for(int i=0;i<12;i++) dataset2.addValue( ClientiPerMese[i] , Mese2[i] , "mese");  
+		BarChart_AWT chart2 = new BarChart_AWT("Istogramma","Numero ospiti del luogo", "", "Numero Clienti", dataset);
+		ChartPanel chartPanel2 = new ChartPanel(chart2.chart);
+		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+
 	}
 	}
 	
