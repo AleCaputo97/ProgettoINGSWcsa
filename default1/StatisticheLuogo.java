@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
@@ -35,7 +36,7 @@ public class StatisticheLuogo extends JFrame {
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1317, 527);
+		setBounds(100, 100, 1209, 527);
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -44,7 +45,7 @@ public class StatisticheLuogo extends JFrame {
 		
 		JPanel statPanel1 = new JPanel();
 		statPanel1.setBorder(null);
-		statPanel1.setBounds(24, 22, 1057, 430);
+		statPanel1.setBounds(10, 11, 955, 441);
 		contentPane.add(statPanel1);
 		statPanel1.add(chart);
 		
@@ -53,14 +54,14 @@ public class StatisticheLuogo extends JFrame {
 		textPaneSoldiSpesi.setEditable(false);
 		textPaneSoldiSpesi.setText("<html><center><b><font face=\"Tahoma\" size=20 color=rgb(1,1,1)>€ "+ soldispesi +"</font></b></center></html>");
 		textPaneSoldiSpesi.setFont(new Font("Product Sans", Font.BOLD, 18));
-		textPaneSoldiSpesi.setBounds(1091, 131, 200, 50);
+		textPaneSoldiSpesi.setBounds(982, 126, 200, 50);
 		contentPane.add(textPaneSoldiSpesi);
 		textPaneSoldiSpesi.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
 		JLabel lblNewLabel = new JLabel("Numero eventi");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(1091, 83, 200, 27);
+		lblNewLabel.setBounds(982, 78, 200, 27);
 		contentPane.add(lblNewLabel);
 
 		JTextPane textPaneBigliettiAcquistati = new JTextPane();
@@ -68,21 +69,21 @@ public class StatisticheLuogo extends JFrame {
 		textPaneBigliettiAcquistati.setEditable(false);
 		textPaneBigliettiAcquistati.setText("<html><center><b><font face=\"Tahoma\" size=20 color=rgb(1,1,1)> "+ biglietticomprati +"</font></b></center></html>");
 		textPaneBigliettiAcquistati.setFont(new Font("Product Sans", Font.BOLD, 18));
-		textPaneBigliettiAcquistati.setBounds(1091, 22, 200, 50);
+		textPaneBigliettiAcquistati.setBounds(982, 17, 200, 50);
 		contentPane.add(textPaneBigliettiAcquistati);
 		textPaneBigliettiAcquistati.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
 		JLabel lblTotaleGuadagno = new JLabel("Totale guadagno");
 		lblTotaleGuadagno.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTotaleGuadagno.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblTotaleGuadagno.setBounds(1091, 192, 200, 27);
+		lblTotaleGuadagno.setBounds(982, 187, 200, 27);
 		contentPane.add(lblTotaleGuadagno);
 		
-		JButton btn = new JButton("Cliente ospitati nel tempo");
+		JButton btn = new JButton("Clienti ospitati nel tempo");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-					if (btn.getText().equals("Cliente ospitati nel tempo")) {
+					if (btn.getText().equals("Clienti ospitati nel tempo")) {
 						statPanel1.remove(chart);
 						statPanel1.add(chart2);
 						statPanel1.repaint();
@@ -92,11 +93,11 @@ public class StatisticheLuogo extends JFrame {
 						statPanel1.remove(chart2);
 						statPanel1.add(chart);
 						statPanel1.repaint();
-						btn.setText("Cliente ospitati nel tempo");
+						btn.setText("Clienti ospitati nel tempo");
 					}
 			}
 		});
-		btn.setBounds(24, 454, 171, 23);
+		btn.setBounds(10, 454, 171, 23);
 		contentPane.add(btn);
 		
 		JTextPane textPaneGuadagnoMedio = new JTextPane();
@@ -104,7 +105,7 @@ public class StatisticheLuogo extends JFrame {
 		textPaneGuadagnoMedio.setEditable(false);
 		textPaneGuadagnoMedio.setText("<html><center><b><font face=\"Tahoma\" size=20 color=rgb(1,1,1)>€ "+ soldispesi +"</font></b></center></html>");
 		textPaneGuadagnoMedio.setFont(new Font("Product Sans", Font.BOLD, 18));
-		textPaneGuadagnoMedio.setBounds(1091, 241, 200, 50);
+		textPaneGuadagnoMedio.setBounds(982, 236, 200, 50);
 		contentPane.add(textPaneGuadagnoMedio);
 		textPaneGuadagnoMedio.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 
@@ -112,7 +113,7 @@ public class StatisticheLuogo extends JFrame {
 		JLabel lblGuadagnoMedioPer = new JLabel("Guadagno medio per evento");
 		lblGuadagnoMedioPer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGuadagnoMedioPer.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblGuadagnoMedioPer.setBounds(1091, 304, 200, 27);
+		lblGuadagnoMedioPer.setBounds(982, 299, 200, 27);
 		contentPane.add(lblGuadagnoMedioPer);
 		
 		JComboBox cbAnno = new JComboBox();
@@ -126,18 +127,18 @@ public class StatisticheLuogo extends JFrame {
 			cbAnno.addItem(year2);
 		cbAnno.setSelectedItem(year);
 
-		cbAnno.setBounds(1091, 430, 75, 22);
+		cbAnno.setBounds(765, 455, 75, 22);
 		contentPane.add(cbAnno);
 		
 		JButton btnNewButton = new JButton("Ricalcola");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String anno = cbAnno.getSelectedItem().toString();
-				StatisticheLuogo.super.dispose();
 				LuogoController.generaStatisticheLuogo(nome, anno);
+				StatisticheLuogo.super.dispose();
 			}
 		});
-		btnNewButton.setBounds(1176, 429, 115, 23);
+		btnNewButton.setBounds(850, 454, 115, 23);
 		contentPane.add(btnNewButton);
 	}
 }
