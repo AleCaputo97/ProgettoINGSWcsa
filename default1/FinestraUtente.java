@@ -824,7 +824,7 @@ public class FinestraUtente {
 		Luogo.add(luogoElimina);
 		luogoStatistiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int row = eventotable.getSelectedRow();
+				int row = luogotable.getSelectedRow();
 				Date date = new Date();
 				LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 				int year  = localDate.getYear();
