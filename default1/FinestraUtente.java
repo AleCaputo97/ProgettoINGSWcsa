@@ -288,7 +288,11 @@ public class FinestraUtente {
 		clienteStatistiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int row = clientetable.getSelectedRow();
-				ClienteController.generaStatisticheCliente(clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString());
+				Date date = new Date();
+				LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				int year  = localDate.getYear();
+		        String year2 = Integer.toString(year);
+				ClienteController.generaStatisticheCliente(clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString(), year2);
 			}
 		});
 		clienteStatistiche.setEnabled(false);
