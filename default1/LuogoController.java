@@ -135,7 +135,6 @@ public class LuogoController {
 		for(int i=0;i<12;i++) dataset.addValue( valori[i] , "plot1" , intervallo[i]);  
 		LineChart chart= new LineChart( "", "Eventi ospitati nell'anno "+anno, "", "Numero eventi", dataset);
 		ChartPanel chartPanel = new ChartPanel(chart.chart);
-		chartPanel.setSize(new java.awt.Dimension( 1000 , 1000 ));
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
 		//Statistica2 numero clienti del luogo per anno

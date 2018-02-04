@@ -314,14 +314,12 @@ public class EventoController {
 		String[] Età = {"<25","(26,40)","41+"};
 		int[] valori2 = {classe1,classe2,classe3};
 		PieChart piechart= new PieChart("Età dei clienti", 3, Età , valori2);
-				ChartPanel chartPanel2 = new ChartPanel(piechart.chart);
-				chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		ChartPanel chartPanel2 = new ChartPanel(piechart.chart);
+		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
-		
-		
-		
-		
-		
+		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
+		chartPanel2.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
+	
 		StatisticheEvento frame = new StatisticheEvento(chartPanel, chartPanel2, Ricavato, BigliettiVenduti);
 		frame.setTitle("Statistiche relative a: " + nome);
 		frame.setVisible(true);

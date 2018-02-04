@@ -209,6 +209,9 @@ public class ClienteController {
 		ChartPanel chartPanel2 = new ChartPanel(piechart.chart);
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
+		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
+		chartPanel2.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
+		
 		StatisticheCliente frame = new StatisticheCliente(chartPanel, chartPanel2, SpesaTotale, BigliettiAcquistati, CodiceFiscale);
 		frame.setTitle("Statistiche relative a: " + CodiceFiscale);
 		frame.setVisible(true);
