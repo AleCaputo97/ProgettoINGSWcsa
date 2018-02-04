@@ -93,6 +93,10 @@ public class ClienteController {
 		 return ClienteDAO.cerca(CodFiscale);
 	 }
 	 
+	 public static List<Cliente> cercaTuttiClienti(){
+		 return ClienteDAO.cerca("", "", "", "", "");
+	 }
+	 
 	public static void inserisci (String nome, String cognome, String email, String codicefiscale, String data) {
 		
 		Pattern p= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
