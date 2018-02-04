@@ -99,6 +99,7 @@ public class LuogoController {
 		}
 	
 	public static void generaStatisticheLuogo(String NomeLuogo, String anno) {
+		double SpesaTotale=0,GuadagnoMedio=0;
 		List<Evento> Eventi=EventoController.cercaPerLuogo(NomeLuogo);
 		//3: dichiaro due array, uno per i valori e uno per mese e anno
 		String[] intervallo = new String[(int) 12];
@@ -134,15 +135,17 @@ public class LuogoController {
 
 		List<Biglietto> Biglietti=BigliettoController.bigliettiVendutiLuogo(NomeLuogo);
 		String Mese2[]= {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
-		int ClientiPerMese[]={0,0,0,0,0,0,0,0,0,0,0,0};
+		int OspitiPerMese[]={0,0,0,0,0,0,0,0,0,0,0,0};
 		for(Biglietto curr:Biglietti) {
+			SpesaTotale=SpesaTotale + curr.getPrezzo();
 			if(curr.getAnno()==annocurr) {
-				ClientiPerMese[curr.getMese()-1]=ClientiPerMese[curr.getMese()-1]+1;
+				OspitiPerMese[curr.getMese()-1]=OspitiPerMese[curr.getMese()-1]+1;
 			}
 		}
+		GuadagnoMedio=SpesaTotale/num_eventi;
 		DefaultCategoryDataset dataset2 = new DefaultCategoryDataset( ); 
-		for(int i=0;i<12;i++) dataset2.addValue( ClientiPerMese[i] , Mese2[i] , "mese");  
-		BarChart_AWT chart2 = new BarChart_AWT("Istogramma","Numero ospiti del luogo", "", "Numero Clienti", dataset);
+		for(int i=0;i<12;i++) dataset2.addValue( OspitiPerMese[i] , Mese2[i] , "mese");  
+		BarChart_AWT chart2 = new BarChart_AWT("Istogramma","Numero ospiti del luogo", "", "Numero ospiti", dataset);
 		ChartPanel chartPanel2 = new ChartPanel(chart2.chart);
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 
