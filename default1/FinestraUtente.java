@@ -829,7 +829,7 @@ public class FinestraUtente {
 				LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 				int year  = localDate.getYear();
 				String year2 = Integer.toString(year);
-				LuogoController.generaStatisticheLuogo(eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString(), year2);
+				LuogoController.generaStatisticheLuogo(luogotable.getValueAt(row,luogotable.getColumn("Nome").getModelIndex()).toString(), year2);
 			}
 		});
 		luogoStatistiche.setEnabled(false);
