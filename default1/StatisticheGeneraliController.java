@@ -70,6 +70,11 @@ public class StatisticheGeneraliController {
 				BarChart_AWT chart = new BarChart_AWT("Istogramma","Numero di eventi per luogo", "", "Numero", dataset);
 				ChartPanel chartPanel = new ChartPanel(chart.chart);
 				chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+				
+				FinestraUtente.statPanel.removeAll();
+				FinestraUtente.statPanel.add(chartPanel);
+				FinestraUtente.statPanel.repaint();
+				
 
 		}
 	
@@ -139,6 +144,10 @@ public class StatisticheGeneraliController {
 				BarChart_AWT chart = new BarChart_AWT("Istogramma","Ricavato per evento", "", "Euro", dataset);
 				ChartPanel chartPanel = new ChartPanel(chart.chart);
 				chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+				
+				FinestraUtente.statPanel.removeAll();
+				FinestraUtente.statPanel.add(chartPanel);
+				FinestraUtente.statPanel.repaint();
 		}
 	
 				public static LocalDate StringToDate(String data) {

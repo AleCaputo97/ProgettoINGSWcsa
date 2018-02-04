@@ -939,10 +939,11 @@ public class FinestraUtente {
 		stat1.setBounds(18, 431, 219, 23);
 		Statistiche.add(stat1);
 		
-		stat2 = new JButton("New button");
+		stat2 = new JButton("Numero eventi per luogo");
 		stat2.setEnabled(false);
 		stat2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				StatisticheGeneraliController.NumeroEventiLuogo();
 				stat1.setEnabled(true);
 				stat2.setEnabled(false);
 				stat3.setEnabled(true);
@@ -952,10 +953,11 @@ public class FinestraUtente {
 		stat2.setBounds(255, 431, 219, 23);
 		Statistiche.add(stat2);
 		
-		stat3 = new JButton("New button");
+		stat3 = new JButton("Guadagno per evento");
 		stat3.setEnabled(false);
 		stat3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				StatisticheGeneraliController.EventiRicavati();
 				stat1.setEnabled(true);
 				stat2.setEnabled(true);
 				stat3.setEnabled(false);
