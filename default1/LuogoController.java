@@ -147,7 +147,11 @@ public class LuogoController {
 		BarChart_AWT chart2 = new BarChart_AWT("Istogramma","Numero ospiti del luogo", "", "Numero ospiti", dataset);
 		ChartPanel chartPanel2 = new ChartPanel(chart2.chart);
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-
+		
+		StatisticheLuogo frame = new StatisticheLuogo(chartPanel, chartPanel2, SpesaTotale, num_eventi, GuadagnoMedio);
+		frame.setTitle("Statistiche relative a: " + NomeLuogo);
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);	
 	}
 	}
 	
