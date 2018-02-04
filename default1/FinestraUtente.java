@@ -50,6 +50,9 @@ import java.awt.image.BufferedImage;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import java.awt.Image;
@@ -819,6 +822,16 @@ public class FinestraUtente {
 		luogoElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
 		luogoElimina.setBounds(829, 150, 129, 23);
 		Luogo.add(luogoElimina);
+		luogoStatistiche.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int row = eventotable.getSelectedRow();
+				Date date = new Date();
+				LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				int year  = localDate.getYear();
+				String year2 = Integer.toString(year);
+				LuogoController.generaStatisticheLuogo(eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString(), year2);
+			}
+		});
 		luogoStatistiche.setEnabled(false);
 		
 

@@ -40,14 +40,14 @@ public class StatisticheEvento extends JFrame {
 		contentPane.add(statPanel1);
 		statPanel1.add(chart);
 		
-		JTextPane textPaneSoldiSpesi = new JTextPane();
-		textPaneSoldiSpesi.setContentType("text/html");
-		textPaneSoldiSpesi.setEditable(false);
-		textPaneSoldiSpesi.setText("<html><center><b><font face=\"Tahoma\" size=20 color=rgb(1,1,1)>€ "+ soldispesi +"</font></b></center></html>");
-		textPaneSoldiSpesi.setFont(new Font("Product Sans", Font.BOLD, 18));
-		textPaneSoldiSpesi.setBounds(720, 132, 200, 50);
-		contentPane.add(textPaneSoldiSpesi);
-		textPaneSoldiSpesi.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		JTextPane textPaneSoldiGuadagnati = new JTextPane();
+		textPaneSoldiGuadagnati.setContentType("text/html");
+		textPaneSoldiGuadagnati.setEditable(false);
+		textPaneSoldiGuadagnati.setText("<html><center><b><font face=\"Tahoma\" size=20 color=rgb(1,1,1)>€ "+ soldispesi +"</font></b></center></html>");
+		textPaneSoldiGuadagnati.setFont(new Font("Product Sans", Font.BOLD, 18));
+		textPaneSoldiGuadagnati.setBounds(720, 132, 200, 50);
+		contentPane.add(textPaneSoldiGuadagnati);
+		textPaneSoldiGuadagnati.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
 		JLabel lblNewLabel = new JLabel("Totale biglietti venduti");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -55,14 +55,14 @@ public class StatisticheEvento extends JFrame {
 		lblNewLabel.setBounds(720, 82, 200, 27);
 		contentPane.add(lblNewLabel);
 
-		JTextPane textPaneBigliettiAcquistati = new JTextPane();
-		textPaneBigliettiAcquistati.setContentType("text/html");
-		textPaneBigliettiAcquistati.setEditable(false);
-		textPaneBigliettiAcquistati.setText("<html><center><b><font face=\"Tahoma\" size=20 color=rgb(1,1,1)> "+ biglietticomprati +"</font></b></center></html>");
-		textPaneBigliettiAcquistati.setFont(new Font("Product Sans", Font.BOLD, 18));
-		textPaneBigliettiAcquistati.setBounds(720, 23, 200, 50);
-		contentPane.add(textPaneBigliettiAcquistati);
-		textPaneBigliettiAcquistati.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		JTextPane textPaneBigliettiVenduti = new JTextPane();
+		textPaneBigliettiVenduti.setContentType("text/html");
+		textPaneBigliettiVenduti.setEditable(false);
+		textPaneBigliettiVenduti.setText("<html><center><b><font face=\"Tahoma\" size=20 color=rgb(1,1,1)> "+ biglietticomprati +"</font></b></center></html>");
+		textPaneBigliettiVenduti.setFont(new Font("Product Sans", Font.BOLD, 18));
+		textPaneBigliettiVenduti.setBounds(720, 23, 200, 50);
+		contentPane.add(textPaneBigliettiVenduti);
+		textPaneBigliettiVenduti.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
 		JLabel lblTotaleSoldiGuadagnati = new JLabel("Totale soldi guadagnati");
 		lblTotaleSoldiGuadagnati.setHorizontalAlignment(SwingConstants.CENTER);
