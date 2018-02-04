@@ -66,7 +66,7 @@ public class StatisticheGeneraliController {
 			i=i+1;
 		}
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
-				for(int j=0;j<count;j++) dataset.addValue( valore[i] , nomiluoghi[i] , "luogo");  
+				for(int j=0;j<count;j++) dataset.addValue( valore[j] , nomiluoghi[j] , "luogo");  
 				BarChart_AWT chart = new BarChart_AWT("Istogramma","Numero di eventi per luogo", "", "Numero", dataset);
 				ChartPanel chartPanel = new ChartPanel(chart.chart);
 				chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
