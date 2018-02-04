@@ -282,7 +282,7 @@ public class EventoController {
 		for(int i=0;i<n;i++) System.out.println(valori[i]);
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<n;i++) dataset.addValue( valori[i] , "plot1" , intervallo[i]);  
-		LineChart chart= new LineChart( "", "", "", "Soldi", dataset);
+		LineChart chart= new LineChart( "", "Soldi nel tempo", "", "Soldi", dataset);
 		ChartPanel chartPanel = new ChartPanel(chart.chart);
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
