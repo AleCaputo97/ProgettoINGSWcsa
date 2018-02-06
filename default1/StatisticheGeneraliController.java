@@ -67,7 +67,7 @@ public class StatisticheGeneraliController {
 		}
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 				for(int j=0;j<count;j++) dataset.addValue( valore[j] , nomiluoghi[j] , "luogo");  
-				BarChart_AWT chart = new BarChart_AWT("Istogramma","Numero di eventi per luogo", "", "Numero", dataset);
+				BarChart chart = new BarChart("Istogramma","Numero di eventi per luogo", "", "Numero", dataset);
 				ChartPanel chartPanel = new ChartPanel(chart.chart);
 				
 				FinestraUtente.statPanel.removeAll();
@@ -139,7 +139,7 @@ public class StatisticheGeneraliController {
 			}
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 				for(int k=0;k<i;k++) dataset.addValue( valori[k] , intervallo[k] , "Eventi");  
-				BarChart_AWT chart = new BarChart_AWT("Istogramma","Ricavato per evento", "", "Euro", dataset);
+				BarChart chart = new BarChart("Istogramma","Ricavato per evento", "", "Euro", dataset);
 				ChartPanel chartPanel = new ChartPanel(chart.chart);
 				
 				FinestraUtente.statPanel.removeAll();
