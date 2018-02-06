@@ -19,13 +19,7 @@ public class ConfermaEliminazione extends JFrame {
 	FinestraUtente window;
 	private JPanel contentPane;
 	
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
+	//crea il frame prendendo in input cosa eliminare e dove eliminare (si può voler eliminare un luogo, un evento o un Cliente)
 	public ConfermaEliminazione(String DoveEliminare, String CosaEliminare, FinestraUtente Window) {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 405, 149);
@@ -41,15 +35,11 @@ public class ConfermaEliminazione extends JFrame {
 		lblSicuroDiVoler.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSicuroDiVoler.setBounds(10, 11, 369, 29);
 		contentPane.add(lblSicuroDiVoler);
-				
 		JButton buttonno = new JButton("NO");
 		buttonno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				window.toggle();
-
 				ConfermaEliminazione.super.dispose();
-				
 			}
 		});
 		buttonno.setFont(new Font("Tahoma", Font.BOLD, 15));
