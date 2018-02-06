@@ -81,7 +81,7 @@ public class EventoController {
 					}
 					else{
 						FinestraUtente.aggiungiElementoEvento( curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile");
-						}
+					}
 				}
 			}
 		}
