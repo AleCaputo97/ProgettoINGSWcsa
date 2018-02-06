@@ -1,7 +1,6 @@
 package default1;
 
 public class Cliente {
-	
 	//attributi
 	private String Nome;
 	private String Cognome;
