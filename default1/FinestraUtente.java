@@ -472,7 +472,8 @@ public class FinestraUtente {
 		
 		eventoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					
+				
+				messaggio.setText("");
 				String nome = eventotfNome.getText();
 				String data = eventoData.getText();
 				String prezzoiniziale = eventotfPrezzoiniziale.getText();
