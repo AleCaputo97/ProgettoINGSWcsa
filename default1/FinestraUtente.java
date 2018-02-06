@@ -1089,35 +1089,35 @@ public class FinestraUtente {
 		}
 	}
 	
-	public void azzeraTabellaCliente() {
+	public static void azzeraTabellaCliente() {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
         for (int i=0, j=model.getRowCount(); i<j; i++)
             model.removeRow(0);
 	}
 	
-	public void azzeraTabellaEvento() {
+	public static void azzeraTabellaEvento() {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
         for (int i=0, j=model.getRowCount(); i<j; i++)
             model.removeRow(0);
 	}
 	
-	public void azzeraTabellaLuogo() {
+	public static void azzeraTabellaLuogo() {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
         for (int i=0, j=model.getRowCount(); i<j; i++)
             model.removeRow(0);
 	}
 	
-	public void aggiungiElementoCliente (String nome, String cognome, String email, String cf, String data) {
+	public static void aggiungiElementoCliente (String nome, String cognome, String email, String cf, String data) {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
 		model.addRow(new Object[]{nome,  cognome,  email,  cf,  data});
 	}
 	
-	public void aggiungiElementoEvento (String nome, String luogo, String data, String datainserimento, double prezzoi, double prezzof, int maxspettatori, String tipo, String prezzocurr) {
+	public static void aggiungiElementoEvento (String nome, String luogo, String data, String datainserimento, double prezzoi, double prezzof, int maxspettatori, String tipo, String prezzocurr) {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
 		model.addRow (new Object[]{ nome,  luogo,  data,  datainserimento,  prezzoi,  prezzof,  maxspettatori,  tipo,  prezzocurr});
 	}
 	
-	public void aggiungiElementoLuogo (String nome, String città, String stato, String indirizzo) {
+	public static void aggiungiElementoLuogo (String nome, String città, String stato, String indirizzo) {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
 		model.addRow (new Object[]{ nome,  città,  stato,  indirizzo});
 	}
