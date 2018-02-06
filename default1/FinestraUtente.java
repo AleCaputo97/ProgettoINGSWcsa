@@ -413,6 +413,8 @@ public class FinestraUtente {
 			}
 		});
 		
+		clientetable.getTableHeader().setReorderingAllowed(false);
+		
 		clientetable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			 public void valueChanged(ListSelectionEvent event) {
 				 
@@ -676,6 +678,8 @@ public class FinestraUtente {
 		});
 		scrollPane_1.setViewportView(eventotable);
 		
+		eventotable.getTableHeader().setReorderingAllowed(false);
+		
 		eventotable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			 public void valueChanged(ListSelectionEvent event) {
 				 
@@ -897,6 +901,8 @@ public class FinestraUtente {
 				return columnEditables[column];
 			}
 		});
+		
+		luogotable.getTableHeader().setReorderingAllowed(false);
 		
 		luogotable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			 public void valueChanged(ListSelectionEvent event) {
