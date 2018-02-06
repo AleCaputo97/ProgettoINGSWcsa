@@ -16,9 +16,7 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 
 public class EventoDAO {
 	
-	public static List<Evento> cerca(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {
-	       
-		 
+	public static List<Evento> cerca(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {	 
 		   String tableName = "Evento";
 		   Iterator<Item> iterator = null;
 		   List<Evento> risultati=new ArrayList<Evento>();  
@@ -30,8 +28,7 @@ public class EventoDAO {
 				        null,                                  
 				        null,
 				        null,                                          
-				        null);
-				         
+				        null);      
 				       iterator = items.iterator();
 		   }else{ //un campo non è vuoto e deve costruire la query
 			   String ricerca = "";
@@ -70,9 +67,7 @@ public class EventoDAO {
 				        null,
 				        null,                                          
 				        expressionAttributeValues);
-				         
 				       iterator = items.iterator();
-				   
 		   		}
 		   //costruisce la lista con i risultati da restituire
 		   Item iteratorcurr;
@@ -105,9 +100,7 @@ public class EventoDAO {
 		    		.withString("Luogo", luogo)
 		    		.withString("Tipo", tipo)
 		    		.withString("DataInserimento", datainserimento);
-		    PutItemOutcome outcome = table.putItem(item, null, null, null);
-		    
-		    
+		    PutItemOutcome outcome = table.putItem(item, null, null, null);  
 		    }
 	 
 	 public static void elimina(String Nome) {
