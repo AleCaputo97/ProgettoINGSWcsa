@@ -55,13 +55,6 @@ public class ClienteController {
 			cognome=normalizza(cognome);
 			email=normalizzaEmail(email);
 			codicefiscale=normalizzaCF(codicefiscale);
-		
-		/*DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
-        int i;
-        int j = model.getRowCount();
-        for (i=0; i<j; i++)
-            model.removeRow(0);
-        */
 			FinestraUtente.azzeraTabellaCliente(); //funzione della Finestra Utente che azzera la table di Cliente
 			List<Cliente> risultati = ClienteDAO.cerca(nome, cognome, email, codicefiscale, data); 
 		
@@ -69,12 +62,11 @@ public class ClienteController {
 				FinestraUtente.messaggio.setText("Nessun risultato trovato");
 			else {
 				for(Cliente curr:risultati) FinestraUtente.aggiungiElementoCliente(curr.getNome(), curr.getCognome(), curr.getEmail(), curr.getCodiceFiscale(), curr.getData());
-			//model.addRow (new Object[]{curr.getNome(), curr.getCognome(), curr.getEmail(), curr.getCodiceFiscale(), curr.getData()});
-	    	//System.out.println(curr.getNome());
 			}
 		}
 }
 	
+	//metodi di ricerca utili a fini statistici, devono eseguire una ricerca per Codice fiscale o altro parametro e ritornare una List<Cliente>
 	 public static Cliente cerca(String CodFiscale) {
 		 return ClienteDAO.cerca(CodFiscale);
 	 }
