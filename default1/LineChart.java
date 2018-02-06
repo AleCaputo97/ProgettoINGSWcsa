@@ -10,6 +10,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class LineChart extends ApplicationFrame {
 	JFreeChart chart;
+	
    public LineChart ( String applicationTitle , String Titolo,String asseX, String asseY, DefaultCategoryDataset dataset) {
       super(applicationTitle);
          chart = ChartFactory.createLineChart(
@@ -18,7 +19,6 @@ public class LineChart extends ApplicationFrame {
          dataset,
          PlotOrientation.VERTICAL,
          true,true,false);
-         
-
    }
+   
 }
