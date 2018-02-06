@@ -45,6 +45,7 @@ public class StatisticheGeneraliController {
 		}
 		PieChart statistica1 = new PieChart("Tipo evento per luogo", 6, Tipologia, Valori);
 		ChartPanel chartPanel = new ChartPanel(statistica1.chart);
+		chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
 		FinestraUtente.statPanel.removeAll();
 		FinestraUtente.statPanel.add(chartPanel);
 		FinestraUtente.statPanel.revalidate();
@@ -70,6 +71,8 @@ public class StatisticheGeneraliController {
 				BarChart chart = new BarChart("Istogramma","Numero di eventi per luogo", "", "Numero", dataset);
 				ChartPanel chartPanel = new ChartPanel(chart.chart);
 				
+				chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
+
 				FinestraUtente.statPanel.removeAll();
 				FinestraUtente.statPanel.add(chartPanel);
 				FinestraUtente.statPanel.revalidate();
@@ -108,10 +111,10 @@ public class StatisticheGeneraliController {
 				DefaultCategoryDataset dataset4 = new DefaultCategoryDataset( ); 
 				for(int i=0;i<7;i++) dataset4.addValue( valori4[i] , "plot1" , Età[i]);
 				LineChart chart4= new LineChart( "", "Fasce d'età dei clienti", "", "Numero clienti", dataset4);
-				ChartPanel chartPanel4 = new ChartPanel(chart4.chart);
-				chartPanel4.setSize(new java.awt.Dimension( 1000 , 1000 ));
+				ChartPanel chartPanel = new ChartPanel(chart4.chart);
+				chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
 				FinestraUtente.statPanel.removeAll();
-				FinestraUtente.statPanel.add(chartPanel4);
+				FinestraUtente.statPanel.add(chartPanel);
 				FinestraUtente.statPanel.revalidate();
 		
 		
@@ -141,7 +144,8 @@ public class StatisticheGeneraliController {
 				for(int k=0;k<i;k++) dataset.addValue( valori[k] , intervallo[k] , "Eventi");  
 				BarChart chart = new BarChart("Istogramma","Ricavato per evento", "", "Euro", dataset);
 				ChartPanel chartPanel = new ChartPanel(chart.chart);
-				
+				chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
+
 				FinestraUtente.statPanel.removeAll();
 				FinestraUtente.statPanel.add(chartPanel);
 				FinestraUtente.statPanel.revalidate();
