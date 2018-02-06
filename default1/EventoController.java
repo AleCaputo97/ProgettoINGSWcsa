@@ -68,13 +68,6 @@ public class EventoController {
 			nome=normalizza(nome);
 			doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
 			doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
-		
-			/*DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
-			int i;
-			int j = model.getRowCount();
-			for (i=0; i<j; i++)
-            model.removeRow(0);*/
-			
 			FinestraUtente.azzeraTabellaEvento();
 			
 			List<Evento> risultati = EventoDAO.cerca( nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo);
@@ -82,7 +75,6 @@ public class EventoController {
 			if (risultati.isEmpty())
 				FinestraUtente.messaggio.setText("Nessun risultato trovato");
 			else {
-			//String prezzocurr;
 				SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
 				Date Datacurr = new Date();
 				String strDatacurr = sdfDate.format(Datacurr); //Data corrente nel formato cercato
@@ -104,12 +96,10 @@ public class EventoController {
 						prezzocurr = normalizzaPrezzo(differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
 						
 						FinestraUtente.aggiungiElementoEvento( curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(),String.valueOf(prezzocurr));
-						//model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
 					}
 					else {
 						FinestraUtente.aggiungiElementoEvento( curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile");
-						//model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile"});
-					}
+											}
 				}
 			}
 		}
@@ -216,12 +206,6 @@ public class EventoController {
 	public static void elimina(String Nome) {
 		if(BigliettoController.isBigliettiVendutiEvento(Nome)==false) {
 			EventoDAO.elimina(Nome);
-			
-			/*DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
-			int i;
-			int j = model.getRowCount();
-			for (i=0; i<j; i++)
-				model.removeRow(0);*/
 			FinestraUtente.azzeraTabellaEvento();
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">Evento eliminato correttamente </font></html>");
 		}else{
