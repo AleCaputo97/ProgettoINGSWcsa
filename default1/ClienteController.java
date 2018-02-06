@@ -22,34 +22,21 @@ public class ClienteController {
     
     
 	private static String normalizza (String string) {
-		
-		if (!(string.equals("")))
-			string = string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
-		
+		if (!(string.equals(""))) string = string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
 		return string;
-		
 	}
 	
 	private static String normalizzaEmail (String email) {
-		
-		if (!(email.equals("")))
-			email = email.toLowerCase();
-		
+		if (!(email.equals(""))) email = email.toLowerCase();
 		return email;
-		
 	}
 	
 	private static String normalizzaCF (String codicefiscale) {
-		
-		if (!(codicefiscale.equals("")))
-			codicefiscale = codicefiscale.toUpperCase();
-		
+		if (!(codicefiscale.equals(""))) codicefiscale = codicefiscale.toUpperCase();
 		return codicefiscale;
 		
 	}
 		
-		
-
 	public static void cerca (String nome, String cognome, String email, String codicefiscale, String data) {
 		//fornisce tutte le possibili ricerche che può richiedere un utente, inoltre esegue dei controlli: se la mail non è nel formato testo@dominio.testo oppure il codice 
 		//fiscale non è sedici caratteri, ritorna un errore senza proseguire con la ricerca
@@ -154,7 +141,6 @@ public class ClienteController {
 	public static void elimina(String CodiceFiscale) {
 		ClienteDAO.elimina(CodiceFiscale);
 		BigliettoController.eliminaBiglietti(CodiceFiscale);
-		DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
         FinestraUtente.azzeraTabellaCliente();
 		FinestraUtente.messaggio.setText("<html><font color=\"red\">Cliente eliminato correttamente </font></html>");
 		}
