@@ -51,6 +51,8 @@ public class ClienteController {
 		
 
 	public static void cerca (String nome, String cognome, String email, String codicefiscale, String data) {
+		//fornisce tutte le possibili ricerche che può richiedere un utente, inoltre esegue dei controlli: se la mail non è nel formato testo@dominio.testo oppure il codice 
+		//fiscale non è sedici caratteri, ritorna un errore senza proseguire con la ricerca
 		Pattern p= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 		if(!p.matcher(email).matches() && !(email.equals(""))) {
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: la mail non è nel formato testo@dominio.testo</font></html>");
@@ -60,32 +62,29 @@ public class ClienteController {
 			if (!(codicefiscale.length()==16))
 				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Il codice fiscale deve essere di 16 caratteri</font></html>");
 			
-		}
-		else {
+		}else {
 		
-		nome=normalizza(nome);
-		cognome=normalizza(cognome);
-		email=normalizzaEmail(email);
-		codicefiscale=normalizzaCF(codicefiscale);
+			nome=normalizza(nome);
+			cognome=normalizza(cognome);
+			email=normalizzaEmail(email);
+			codicefiscale=normalizzaCF(codicefiscale);
 		
-		DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
+		/*DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
         int i;
         int j = model.getRowCount();
         for (i=0; i<j; i++)
             model.removeRow(0);
-        
-		List<Cliente> risultati = ClienteDAO.cerca(nome, cognome, email, codicefiscale, data);
+        */
+			FinestraUtente.azzeraTabellaCliente(); //funzione della Finestra Utente che azzera la table di Cliente
+			List<Cliente> risultati = ClienteDAO.cerca(nome, cognome, email, codicefiscale, data); 
 		
-		if (risultati.isEmpty())
-			FinestraUtente.messaggio.setText("Nessun risultato trovato");
-		else {
-		
-		for(Cliente curr:risultati) {
-			model.addRow (new Object[]{curr.getNome(), curr.getCognome(), curr.getEmail(), curr.getCodiceFiscale(), curr.getData()});
+			if (risultati.isEmpty())
+				FinestraUtente.messaggio.setText("Nessun risultato trovato");
+			else {
+				for(Cliente curr:risultati) FinestraUtente.aggiungiElementoCliente(curr.getNome(), curr.getCognome(), curr.getEmail(), curr.getCodiceFiscale(), curr.getData());
+			//model.addRow (new Object[]{curr.getNome(), curr.getCognome(), curr.getEmail(), curr.getCodiceFiscale(), curr.getData()});
 	    	//System.out.println(curr.getNome());
-	       }
-		}
-		
+			}
 		}
 }
 	
@@ -98,9 +97,7 @@ public class ClienteController {
 	 }
 	 
 	public static void inserisci (String nome, String cognome, String email, String codicefiscale, String data) {
-		
 		Pattern p= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
 		//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
 		if((nome.equals("")||cognome.equals("")||email.equals("")||codicefiscale.equals("")||data.equals(""))) {
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto </font></html>");
@@ -158,15 +155,13 @@ public class ClienteController {
 		ClienteDAO.elimina(CodiceFiscale);
 		BigliettoController.eliminaBiglietti(CodiceFiscale);
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
-        int i;
-        int j = model.getRowCount();
-        for (i=0; i<j; i++)
-            model.removeRow(0);
+        FinestraUtente.azzeraTabellaCliente();
 		FinestraUtente.messaggio.setText("<html><font color=\"red\">Cliente eliminato correttamente </font></html>");
 		}
 
 	
 	public static void generaStatisticheCliente(String CodiceFiscale, String anno) {
+		//Statistica1: Biglietti acquistati da un cliente per anno
 		List<Biglietto> Biglietti = BigliettoController.bigliettiPerCliente(CodiceFiscale);
 		double SoldiPerMese[]= {0,0,0,0,0,0,0,0,0,0,0,0}, SpesaTotale=0;
 		int BigliettiAcquistati=0;
@@ -174,21 +169,20 @@ public class ClienteController {
 		String Mese[]= {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
 		//ricerca i biglietti idonei tra quelli acquistati dal cliente e li aggiunge a soldi per mese al giusto mese
 		for(Biglietto curr:Biglietti) {
-			//calcola intanto quanti biglietti sono stati acquistati e la spesa totale a prescindere dall'anno
+			//calcola quanti biglietti sono stati acquistati e la spesa totale a prescindere dall'anno
 			BigliettiAcquistati=BigliettiAcquistati+1;
 			SpesaTotale=SpesaTotale + curr.getPrezzo();
 			if(curr.getAnno()==annocurr) {
+				//mappa il mese nell'i-imo elemento dell'array tenendo conto che l'array parte da 0 e i mesi vanno da 1 a 12
 				SoldiPerMese[curr.getMese()-1]=SoldiPerMese[curr.getMese()-1]+curr.getPrezzo();
 			}
 		}
-		
 		//popola il dataSet da passare all'istogramma con i valori di soldi e mese
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<12;i++) dataset.addValue( SoldiPerMese[i] , Mese[i] , "mese");  
 		BarChart_AWT chart = new BarChart_AWT("Istogramma","Soldi spesi dal cliente", "", "Euro", dataset);
 		ChartPanel chartPanel = new ChartPanel(chart.chart);
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-
 		//crea il PieChart con i luoghi frequentati
 		int num_concerti=0, num_eventi_sportivi=0, num_eventi_teatrali=0, num_convegni=0, num_mostre=0, num_altro=0;
 		Evento currEvento=null;
