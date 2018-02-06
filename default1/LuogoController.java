@@ -20,7 +20,7 @@ public class LuogoController {
 		return string;
 		
 	}
-	
+
 	public static void cerca (String nome, String città, String stato, String indirizzo) {
 		
 		nome=normalizza(nome);
@@ -28,19 +28,20 @@ public class LuogoController {
 		stato=normalizza(stato);
 		indirizzo=normalizza(indirizzo);
 		
-		DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
+		/*DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
         int i;
         int j = model.getRowCount();
         for (i=0; i<j; i++)
-            model.removeRow(0);
-        
+            model.removeRow(0);*/
+        FinestraUtente.azzeraTabellaLuogo();
 		List<Luogo> risultati = LuogoDAO.cerca(nome,città,stato,indirizzo);
 		
 		if (risultati.isEmpty())
 			FinestraUtente.messaggio.setText("Nessun risultato trovato");
 		else {
 			for(Luogo curr:risultati) {
-				model.addRow (new Object[]{curr.getNome(), curr.getCittà(), curr.getStato(), curr.getIndirizzo()});
+				FinestraUtente.aggiungiElementoCliente(curr.getNome(), curr.getCittà(), curr.getStato(), curr.getIndirizzo());
+				//model.addRow (new Object[]{curr.getNome(), curr.getCittà(), curr.getStato(), curr.getIndirizzo()});
 			}
 		}
 		
@@ -86,11 +87,14 @@ public class LuogoController {
 		if (BigliettoController.isBigliettiVendutiLuogo(nome)==false) {
 		 EventoController.eliminaPerLuogo(nome);
 			LuogoDAO.elimina(nome);
-			DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
+			
+			/*DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
 			int i;
 			int j = model.getRowCount();
 			for (i=0; i<j; i++)
-				model.removeRow(0);
+				model.removeRow(0);*/
+			FinestraUtente.azzeraTabellaLuogo();
+			
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">Luogo eliminato correttamente </font></html>");
 
 			}else {
