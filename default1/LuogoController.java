@@ -27,12 +27,6 @@ public class LuogoController {
 		città=normalizza(città);
 		stato=normalizza(stato);
 		indirizzo=normalizza(indirizzo);
-		
-		/*DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
-        int i;
-        int j = model.getRowCount();
-        for (i=0; i<j; i++)
-            model.removeRow(0);*/
         FinestraUtente.azzeraTabellaLuogo();
 		List<Luogo> risultati = LuogoDAO.cerca(nome,città,stato,indirizzo);
 		
@@ -41,7 +35,6 @@ public class LuogoController {
 		else {
 			for(Luogo curr:risultati) {
 				FinestraUtente.aggiungiElementoLuogo(curr.getNome(), curr.getCittà(), curr.getStato(), curr.getIndirizzo());
-				//model.addRow (new Object[]{curr.getNome(), curr.getCittà(), curr.getStato(), curr.getIndirizzo()});
 			}
 		}
 		
@@ -87,12 +80,6 @@ public class LuogoController {
 		if (BigliettoController.isBigliettiVendutiLuogo(nome)==false) {
 		 EventoController.eliminaPerLuogo(nome);
 			LuogoDAO.elimina(nome);
-			
-			/*DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
-			int i;
-			int j = model.getRowCount();
-			for (i=0; i<j; i++)
-				model.removeRow(0);*/
 			FinestraUtente.azzeraTabellaLuogo();
 			
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">Luogo eliminato correttamente </font></html>");
