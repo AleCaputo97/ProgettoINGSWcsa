@@ -40,7 +40,7 @@ public class LuogoController {
 			FinestraUtente.messaggio.setText("Nessun risultato trovato");
 		else {
 			for(Luogo curr:risultati) {
-				FinestraUtente.aggiungiElementoCliente(curr.getNome(), curr.getCittà(), curr.getStato(), curr.getIndirizzo());
+				FinestraUtente.aggiungiElementoLuogo(curr.getNome(), curr.getCittà(), curr.getStato(), curr.getIndirizzo());
 				//model.addRow (new Object[]{curr.getNome(), curr.getCittà(), curr.getStato(), curr.getIndirizzo()});
 			}
 		}
