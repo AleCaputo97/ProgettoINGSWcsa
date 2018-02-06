@@ -37,9 +37,7 @@ public class StatisticheCliente extends JFrame {
 	int year  = localDate.getYear();
 
 	public StatisticheCliente(ChartPanel chart, ChartPanel chart2, double soldispesi, int biglietticomprati, String cf) {
-		
 		try {
-			
 			URL url = new URL("https://raw.githubusercontent.com/AleCaputo97/ProgettoINGSWcsa/master/iconstat.png");
 			Image icon = ImageIO.read(url);  
 			Image newimg = icon.getScaledInstance(32, 32,  java.awt.Image.SCALE_SMOOTH);
@@ -48,7 +46,6 @@ public class StatisticheCliente extends JFrame {
 		catch(Exception e){ 
 		    	System.out.println(e);
 		}
-		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1209, 527);
@@ -97,7 +94,6 @@ public class StatisticheCliente extends JFrame {
 		JButton btn = new JButton("Tipologie di biglietti acquistati");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 					if (btn.getText().equals("Tipologie di biglietti acquistati")) {
 						statPanel1.remove(chart);
 						statPanel1.add(chart2);
@@ -125,10 +121,8 @@ public class StatisticheCliente extends JFrame {
 		for (int i=0; i<11; i++, year2++)
 			cbAnno.addItem(year2);
 		cbAnno.setSelectedItem(year);
-
 		cbAnno.setBounds(765, 455, 75, 22);
 		contentPane.add(cbAnno);
-		
 		JButton btnNewButton = new JButton("Ricalcola");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
