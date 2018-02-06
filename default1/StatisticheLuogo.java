@@ -36,10 +36,8 @@ public class StatisticheLuogo extends JFrame {
 	LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 	int year  = localDate.getYear();
 
-	public StatisticheLuogo(ChartPanel chart, ChartPanel chart2, double soldispesi, int biglietticomprati, double guadagnomedio, String nome) {
-		
+	public StatisticheLuogo(ChartPanel chart, ChartPanel chart2, double soldispesi, int biglietticomprati, double guadagnomedio, String nome) {	
 		try {
-			
 			URL url = new URL("https://raw.githubusercontent.com/AleCaputo97/ProgettoINGSWcsa/master/iconstat.png");
 			Image icon = ImageIO.read(url);  
 			Image newimg = icon.getScaledInstance(32, 32,  java.awt.Image.SCALE_SMOOTH);
@@ -48,7 +46,6 @@ public class StatisticheLuogo extends JFrame {
 		catch(Exception e){ 
 		    	System.out.println(e);
 		}
-		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1209, 527);
@@ -97,7 +94,6 @@ public class StatisticheLuogo extends JFrame {
 		JButton btn = new JButton("Clienti ospitati nel tempo");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 					if (btn.getText().equals("Clienti ospitati nel tempo")) {
 						statPanel1.remove(chart);
 						statPanel1.add(chart2);
