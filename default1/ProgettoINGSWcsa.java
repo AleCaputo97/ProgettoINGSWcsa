@@ -21,17 +21,12 @@ public class ProgettoINGSWcsa {
     static DynamoDB connessione;
     
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		
-		
-		
 		 try 
 		    { 
 			  UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 		    } 
 		    catch(Exception e){ 
 		    }
-		
 		init();
 		connessione = new DynamoDB(dynamoDB);
 		FinestraUtente window = new FinestraUtente();
@@ -40,7 +35,6 @@ public class ProgettoINGSWcsa {
 	}
 
     public static void init() throws Exception {
-        
         ProfileCredentialsProvider credentialsProvider = new ProfileCredentialsProvider();
         try {
             credentialsProvider.getCredentials();
@@ -52,4 +46,5 @@ public class ProgettoINGSWcsa {
             .build();
        
     }
+    
 }
