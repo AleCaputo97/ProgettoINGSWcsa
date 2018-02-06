@@ -9,8 +9,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Image;
+
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 
 public class ConfermaEliminazione extends JFrame {
@@ -21,6 +25,18 @@ public class ConfermaEliminazione extends JFrame {
 	
 	//crea il frame prendendo in input cosa eliminare e dove eliminare (si può voler eliminare un luogo, un evento o un Cliente)
 	public ConfermaEliminazione(String DoveEliminare, String CosaEliminare, FinestraUtente Window) {
+		
+		try {
+			
+			URL url = new URL("https://github.com/AleCaputo97/ProgettoINGSWcsa/blob/master/icondel.png");
+			Image icon = ImageIO.read(url);  
+			Image newimg = icon.getScaledInstance(32, 32,  java.awt.Image.SCALE_SMOOTH);
+		    this.setIconImage(newimg);
+			}
+		catch(Exception e){ 
+		    	System.out.println(e);
+		}
+				
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 405, 149);
 		contentPane = new JPanel();

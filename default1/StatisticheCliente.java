@@ -13,13 +13,17 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -33,6 +37,18 @@ public class StatisticheCliente extends JFrame {
 	int year  = localDate.getYear();
 
 	public StatisticheCliente(ChartPanel chart, ChartPanel chart2, double soldispesi, int biglietticomprati, String cf) {
+		
+		try {
+			
+			URL url = new URL("https://github.com/AleCaputo97/ProgettoINGSWcsa/blob/master/iconstat.png");
+			Image icon = ImageIO.read(url);  
+			Image newimg = icon.getScaledInstance(32, 32,  java.awt.Image.SCALE_SMOOTH);
+		    this.setIconImage(newimg);
+			}
+		catch(Exception e){ 
+		    	System.out.println(e);
+		}
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1209, 527);
