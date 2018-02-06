@@ -17,8 +17,6 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 public class LuogoDAO {
 	
 	public static List<Luogo> cerca(String nome, String città, String stato, String indirizzo) {
-	       
-		 
 		   String tableName = "Luogo";
 		   Iterator<Item> iterator = null;
 		   List<Luogo> risultati=new ArrayList<Luogo>();  
@@ -31,14 +29,12 @@ public class LuogoDAO {
 				        null,
 				        null,                                          
 				        null);
-				         
 				       iterator = items.iterator();
-				   
 		   }else{ //un campo non è vuoto e deve costruire la query
 			   String ricerca = "";
 			   if(!(nome.equals(""))) {
-			   ricerca=ricerca + "AND Nome = :nome ";
-			   expressionAttributeValues.put(":nome", nome);
+				   ricerca=ricerca + "AND Nome = :nome ";
+				   expressionAttributeValues.put(":nome", nome);
 			   }
 			   if(!(città.equals(""))) {
 				   expressionAttributeValues.put(":citta", città);
@@ -59,13 +55,9 @@ public class LuogoDAO {
 				        null,
 				        null,                                          
 				        expressionAttributeValues);
-				         
 				       iterator = items.iterator();
-				   
-				      
 		   		}
 		   //costruisce la lista con i risultati da restituire
-		  // System.out.println("[DAO] Si vuole cercare: " + nome + città + stato + indirizzo );
 		   Item iteratorcurr;
 		   Luogo curr;
 	       while (iterator.hasNext()) {
@@ -84,11 +76,7 @@ public class LuogoDAO {
 		    	    .withString("Città", città)
 		    	    .withString("Stato", stato)
 		    	    .withString("Indirizzo", indirizzo);
-
-		    
 		    PutItemOutcome outcome = table.putItem(item, null, null, null);
-		    
-		    
 		    }
 	 
 	 public static void elimina(String nome) {
