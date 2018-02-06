@@ -46,6 +46,8 @@ public class EventoController {
 		
 		
 	//tutte le possibili richieste della finestra utente sono gestite da questo metodo
+	
+	//Cerca gli eventi filtrando per i campi inseriti nella maschera di evento
 	public static void cerca (String nome, String data, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
 		
 		try {
@@ -67,11 +69,13 @@ public class EventoController {
 			doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
 			doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
 		
-			DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
+			/*DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
 			int i;
 			int j = model.getRowCount();
 			for (i=0; i<j; i++)
-            model.removeRow(0);
+            model.removeRow(0);*/
+			
+			FinestraUtente.azzeraTabellaEvento();
 			
 			List<Evento> risultati = EventoDAO.cerca( nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo);
 			
@@ -98,10 +102,13 @@ public class EventoController {
 						differenzaOdiernaIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataCurr);
 						differenzaFinaleIniziale = ChronoUnit.DAYS.between(LocalDataInserimento, LocalDataEvento);
 						prezzocurr = normalizzaPrezzo(differenzaOdiernaIniziale/differenzaFinaleIniziale * (curr.getPrezzoFinale() - curr.getPrezzoIniziale()) + curr.getPrezzoIniziale());
-						model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
+						
+						FinestraUtente.aggiungiElementoEvento( curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(),String.valueOf(prezzocurr));
+						//model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), prezzocurr});
 					}
 					else {
-						model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile"});
+						FinestraUtente.aggiungiElementoEvento( curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile");
+						//model.addRow (new Object[]{curr.getNome(), curr.getLuogo(), curr.getData(),curr.getDataInserimento(), curr.getPrezzoIniziale(), curr.getPrezzoFinale(), curr.getMassimoSpettatori(), curr.getTipo(), "Non disponibile"});
 					}
 				}
 			}
@@ -123,6 +130,8 @@ public class EventoController {
 		return EventoDAO.cerca("", "", 0.00, 0.00, 0, "", "");
 	}
 	
+	
+	//Modifica un evento selezionato usando i campi inseriti nella maschera
 	public static boolean modifica (String nome, String data, String datainserimento, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
 		try {
 			//Controllo iniziale: se c'è un campo vuoto in un inserimento questi deve essere impedito
@@ -163,6 +172,7 @@ public class EventoController {
 		}
 	}
 	
+	//Inserisce un evento con i dati inseriti nella maschera evento
 	public static void inserisci (String nome, String data, String prezzoiniziale, String prezzofinale, String maxspettatori, String tipo, String luogo) {
 		
 		try {
@@ -206,25 +216,29 @@ public class EventoController {
 	public static void elimina(String Nome) {
 		if(BigliettoController.isBigliettiVendutiEvento(Nome)==false) {
 			EventoDAO.elimina(Nome);
-			DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
+			
+			/*DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
 			int i;
 			int j = model.getRowCount();
 			for (i=0; i<j; i++)
-				model.removeRow(0);
+				model.removeRow(0);*/
+			FinestraUtente.azzeraTabellaEvento();
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">Evento eliminato correttamente </font></html>");
 		}else{
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">Evento non eliminabile, c'è almeno un biglietto venduto</font></html>");
 		}
 	}
 	
+	
+	//metodo che elimina tutti gli eventi che hanno un dato luogo, non svolge alcun controllo se vi sono o meno biglietti venduti per ogni evento (invocabile solo dopo un controllo di LuogoController)	
 	public static void eliminaPerLuogo(String Luogo) {
-		//metodo che elimina tutti gli eventi che hanno un dato luogo, non svolge alcun controllo se vi sono o meno biglietti venduti per ogni evento (invocabile solo dopo un controllo di LuogoController)
 		List<Evento> risultati = EventoDAO.cerca("","", 0.00, 0.00, 0, "", Luogo);
 		for(Evento curr:risultati) {
 			EventoDAO.elimina(curr.getNome());
 		}
 	}
 	
+	//controlla se una stringa puo' essere convertita a intero
 	public static boolean isInteger (String testo) throws Exception {
 		 
 		try {
@@ -235,7 +249,8 @@ public class EventoController {
 			 return false;
 		 }
 	}
-		
+	
+	//controlla se una stringa puo' essere convertita a double
 	public static boolean isDouble (String testo) throws Exception {
 		
 		try {
@@ -300,26 +315,23 @@ public class EventoController {
 		SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
         Date Datacurr = new Date();
         String strDatacurr = sdfDate.format(Datacurr);
-				for(Biglietto currBiglietto2:Biglietti){
-					currCliente=ClienteController.cerca(currBiglietto2.getCodFiscale());
-					if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<24){
-						classe1=classe1+1;
-					}else if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))>25 && ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<39 ) {
-						classe2=classe2+1;
-					}else {
-						classe3=classe3+1;
-					}
-				
+		for(Biglietto currBiglietto2:Biglietti){
+				currCliente=ClienteController.cerca(currBiglietto2.getCodFiscale());
+				if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<24){
+					classe1=classe1+1;
+				}else if(ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))>25 && ChronoUnit.YEARS.between(StringToDate(currCliente.getData()),StringToDate(strDatacurr))<39 ) {
+					classe2=classe2+1;
+				}else {
+					classe3=classe3+1;
 				}
+		}
 		String[] Età = {"<25","(26,40)","41+"};
 		int[] valori2 = {classe1,classe2,classe3};
 		PieChart piechart= new PieChart("Età dei clienti", 3, Età , valori2);
 		ChartPanel chartPanel2 = new ChartPanel(piechart.chart);
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		
 		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
 		chartPanel2.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
-	
 		StatisticheEvento frame = new StatisticheEvento(chartPanel, chartPanel2, Ricavato, BigliettiVenduti);
 		frame.setTitle("Statistiche relative a: " + nome);
 		frame.setVisible(true);
