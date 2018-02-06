@@ -17,8 +17,6 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 public class ClienteDAO {
 	
 	public static List<Cliente> cerca(String nome, String cognome, String email, String CodiceFiscale, String DataNascita) {
-	       
-		 
 		   String tableName = "Cliente";
 		   Iterator<Item> iterator = null;
 		   List<Cliente> risultati=new ArrayList<Cliente>();  
@@ -33,7 +31,6 @@ public class ClienteDAO {
 				        null);
 				         
 				       iterator = items.iterator();
-				   
 		   }else{ //un campo non è vuoto e deve costruire la query
 			   String ricerca = "";
 			   if(!(nome.equals(""))) {
@@ -67,9 +64,8 @@ public class ClienteDAO {
 				       iterator = items.iterator();
 				   
 				      
-		   		}
+		   	}
 		   //costruisce la lista con i risultati da restituire
-		  // System.out.println("[DAO] Si vuole cercare: " + nome + cognome + email + CodiceFiscale + DataNascita);
 		   Item iteratorcurr;
 		   Cliente curr;
 	       while (iterator.hasNext()) {
@@ -90,17 +86,15 @@ public class ClienteDAO {
 	 public static void inserisciModifica(String nome, String cognome, String email, String CodiceFiscale, String Data) {
 		    String tableName = "Cliente";
 		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		    //costruisce l'item e poi esegue un put inserendolo (se già presente lo modifica)
 		    Item item = new Item()
 		    	    .withPrimaryKey("CodiceFiscale", CodiceFiscale)
 		    	    .withString("Nome", nome)
 		    	    .withString("Cognome", cognome)
 		    	    .withString("Email", email)
 		    	    .withString("DataNascita", Data);
-		    
 		    PutItemOutcome outcome = table.putItem(item, null, null, null);
-		    
-		    
-		    }
+	}
 	 
 	 public static void elimina(String CodiceFiscale) {
 	        String tableName = "Cliente";
