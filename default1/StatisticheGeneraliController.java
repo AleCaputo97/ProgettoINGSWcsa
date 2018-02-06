@@ -23,10 +23,8 @@ statPanel.add(chartPanel);
 public class StatisticheGeneraliController {
 	
 	public static void TipoEventoPerLuogo () {
-		
 		String[] Tipologia = {"Concerto", "Evento sportivo", "Teatro", "Convegno", "Mostra","Altro"};
 		int[] Valori = {0,0,0,0,0,0};
-		
 		List<Evento> risultati = EventoController.cercaTuttiEventi();	
 		for(Evento curr:risultati) {
 			if (curr.getTipo().equals("Concerto"))
@@ -49,8 +47,6 @@ public class StatisticheGeneraliController {
 		FinestraUtente.statPanel.removeAll();
 		FinestraUtente.statPanel.add(chartPanel);
 		FinestraUtente.statPanel.revalidate();
-
-		
 	}
 	
 	
@@ -70,14 +66,10 @@ public class StatisticheGeneraliController {
 				for(int j=0;j<count;j++) dataset.addValue( valore[j] , nomiluoghi[j] , "luogo");  
 				BarChart chart = new BarChart("Istogramma","Numero di eventi per luogo", "", "Numero", dataset);
 				ChartPanel chartPanel = new ChartPanel(chart.chart);
-				
 				chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
-
 				FinestraUtente.statPanel.removeAll();
 				FinestraUtente.statPanel.add(chartPanel);
 				FinestraUtente.statPanel.revalidate();
-				
-
 		}
 	
 	
@@ -105,19 +97,17 @@ public class StatisticheGeneraliController {
 							classe7=classe7+1;
 					}
 						
-						}
-				String[] Età = {"<10","(10,20)","(20,30)","(30,40)","(40,50)","(50,60)","61+"};
-				int[] valori4 = {classe1,classe2,classe3,classe4,classe5,classe6,classe7};
-				DefaultCategoryDataset dataset4 = new DefaultCategoryDataset( ); 
-				for(int i=0;i<7;i++) dataset4.addValue( valori4[i] , "plot1" , Età[i]);
-				LineChart chart4= new LineChart( "", "Fasce d'età dei clienti", "", "Numero clienti", dataset4);
-				ChartPanel chartPanel = new ChartPanel(chart4.chart);
-				chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
-				FinestraUtente.statPanel.removeAll();
-				FinestraUtente.statPanel.add(chartPanel);
-				FinestraUtente.statPanel.revalidate();
-		
-		
+		}
+		String[] Età = {"<10","(10,20)","(20,30)","(30,40)","(40,50)","(50,60)","61+"};
+		int[] valori4 = {classe1,classe2,classe3,classe4,classe5,classe6,classe7};
+		DefaultCategoryDataset dataset4 = new DefaultCategoryDataset( ); 
+		for(int i=0;i<7;i++) dataset4.addValue( valori4[i] , "plot1" , Età[i]);
+		LineChart chart4= new LineChart( "", "Fasce d'età dei clienti", "", "Numero clienti", dataset4);
+		ChartPanel chartPanel = new ChartPanel(chart4.chart);
+		chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
+		FinestraUtente.statPanel.removeAll();
+		FinestraUtente.statPanel.add(chartPanel);
+		FinestraUtente.statPanel.revalidate();	
 	}
 	
 	public static void EventiRicavati () {
@@ -140,21 +130,21 @@ public class StatisticheGeneraliController {
 				j=j+1;
 				ricavatoCorrente=0;
 			}
-				DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
-				for(int k=0;k<i;k++) dataset.addValue( valori[k] , intervallo[k] , "Eventi");  
-				BarChart chart = new BarChart("Istogramma","Ricavato per evento", "", "Euro", dataset);
-				ChartPanel chartPanel = new ChartPanel(chart.chart);
-				chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
+			DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
+			for(int k=0;k<i;k++) dataset.addValue( valori[k] , intervallo[k] , "Eventi");  
+			BarChart chart = new BarChart("Istogramma","Ricavato per evento", "", "Euro", dataset);
+			ChartPanel chartPanel = new ChartPanel(chart.chart);
+			chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
 
-				FinestraUtente.statPanel.removeAll();
-				FinestraUtente.statPanel.add(chartPanel);
-				FinestraUtente.statPanel.revalidate();
+			FinestraUtente.statPanel.removeAll();
+			FinestraUtente.statPanel.add(chartPanel);
+			FinestraUtente.statPanel.revalidate();
 		}
 	
-				public static LocalDate StringToDate(String data) {
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
-					LocalDate LocalDataCurr;
-					LocalDataCurr = LocalDate.parse(data, formatter);
-					return LocalDataCurr;
-				}	
+	public static LocalDate StringToDate(String data) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+			LocalDate LocalDataCurr;
+			LocalDataCurr = LocalDate.parse(data, formatter);
+			return LocalDataCurr;
+	}	
 }
