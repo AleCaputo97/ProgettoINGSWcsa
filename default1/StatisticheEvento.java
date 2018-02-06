@@ -29,9 +29,7 @@ public class StatisticheEvento extends JFrame {
 	private JPanel contentPane;
 
 	public StatisticheEvento(ChartPanel chart, ChartPanel chart2, double soldispesi, int biglietticomprati) {
-		
 		try {
-			
 			URL url = new URL("https://raw.githubusercontent.com/AleCaputo97/ProgettoINGSWcsa/master/iconstat.png");
 			Image icon = ImageIO.read(url);  
 			Image newimg = icon.getScaledInstance(32, 32,  java.awt.Image.SCALE_SMOOTH);
@@ -40,7 +38,6 @@ public class StatisticheEvento extends JFrame {
 		catch(Exception e){ 
 		    	System.out.println(e);
 		}
-		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1209, 527);
@@ -49,13 +46,11 @@ public class StatisticheEvento extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
 		JPanel statPanel1 = new JPanel();
 		statPanel1.setBorder(null);
 		statPanel1.setBounds(10, 11, 955, 441);
 		contentPane.add(statPanel1);
 		statPanel1.add(chart);
-		
 		JTextPane textPaneSoldiGuadagnati = new JTextPane();
 		textPaneSoldiGuadagnati.setContentType("text/html");
 		textPaneSoldiGuadagnati.setEditable(false);
@@ -64,13 +59,12 @@ public class StatisticheEvento extends JFrame {
 		textPaneSoldiGuadagnati.setBounds(982, 126, 200, 50);
 		contentPane.add(textPaneSoldiGuadagnati);
 		textPaneSoldiGuadagnati.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		
 		JLabel lblNewLabel = new JLabel("Totale biglietti venduti");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(982, 78, 200, 27);
 		contentPane.add(lblNewLabel);
-
+		
 		JTextPane textPaneBigliettiVenduti = new JTextPane();
 		textPaneBigliettiVenduti.setContentType("text/html");
 		textPaneBigliettiVenduti.setEditable(false);
@@ -89,7 +83,6 @@ public class StatisticheEvento extends JFrame {
 		JButton btn = new JButton("Età dei clienti");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 					if (btn.getText().equals("Età dei clienti")) {
 						statPanel1.remove(chart);
 						statPanel1.add(chart2);
