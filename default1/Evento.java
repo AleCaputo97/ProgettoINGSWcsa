@@ -58,7 +58,35 @@ public class Evento {
 	public String getDataInserimento() {
 		return DataInserimento;
 	}
-
+	
+	public int getMeseInserimento() {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+    	LocalDate LocalDataInserimento = LocalDate.parse(getDataInserimento(), formatter); 
+    	int mese = LocalDataInserimento.getMonthValue();
+    	return mese;
+	}	
+	
+	public int getAnnoInserimento() {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+    	LocalDate LocalDataInserimento = LocalDate.parse(getDataInserimento(), formatter); 
+    	int anno = LocalDataInserimento.getYear();
+    	return anno;
+	}
+	public int getMeseEvento() {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+    	LocalDate LocalDataInserimento = LocalDate.parse(getData(), formatter); 
+    	int mese = LocalDataInserimento.getMonthValue();
+    	return mese;
+	}	
+	
+	public int getAnnoEvento() {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+    	LocalDate LocalDataInserimento = LocalDate.parse(getData(), formatter); 
+    	int anno = LocalDataInserimento.getYear();
+    	return anno;
+	}
+	
+	
 	//setter
 	public void setNome(String nome) {
 		 Nome=nome;
@@ -87,30 +115,4 @@ public class Evento {
 		Luogo=luogo;
 	}
 	
-	public int getMeseInserimento() {
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
-    	LocalDate LocalDataInserimento = LocalDate.parse(getDataInserimento(), formatter); 
-    	int mese = LocalDataInserimento.getMonthValue();
-    	return mese;
-	}	
-	
-	public int getAnnoInserimento() {
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
-    	LocalDate LocalDataInserimento = LocalDate.parse(getDataInserimento(), formatter); 
-    	int anno = LocalDataInserimento.getYear();
-    	return anno;
-	}
-	public int getMeseEvento() {
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
-    	LocalDate LocalDataInserimento = LocalDate.parse(getData(), formatter); 
-    	int mese = LocalDataInserimento.getMonthValue();
-    	return mese;
-	}	
-	
-	public int getAnnoEvento() {
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
-    	LocalDate LocalDataInserimento = LocalDate.parse(getData(), formatter); 
-    	int anno = LocalDataInserimento.getYear();
-    	return anno;
-	}
 }
