@@ -45,23 +45,17 @@ public class ConfermaEliminazione extends JFrame {
 		buttonno.setFont(new Font("Tahoma", Font.BOLD, 15));
 		buttonno.setBounds(39, 51, 135, 48);
 		contentPane.add(buttonno);
-		
 		JButton buttonsi = new JButton("S\u00CC");
 		buttonsi.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
-				
 				if (doveeliminare.equals("Cliente"))
 					ClienteController.elimina(elemento);
 				else if (doveeliminare.equals("Evento"))
 					EventoController.elimina(elemento);
 				else if (doveeliminare.equals("Luogo"))
 					LuogoController.elimina(elemento); 
-				
 				window.toggle();
-
 				ConfermaEliminazione.super.dispose();
-				
 			}
 		});
 		buttonsi.setFont(new Font("Tahoma", Font.BOLD, 15));
