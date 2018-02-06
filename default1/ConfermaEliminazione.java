@@ -28,7 +28,7 @@ public class ConfermaEliminazione extends JFrame {
 		
 		try {
 			
-			URL url = new URL("https://github.com/AleCaputo97/ProgettoINGSWcsa/blob/master/icondel.png");
+			URL url = new URL("https://raw.githubusercontent.com/AleCaputo97/ProgettoINGSWcsa/master/icondel.png");
 			Image icon = ImageIO.read(url);  
 			Image newimg = icon.getScaledInstance(32, 32,  java.awt.Image.SCALE_SMOOTH);
 		    this.setIconImage(newimg);

@@ -32,7 +32,7 @@ public class StatisticheEvento extends JFrame {
 		
 		try {
 			
-			URL url = new URL("https://github.com/AleCaputo97/ProgettoINGSWcsa/blob/master/iconstat.png");
+			URL url = new URL("https://raw.githubusercontent.com/AleCaputo97/ProgettoINGSWcsa/master/iconstat.png");
 			Image icon = ImageIO.read(url);  
 			Image newimg = icon.getScaledInstance(32, 32,  java.awt.Image.SCALE_SMOOTH);
 		    this.setIconImage(newimg);
