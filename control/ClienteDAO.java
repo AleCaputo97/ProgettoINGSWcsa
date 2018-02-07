@@ -19,7 +19,7 @@ import entity.*;
 import progettoINGSWcsa.*;
 public class ClienteDAO {
 	
-	public static List<Cliente> cerca(String nome, String cognome, String email, String CodiceFiscale, String DataNascita) {
+	public List<Cliente> cerca(String nome, String cognome, String email, String CodiceFiscale, String DataNascita) {
 		   String tableName = "Cliente";
 		   Iterator<Item> iterator = null;
 		   List<Cliente> risultati=new ArrayList<Cliente>();  
@@ -79,14 +79,14 @@ public class ClienteDAO {
 	   return risultati;
 	}
 	
-	 public static Cliente cerca(String CodFiscale) {
+	 public Cliente cerca(String CodFiscale) {
 		   String tableName = "Cliente";
 		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		   Item item = table.getItem("CodiceFiscale", CodFiscale);
 		   return new Cliente((String) item.get("Nome"),(String) item.get("Cognome"),(String)  item.get("Email"),(String) item.get("CodiceFiscale"),(String) item.get("DataNascita"));
 	 }
 	 
-	 public static void inserisciModifica(String nome, String cognome, String email, String CodiceFiscale, String Data) {
+	 public void inserisciModifica(String nome, String cognome, String email, String CodiceFiscale, String Data) {
 		    String tableName = "Cliente";
 		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		    //costruisce l'item e poi esegue un put inserendolo (se già presente lo modifica)
@@ -99,7 +99,7 @@ public class ClienteDAO {
 		    PutItemOutcome outcome = table.putItem(item, null, null, null);
 	}
 	 
-	 public static void elimina(String CodiceFiscale) {
+	 public void elimina(String CodiceFiscale) {
 	        String tableName = "Cliente";
 	        Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 	        DeleteItemOutcome outcome = table.deleteItem("CodiceFiscale", CodiceFiscale);
