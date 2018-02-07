@@ -37,6 +37,8 @@ public class ProgettoINGSWcsa {
 		ClienteController clienteController=new ClienteController(clienteDAO);
 		EventoDAO eventoDAO=new EventoDAO();
 		EventoController eventoController=new EventoController(eventoDAO);
+		BigliettoDAO bigliettoDAO=new BigliettoDAO();
+		BigliettoController bigliettoController=new BigliettoController(bigliettoDAO);
 		FinestraUtente window = new FinestraUtente();
 		window.frmProgettoingswcsa.setVisible(true);
 		
