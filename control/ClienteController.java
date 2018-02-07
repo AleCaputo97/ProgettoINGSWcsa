@@ -23,7 +23,12 @@ import boundary.*;
 import entity.*;
 import progettoINGSWcsa.*;
 public class ClienteController {
-    
+	static ClienteDAO clienteDAO;
+	
+	public ClienteController(ClienteDAO InputClienteDAO) {
+		clienteDAO=InputClienteDAO;
+	}
+	
 	private static String normalizza (String string) {
 		if (!(string.equals(""))) string = string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
 		return string;
@@ -59,7 +64,7 @@ public class ClienteController {
 			email=normalizzaEmail(email);
 			codicefiscale=normalizzaCF(codicefiscale);
 			FinestraUtente.azzeraTabellaCliente(); //funzione della Finestra Utente che azzera la table di Cliente
-			List<Cliente> risultati = ClienteDAO.cerca(nome, cognome, email, codicefiscale, data); 
+			List<Cliente> risultati = clienteDAO.cerca(nome, cognome, email, codicefiscale, data); 
 		
 			if (risultati.isEmpty())
 				FinestraUtente.messaggio.setText("Nessun risultato trovato");
@@ -71,11 +76,11 @@ public class ClienteController {
 	
 	//metodi di ricerca utili a fini statistici, devono eseguire una ricerca per Codice fiscale o altro parametro e ritornare una List<Cliente>
 	 public static Cliente cerca(String CodFiscale) {
-		 return ClienteDAO.cerca(CodFiscale);
+		 return clienteDAO.cerca(CodFiscale);
 	 }
 	 
 	 public static List<Cliente> cercaTuttiClienti(){
-		 return ClienteDAO.cerca("", "", "", "", "");
+		 return clienteDAO.cerca("", "", "", "", "");
 	 }
 	 
 	public static void inserisci (String nome, String cognome, String email, String codicefiscale, String data) {
@@ -92,7 +97,7 @@ public class ClienteController {
 				cognome=normalizza(cognome);
 				email=normalizzaEmail(email);
 				codicefiscale=normalizzaCF(codicefiscale);
-				ClienteDAO.inserisciModifica(nome, cognome, email, codicefiscale, data);
+				clienteDAO.inserisciModifica(nome, cognome, email, codicefiscale, data);
 				FinestraUtente.clienteClear.doClick();
 				FinestraUtente.messaggio.setText("<html><font color=\"green\">Cliente inserito correttamente </font></html>");
 			}
@@ -117,14 +122,14 @@ public class ClienteController {
 				cognome=normalizza(cognome);
 				email=normalizzaEmail(email);
 				codicefiscale=normalizzaCF(codicefiscale);
-				ClienteDAO.inserisciModifica(nome, cognome, email, codicefiscale, data);
+				clienteDAO.inserisciModifica(nome, cognome, email, codicefiscale, data);
 				FinestraUtente.clienteClear.doClick();
 				return true;
 			}
 	}
 	
 	public static void elimina(String CodiceFiscale) {
-		ClienteDAO.elimina(CodiceFiscale);
+		clienteDAO.elimina(CodiceFiscale);
 		BigliettoController.eliminaBiglietti(CodiceFiscale);
         FinestraUtente.azzeraTabellaCliente();
 		FinestraUtente.messaggio.setText("<html><font color=\"red\">Cliente eliminato correttamente </font></html>");
