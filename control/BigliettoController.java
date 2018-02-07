@@ -6,6 +6,13 @@ import entity.*;
 
 public class BigliettoController {
 
+	static BigliettoDAO bigliettoDAO;
+	
+	//costruttore 
+	 public BigliettoController(BigliettoDAO InputBiglietto) {
+		    bigliettoDAO=InputBiglietto;
+		  }
+	
 	private static String normalizza (String string) {	
 		if (!(string.equals(""))) string = string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
 		return string;	
@@ -19,17 +26,17 @@ public class BigliettoController {
 	
 	public static List<Biglietto> bigliettiVendutiEvento(String evento) {
 		evento=normalizza(evento);
-		return BigliettoDAO.cercaPerEvento(evento);	
+		return bigliettoDAO.cercaPerEvento(evento);	
 	}
 	
 	public static List<Biglietto> bigliettiVendutiLuogo(String luogo) {
 		luogo=normalizza(luogo);
-		return BigliettoDAO.cercaPerLuogo(luogo);	
+		return bigliettoDAO.cercaPerLuogo(luogo);	
 	}
 	
 	public static boolean isBigliettiVendutiEvento(String evento) {
 		evento=normalizza(evento);
-		if (BigliettoDAO.cercaPerEvento(evento).isEmpty()) {
+		if (bigliettoDAO.cercaPerEvento(evento).isEmpty()) {
 			return false;
 		}else {
 			return true;
@@ -38,7 +45,7 @@ public class BigliettoController {
 
 	public static boolean isBigliettiVendutiLuogo(String luogo) {
 		luogo=normalizza(luogo);
-		if (BigliettoDAO.cercaPerLuogo(luogo).isEmpty()) {
+		if (bigliettoDAO.cercaPerLuogo(luogo).isEmpty()) {
 			return false;
 		}else {
 			return true;
@@ -47,12 +54,12 @@ public class BigliettoController {
 
 	public static List<Biglietto> bigliettiPerCliente(String cf){
 		cf=normalizzaCF(cf);
-		return BigliettoDAO.cercaPerCodiceFiscale(cf);
+		return bigliettoDAO.cercaPerCodiceFiscale(cf);
 	}
 
 
 	public static void eliminaBiglietti(String CodiceFiscale) {
-		BigliettoDAO.eliminaBiglietti(CodiceFiscale);
+		bigliettoDAO.eliminaBiglietti(CodiceFiscale);
 	}
 
 }
