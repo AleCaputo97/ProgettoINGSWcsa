@@ -18,7 +18,7 @@ import entity.*;
 import progettoINGSWcsa.*;
 public class LuogoDAO {
 	
-	public static List<Luogo> cerca(String nome, String città, String stato, String indirizzo) {
+	public List<Luogo> cerca(String nome, String città, String stato, String indirizzo) {
 		   String tableName = "Luogo";
 		   Iterator<Item> iterator = null;
 		   List<Luogo> risultati=new ArrayList<Luogo>();  
@@ -70,7 +70,7 @@ public class LuogoDAO {
 	   return risultati;
 	}
 	
-	 public static void inserisciModifica(String nome, String città, String stato, String indirizzo) {
+	 public void inserisciModifica(String nome, String città, String stato, String indirizzo) {
 		    String tableName = "Luogo";
 		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		    Item item = new Item()
@@ -81,7 +81,7 @@ public class LuogoDAO {
 		    PutItemOutcome outcome = table.putItem(item, null, null, null);
 		    }
 	 
-	 public static void elimina(String nome) {
+	 public void elimina(String nome) {
 	        String tableName = "Luogo";
 	        Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 	        DeleteItemOutcome outcome = table.deleteItem("Nome", nome);
