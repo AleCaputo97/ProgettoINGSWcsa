@@ -18,7 +18,7 @@ import entity.*;
 import progettoINGSWcsa.*;
 public class EventoDAO {
 	
-	public static List<Evento> cerca(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {	 
+	public List<Evento> cerca(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {	 
 		   String tableName = "Evento";
 		   Iterator<Item> iterator = null;
 		   List<Evento> risultati=new ArrayList<Evento>();  
@@ -82,7 +82,7 @@ public class EventoDAO {
 	   return risultati;
 	}
 	
-	 public static Evento cerca(String nome) {
+	 public Evento cerca(String nome) {
 		   String tableName = "Evento";
 		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		   Item item = table.getItem("Nome", nome);
@@ -90,7 +90,7 @@ public class EventoDAO {
 	 }
 	 
 	 
-	 public static void inserisciModifica(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo, String datainserimento) {
+	 public void inserisciModifica(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo, String datainserimento) {
 		    String tableName = "Evento";
 		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 		    Item item = new Item()
@@ -105,7 +105,7 @@ public class EventoDAO {
 		    PutItemOutcome outcome = table.putItem(item, null, null, null);  
 		    }
 	 
-	 public static void elimina(String Nome) {
+	 public void elimina(String Nome) {
 	        String tableName = "Evento";
 	        Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 	        DeleteItemOutcome outcome = table.deleteItem("Nome", Nome);
