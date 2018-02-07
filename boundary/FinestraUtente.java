@@ -1,4 +1,4 @@
-package default1;
+package boundary;
 
 import java.awt.EventQueue;
 
@@ -63,7 +63,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import java.awt.Panel;
-
+import control.*;
+import entity.*;
 public class FinestraUtente {
 	
 	public static JLabel messaggio = new JLabel("");
@@ -1132,7 +1133,7 @@ public class FinestraUtente {
 	public void popolaeventocbLuogo (){
 		eventocbLuogo.removeAllItems();
 		eventocbLuogo.addItem("");
-		List<Luogo> risultati = LuogoDAO.cerca("","","","");
+		List<Luogo> risultati = LuogoController.cercaTuttiLuoghi();
 		for(Luogo curr:risultati){
 			eventocbLuogo.addItem(curr.getNome());
 		}

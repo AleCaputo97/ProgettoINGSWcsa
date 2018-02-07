@@ -1,4 +1,4 @@
-package default1;
+package progettoINGSWcsa;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,10 +15,12 @@ import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
- 
+
+import boundary.*;
+import control.*;
 public class ProgettoINGSWcsa {
     static AmazonDynamoDB dynamoDB;
-    static DynamoDB connessione;
+    public static DynamoDB connessione;
     
 	public static void main(String[] args) throws Exception {
 		 try 

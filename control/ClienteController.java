@@ -1,4 +1,4 @@
-package default1;
+package control;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -17,7 +17,11 @@ import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
 
-
+import boundary.FinestraUtente;
+import boundary.StatisticheCliente;
+import boundary.*;
+import entity.*;
+import progettoINGSWcsa.*;
 public class ClienteController {
     
 	private static String normalizza (String string) {

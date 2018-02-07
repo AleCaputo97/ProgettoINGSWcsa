@@ -1,4 +1,4 @@
-package default1;
+package control;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -15,10 +15,10 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-/*PerAggiungere Statistiche
-ChartPanel chartPanel = new ChartPanel(JFreeChart);
-statPanel.add(chartPanel);
-*/
+import boundary.FinestraUtente;
+import boundary.*;
+import entity.*;
+
 
 public class StatisticheGeneraliController {
 	

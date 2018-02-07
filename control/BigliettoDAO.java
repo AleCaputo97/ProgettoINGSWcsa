@@ -1,4 +1,4 @@
-package default1;
+package control;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +13,9 @@ import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
-
+import boundary.*;
+import entity.*;
+import progettoINGSWcsa.*;
 public class BigliettoDAO {
 	 public static void eliminaBiglietti(String CodiceFiscale) {
 	        String tableName = "Biglietto";

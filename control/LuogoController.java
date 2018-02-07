@@ -1,4 +1,4 @@
-package default1;
+package control;
 
 import java.awt.Color;
 import java.time.temporal.ChronoUnit;
@@ -10,6 +10,10 @@ import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartPanel;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import boundary.FinestraUtente;
+import boundary.StatisticheLuogo;
+import boundary.*;
+import entity.*;
 public class LuogoController {
 
 	private static String normalizza (String string) {

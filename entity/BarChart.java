@@ -1,4 +1,4 @@
-package default1;
+package entity;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -10,7 +10,7 @@ import org.jfree.ui.RefineryUtilities;
 
 public class BarChart extends ApplicationFrame {
 	
-	JFreeChart chart;
+	public JFreeChart chart;
    
    public BarChart( String applicationTitle , String chartTitle, String assex, String assey, DefaultCategoryDataset dataset) {
       super( applicationTitle );        

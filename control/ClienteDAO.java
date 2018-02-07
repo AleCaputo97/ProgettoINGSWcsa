@@ -1,6 +1,7 @@
-package default1;
+package control;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +14,9 @@ import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
-
+import boundary.*;
+import entity.*;
+import progettoINGSWcsa.*;
 public class ClienteDAO {
 	
 	public static List<Cliente> cerca(String nome, String cognome, String email, String CodiceFiscale, String DataNascita) {

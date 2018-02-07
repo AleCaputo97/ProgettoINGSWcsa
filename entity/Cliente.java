@@ -1,4 +1,4 @@
-package default1;
+package entity;
 
 public class Cliente {
 	//attributi

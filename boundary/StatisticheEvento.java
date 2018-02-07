@@ -1,4 +1,4 @@
-package default1;
+package boundary;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -23,7 +23,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.awt.event.ActionEvent;
-
+import control.*;
 public class StatisticheEvento extends JFrame {
 
 	private JPanel contentPane;

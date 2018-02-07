@@ -1,4 +1,4 @@
-package default1;
+package control;
 
 import java.awt.Color;
 import java.math.RoundingMode;
@@ -16,6 +16,10 @@ import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartPanel;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import boundary.FinestraUtente;
+import boundary.StatisticheEvento;
+import boundary.*;
+import entity.*;
 
 public class EventoController {
     

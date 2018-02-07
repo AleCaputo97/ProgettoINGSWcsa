@@ -1,4 +1,4 @@
-package default1;
+package entity;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -6,7 +6,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
 public class PieChart {
-	JFreeChart chart;
+	public JFreeChart chart;
 	
 	public PieChart (String nome, int numerospicchi, String spicchio[], int valore[]) {
 		 DefaultPieDataset dataset = new DefaultPieDataset( );
