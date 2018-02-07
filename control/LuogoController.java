@@ -15,6 +15,12 @@ import boundary.StatisticheLuogo;
 import boundary.*;
 import entity.*;
 public class LuogoController {
+	
+	static LuogoDAO luogoDAO;
+	  
+	  public LuogoController(LuogoDAO InputLuogo) {
+	    luogoDAO=InputLuogo;
+	  }
 
 	private static String normalizza (String string) {
 		if (!(string.equals(""))) string = string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
@@ -27,7 +33,7 @@ public class LuogoController {
 		stato=normalizza(stato);
 		indirizzo=normalizza(indirizzo);
         FinestraUtente.azzeraTabellaLuogo();
-		List<Luogo> risultati = LuogoDAO.cerca(nome,città,stato,indirizzo);
+		List<Luogo> risultati = luogoDAO.cerca(nome,città,stato,indirizzo);
 		if (risultati.isEmpty())
 			FinestraUtente.messaggio.setText("Nessun risultato trovato");
 		else {
@@ -44,7 +50,7 @@ public class LuogoController {
 			città=normalizza(città);
 			stato=normalizza(stato);
 			indirizzo=normalizza(indirizzo);
-			LuogoDAO.inserisciModifica(nome,città,stato,indirizzo);
+			luogoDAO.inserisciModifica(nome,città,stato,indirizzo);
 			FinestraUtente.luogoClear.doClick();
 			FinestraUtente.messaggio.setText("<html><font color=\"green\">Luogo inserito correttamente </font></html>");
 		}else{
@@ -58,7 +64,7 @@ public class LuogoController {
 			città=normalizza(città);
 			stato=normalizza(stato);
 			indirizzo=normalizza(indirizzo);
-			LuogoDAO.inserisciModifica(nome,città,stato,indirizzo);
+			luogoDAO.inserisciModifica(nome,città,stato,indirizzo);
 			FinestraUtente.luogoClear.doClick();
 			FinestraUtente.messaggio.setText("<html><font color=\"blue\">Luogo modificato correttamente </font></html>");
 			return true;
@@ -71,7 +77,7 @@ public class LuogoController {
 	public static void elimina(String nome) {
 		if (BigliettoController.isBigliettiVendutiLuogo(nome)==false) {
 		 EventoController.eliminaPerLuogo(nome);
-			LuogoDAO.elimina(nome);
+			luogoDAO.elimina(nome);
 			FinestraUtente.azzeraTabellaLuogo();
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">Luogo eliminato correttamente </font></html>");
 			}else{
@@ -81,7 +87,7 @@ public class LuogoController {
 	
 	
 	 public static List<Luogo> cercaTuttiLuoghi(){
-		 return LuogoDAO.cerca("", "", "", "");
+		 return luogoDAO.cerca("", "", "", "");
 	 }
 	 
 	
