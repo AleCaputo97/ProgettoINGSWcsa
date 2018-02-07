@@ -6,7 +6,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
 public class PieChart {
-	public JFreeChart chart;
+	private JFreeChart chart;
 	
 	public PieChart (String nome, int numerospicchi, String spicchio[], int valore[]) {
 		 DefaultPieDataset dataset = new DefaultPieDataset( );
@@ -18,6 +18,10 @@ public class PieChart {
 		         true,       
 		         true, 
 		         false);
+	}
+	
+	public JFreeChart getChart() {
+		return chart;
 	}
 
 }

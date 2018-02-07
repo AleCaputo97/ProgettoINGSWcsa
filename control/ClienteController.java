@@ -152,7 +152,7 @@ public class ClienteController {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<12;i++) dataset.addValue( SoldiPerMese[i] , Mese[i] , "mese");  
 		BarChart chart = new BarChart("Istogramma","Soldi spesi dal cliente", "", "Euro", dataset);
-		ChartPanel chartPanel = new ChartPanel(chart.chart);
+		ChartPanel chartPanel = new ChartPanel(chart.getChart());
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		//crea il PieChart con i luoghi frequentati
 		int num_concerti=0, num_eventi_sportivi=0, num_eventi_teatrali=0, num_convegni=0, num_mostre=0, num_altro=0;
@@ -171,7 +171,7 @@ public class ClienteController {
 		String Tipo[] = {"Concerto", "Evento sportivo", "Teatro","Convegno", "Mostra", "Altro"};
 		int valori[]={num_concerti,num_eventi_sportivi,num_eventi_teatrali,num_convegni,num_mostre,num_altro};
 		PieChart piechart= new PieChart("Tipologie di biglietti acquistati", 6, Tipo, valori);
-		ChartPanel chartPanel2 = new ChartPanel(piechart.chart);
+		ChartPanel chartPanel2 = new ChartPanel(piechart.getChart());
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
 		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));

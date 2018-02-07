@@ -115,7 +115,7 @@ public class LuogoController {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<12;i++) dataset.addValue( valori[i] , "plot1" , intervallo[i]);  
 		LineChart chart= new LineChart( "", "Eventi ospitati nell'anno "+anno, "", "Numero eventi", dataset);
-		ChartPanel chartPanel = new ChartPanel(chart.chart);
+		ChartPanel chartPanel = new ChartPanel(chart.getChart());
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
 		//Statistica2: numero clienti del luogo per anno
@@ -132,7 +132,7 @@ public class LuogoController {
 		DefaultCategoryDataset dataset2 = new DefaultCategoryDataset( ); 
 		for(int i=0;i<12;i++) dataset2.addValue( OspitiPerMese[i] , intervallo[i] , "mese");  
 		BarChart chart2 = new BarChart("Istogramma","Numero ospiti del luogo" +anno, "", "Numero ospiti", dataset);
-		ChartPanel chartPanel2 = new ChartPanel(chart2.chart);
+		ChartPanel chartPanel2 = new ChartPanel(chart2.getChart());
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
 		chartPanel2.setPreferredSize(new java.awt.Dimension( 955 , 430 ));

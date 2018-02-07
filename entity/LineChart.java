@@ -9,7 +9,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class LineChart extends ApplicationFrame {
-	public JFreeChart chart;
+	private JFreeChart chart;
 	
    public LineChart ( String applicationTitle , String Titolo,String asseX, String asseY, DefaultCategoryDataset dataset) {
       super(applicationTitle);
@@ -20,5 +20,9 @@ public class LineChart extends ApplicationFrame {
          PlotOrientation.VERTICAL,
          true,true,false);
    }
+   
+	public JFreeChart getChart() {
+		return chart;
+	}
    
 }
