@@ -17,7 +17,7 @@ import boundary.*;
 import entity.*;
 import progettoINGSWcsa.*;
 public class BigliettoDAO {
-	 public static void eliminaBiglietti(String CodiceFiscale) {
+	 public void eliminaBiglietti(String CodiceFiscale) {
 	        String tableName = "Biglietto";
 	        Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
 	        Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
@@ -36,7 +36,7 @@ public class BigliettoDAO {
 			       }
 	        }
 	 
-	 public static List<Biglietto> cercaPerEvento(String evento) {
+	 public List<Biglietto> cercaPerEvento(String evento) {
 		   String tableName = "Biglietto";
 		   Iterator<Item> iterator = null;
 		   List<Biglietto> risultati=new ArrayList<Biglietto>();  
@@ -60,7 +60,7 @@ public class BigliettoDAO {
 	   return risultati;
 	}
 	 
-	 public static List<Biglietto> cercaPerCodiceFiscale(String cf) {
+	 public List<Biglietto> cercaPerCodiceFiscale(String cf) {
 		   String tableName = "Biglietto";
 		   Iterator<Item> iterator = null;
 		   List<Biglietto> risultati=new ArrayList<Biglietto>();  
@@ -84,7 +84,7 @@ public class BigliettoDAO {
 	   return risultati;
 	}
 	 
-	 public static List<Biglietto> cercaPerLuogo(String luogo) {
+	 public List<Biglietto> cercaPerLuogo(String luogo) {
 		   String tableName = "Biglietto";
 		   Iterator<Item> iterator = null;
 		   List<Biglietto> risultati=new ArrayList<Biglietto>();  
