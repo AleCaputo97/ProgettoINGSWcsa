@@ -22,7 +22,12 @@ import boundary.*;
 import entity.*;
 
 public class EventoController {
-    
+	static EventoDAO eventoDAO;
+	
+	public EventoController(EventoDAO InputEventoDAO) {
+		eventoDAO=InputEventoDAO;
+	}
+	
 	private static String normalizza (String string) {
 		if (!(string.equals(""))) string = string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
 		return string;	
@@ -59,7 +64,7 @@ public class EventoController {
 			doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
 			doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
 			FinestraUtente.azzeraTabellaEvento();
-			List<Evento> risultati = EventoDAO.cerca( nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo);
+			List<Evento> risultati = eventoDAO.cerca( nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo);
 			if (risultati.isEmpty())
 				FinestraUtente.messaggio.setText("Nessun risultato trovato");
 			else {
@@ -96,14 +101,14 @@ public class EventoController {
 	//i seguenti metodi sono necessari perché serve un valore di ritorno che è una lista di Eventi
 	//ricerca per nome soltanto
 	public static Evento cerca(String Nome) {
-		return EventoDAO.cerca(Nome);
+		return eventoDAO.cerca(Nome);
 	}
 	//ricerca per luogo
 	public static List<Evento> cercaPerLuogo(String NomeLuogo) {
-		return EventoDAO.cerca("", "", 0.00, 0.00, 0, "", NomeLuogo);
+		return eventoDAO.cerca("", "", 0.00, 0.00, 0, "", NomeLuogo);
 	}
 	public static List<Evento> cercaTuttiEventi(){
-		return EventoDAO.cerca("", "", 0.00, 0.00, 0, "", "");
+		return eventoDAO.cerca("", "", 0.00, 0.00, 0, "", "");
 	}
 	
 	
@@ -125,7 +130,7 @@ public class EventoController {
 				nome=normalizza(nome);
 				doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
 				doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
-				EventoDAO.inserisciModifica(nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo, datainserimento);
+				eventoDAO.inserisciModifica(nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo, datainserimento);
 				FinestraUtente.eventoClear.doClick();
 				FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento modificato correttamente </font></html>");
 				return true;
@@ -163,7 +168,7 @@ public class EventoController {
 				SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
 				Date now = new Date();
 				String datacorrente = sdfDate.format(now);
-				EventoDAO.inserisciModifica(nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo, datacorrente);
+				eventoDAO.inserisciModifica(nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo, datacorrente);
 				FinestraUtente.eventoClear.doClick();
 				FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento inserito correttamente </font></html>");
 			}else{
@@ -177,7 +182,7 @@ public class EventoController {
 	
 	public static void elimina(String Nome) {
 		if(BigliettoController.isBigliettiVendutiEvento(Nome)==false) {
-			EventoDAO.elimina(Nome);
+			eventoDAO.elimina(Nome);
 			FinestraUtente.azzeraTabellaEvento();
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">Evento eliminato correttamente </font></html>");
 		}else{
@@ -188,9 +193,9 @@ public class EventoController {
 	
 	//metodo che elimina tutti gli eventi che hanno un dato luogo, non svolge alcun controllo se vi sono o meno biglietti venduti per ogni evento (invocabile solo dopo un controllo di LuogoController)	
 	public static void eliminaPerLuogo(String Luogo) {
-		List<Evento> risultati = EventoDAO.cerca("","", 0.00, 0.00, 0, "", Luogo);
+		List<Evento> risultati = eventoDAO.cerca("","", 0.00, 0.00, 0, "", Luogo);
 		for(Evento curr:risultati) {
-			EventoDAO.elimina(curr.getNome());
+			eventoDAO.elimina(curr.getNome());
 		}
 	}
 	
