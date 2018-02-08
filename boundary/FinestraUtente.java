@@ -322,7 +322,7 @@ public class FinestraUtente {
 		        
 			}
 		});
-		clienteClear.setBounds(831, 10, 80, 23);
+		clienteClear.setBounds(878, 10, 80, 23);
 		Cliente.add(clienteClear);
 		
 		clienteModifica.setEnabled(false);
@@ -382,10 +382,6 @@ public class FinestraUtente {
 		clienteModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
 		clienteModifica.setBounds(684, 150, 129, 23);
 		Cliente.add(clienteModifica);
-		
-		JButton clienteHelp = new JButton("?");
-		clienteHelp.setBounds(921, 10, 37, 23);
-		Cliente.add(clienteHelp);
 		
 
 		
@@ -613,10 +609,6 @@ public class FinestraUtente {
 		eventoStatistiche.setBounds(684, 116, 274, 23);
 		Evento.add(eventoStatistiche);
 		
-		JButton eventoHelp = new JButton("?");
-		eventoHelp.setBounds(921, 10, 37, 23);
-		Evento.add(eventoHelp);
-		
 		eventoClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -638,7 +630,7 @@ public class FinestraUtente {
 				
 			}
 		});
-		eventoClear.setBounds(831, 10, 80, 23);
+		eventoClear.setBounds(878, 10, 80, 23);
 		Evento.add(eventoClear);
 		
 		JLabel lblLuogo = new JLabel("Luogo");
@@ -855,10 +847,6 @@ public class FinestraUtente {
 		luogoStatistiche.setFont(new Font("Tahoma", Font.BOLD, 11));
 		luogoStatistiche.setBounds(684, 116, 274, 23);
 		Luogo.add(luogoStatistiche);
-		
-		JButton luogoHelp = new JButton("?");
-		luogoHelp.setBounds(921, 10, 37, 23);
-		Luogo.add(luogoHelp);
 		luogoClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -881,7 +869,7 @@ public class FinestraUtente {
 			}
 		});
 		
-		luogoClear.setBounds(831, 10, 80, 23);
+		luogoClear.setBounds(878, 10, 80, 23);
 		Luogo.add(luogoClear);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
