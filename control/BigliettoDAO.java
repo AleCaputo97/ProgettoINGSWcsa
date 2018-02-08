@@ -17,6 +17,14 @@ import boundary.*;
 import entity.*;
 import progettoINGSWcsa.*;
 public class BigliettoDAO {
+	private DynamoDB connessione;
+	
+	public BigliettoDAO(DynamoDB input) {
+		connessione=input;
+	}
+	
+	
+	
 	 public void eliminaBiglietti(String CodiceFiscale) {
 	        String tableName = "Biglietto";
 	        Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
