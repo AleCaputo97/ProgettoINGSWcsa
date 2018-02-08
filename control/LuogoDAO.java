@@ -17,7 +17,7 @@ import boundary.*;
 import entity.*;
 import progettoINGSWcsa.*;
 public class LuogoDAO {
-	DynamoDB connessione;
+	private DynamoDB connessione;
 	//costruttore che prende in input soltanto la connessione con il database
 	public LuogoDAO(DynamoDB Connessione) {
 		connessione=Connessione;
