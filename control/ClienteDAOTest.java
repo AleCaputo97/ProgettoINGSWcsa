@@ -31,7 +31,7 @@ class ClienteDAOTest {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@Before
+	@BeforeEach
 	void setUp() throws Exception {
 		ProfileCredentialsProvider credentialsProvider = new ProfileCredentialsProvider();
         try {
@@ -50,15 +50,15 @@ class ClienteDAOTest {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@After
+	@AfterEach
 	void tearDown() throws Exception {
-		clienteDAO.elimina("QWERTYUIOPLKJHGF");
+		clienteDAO.elimina("MCHSVM73R09F284X");
 	}
 
 	@Test
 	void cercaTest() {
-		List<Cliente> risultati = (List<Cliente>) clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
-		for(Cliente curr:risultati) assertEquals("Errore, i parametri non coincidono","9 ottobre 1973", curr.getData());
+		List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
+		for(Cliente curr:risultati) assertEquals("Errore, i parametri non coincidono","Michele", curr.getNome());
 		
 	}
 
