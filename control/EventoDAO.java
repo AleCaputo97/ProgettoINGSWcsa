@@ -17,6 +17,11 @@ import boundary.*;
 import entity.*;
 import progettoINGSWcsa.*;
 public class EventoDAO {
+	DynamoDB connessione;
+	//costruttore che prende in input soltanto la connessione con il database
+	public EventoDAO(DynamoDB Connessione) {
+		connessione=Connessione;
+	}
 	
 	public List<Evento> cerca(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {	 
 		   String tableName = "Evento";
