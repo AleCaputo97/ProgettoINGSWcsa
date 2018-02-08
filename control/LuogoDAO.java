@@ -17,6 +17,11 @@ import boundary.*;
 import entity.*;
 import progettoINGSWcsa.*;
 public class LuogoDAO {
+	DynamoDB connessione;
+	//costruttore che prende in input soltanto la connessione con il database
+	public LuogoDAO(DynamoDB Connessione) {
+		connessione=Connessione;
+	}
 	
 	public List<Luogo> cerca(String nome, String città, String stato, String indirizzo) {
 		   String tableName = "Luogo";
