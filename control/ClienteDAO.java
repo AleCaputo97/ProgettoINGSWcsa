@@ -29,7 +29,7 @@ public class ClienteDAO {
 		   String tableName = "Cliente";
 		   Iterator<Item> iterator = null;
 		   List<Cliente> risultati=new ArrayList<Cliente>();  
-		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Table table = connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto
 		   if(CodiceFiscale.equals("") && nome.equals("") && cognome.equals("") && email.equals("") && DataNascita.equals("")) {
@@ -87,14 +87,14 @@ public class ClienteDAO {
 	
 	 public Cliente cerca(String CodFiscale) {
 		   String tableName = "Cliente";
-		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Table table = connessione.getTable(tableName);
 		   Item item = table.getItem("CodiceFiscale", CodFiscale);
 		   return new Cliente((String) item.get("Nome"),(String) item.get("Cognome"),(String)  item.get("Email"),(String) item.get("CodiceFiscale"),(String) item.get("DataNascita"));
 	 }
 	 
 	 public void inserisciModifica(String nome, String cognome, String email, String CodiceFiscale, String Data) {
 		    String tableName = "Cliente";
-		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		    Table table = connessione.getTable(tableName);
 		    //costruisce l'item e poi esegue un put inserendolo (se già presente lo modifica)
 		    Item item = new Item()
 		    	    .withPrimaryKey("CodiceFiscale", CodiceFiscale)
@@ -107,7 +107,7 @@ public class ClienteDAO {
 	 
 	 public void elimina(String CodiceFiscale) {
 	        String tableName = "Cliente";
-	        Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+	        Table table = connessione.getTable(tableName);
 	        DeleteItemOutcome outcome = table.deleteItem("CodiceFiscale", CodiceFiscale);
 	        }
 }
