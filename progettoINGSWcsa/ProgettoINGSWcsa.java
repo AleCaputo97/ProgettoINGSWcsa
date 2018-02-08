@@ -31,13 +31,13 @@ public class ProgettoINGSWcsa {
 		    }
 		init();
 		connessione = new DynamoDB(dynamoDB);
-		LuogoDAO luogoDAO=new LuogoDAO();
+		LuogoDAO luogoDAO=new LuogoDAO(connessione);
 		LuogoController luogoController=new LuogoController(luogoDAO);
-		ClienteDAO clienteDAO=new ClienteDAO();
+		ClienteDAO clienteDAO=new ClienteDAO(connessione);
 		ClienteController clienteController=new ClienteController(clienteDAO);
-		EventoDAO eventoDAO=new EventoDAO();
+		EventoDAO eventoDAO=new EventoDAO(connessione);
 		EventoController eventoController=new EventoController(eventoDAO);
-		BigliettoDAO bigliettoDAO=new BigliettoDAO();
+		BigliettoDAO bigliettoDAO=new BigliettoDAO(connessione);
 		BigliettoController bigliettoController=new BigliettoController(bigliettoDAO);
 		FinestraUtente window = new FinestraUtente();
 		window.frmProgettoingswcsa.setVisible(true);
