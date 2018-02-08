@@ -16,6 +16,10 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 
+import boundary.FinestraUtente;
+
+import java.util.*;
+import entity.*;
 /**
  * @author cresc
  *
@@ -40,7 +44,7 @@ class ClienteDAOTest {
             .build();
 		connessione = new DynamoDB(dynamoDB);
 	    clienteDAO=new ClienteDAO(connessione);
-		clienteDAO.inserisciModifica("Michele", "Caparezza", "michelecaparezza@gmail.com", "QWERTYUIOPLKJHGF", "9 ottobre 1973");
+		clienteDAO.inserisciModifica("Michele", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");
 	}
 
 	/**
@@ -52,8 +56,10 @@ class ClienteDAOTest {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void cercaTest() {
+		List<Cliente> risultati = (List<Cliente>) clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
+		for(Cliente curr:risultati) assertEquals("Errore, i parametri non coincidono","9 ottobre 1973", curr.getData());
+		
 	}
 
 }
