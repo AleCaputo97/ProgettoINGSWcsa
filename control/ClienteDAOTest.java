@@ -90,6 +90,7 @@ class ClienteDAOTest {
 		assertEquals("9 ottobre 1973", risultato.getData());
 	}
 	
+	@Test
 	void eliminaPerCodFiscale(){
 		int count=0,count2=0;
 		List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", "");
@@ -101,7 +102,7 @@ class ClienteDAOTest {
 		assertEquals(count2, 0);
 		}
 
-	
+	@Test
 	void inserisciModificaTest() {
 	    clienteDAO.inserisciModifica("Ani", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");
 	    List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
