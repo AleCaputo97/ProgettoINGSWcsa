@@ -57,17 +57,39 @@ class ClienteDAOTest {
 	}
 
 	@Test
-	void cercaPerQualunqueInputTest() {
-		List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
-		for(Cliente curr:risultati) assertEquals("Michele", curr.getNome());
+	void cercaConTuttiParametriTest() {
+		List<Cliente> risultati = clienteDAO.cerca("Michele", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");
+		for(Cliente curr:risultati){
+		assertEquals("MCHSVM73R09F284X", curr.getCodiceFiscale());
+		assertEquals("Michele", curr.getNome());
+		assertEquals("Caparezza", curr.getCognome());
+		assertEquals("michelecaparezza@gmail.com", curr.getEmail());
+		assertEquals("9 ottobre 1973", curr.getData());
+		}
 	}
+	
+	@Test
+	void cercaSenzaParametriTest() {
+		int count=0;
+		List<Cliente> risultati = clienteDAO.cerca("", "", "", "", "");
+		for(Cliente curr:risultati){
+			if (curr.getCodiceFiscale().equals("MCHSVM73R09F284X")) {
+				count++;
+			}
+		}
+		assertEquals(1,count);
+	}
+	
 	@Test
 	void cercaPerCodiceFiscaleTest() {
 		Cliente risultato = clienteDAO.cerca("MCHSVM73R09F284X"); 
 		assertEquals("MCHSVM73R09F284X", risultato.getCodiceFiscale());
+		assertEquals("Michele", risultato.getNome());
+		assertEquals("Caparezza", risultato.getCognome());
+		assertEquals("michelecaparezza@gmail.com", risultato.getEmail());
+		assertEquals("9 ottobre 1973", risultato.getData());
 	}
 	
-	@Test
 	void eliminaPerCodFiscale(){
 		int count=0,count2=0;
 		List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", "");
@@ -79,7 +101,7 @@ class ClienteDAOTest {
 		assertEquals(count2, 0);
 		}
 
-	@Test
+	
 	void inserisciModificaTest() {
 	    clienteDAO.inserisciModifica("Ani", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");
 	    List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
