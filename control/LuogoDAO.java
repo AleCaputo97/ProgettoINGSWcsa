@@ -27,7 +27,7 @@ public class LuogoDAO {
 		   String tableName = "Luogo";
 		   Iterator<Item> iterator = null;
 		   List<Luogo> risultati=new ArrayList<Luogo>();  
-		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Table table = connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto
 		   if(nome.equals("") && città.equals("") && stato.equals("") && indirizzo.equals("")) {
@@ -77,7 +77,7 @@ public class LuogoDAO {
 	
 	 public void inserisciModifica(String nome, String città, String stato, String indirizzo) {
 		    String tableName = "Luogo";
-		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		    Table table = connessione.getTable(tableName);
 		    Item item = new Item()
 		    	    .withPrimaryKey("Nome", nome)
 		    	    .withString("Città", città)
@@ -88,7 +88,7 @@ public class LuogoDAO {
 	 
 	 public void elimina(String nome) {
 	        String tableName = "Luogo";
-	        Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+	        Table table = connessione.getTable(tableName);
 	        DeleteItemOutcome outcome = table.deleteItem("Nome", nome);
 	        }
 
