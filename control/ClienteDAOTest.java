@@ -6,6 +6,7 @@ package control;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,8 +59,7 @@ class ClienteDAOTest {
 	@Test
 	void cercaTest() {
 		List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
-		for(Cliente curr:risultati) assertEquals("Errore, i parametri non coincidono","Michele", curr.getNome());
-		
+		for(Cliente curr:risultati) assertEquals("Michele", curr.getNome());
 	}
 
 }
