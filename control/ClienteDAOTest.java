@@ -57,9 +57,14 @@ class ClienteDAOTest {
 	}
 
 	@Test
-	void cercaTest() {
+	void cercaPerQualunqueInputTest() {
 		List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
 		for(Cliente curr:risultati) assertEquals("Michele", curr.getNome());
+	}
+	@Test
+	void cercaPerCodiceFiscaleTest() {
+		Cliente risultato = clienteDAO.cerca("MCHSVM73R09F284X"); 
+		assertEquals("MCHSVM73R09F284X", risultato.getCodiceFiscale());
 	}
 
 }
