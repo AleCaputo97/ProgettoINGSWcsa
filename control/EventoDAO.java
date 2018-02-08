@@ -17,7 +17,7 @@ import boundary.*;
 import entity.*;
 import progettoINGSWcsa.*;
 public class EventoDAO {
-	DynamoDB connessione;
+	private DynamoDB connessione;
 	//costruttore che prende in input soltanto la connessione con il database
 	public EventoDAO(DynamoDB Connessione) {
 		connessione=Connessione;
@@ -27,7 +27,7 @@ public class EventoDAO {
 		   String tableName = "Evento";
 		   Iterator<Item> iterator = null;
 		   List<Evento> risultati=new ArrayList<Evento>();  
-		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Table table =connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto
 		   if(nome.equals("") && data.equals("") && prezzoiniziale==0.00 && prezzofinale==0.00 && maxspettatori==0 && tipo.equals("")&& luogo.equals("")) {
@@ -89,7 +89,7 @@ public class EventoDAO {
 	
 	 public Evento cerca(String nome) {
 		   String tableName = "Evento";
-		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Table table =connessione.getTable(tableName);
 		   Item item = table.getItem("Nome", nome);
 		   return new Evento((String) item.get("Nome"),(String) item.get("DataEvento"),(double) Double.parseDouble(item.get("PrezzoIniziale").toString()),(double) Double.parseDouble(item.get("PrezzoFinale").toString()),(int) Integer.parseInt(item.get("MassimoSpettatori").toString()),(String) item.get("Tipo"), (String) item.get("Luogo"), (String) item.get("DataInserimento"));
 	 }
@@ -97,7 +97,7 @@ public class EventoDAO {
 	 
 	 public void inserisciModifica(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo, String datainserimento) {
 		    String tableName = "Evento";
-		    Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		    Table table = connessione.getTable(tableName);
 		    Item item = new Item()
 		    	    .withPrimaryKey("Nome", nome)
 		    	    .withString("DataEvento", data)
@@ -112,7 +112,7 @@ public class EventoDAO {
 	 
 	 public void elimina(String Nome) {
 	        String tableName = "Evento";
-	        Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+	        Table table = connessione.getTable(tableName);
 	        DeleteItemOutcome outcome = table.deleteItem("Nome", Nome);
 	        }
 }
