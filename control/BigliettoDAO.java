@@ -27,7 +27,7 @@ public class BigliettoDAO {
 	
 	 public void eliminaBiglietti(String CodiceFiscale) {
 	        String tableName = "Biglietto";
-	        Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+	        Table table = connessione.getTable(tableName);
 	        Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 	        expressionAttributeValues.put(":CodFiscale", CodiceFiscale);
 	        ItemCollection<ScanOutcome> items = table.scan (
@@ -48,7 +48,7 @@ public class BigliettoDAO {
 		   String tableName = "Biglietto";
 		   Iterator<Item> iterator = null;
 		   List<Biglietto> risultati=new ArrayList<Biglietto>();  
-		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Table table = connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   expressionAttributeValues.put(":evento", evento);
 			    ItemCollection<ScanOutcome> items = table.scan (
@@ -72,7 +72,7 @@ public class BigliettoDAO {
 		   String tableName = "Biglietto";
 		   Iterator<Item> iterator = null;
 		   List<Biglietto> risultati=new ArrayList<Biglietto>();  
-		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Table table = connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   expressionAttributeValues.put(":cf", cf);
 			    ItemCollection<ScanOutcome> items = table.scan (
@@ -96,7 +96,7 @@ public class BigliettoDAO {
 		   String tableName = "Biglietto";
 		   Iterator<Item> iterator = null;
 		   List<Biglietto> risultati=new ArrayList<Biglietto>();  
-		   Table table = ((DynamoDB) ProgettoINGSWcsa.connessione).getTable(tableName);
+		   Table table = connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   expressionAttributeValues.put(":luogo", luogo);
 		   ItemCollection<ScanOutcome> items = table.scan (
