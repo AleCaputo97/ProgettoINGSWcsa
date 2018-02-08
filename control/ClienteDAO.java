@@ -19,6 +19,12 @@ import entity.*;
 import progettoINGSWcsa.*;
 public class ClienteDAO {
 	
+	private DynamoDB connessione;
+	
+	public ClienteDAO(DynamoDB input) {
+		connessione=input;
+	}
+	
 	public List<Cliente> cerca(String nome, String cognome, String email, String CodiceFiscale, String DataNascita) {
 		   String tableName = "Cliente";
 		   Iterator<Item> iterator = null;
