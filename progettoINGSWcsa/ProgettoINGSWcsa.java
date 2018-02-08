@@ -20,7 +20,7 @@ import boundary.*;
 import control.*;
 public class ProgettoINGSWcsa {
     static AmazonDynamoDB dynamoDB;
-    public static DynamoDB connessione;
+    private static DynamoDB connessione;
     
 	public static void main(String[] args) throws Exception {
 		 try 
