@@ -119,9 +119,12 @@ public class FinestraUtente {
 	private JTextField luogotfStato;
 	private JTextField luogotfIndirizzo;
 	private JTextField luogotfNome;
+	//utili per modellare la relazione nel class diagram generato da Eclipse, in realtà dichiarazioni non necessarie poiché i controller sono statici
 	private BigliettoController biglietto;
 	private ClienteController cliente;
 	private LuogoController luogo;
+	private StatisticheGeneraliController statistiche;
+	private EventoController evento;
 	/**
 	 * Launch the application.
 	 */
