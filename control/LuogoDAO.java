@@ -45,7 +45,7 @@ public class LuogoDAO {
 			   }
 			   if(!(città.equals(""))) {
 				   expressionAttributeValues.put(":citta", città);
-				   ricerca=ricerca + "AND Città = :citta ";
+				   ricerca=ricerca + "AND Citta = :citta ";
 				   }
 			   if(!(stato.equals(""))) {
 				   ricerca=ricerca + "AND Stato = :stato ";
