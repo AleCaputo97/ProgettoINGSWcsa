@@ -69,6 +69,36 @@ class BigliettoDAOTest {
 	}
 	
 	@Test
+	void cercaPerEventoTest() {
+		List<Biglietto> risultato = bigliettoDAO.cercaPerEvento("Test"); 
+		for(Biglietto curr:risultato) {
+			if(curr.getNumeroBiglietto().equals("8710a")) {
+						assertEquals("8710a", curr.getNumeroBiglietto());
+						assertEquals("MCHSVM73R09F284X", curr.getCodFiscale());
+						assertEquals("1 aprile 2018", curr.getDataAcquisto());
+						assertEquals("Test", curr.getEvento());
+						assertEquals("Croke park", curr.getLuogo());
+						assertEquals(112, curr.getPrezzo());
+			}
+		}
+	}
+	
+	@Test
+	void cercaPerLuogoTest() {
+		List<Biglietto> risultato = bigliettoDAO.cercaPerLuogo("Croke park"); 
+		for(Biglietto curr:risultato) {
+			if(curr.getNumeroBiglietto().equals("8710a")) {
+						assertEquals("8710a", curr.getNumeroBiglietto());
+						assertEquals("MCHSVM73R09F284X", curr.getCodFiscale());
+						assertEquals("1 aprile 2018", curr.getDataAcquisto());
+						assertEquals("Test", curr.getEvento());
+						assertEquals("Croke park", curr.getLuogo());
+						assertEquals(112, curr.getPrezzo());
+			}
+		}
+	}
+	
+	@Test
 	void eliminaPerCodFiscale(){
 		int count=0,count2=0;
 		List<Biglietto> risultati = bigliettoDAO.cercaPerCodiceFiscale("MCHSVM73R09F284X");
