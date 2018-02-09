@@ -75,6 +75,15 @@ public class LuogoDAO {
 	   return risultati;
 	}
 	
+	
+	 public Luogo cerca(String nome) {
+		   String tableName = "Luogo";
+		   Table table =connessione.getTable(tableName);
+		   Item item = table.getItem("Nome", nome);
+		   return new Luogo((String) item.get("Nome"),(String) item.get("Città"),(String) item.get("Stato"),(String) item.get("Indirizzo"));
+	 }
+	
+	
 	 public void inserisciModifica(String nome, String città, String stato, String indirizzo) {
 		    String tableName = "Luogo";
 		    Table table = connessione.getTable(tableName);
