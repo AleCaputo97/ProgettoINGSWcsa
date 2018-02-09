@@ -121,7 +121,7 @@ public class ClienteController {
 		}else if(!p.matcher(email).matches()) {
 				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: la mail non è nel formato testo@dominio.testo </font></html>");
 				return false;
-		}else if((clienteDAO.cerca("","",email,"","")).size()>0) {
+		}else if((clienteDAO.cerca("","",email,"","")).size()>1) {
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: email già esistente </font></html>");
 			return false;
 		}else{
