@@ -126,7 +126,15 @@ public class EventoController {
 				}
 				if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale.replaceAll(",", "."));
 				if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale.replaceAll(",", "."));
-				if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);	
+				if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);
+				if(doubleprezzoiniziale>doubleprezzofinale) {
+					FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: prezzo finale minore del prezzo iniziale </font></html>");
+					return false;
+				}
+				if(intmaxspettatori<=0) {
+					FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE:   il numero massimo di spettatori deve essere maggiore di 0 </font></html>");
+					return false;
+				}
 				nome=normalizza(nome);
 				doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
 				doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
@@ -159,9 +167,21 @@ public class EventoController {
 					FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Prezzo iniziale e finale e il numero di spettatori devono essere valori numerici!</font></html>");
 					return;
 				}
+				if((eventoDAO.cerca(normalizza(nome)))!=null) {
+					FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: nome evento già esistente </font></html>");
+					return;
+				}
 				if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale.replaceAll(",", "."));
 				if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale.replaceAll(",", "."));
 				if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);	
+				if(doubleprezzoiniziale>doubleprezzofinale) {
+					FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: prezzo finale minore del prezzo iniziale </font></html>");
+					return;
+				}
+				if(intmaxspettatori<=0) {
+					FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE:   il numero massimo di spettatori deve essere maggiore di 0 </font></html>");
+					return;
+				}
 				nome=normalizza(nome);
 				doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
 				doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
