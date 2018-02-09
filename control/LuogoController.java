@@ -46,6 +46,10 @@ public class LuogoController {
 	
 	public static void inserisci (String nome, String città, String stato, String indirizzo) {
 		if((!nome.equals("")&&!città.equals("")&&!stato.equals("")&&!indirizzo.equals(""))) {
+			if((luogoDAO.cerca(normalizza(nome)))!=null) {
+				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: luogo già esistente </font></html>");
+				return;
+			}else{
 			nome=normalizza(nome);
 			città=normalizza(città);
 			stato=normalizza(stato);
@@ -53,6 +57,7 @@ public class LuogoController {
 			luogoDAO.inserisciModifica(nome,città,stato,indirizzo);
 			FinestraUtente.luogoClear.doClick();
 			FinestraUtente.messaggio.setText("<html><font color=\"green\">Luogo inserito correttamente </font></html>");
+			}
 		}else{
 			FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto </font></html>");
 		}
