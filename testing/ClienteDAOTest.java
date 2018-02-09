@@ -65,19 +65,18 @@ class ClienteDAOTest {
 		int count=0;
 		List<Cliente> risultati = clienteDAO.cerca("Michele", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");
 		for(Cliente curr:risultati){
-		assertEquals("MCHSVM73R09F284X", curr.getCodiceFiscale());
-		assertEquals("Michele", curr.getNome());
-		assertEquals("Caparezza", curr.getCognome());
-		assertEquals("michelecaparezza@gmail.com", curr.getEmail());
-		assertEquals("9 ottobre 1973", curr.getData());
+			assertEquals("MCHSVM73R09F284X", curr.getCodiceFiscale());
+			assertEquals("Michele", curr.getNome());
+			assertEquals("Caparezza", curr.getCognome());
+			assertEquals("michelecaparezza@gmail.com", curr.getEmail());
+			assertEquals("9 ottobre 1973", curr.getData());
+		}
 		//Test2: si cerca se tra tutti i risultati di una ricerca generica vi è quello inserito nel setup
 		risultati = clienteDAO.cerca("", "", "", "", "");
 		for(Cliente curr2:risultati){
 			if (curr2.getCodiceFiscale().equals("MCHSVM73R09F284X")) count++;
 		}
 		assertEquals(1,count);
-		
-		}
 	}
 	
 	

@@ -81,13 +81,21 @@ class EventoDAOTest {
 		List<Evento> risultati2 = eventoDAO.cerca("test2018", "", 00.00, 00.00, 0,"","");
 					for(Evento curr2:risultati2) count2=count2+1;
 		assertEquals(count2, 0);
-		}
+	}
 
 	@Test
 	void inserisciModificaTest() {
+		//test di un inserimento
 	    eventoDAO.inserisciModifica("test20_18", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park", "10 febbraio 2018");
 	    List<Evento> risultati = eventoDAO.cerca("test20_18", "", 00.00, 00.00, 0, "", "");
 	    for(Evento curr:risultati) assertEquals("test20_18", curr.getNome());
 	    eventoDAO.elimina("test20_18");
+	    //test di una modifica
+	    eventoDAO.inserisciModifica("test2018", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park", "10 MARZO 2018");
+	    risultati = eventoDAO.cerca("test2018", "", 00.00, 00.00, 0, "", "");
+	    for(Evento curr:risultati) {
+	    	assertEquals("test2018", curr.getNome());
+	    	assertEquals("10 MARZO 2018", curr.getData());
 	    }
+	}
 }

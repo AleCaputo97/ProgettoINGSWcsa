@@ -23,16 +23,13 @@ import control.LuogoDAO;
 import java.util.*;
 import entity.*;
 /**
- * @author cresc
  *
  */
 class LuogoDAOTest {
     static AmazonDynamoDB dynamoDB;
     private static DynamoDB connessione;
     private LuogoDAO luogoDAO;
-	/**
-	 * @throws java.lang.Exception
-	 */
+    
 	@BeforeEach //crea la connessione con il database hostato su AWS
 	void setUp() throws Exception {
 		ProfileCredentialsProvider credentialsProvider = new ProfileCredentialsProvider();
@@ -63,7 +60,7 @@ class LuogoDAOTest {
 	void cercaConTuttiParametriTest() {
 		//Test1: si cerca il luogo inserito nell'operazione di setup
 		int count=0;
-		List<Luogo> risultati = luogoDAO.cerca("Test2018", "Napoli","Italia","via Cinthia");
+		List<Luogo> risultati = luogoDAO.cerca("Test2018","Napoli","Italia","via Cinthia");
 		for(Luogo curr:risultati){
 			assertEquals("Test2018", curr.getNome());
 			assertEquals("Napoli", curr.getCittà());
@@ -94,10 +91,19 @@ class LuogoDAOTest {
 
 	@Test
 	void inserisciModificaTest() {
-	    luogoDAO.inserisciModifica("Test2018", "Roma","Italia","via Cinthia");
-	    List<Luogo> risultati = luogoDAO.cerca("Test2018", "","","");
-	    for(Luogo curr:risultati) assertEquals("Test2018", curr.getNome());
-	  }
+		//Test di inserimento
+	    luogoDAO.inserisciModifica("Test2019", "Roma","Italia","via Cinthia");
+	    List<Luogo> risultati = luogoDAO.cerca("Test2019", "","","");
+	    for(Luogo curr:risultati) assertEquals("Test2019", curr.getNome());
+	    //test di modifica
+	    luogoDAO.inserisciModifica("Test2019", "MILANO","Italia","via Cinthia");
+	    risultati = luogoDAO.cerca("Test2019", "","","");
+	    for(Luogo curr:risultati) {
+	    	assertEquals("Test2019", curr.getNome());
+	    	assertEquals("MILANO", curr.getCittà());
+	    }
+	    luogoDAO.elimina("Test2019");
+	}
 	
 	
 }
