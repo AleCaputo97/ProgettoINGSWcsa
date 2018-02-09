@@ -116,4 +116,18 @@ public class BigliettoDAO {
 	   return risultati;
 	   
 	   }
+	 //metodo utilizzato per popolare il database ed in fase di testing per poter testare gli altri
+	 public void inserisciModifica(String numero, String codicefiscale, String data, String evento, String luogo, float prezzo) {
+		    String tableName = "Biglietto";
+		    Table table = connessione.getTable(tableName);
+		    //costruisce l'item e poi esegue un put inserendolo (se già presente lo modifica)
+		    Item item = new Item()
+		    	    .withPrimaryKey("NumeroBiglietto", numero)
+		    	    .withString("CodFiscale", codicefiscale)
+		    	    .withString("DataAcquisto", data)
+		    	    .withString("Evento", evento)
+		    	    .withString("Luogo", luogo)
+		    	    .withNumber("Prezzo", prezzo);;
+		    PutItemOutcome outcome = table.putItem(item, null, null, null);
+	}
 }
