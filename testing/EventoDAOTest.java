@@ -95,7 +95,7 @@ class EventoDAOTest {
 	    risultati = eventoDAO.cerca("test2018", "", 00.00, 00.00, 0, "", "");
 	    for(Evento curr:risultati) {
 	    	assertEquals("test2018", curr.getNome());
-	    	assertEquals("10 MARZO 2018", curr.getData());
+	    	assertEquals("10 MARZO 2018", curr.getDataInserimento());
 	    }
 	}
 }
