@@ -92,8 +92,14 @@ public class EventoDAO {
 		   Table table =connessione.getTable(tableName);
 		   Item item = null;
 		   item = table.getItem("Nome", nome);
-		   return new Evento((String) item.get("Nome"),(String) item.get("DataEvento"),(double) Double.parseDouble(item.get("PrezzoIniziale").toString()),(double) Double.parseDouble(item.get("PrezzoFinale").toString()),(int) Integer.parseInt(item.get("MassimoSpettatori").toString()),(String) item.get("Tipo"), (String) item.get("Luogo"), (String) item.get("DataInserimento"));
+		   if (item!=null) {
+			   return new Evento((String) item.get("Nome"),(String) item.get("DataEvento"),(double) Double.parseDouble(item.get("PrezzoIniziale").toString()),(double) Double.parseDouble(item.get("PrezzoFinale").toString()),(int) Integer.parseInt(item.get("MassimoSpettatori").toString()),(String) item.get("Tipo"), (String) item.get("Luogo"), (String) item.get("DataInserimento"));
+		   }else {
+			   return null;
+		   }
 	 }
+		    
+		
 	 
 	 
 	 public void inserisciModifica(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo, String datainserimento) {
