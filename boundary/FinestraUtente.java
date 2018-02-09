@@ -119,7 +119,7 @@ public class FinestraUtente {
 	private JTextField luogotfStato;
 	private JTextField luogotfIndirizzo;
 	private JTextField luogotfNome;
-
+	private BigliettoController biglietto;
 
 	/**
 	 * Launch the application.
