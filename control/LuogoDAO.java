@@ -81,10 +81,12 @@ public class LuogoDAO {
 		   Table table =connessione.getTable(tableName);
 		   Item item = null;
 		   item = table.getItem("Nome", nome);
+		   if (item!=null) {
 		   return new Luogo((String) item.get("Nome"),(String) item.get("Città"),(String) item.get("Stato"),(String) item.get("Indirizzo"));
-	 }
-	
-	
+	   }else {
+		   return null;
+	   }
+ }
 	 public void inserisciModifica(String nome, String città, String stato, String indirizzo) {
 		    String tableName = "Luogo";
 		    Table table = connessione.getTable(tableName);
