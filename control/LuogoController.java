@@ -46,7 +46,7 @@ public class LuogoController {
 	
 	public static void inserisci (String nome, String città, String stato, String indirizzo) {
 		if((!nome.equals("")&&!città.equals("")&&!stato.equals("")&&!indirizzo.equals(""))) {
-			if((luogoDAO.cerca(normalizza(nome)))!=null) {
+			if((luogoDAO.cerca(nome,"","","")).size()>0) {
 				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: luogo già esistente </font></html>");
 				return;
 			}else{
