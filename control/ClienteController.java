@@ -92,6 +92,10 @@ public class ClienteController {
 				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Il codice fiscale non è di 16 caratteri </font></html>");
 		}else if(!p.matcher(email).matches()) {
 				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: la mail non è nel formato testo@dominio.testo </font></html>");
+		}else if((clienteDAO.cerca(normalizzaCF(codicefiscale)))!=null) {
+			FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Codice Fiscale già esistente </font></html>");
+		}else if((clienteDAO.cercaPerEmail(normalizzaEmail(email)))!=null) {
+			FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: email già esistente </font></html>");	
 		}else {
 				nome=normalizza(nome);
 				cognome=normalizza(cognome);
@@ -117,6 +121,9 @@ public class ClienteController {
 		}else if(!p.matcher(email).matches()) {
 				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: la mail non è nel formato testo@dominio.testo </font></html>");
 				return false;
+		}else if((clienteDAO.cercaPerEmail(normalizzaEmail(email)))!=null) {
+			FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: email già esistente </font></html>");
+			return false;
 		}else{
 				nome=normalizza(nome);
 				cognome=normalizza(cognome);
