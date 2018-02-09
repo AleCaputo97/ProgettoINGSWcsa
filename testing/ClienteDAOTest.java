@@ -23,8 +23,6 @@ import control.ClienteDAO;
 import java.util.*;
 import entity.*;
 /**
- * @author cresc
- *
  */
 class ClienteDAOTest {
     static AmazonDynamoDB dynamoDB;
@@ -90,15 +88,6 @@ class ClienteDAOTest {
 		assertEquals("9 ottobre 1973", risultato.getData());
 	}
 	
-	@Test
-	void cercaPerEmailTest() {
-		Cliente risultato = clienteDAO.cercaPerEmail("michelecaparezza@gmail.com"); 
-		assertEquals("MCHSVM73R09F284X", risultato.getCodiceFiscale());
-		assertEquals("Michele", risultato.getNome());
-		assertEquals("Caparezza", risultato.getCognome());
-		assertEquals("michelecaparezza@gmail.com", risultato.getEmail());
-		assertEquals("9 ottobre 1973", risultato.getData());
-	}
 	
 	@Test
 	void eliminaPerCodFiscaleTest(){
