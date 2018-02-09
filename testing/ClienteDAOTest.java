@@ -91,6 +91,16 @@ class ClienteDAOTest {
 	}
 	
 	@Test
+	void cercaPerEmailTest() {
+		Cliente risultato = clienteDAO.cercaPerEmail("michelecaparezza@gmail.com"); 
+		assertEquals("MCHSVM73R09F284X", risultato.getCodiceFiscale());
+		assertEquals("Michele", risultato.getNome());
+		assertEquals("Caparezza", risultato.getCognome());
+		assertEquals("michelecaparezza@gmail.com", risultato.getEmail());
+		assertEquals("9 ottobre 1973", risultato.getData());
+	}
+	
+	@Test
 	void eliminaPerCodFiscaleTest(){
 		int count=0,count2=0;
 		List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", "");
