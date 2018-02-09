@@ -18,6 +18,7 @@ import entity.*;
 import progettoINGSWcsa.*;
 public class LuogoDAO {
 	private DynamoDB connessione;
+	private List<Luogo> risultati=new ArrayList<Luogo>();  
 	//costruttore che prende in input soltanto la connessione con il database
 	public LuogoDAO(DynamoDB Connessione) {
 		connessione=Connessione;
@@ -26,7 +27,6 @@ public class LuogoDAO {
 	public List<Luogo> cerca(String nome, String città, String stato, String indirizzo) {
 		   String tableName = "Luogo";
 		   Iterator<Item> iterator = null;
-		   List<Luogo> risultati=new ArrayList<Luogo>();  
 		   Table table = connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto

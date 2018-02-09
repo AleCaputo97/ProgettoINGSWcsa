@@ -18,6 +18,7 @@ import entity.*;
 import progettoINGSWcsa.*;
 public class BigliettoDAO {
 	private DynamoDB connessione;
+	private List<Biglietto> risultati=new ArrayList<Biglietto>();  
 	
 	public BigliettoDAO(DynamoDB input) {
 		connessione=input;
@@ -47,7 +48,6 @@ public class BigliettoDAO {
 	 public List<Biglietto> cercaPerEvento(String evento) {
 		   String tableName = "Biglietto";
 		   Iterator<Item> iterator = null;
-		   List<Biglietto> risultati=new ArrayList<Biglietto>();  
 		   Table table = connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   expressionAttributeValues.put(":evento", evento);

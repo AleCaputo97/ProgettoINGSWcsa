@@ -18,6 +18,7 @@ import entity.*;
 import progettoINGSWcsa.*;
 public class EventoDAO {
 	private DynamoDB connessione;
+	private List<Evento> risultati=new ArrayList<Evento>();  
 	//costruttore che prende in input soltanto la connessione con il database
 	public EventoDAO(DynamoDB Connessione) {
 		connessione=Connessione;
@@ -26,7 +27,6 @@ public class EventoDAO {
 	public List<Evento> cerca(String nome, String data, double prezzoiniziale, double prezzofinale, int maxspettatori, String tipo, String luogo) {	 
 		   String tableName = "Evento";
 		   Iterator<Item> iterator = null;
-		   List<Evento> risultati=new ArrayList<Evento>();  
 		   Table table =connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto

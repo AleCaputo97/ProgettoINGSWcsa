@@ -20,7 +20,7 @@ import progettoINGSWcsa.*;
 public class ClienteDAO {
 	
 	private DynamoDB connessione;
-	
+	private List<Cliente> risultati=new ArrayList<Cliente>();;
 	public ClienteDAO(DynamoDB input) {
 		connessione=input;
 	}
@@ -28,7 +28,6 @@ public class ClienteDAO {
 	public List<Cliente> cerca(String nome, String cognome, String email, String CodiceFiscale, String DataNascita) {
 		   String tableName = "Cliente";
 		   Iterator<Item> iterator = null;
-		   List<Cliente> risultati=new ArrayList<Cliente>();  
 		   Table table = connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto
