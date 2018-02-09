@@ -75,17 +75,7 @@ class LuogoDAOTest {
 		assertEquals(1,count);
 	}
 	
-	@Test
-	void cercaPerNomeTest() {
-		Luogo risultato = luogoDAO.cerca("Test2018");
-			assertEquals("Test2018", risultato.getNome());
-			assertEquals("Napoli", risultato.getCittà());
-			assertEquals("Italia", risultato.getStato());
-			assertEquals("via Cinthia", risultato.getIndirizzo());
-	}
-	
-	
-	
+
 	@Test
 	void eliminaPerNomeTest(){
 		int count=0,count2=0;
