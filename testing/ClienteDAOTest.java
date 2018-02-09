@@ -91,7 +91,7 @@ class ClienteDAOTest {
 	}
 	
 	@Test
-	void eliminaPerCodFiscale(){
+	void eliminaPerCodFiscaleTest(){
 		int count=0,count2=0;
 		List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", "");
 					for(Cliente curr:risultati) count=count+1;
