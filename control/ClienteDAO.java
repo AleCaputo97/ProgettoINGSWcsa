@@ -92,6 +92,13 @@ public class ClienteDAO {
 		   return new Cliente((String) item.get("Nome"),(String) item.get("Cognome"),(String)  item.get("Email"),(String) item.get("CodiceFiscale"),(String) item.get("DataNascita"));
 	 }
 	 
+	 public Cliente cercaPerEmail(String Email) {
+		   String tableName = "Cliente";
+		   Table table = connessione.getTable(tableName);
+		   Item item = table.getItem("Email", Email);
+		   return new Cliente((String) item.get("Nome"),(String) item.get("Cognome"),(String)  item.get("Email"),(String) item.get("CodiceFiscale"),(String) item.get("DataNascita"));
+	 }
+	 
 	 public void inserisciModifica(String nome, String cognome, String email, String CodiceFiscale, String Data) {
 		    String tableName = "Cliente";
 		    Table table = connessione.getTable(tableName);
