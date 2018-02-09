@@ -98,29 +98,6 @@ public class ClienteDAO {
 	 }
 		  
 	 
-	 public Cliente cercaPerEmail(String email) {
-		 String tableName = "Cliente";
-		 Iterator<Item> iterator = null;
-		 List<Cliente> risultati=new ArrayList<Cliente>();  
-	     Table table = connessione.getTable(tableName);
-         Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
-         String ricerca = "Email = :email";
-         expressionAttributeValues.put(":email", email);
-			    ItemCollection<ScanOutcome> items = table.scan (
-				        ricerca,                                  
-				        null,
-				        null,                                          
-				        expressionAttributeValues);
-		iterator = items.iterator();	
-		Item iteratorcurr;
-		Cliente curr;
-	      while (iterator.hasNext()) {
-	        iteratorcurr = iterator.next();
-	        curr=new Cliente((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("Cognome"),(String)  iteratorcurr.get("Email"),(String) iteratorcurr.get("CodiceFiscale"),(String) iteratorcurr.get("DataNascita"));
-	        return curr;
-	       }
-	   return null;
-	}
 	 
 	 public void inserisciModifica(String nome, String cognome, String email, String CodiceFiscale, String Data) {
 		    String tableName = "Cliente";
