@@ -21,6 +21,10 @@ import entity.*;
 
 
 public class StatisticheGeneraliController {
+	BigliettoController bigliettoController;
+	ClienteController clienteController;
+	LuogoController luogoController;
+	EventoController eventoController;
 	
 	public static void TipoEventoPerLuogo () {
 		String[] Tipologia = {"Concerto", "Evento sportivo", "Teatro", "Convegno", "Mostra","Altro"};
