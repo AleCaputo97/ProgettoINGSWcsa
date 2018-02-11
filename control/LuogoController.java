@@ -17,7 +17,9 @@ import entity.*;
 public class LuogoController {
 	static StatisticheLuogo frame;
 	static LuogoDAO luogoDAO;
-	  
+	static BigliettoController bigliettoController;
+	static EventoController eventoController;  
+	
 	  public LuogoController(LuogoDAO InputLuogo) {
 	    luogoDAO=InputLuogo;
 	  }
