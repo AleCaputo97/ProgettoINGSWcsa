@@ -22,6 +22,9 @@ import entity.*;
 public class EventoController {
 	static EventoDAO eventoDAO;
 	static StatisticheEvento frame;
+	static BigliettoController bigliettoController;
+	static ClienteController clienteController;
+	
 	public EventoController(EventoDAO InputEventoDAO) {
 		eventoDAO=InputEventoDAO;
 	}
