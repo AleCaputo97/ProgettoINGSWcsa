@@ -17,14 +17,12 @@ import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
 
-import boundary.FinestraUtente;
-import boundary.StatisticheCliente;
 import boundary.*;
 import entity.*;
 import progettoINGSWcsa.*;
 public class ClienteController {
 	static ClienteDAO clienteDAO;
-	
+	static StatisticheCliente frame;
 	public ClienteController(ClienteDAO InputClienteDAO) {
 		clienteDAO=InputClienteDAO;
 	}
@@ -189,7 +187,7 @@ public class ClienteController {
 		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
 		chartPanel2.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
 		
-		StatisticheCliente frame = new StatisticheCliente(chartPanel, chartPanel2, SpesaTotale, BigliettiAcquistati, CodiceFiscale);
+		frame = new StatisticheCliente(chartPanel, chartPanel2, SpesaTotale, BigliettiAcquistati, CodiceFiscale);
 		frame.setTitle("Statistiche relative a: " + CodiceFiscale);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);	}
