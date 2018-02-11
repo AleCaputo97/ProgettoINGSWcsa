@@ -50,6 +50,7 @@ public class BigliettoDAO {
 		   Iterator<Item> iterator = null;
 		   Table table = connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
+		   risultati.clear();
 		   expressionAttributeValues.put(":evento", evento);
 			    ItemCollection<ScanOutcome> items = table.scan (
 				        "Evento = :evento",                                  

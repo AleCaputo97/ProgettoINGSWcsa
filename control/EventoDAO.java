@@ -28,6 +28,7 @@ public class EventoDAO {
 		   String tableName = "Evento";
 		   Iterator<Item> iterator = null;
 		   Table table =connessione.getTable(tableName);
+		   risultati.clear();
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto
 		   if(nome.equals("") && data.equals("") && prezzoiniziale==0.00 && prezzofinale==0.00 && maxspettatori==0 && tipo.equals("")&& luogo.equals("")) {
@@ -82,7 +83,6 @@ public class EventoDAO {
 	       while (iterator.hasNext()) {
 	        iteratorcurr = iterator.next();
 	        curr=new Evento((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("DataEvento"),(double) Double.parseDouble(iteratorcurr.get("PrezzoIniziale").toString()),(double) Double.parseDouble(iteratorcurr.get("PrezzoFinale").toString()),(int) Integer.parseInt(iteratorcurr.get("MassimoSpettatori").toString()),(String) iteratorcurr.get("Tipo"), (String) iteratorcurr.get("Luogo"), (String) iteratorcurr.get("DataInserimento"));
-	        System.out.println(curr.getNome());
 	        risultati.add(curr);
 	       }
 	   return risultati;

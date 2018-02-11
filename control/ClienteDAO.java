@@ -20,7 +20,7 @@ import connessione.*;
 public class ClienteDAO {
 	
 	private DynamoDB connessione;
-	private List<Cliente> risultati=new ArrayList<Cliente>();;
+	private List<Cliente> risultati=new ArrayList<Cliente>();
 	public ClienteDAO(DynamoDB input) {
 		connessione=input;
 	}
@@ -30,6 +30,7 @@ public class ClienteDAO {
 		   Iterator<Item> iterator = null;
 		   Table table = connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
+		   risultati.clear();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto
 		   if(CodiceFiscale.equals("") && nome.equals("") && cognome.equals("") && email.equals("") && DataNascita.equals("")) {
 			   ItemCollection<ScanOutcome> items = table.scan (
@@ -79,7 +80,6 @@ public class ClienteDAO {
 	       while (iterator.hasNext()) {
 	        iteratorcurr = iterator.next();
 	        curr=new Cliente((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("Cognome"),(String)  iteratorcurr.get("Email"),(String) iteratorcurr.get("CodiceFiscale"),(String) iteratorcurr.get("DataNascita"));
-	        System.out.println(curr.getCodiceFiscale());
 	        risultati.add(curr);
 	       }
 	   return risultati;

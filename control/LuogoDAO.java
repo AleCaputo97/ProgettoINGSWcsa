@@ -29,6 +29,7 @@ public class LuogoDAO {
 		   Iterator<Item> iterator = null;
 		   Table table = connessione.getTable(tableName);
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
+		   risultati.clear();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto
 		   if(nome.equals("") && città.equals("") && stato.equals("") && indirizzo.equals("")) {
 			   ItemCollection<ScanOutcome> items = table.scan (
