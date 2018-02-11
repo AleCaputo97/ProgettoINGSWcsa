@@ -15,7 +15,7 @@ import boundary.StatisticheLuogo;
 import boundary.*;
 import entity.*;
 public class LuogoController {
-	
+	static StatisticheLuogo frame;
 	static LuogoDAO luogoDAO;
 	  
 	  public LuogoController(LuogoDAO InputLuogo) {
@@ -147,7 +147,7 @@ public class LuogoController {
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
 		chartPanel2.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
-		StatisticheLuogo frame = new StatisticheLuogo(chartPanel, chartPanel2, SpesaTotale, num_eventi, GuadagnoMedio, NomeLuogo);
+		frame = new StatisticheLuogo(chartPanel, chartPanel2, SpesaTotale, num_eventi, GuadagnoMedio, NomeLuogo);
 		frame.setTitle("Statistiche relative a: " + NomeLuogo);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);	
