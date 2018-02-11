@@ -1089,19 +1089,19 @@ public class FinestraUtente {
 	
 	public static void azzeraTabellaCliente() {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
-        for (int i=0, j=model.getRowCount(); i<j; i++) model.removeRow(i);
+        for (int i=0, j=model.getRowCount(); i<j; i++) model.removeRow(0);
 	}
 	
 	public static void azzeraTabellaEvento() {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
         for (int i=0, j=model.getRowCount(); i<j; i++)
-            model.removeRow(i);
+            model.removeRow(0);
 	}
 	
 	public static void azzeraTabellaLuogo() {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
         for (int i=0, j=model.getRowCount(); i<j; i++)
-            model.removeRow(i);
+            model.removeRow(0);
 	}
 	
 	public static void aggiungiElementoCliente (String nome, String cognome, String email, String cf, String data) {

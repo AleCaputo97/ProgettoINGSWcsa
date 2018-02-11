@@ -82,6 +82,7 @@ public class EventoDAO {
 	       while (iterator.hasNext()) {
 	        iteratorcurr = iterator.next();
 	        curr=new Evento((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("DataEvento"),(double) Double.parseDouble(iteratorcurr.get("PrezzoIniziale").toString()),(double) Double.parseDouble(iteratorcurr.get("PrezzoFinale").toString()),(int) Integer.parseInt(iteratorcurr.get("MassimoSpettatori").toString()),(String) iteratorcurr.get("Tipo"), (String) iteratorcurr.get("Luogo"), (String) iteratorcurr.get("DataInserimento"));
+	        System.out.println(curr.getNome());
 	        risultati.add(curr);
 	       }
 	   return risultati;

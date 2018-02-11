@@ -98,7 +98,7 @@ class ClienteDAOTest {
 		clienteDAO.elimina("MCHSVM73R09F284X");
 		List<Cliente> risultati2 = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
 					for(Cliente curr2:risultati2) count2=count2+1;
-		assertEquals(count2, 0);
+		assertEquals(0,count2);
 		}
 
 	@Test
