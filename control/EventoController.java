@@ -66,9 +66,9 @@ public class EventoController {
 			doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
 			FinestraUtente.azzeraTabellaEvento();
 			List<Evento> risultati = eventoDAO.cerca( nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo);
-			if (risultati.isEmpty())
+			if (risultati.isEmpty()) {
 				FinestraUtente.messaggio.setText("Nessun risultato trovato");
-			else {
+			}else {
 				SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
 				Date Datacurr = new Date();
 				String strDatacurr = sdfDate.format(Datacurr); //Data corrente nel formato cercato

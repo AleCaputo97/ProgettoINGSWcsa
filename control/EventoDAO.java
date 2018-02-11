@@ -15,7 +15,7 @@ import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import boundary.*;
 import entity.*;
-import progettoINGSWcsa.*;
+import connessione.*;
 public class EventoDAO {
 	private DynamoDB connessione;
 	private List<Evento> risultati=new ArrayList<Evento>();  

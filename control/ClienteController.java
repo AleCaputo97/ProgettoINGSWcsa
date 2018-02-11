@@ -19,7 +19,7 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 
 import boundary.*;
 import entity.*;
-import progettoINGSWcsa.*;
+import connessione.*;
 public class ClienteController {
 	static ClienteDAO clienteDAO;
 	static StatisticheCliente frame;

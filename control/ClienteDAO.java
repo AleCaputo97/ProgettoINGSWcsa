@@ -16,7 +16,7 @@ import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import boundary.*;
 import entity.*;
-import progettoINGSWcsa.*;
+import connessione.*;
 public class ClienteDAO {
 	
 	private DynamoDB connessione;
@@ -79,6 +79,7 @@ public class ClienteDAO {
 	       while (iterator.hasNext()) {
 	        iteratorcurr = iterator.next();
 	        curr=new Cliente((String) iteratorcurr.get("Nome"),(String) iteratorcurr.get("Cognome"),(String)  iteratorcurr.get("Email"),(String) iteratorcurr.get("CodiceFiscale"),(String) iteratorcurr.get("DataNascita"));
+	        System.out.println(curr.getCodiceFiscale());
 	        risultati.add(curr);
 	       }
 	   return risultati;

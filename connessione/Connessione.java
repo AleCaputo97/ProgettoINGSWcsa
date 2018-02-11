@@ -1,4 +1,4 @@
-package progettoINGSWcsa;
+package connessione;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,7 +18,7 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 
 import boundary.*;
 import control.*;
-public class ProgettoINGSWcsa {
+public class Connessione {
     static AmazonDynamoDB dynamoDB;
     private static DynamoDB connessione;
     
@@ -58,3 +58,4 @@ public class ProgettoINGSWcsa {
     }
     
 }
+

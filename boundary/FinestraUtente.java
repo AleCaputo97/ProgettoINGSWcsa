@@ -235,9 +235,7 @@ public class FinestraUtente {
 		
 		clienteCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
+				azzeraTabellaCliente();
 				String nome = clientetfNome.getText();
 				String data = clienteData.getText();
 				String cognome = clientetfCognome.getText();
@@ -473,7 +471,7 @@ public class FinestraUtente {
 		
 		eventoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				azzeraTabellaEvento();
 				messaggio.setText("");
 				String nome = eventotfNome.getText();
 				String data = eventoData.getText();
@@ -729,7 +727,7 @@ public class FinestraUtente {
 		Luogo.add(lblIndirizzo);
 		luogoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				azzeraTabellaLuogo();
 				String nome = luogotfNome.getText();
 				String citta = luogotfCitta.getText();
 				String stato = luogotfStato.getText();
@@ -1091,20 +1089,19 @@ public class FinestraUtente {
 	
 	public static void azzeraTabellaCliente() {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
-        for (int i=0, j=model.getRowCount(); i<j; i++)
-            model.removeRow(0);
+        for (int i=0, j=model.getRowCount(); i<j; i++) model.removeRow(i);
 	}
 	
 	public static void azzeraTabellaEvento() {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
         for (int i=0, j=model.getRowCount(); i<j; i++)
-            model.removeRow(0);
+            model.removeRow(i);
 	}
 	
 	public static void azzeraTabellaLuogo() {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
         for (int i=0, j=model.getRowCount(); i<j; i++)
-            model.removeRow(0);
+            model.removeRow(i);
 	}
 	
 	public static void aggiungiElementoCliente (String nome, String cognome, String email, String cf, String data) {
