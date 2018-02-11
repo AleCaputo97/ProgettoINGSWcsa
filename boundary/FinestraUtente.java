@@ -316,11 +316,7 @@ public class FinestraUtente {
 				clienteElimina.setEnabled(false);
 				clienteStatistiche.setEnabled(false);
 				
-				DefaultTableModel model = (DefaultTableModel) FinestraUtente.clientetable.getModel();
-		        int i;
-		        int j = model.getRowCount();
-		        for (i=0; i<j; i++)
-		            model.removeRow(0);
+				FinestraUtente.azzeraTabellaCliente();
 		        
 			}
 		});
@@ -623,11 +619,7 @@ public class FinestraUtente {
 				eventocbTipo.setSelectedIndex(0);
 				messaggio.setText("");
 
-				DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
-		        int i;
-		        int j = model.getRowCount();
-		        for (i=0; i<j; i++)
-		            model.removeRow(0);
+				FinestraUtente.azzeraTabellaEvento();
 
 				
 			}
@@ -862,11 +854,7 @@ public class FinestraUtente {
 				luogoStatistiche.setEnabled(false);
 
 				
-				DefaultTableModel model = (DefaultTableModel) FinestraUtente.luogotable.getModel();
-		        int i;
-		        int j = model.getRowCount();
-		        for (i=0; i<j; i++)
-		            model.removeRow(0);
+				FinestraUtente.azzeraTabellaLuogo();
 				
 			}
 		});
@@ -1094,7 +1082,9 @@ public class FinestraUtente {
 	
 	public static void azzeraTabellaEvento() {
 		DefaultTableModel model = (DefaultTableModel) FinestraUtente.eventotable.getModel();
-        for (int i=0, j=model.getRowCount(); i<j; i++)
+        int i;
+        int j = model.getRowCount();
+        for (i=0; i<j; i++)
             model.removeRow(0);
 	}
 	
