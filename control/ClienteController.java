@@ -23,6 +23,9 @@ import progettoINGSWcsa.*;
 public class ClienteController {
 	static ClienteDAO clienteDAO;
 	static StatisticheCliente frame;
+	static BigliettoController bigliettoController;
+	static ClienteController clienteController;
+	
 	public ClienteController(ClienteDAO InputClienteDAO) {
 		clienteDAO=InputClienteDAO;
 	}
