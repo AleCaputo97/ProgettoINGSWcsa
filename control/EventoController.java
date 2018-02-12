@@ -278,7 +278,7 @@ public class EventoController {
 		}
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<n;i++) dataset.addValue( valori[i] , "plot1" , intervallo[i]);  
-		LineChart chart= new LineChart( "", "Soldi nel tempo", "", "Soldi", dataset);
+		LineChart chart= new LineChart( "", "Andamento del guadagno", "", "Guadagno in €", dataset);
 		ChartPanel chartPanel = new ChartPanel(chart.getChart());
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
@@ -301,7 +301,7 @@ public class EventoController {
 		}
 		String[] Età = {"<25","(26,40)","41+"};
 		int[] valori2 = {classe1,classe2,classe3};
-		PieChart piechart= new PieChart("Età dei clienti", 3, Età , valori2);
+		PieChart piechart= new PieChart("Età degli acquirenti", 3, Età , valori2);
 		ChartPanel chartPanel2 = new ChartPanel(piechart.getChart());
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));

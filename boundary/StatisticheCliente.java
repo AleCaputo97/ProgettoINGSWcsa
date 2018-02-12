@@ -70,7 +70,7 @@ public class StatisticheCliente extends JFrame {
 		contentPane.add(textPaneSoldiSpesi);
 		textPaneSoldiSpesi.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
-		JLabel lblNewLabel = new JLabel("Totale biglietti comprati");
+		JLabel lblNewLabel = new JLabel("Totale biglietti acquistati");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(982, 78, 200, 27);
@@ -85,11 +85,11 @@ public class StatisticheCliente extends JFrame {
 		contentPane.add(textPaneBigliettiAcquistati);
 		textPaneBigliettiAcquistati.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
-		JLabel label = new JLabel("Totale soldi spesi");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label.setBounds(982, 187, 200, 27);
-		contentPane.add(label);
+		JLabel lblSpesaTotale = new JLabel("Spesa totale");
+		lblSpesaTotale.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSpesaTotale.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSpesaTotale.setBounds(982, 187, 200, 27);
+		contentPane.add(lblSpesaTotale);
 		
 		JButton btn = new JButton("Tipologie di biglietti acquistati");
 		btn.addActionListener(new ActionListener() {
@@ -98,7 +98,7 @@ public class StatisticheCliente extends JFrame {
 						statPanel1.remove(chart);
 						statPanel1.add(chart2);
 						statPanel1.repaint();
-						btn.setText("Totale soldi spesi dal cliente");
+						btn.setText("Spesa per mese");
 					}
 					else {
 						statPanel1.remove(chart2);

@@ -74,26 +74,26 @@ public class StatisticheEvento extends JFrame {
 		contentPane.add(textPaneBigliettiVenduti);
 		textPaneBigliettiVenduti.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
-		JLabel lblTotaleSoldiGuadagnati = new JLabel("Totale soldi guadagnati");
+		JLabel lblTotaleSoldiGuadagnati = new JLabel("Guadagno totale");
 		lblTotaleSoldiGuadagnati.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTotaleSoldiGuadagnati.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblTotaleSoldiGuadagnati.setBounds(982, 187, 200, 27);
 		contentPane.add(lblTotaleSoldiGuadagnati);
 		
-		JButton btn = new JButton("Età dei clienti");
+		JButton btn = new JButton("Età degli acquirenti");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					if (btn.getText().equals("Età dei clienti")) {
+					if (btn.getText().equals("Età degli acquirenti")) {
 						statPanel1.remove(chart);
 						statPanel1.add(chart2);
 						statPanel1.repaint();
-						btn.setText("Soldi nel tempo");
+						btn.setText("Andamento del guadagno");
 					}
 					else {
 						statPanel1.remove(chart2);
 						statPanel1.add(chart);
 						statPanel1.repaint();
-						btn.setText("Età dei clienti");
+						btn.setText("Età degli acquirenti");
 					}
 			}
 		});

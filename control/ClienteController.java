@@ -164,7 +164,7 @@ public class ClienteController {
 		//popola il dataSet da passare all'istogramma con i valori di soldi e mese
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 		for(int i=0;i<12;i++) dataset.addValue( SoldiPerMese[i] , Mese[i] , "mese");  
-		BarChart chart = new BarChart("Istogramma","Soldi spesi dal cliente", "", "Euro", dataset);
+		BarChart chart = new BarChart("Istogramma","Spesa per mese", "", "Costo in €", dataset);
 		ChartPanel chartPanel = new ChartPanel(chart.getChart());
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		//crea il PieChart con i luoghi frequentati

@@ -85,26 +85,26 @@ public class StatisticheLuogo extends JFrame {
 		contentPane.add(textPaneBigliettiAcquistati);
 		textPaneBigliettiAcquistati.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
-		JLabel lblTotaleGuadagno = new JLabel("Totale guadagno");
+		JLabel lblTotaleGuadagno = new JLabel("Guadagno totale");
 		lblTotaleGuadagno.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTotaleGuadagno.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblTotaleGuadagno.setBounds(982, 187, 200, 27);
 		contentPane.add(lblTotaleGuadagno);
 		
-		JButton btn = new JButton("Clienti ospitati nel tempo");
+		JButton btn = new JButton("Clienti ospitati");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					if (btn.getText().equals("Clienti ospitati nel tempo")) {
+					if (btn.getText().equals("Clienti ospitati")) {
 						statPanel1.remove(chart);
 						statPanel1.add(chart2);
 						statPanel1.repaint();
-						btn.setText("Eventi ospitati nel tempo");
+						btn.setText("Eventi ospitati");
 					}
 					else {
 						statPanel1.remove(chart2);
 						statPanel1.add(chart);
 						statPanel1.repaint();
-						btn.setText("Clienti ospitati nel tempo");
+						btn.setText("Clienti ospitati");
 					}
 			}
 		});

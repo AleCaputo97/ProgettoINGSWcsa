@@ -172,7 +172,7 @@ public class FinestraUtente {
 		
 		JPanel Cliente = new JPanel();
 		Cliente.setBackground(Color.WHITE);
-		tabbedPane.addTab("Cliente", null, Cliente, null);
+		tabbedPane.addTab("Clienti", null, Cliente, null);
 		Cliente.setLayout(null);
 		
 		clientetfNome = new JTextField();
@@ -427,7 +427,7 @@ public class FinestraUtente {
 		JPanel Evento = new JPanel();
 		Evento.setBackground(Color.WHITE);
 		Evento.setLayout(null);
-		tabbedPane.addTab("Evento", null, Evento, null);
+		tabbedPane.addTab("Eventi", null, Evento, null);
 		
 		eventotfNome = new JTextField();
 		eventotfNome.setColumns(10);
@@ -685,7 +685,7 @@ public class FinestraUtente {
 		JPanel Luogo = new JPanel();
 		Luogo.setBackground(Color.WHITE);
 		Luogo.setLayout(null);
-		tabbedPane.addTab("Luogo", null, Luogo, null);
+		tabbedPane.addTab("Luoghi", null, Luogo, null);
 		
 		JLabel label_1 = new JLabel("Nome:");
 		label_1.setBounds(10, 14, 85, 14);
