@@ -911,7 +911,7 @@ public class FinestraUtente {
 		statPanel.setBounds(0, -5, 968, 425);
 		Statistiche.add(statPanel);
 		
-		stat1 = new JButton("Tipo evento per luogo");
+		stat1 = new JButton("Tipologie di eventi");
 		stat1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StatisticheGeneraliController.TipoEventoPerLuogo();
