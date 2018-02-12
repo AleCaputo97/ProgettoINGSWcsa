@@ -31,6 +31,7 @@ public class EventoDAO {
 		   risultati.clear();
 		   Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 		   //se ogni campo è vuoto deve svolgere una scan di tutto
+		   
 		   if(nome.equals("") && data.equals("") && prezzoiniziale==0.00 && prezzofinale==0.00 && maxspettatori==0 && tipo.equals("")&& luogo.equals("")) {
 			   ItemCollection<ScanOutcome> items = table.scan (
 				        null,                                  
