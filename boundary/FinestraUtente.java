@@ -235,18 +235,7 @@ public class FinestraUtente {
 		
 		clienteCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				azzeraTabellaCliente();
-				String nome = clientetfNome.getText();
-				String data = clienteData.getText();
-				String cognome = clientetfCognome.getText();
-				String email = clientetfEmail.getText();
-				String codicefiscale = clientetfCodicefiscale.getText();
-				messaggio.setText("");
-				//System.out.println("[FINESTRA UTENTE] Si vuole cercare: " + nome + cognome + email + codicefiscale + data);
-				ClienteController.cerca(nome, cognome, email, codicefiscale, data);
-				clienteModifica.setEnabled(false);
-				clienteElimina.setEnabled(false);
-				clienteStatistiche.setEnabled(false);
+				clienteCerca();
 
 			}
 		});
@@ -257,16 +246,7 @@ public class FinestraUtente {
 		clienteInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				clienteModifica.setEnabled(false);
-				clienteElimina.setEnabled(false);
-				clienteStatistiche.setEnabled(false);
-				
-				String nome = clientetfNome.getText();
-				String data = clienteData.getText();
-				String cognome = clientetfCognome.getText();
-				String email = clientetfEmail.getText();
-				String codicefiscale = clientetfCodicefiscale.getText();
-				ClienteController.inserisci(nome, cognome, email, codicefiscale, data);
+				clienteInserisci();
 			}
 		});
 		clienteInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -276,13 +256,7 @@ public class FinestraUtente {
 		
 		clienteElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				int row = clientetable.getSelectedRow();
-		        String codicefiscale = clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString();
-		        ConfermaEliminazione frame = new ConfermaEliminazione("Cliente",codicefiscale,FinestraUtente.this);
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				toggle();
+				clienteElimina();
 			}
 		});
 		clienteElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -290,12 +264,7 @@ public class FinestraUtente {
 		Cliente.add(clienteElimina);
 		clienteStatistiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int row = clientetable.getSelectedRow();
-				Date date = new Date();
-				LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-				int year  = localDate.getYear();
-		        String year2 = Integer.toString(year);
-				ClienteController.generaStatisticheCliente(clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString(), year2);
+				clienteStatistiche();
 			}
 		});
 		clienteStatistiche.setEnabled(false);
@@ -306,18 +275,7 @@ public class FinestraUtente {
 		
 		clienteClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clientetfNome.setText("");
-				clientetfCognome.setText("");
-				clientetfEmail.setText("");
-				clientetfCodicefiscale.setText("");
-				clienteData.setText("");
-				messaggio.setText("");
-				clienteModifica.setEnabled(false);
-				clienteElimina.setEnabled(false);
-				clienteStatistiche.setEnabled(false);
-				
-				FinestraUtente.azzeraTabellaCliente();
-		        
+				clienteClear();		        
 			}
 		});
 		clienteClear.setBounds(878, 10, 80, 23);
@@ -326,55 +284,8 @@ public class FinestraUtente {
 		clienteModifica.setEnabled(false);
 		clienteModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if (clienteModifica.getText().equals("Modifica")){
-				
-				int row = clientetable.getSelectedRow();
-				clientetfNome.setText(clientetable.getValueAt(row,clientetable.getColumn("Nome").getModelIndex()).toString());
-				clientetfCognome.setText(clientetable.getValueAt(row,clientetable.getColumn("Cognome").getModelIndex()).toString());
-				clientetfCodicefiscale.setText(clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString());
-				clienteData.setText(clientetable.getValueAt(row,clientetable.getColumn("Data di nascita").getModelIndex()).toString());
-				clientetfEmail.setText(clientetable.getValueAt(row,clientetable.getColumn("eMail").getModelIndex()).toString());
-				
-				clienteCerca.setEnabled(false);
-				clienteStatistiche.setEnabled(false);
-				clienteElimina.setEnabled(false);
-				clienteInserisci.setEnabled(false);
-				clienteClear.setEnabled(false);
-				clientetfCodicefiscale.setEnabled(false);
-				
-				clienteModifica.setText("Conferma");
-				
-				}
-				else {
-					
-					
-					String nome = clientetfNome.getText();
-					String data = clienteData.getText();
-					String cognome = clientetfCognome.getText();
-					String email = clientetfEmail.getText();
-					String codicefiscale = clientetfCodicefiscale.getText();
-					
-					if (ClienteController.modifica(nome, cognome, email, codicefiscale, data)) {
-					
-					clienteCerca.setEnabled(true);
-					clienteStatistiche.setEnabled(true);
-					clienteElimina.setEnabled(true);
-					clienteInserisci.setEnabled(true);
-					clienteClear.setEnabled(true);
-					clientetfCodicefiscale.setEnabled(true);
-					clienteClear.doClick();
-					clienteModifica.setText("Modifica");
-					FinestraUtente.messaggio.setText("<html><font color=\"blue\">Cliente modificato correttamente </font></html>");
+					clienteModifica();		
 					}
-					}
-
-
-					
-				}
-				
-				
-
 			}
 		);
 		clienteModifica.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -467,25 +378,7 @@ public class FinestraUtente {
 		
 		eventoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				azzeraTabellaEvento();
-				messaggio.setText("");
-				String nome = eventotfNome.getText();
-				String data = eventoData.getText();
-				String prezzoiniziale = eventotfPrezzoiniziale.getText();
-				String prezzofinale = eventotfPrezzofinale.getText();
-				String maxspettatori = eventotfMassimoposti.getText();
-				String tipo = "";
-				String luogo = "";
-				if (!(eventocbTipo.getSelectedItem().equals("")))
-					tipo = eventocbTipo.getSelectedItem().toString();
-				if (!(eventocbLuogo.getSelectedItem().equals("")))
-					luogo = eventocbLuogo.getSelectedItem().toString();
-				
-				EventoController.cerca(nome,  data, prezzoiniziale, prezzofinale,  maxspettatori,  tipo, luogo);
-				
-				eventoModifica.setEnabled(false);
-				eventoElimina.setEnabled(false);
-				eventoStatistiche.setEnabled(false);
+				eventoCerca();
 
 			}
 			
@@ -497,23 +390,7 @@ public class FinestraUtente {
 		eventoInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String nome = eventotfNome.getText();
-				String data = eventoData.getText();
-				String prezzoiniziale = eventotfPrezzoiniziale.getText();
-				String prezzofinale = eventotfPrezzofinale.getText();
-				String maxspettatori = eventotfMassimoposti.getText();
-				String tipo = "";
-				String luogo = "";
-				if (!(eventocbTipo.getSelectedItem().equals("")))
-					tipo = eventocbTipo.getSelectedItem().toString();
-				if (!(eventocbLuogo.getSelectedItem().equals("")))
-					luogo = eventocbLuogo.getSelectedItem().toString();
-				
-				EventoController.inserisci(nome,  data, prezzoiniziale, prezzofinale,  maxspettatori,  tipo, luogo);
-				
-				eventoModifica.setEnabled(false);
-				eventoElimina.setEnabled(false);
-				eventoStatistiche.setEnabled(false);
+				eventoInserisci();
 				
 			}
 				
@@ -526,53 +403,7 @@ public class FinestraUtente {
 		eventoModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (eventoModifica.getText().equals("Modifica")){
-					
-					int row = eventotable.getSelectedRow();
-					eventotfNome.setText(eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString());
-					eventoData.setText(eventotable.getValueAt(row,eventotable.getColumn("Data").getModelIndex()).toString());					
-					eventotfPrezzoiniziale.setText(eventotable.getValueAt(row,eventotable.getColumn("€ Iniziale").getModelIndex()).toString());
-					eventotfPrezzofinale.setText(eventotable.getValueAt(row,eventotable.getColumn("€ Finale").getModelIndex()).toString());
-					eventotfMassimoposti.setText(eventotable.getValueAt(row,eventotable.getColumn("Max posti").getModelIndex()).toString());	
-					eventocbTipo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Tipo").getModelIndex()).toString());
-					eventocbLuogo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Luogo").getModelIndex()).toString());
-					
-					datacorrente = eventotable.getValueAt(row,eventotable.getColumn("Data inserimento").getModelIndex()).toString();
-										
-					eventoCerca.setEnabled(false);
-					eventoStatistiche.setEnabled(false);
-					eventoElimina.setEnabled(false);
-					eventoInserisci.setEnabled(false);
-					eventoClear.setEnabled(false);
-					eventotfNome.setEnabled(false);
-					
-					eventoModifica.setText("Conferma");
-					
-				}
-				else {
-						
-					String nome = eventotfNome.getText();
-					String data = eventoData.getText();
-					String prezzoiniziale = eventotfPrezzoiniziale.getText();
-					String prezzofinale = eventotfPrezzofinale.getText();
-					String maxspettatori = eventotfMassimoposti.getText();
-					String tipo = eventocbTipo.getSelectedItem().toString();
-					String luogo = eventocbLuogo.getSelectedItem().toString();
-					
-					if (EventoController.modifica(nome,  data, datacorrente,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo)) {				
-					
-					eventoCerca.setEnabled(true);
-					eventoStatistiche.setEnabled(true);
-					eventoElimina.setEnabled(true);
-					eventoInserisci.setEnabled(true);
-					eventoClear.setEnabled(true);
-					eventotfNome.setEnabled(true);
-					eventoModifica.setText("Modifica");
-					eventoClear.doClick();
-					FinestraUtente.messaggio.setText("<html><font color=\"blue\">Evento modificato correttamente </font></html>");
-						
-					}
-				}
+				eventoModifica();
 			}
 		});
 		
@@ -583,13 +414,7 @@ public class FinestraUtente {
 		eventoElimina.setEnabled(false);
 		eventoElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				int row = eventotable.getSelectedRow();
-		        String nome = eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString();
-		        ConfermaEliminazione frame = new ConfermaEliminazione("Evento",nome,FinestraUtente.this);
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				toggle();
+				eventoElimina();
 				
 			}
 		});
@@ -598,8 +423,8 @@ public class FinestraUtente {
 		Evento.add(eventoElimina);
 		eventoStatistiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    int row = eventotable.getSelectedRow();
-			    EventoController.generaStatisticheEvento(eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString());}
+			    eventoStatistiche();
+			}
 		});
 		
 		eventoStatistiche.setEnabled(false);
@@ -610,16 +435,7 @@ public class FinestraUtente {
 		eventoClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				eventotfNome.setText("");
-				eventoData.setText("");
-				eventotfPrezzoiniziale.setText("");
-				eventotfPrezzofinale.setText("");
-				eventotfMassimoposti.setText("");
-				eventocbLuogo.setSelectedIndex(0);
-				eventocbTipo.setSelectedIndex(0);
-				messaggio.setText("");
-
-				FinestraUtente.azzeraTabellaEvento();
+				eventoClear();
 
 				
 			}
@@ -719,16 +535,7 @@ public class FinestraUtente {
 		Luogo.add(lblIndirizzo);
 		luogoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				azzeraTabellaLuogo();
-				String nome = luogotfNome.getText();
-				String citta = luogotfCitta.getText();
-				String stato = luogotfStato.getText();
-				String indirizzo = luogotfIndirizzo.getText();
-				messaggio.setText("");
-				LuogoController.cerca(nome, citta, stato, indirizzo);
-				luogoModifica.setEnabled(false);
-				luogoElimina.setEnabled(false);
-				luogoStatistiche.setEnabled(false);
+				luogoCerca();
 				
 			}
 		});
@@ -739,16 +546,7 @@ public class FinestraUtente {
 		luogoInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				luogoModifica.setEnabled(false);
-				luogoElimina.setEnabled(false);
-				luogoStatistiche.setEnabled(false);
-				
-				String nome = luogotfNome.getText();
-				String citta = luogotfCitta.getText();
-				String stato = luogotfStato.getText();
-				String indirizzo = luogotfIndirizzo.getText();
-				LuogoController.inserisci(nome, citta, stato, indirizzo);	
-				popolaeventocbLuogo();
+				luogoInserisci();
 			}
 		});
 
@@ -759,45 +557,7 @@ public class FinestraUtente {
 		luogoModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (luogoModifica.getText().equals("Modifica")){
-					
-					int row = luogotable.getSelectedRow();
-					luogotfNome.setText(luogotable.getValueAt(row,luogotable.getColumn("Nome").getModelIndex()).toString());
-					luogotfCitta.setText(luogotable.getValueAt(row,luogotable.getColumn("Città").getModelIndex()).toString());
-					luogotfStato.setText(luogotable.getValueAt(row,luogotable.getColumn("Stato").getModelIndex()).toString());
-					luogotfIndirizzo.setText(luogotable.getValueAt(row,luogotable.getColumn("Indirizzo").getModelIndex()).toString());
-					
-					luogoCerca.setEnabled(false);
-					luogoStatistiche.setEnabled(false);
-					luogoElimina.setEnabled(false);
-					luogoInserisci.setEnabled(false);
-					luogoClear.setEnabled(false);
-					luogotfNome.setEnabled(false);
-					
-					luogoModifica.setText("Conferma");
-					
-					}
-					else {
-						
-						
-						String nome = luogotfNome.getText();
-						String citta = luogotfCitta.getText();
-						String stato = luogotfStato.getText();
-						String indirizzo = luogotfIndirizzo.getText();
-						
-						
-						if (LuogoController.modifica(nome, citta, stato, indirizzo)) {	
-							popolaeventocbLuogo();
-							luogoCerca.setEnabled(true);
-							luogoStatistiche.setEnabled(true);
-							luogoElimina.setEnabled(true);
-							luogoInserisci.setEnabled(true);
-							luogoClear.setEnabled(true);
-							luogotfNome.setEnabled(true);
-							luogoClear.doClick();
-							luogoModifica.setText("Modifica");
-						}				
-					}
+					luogoModifica();
 				}
 		});
 		
@@ -809,14 +569,7 @@ public class FinestraUtente {
 		luogoElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				int row = luogotable.getSelectedRow();
-		        String nome = luogotable.getValueAt(row,luogotable.getColumn("Nome").getModelIndex()).toString();
-		        ConfermaEliminazione frame = new ConfermaEliminazione("Luogo",nome,FinestraUtente.this);
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				toggle();
-				popolaeventocbLuogo();
-				FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto </font></html>");
+				luogoElimina();
 
 			}
 		});
@@ -827,12 +580,7 @@ public class FinestraUtente {
 		Luogo.add(luogoElimina);
 		luogoStatistiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int row = luogotable.getSelectedRow();
-				Date date = new Date();
-				LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-				int year  = localDate.getYear();
-				String year2 = Integer.toString(year);
-				LuogoController.generaStatisticheLuogo(luogotable.getValueAt(row,luogotable.getColumn("Nome").getModelIndex()).toString(), year2);
+				luogoStatistiche();
 			}
 		});
 		luogoStatistiche.setEnabled(false);
@@ -843,18 +591,7 @@ public class FinestraUtente {
 		Luogo.add(luogoStatistiche);
 		luogoClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				luogotfNome.setText("");
-				luogotfCitta.setText("");
-				luogotfStato.setText("");
-				luogotfIndirizzo.setText("");
-				messaggio.setText("");
-				luogoModifica.setEnabled(false);
-				luogoElimina.setEnabled(false);
-				luogoStatistiche.setEnabled(false);
-
-				
-				FinestraUtente.azzeraTabellaLuogo();
+				luogoClear();
 				
 			}
 		});
@@ -914,7 +651,7 @@ public class FinestraUtente {
 		stat1 = new JButton("Tipologie di eventi");
 		stat1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StatisticheGeneraliController.TipoEventoPerLuogo();
+				StatisticheGeneraliController.GeneraStatisticaTipoEventoPerLuogo();
 				stat1.setEnabled(false);
 				stat2.setEnabled(true);
 				stat3.setEnabled(true);
@@ -930,7 +667,7 @@ public class FinestraUtente {
 		stat2.setEnabled(false);
 		stat2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StatisticheGeneraliController.NumeroEventiLuogo();
+				StatisticheGeneraliController.GeneraStatisticaNumeroEventiLuogo();
 				stat1.setEnabled(true);
 				stat2.setEnabled(false);
 				stat3.setEnabled(true);
@@ -945,7 +682,7 @@ public class FinestraUtente {
 		stat3.setEnabled(false);
 		stat3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StatisticheGeneraliController.EventiRicavati();
+				StatisticheGeneraliController.GeneraStatisticaEventiRicavati();
 				stat1.setEnabled(true);
 				stat2.setEnabled(true);
 				stat3.setEnabled(false);
@@ -960,7 +697,7 @@ public class FinestraUtente {
 		stat4.setEnabled(false);
 		stat4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StatisticheGeneraliController.FasceEtaClienti();
+				StatisticheGeneraliController.GeneraStatisticaFasceEtaClienti();
 				stat1.setEnabled(true);
 				stat2.setEnabled(true);
 				stat3.setEnabled(true);
@@ -1138,4 +875,323 @@ public class FinestraUtente {
 			 return false;
 		 }
 		}
+	
+	public void clienteCerca() {
+		azzeraTabellaCliente();
+		String nome = clientetfNome.getText();
+		String data = clienteData.getText();
+		String cognome = clientetfCognome.getText();
+		String email = clientetfEmail.getText();
+		String codicefiscale = clientetfCodicefiscale.getText();
+		messaggio.setText("");
+		//System.out.println("[FINESTRA UTENTE] Si vuole cercare: " + nome + cognome + email + codicefiscale + data);
+		ClienteController.cerca(nome, cognome, email, codicefiscale, data);
+		clienteModifica.setEnabled(false);
+		clienteElimina.setEnabled(false);
+		clienteStatistiche.setEnabled(false);
+	}
+	
+	public void clienteInserisci() {
+		clienteModifica.setEnabled(false);
+		clienteElimina.setEnabled(false);
+		clienteStatistiche.setEnabled(false);
+		
+		String nome = clientetfNome.getText();
+		String data = clienteData.getText();
+		String cognome = clientetfCognome.getText();
+		String email = clientetfEmail.getText();
+		String codicefiscale = clientetfCodicefiscale.getText();
+		ClienteController.inserisci(nome, cognome, email, codicefiscale, data);
+	}
+	
+	public void clienteStatistiche() {
+		int row = clientetable.getSelectedRow();
+		Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		int year  = localDate.getYear();
+        String year2 = Integer.toString(year);
+		ClienteController.generaStatisticheCliente(clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString(), year2);
+	}
+	
+	public void clienteModifica() {
+		if (clienteModifica.getText().equals("Modifica")){
+			
+			int row = clientetable.getSelectedRow();
+			clientetfNome.setText(clientetable.getValueAt(row,clientetable.getColumn("Nome").getModelIndex()).toString());
+			clientetfCognome.setText(clientetable.getValueAt(row,clientetable.getColumn("Cognome").getModelIndex()).toString());
+			clientetfCodicefiscale.setText(clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString());
+			clienteData.setText(clientetable.getValueAt(row,clientetable.getColumn("Data di nascita").getModelIndex()).toString());
+			clientetfEmail.setText(clientetable.getValueAt(row,clientetable.getColumn("eMail").getModelIndex()).toString());
+			
+			clienteCerca.setEnabled(false);
+			clienteStatistiche.setEnabled(false);
+			clienteElimina.setEnabled(false);
+			clienteInserisci.setEnabled(false);
+			clienteClear.setEnabled(false);
+			clientetfCodicefiscale.setEnabled(false);
+			
+			clienteModifica.setText("Conferma");
+			
+			}
+			else {
+				
+				
+				String nome = clientetfNome.getText();
+				String data = clienteData.getText();
+				String cognome = clientetfCognome.getText();
+				String email = clientetfEmail.getText();
+				String codicefiscale = clientetfCodicefiscale.getText();
+				
+				if (ClienteController.modifica(nome, cognome, email, codicefiscale, data)) {
+				
+				clienteCerca.setEnabled(true);
+				clienteStatistiche.setEnabled(true);
+				clienteElimina.setEnabled(true);
+				clienteInserisci.setEnabled(true);
+				clienteClear.setEnabled(true);
+				clientetfCodicefiscale.setEnabled(true);
+				clienteClear.doClick();
+				clienteModifica.setText("Modifica");
+				FinestraUtente.messaggio.setText("<html><font color=\"blue\">Cliente modificato correttamente </font></html>");
+				}
+			}
+	}
+	
+	public void clienteElimina() {
+		int row = clientetable.getSelectedRow();
+        String codicefiscale = clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString();
+        ConfermaEliminazione frame = new ConfermaEliminazione("Cliente",codicefiscale,FinestraUtente.this);
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
+		toggle();
+	}
+	
+	public void clienteClear() {
+		clientetfNome.setText("");
+		clientetfCognome.setText("");
+		clientetfEmail.setText("");
+		clientetfCodicefiscale.setText("");
+		clienteData.setText("");
+		messaggio.setText("");
+		clienteModifica.setEnabled(false);
+		clienteElimina.setEnabled(false);
+		clienteStatistiche.setEnabled(false);
+		
+		FinestraUtente.azzeraTabellaCliente();
+	}
+	
+	public void eventoCerca() {
+		clientetfNome.setText("");
+		clientetfCognome.setText("");
+		clientetfEmail.setText("");
+		clientetfCodicefiscale.setText("");
+		clienteData.setText("");
+		messaggio.setText("");
+		clienteModifica.setEnabled(false);
+		clienteElimina.setEnabled(false);
+		clienteStatistiche.setEnabled(false);
+		
+		FinestraUtente.azzeraTabellaCliente();
+	}
+	
+	public void eventoInserisci() {
+		String nome = eventotfNome.getText();
+		String data = eventoData.getText();
+		String prezzoiniziale = eventotfPrezzoiniziale.getText();
+		String prezzofinale = eventotfPrezzofinale.getText();
+		String maxspettatori = eventotfMassimoposti.getText();
+		String tipo = "";
+		String luogo = "";
+		if (!(eventocbTipo.getSelectedItem().equals("")))
+			tipo = eventocbTipo.getSelectedItem().toString();
+		if (!(eventocbLuogo.getSelectedItem().equals("")))
+			luogo = eventocbLuogo.getSelectedItem().toString();
+		
+		EventoController.inserisci(nome,  data, prezzoiniziale, prezzofinale,  maxspettatori,  tipo, luogo);
+		
+		eventoModifica.setEnabled(false);
+		eventoElimina.setEnabled(false);
+		eventoStatistiche.setEnabled(false);
+	}
+	
+	public void eventoStatistiche() {
+		int row = eventotable.getSelectedRow();
+	    EventoController.generaStatisticheEvento(eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString());
+	}
+	
+	public void eventoModifica() {
+		if (eventoModifica.getText().equals("Modifica")){
+			
+			int row = eventotable.getSelectedRow();
+			eventotfNome.setText(eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString());
+			eventoData.setText(eventotable.getValueAt(row,eventotable.getColumn("Data").getModelIndex()).toString());					
+			eventotfPrezzoiniziale.setText(eventotable.getValueAt(row,eventotable.getColumn("€ Iniziale").getModelIndex()).toString());
+			eventotfPrezzofinale.setText(eventotable.getValueAt(row,eventotable.getColumn("€ Finale").getModelIndex()).toString());
+			eventotfMassimoposti.setText(eventotable.getValueAt(row,eventotable.getColumn("Max posti").getModelIndex()).toString());	
+			eventocbTipo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Tipo").getModelIndex()).toString());
+			eventocbLuogo.setSelectedItem(eventotable.getValueAt(row,eventotable.getColumn("Luogo").getModelIndex()).toString());
+			
+			datacorrente = eventotable.getValueAt(row,eventotable.getColumn("Data inserimento").getModelIndex()).toString();
+								
+			eventoCerca.setEnabled(false);
+			eventoStatistiche.setEnabled(false);
+			eventoElimina.setEnabled(false);
+			eventoInserisci.setEnabled(false);
+			eventoClear.setEnabled(false);
+			eventotfNome.setEnabled(false);
+			
+			eventoModifica.setText("Conferma");
+			
+		}
+		else {
+				
+			String nome = eventotfNome.getText();
+			String data = eventoData.getText();
+			String prezzoiniziale = eventotfPrezzoiniziale.getText();
+			String prezzofinale = eventotfPrezzofinale.getText();
+			String maxspettatori = eventotfMassimoposti.getText();
+			String tipo = eventocbTipo.getSelectedItem().toString();
+			String luogo = eventocbLuogo.getSelectedItem().toString();
+			
+			if (EventoController.modifica(nome,  data, datacorrente,  prezzoiniziale,  prezzofinale,  maxspettatori,  tipo, luogo)) {				
+			
+			eventoCerca.setEnabled(true);
+			eventoStatistiche.setEnabled(true);
+			eventoElimina.setEnabled(true);
+			eventoInserisci.setEnabled(true);
+			eventoClear.setEnabled(true);
+			eventotfNome.setEnabled(true);
+			eventoModifica.setText("Modifica");
+			eventoClear.doClick();
+			FinestraUtente.messaggio.setText("<html><font color=\"blue\">Evento modificato correttamente </font></html>");
+				
+			}
+		}
+	}
+	
+	public void eventoElimina() {
+		
+		int row = eventotable.getSelectedRow();
+        String nome = eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString();
+        ConfermaEliminazione frame = new ConfermaEliminazione("Evento",nome,FinestraUtente.this);
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
+		toggle();
+	}
+	
+	public void eventoClear() {
+		eventotfNome.setText("");
+		eventoData.setText("");
+		eventotfPrezzoiniziale.setText("");
+		eventotfPrezzofinale.setText("");
+		eventotfMassimoposti.setText("");
+		eventocbLuogo.setSelectedIndex(0);
+		eventocbTipo.setSelectedIndex(0);
+		messaggio.setText("");
+
+		FinestraUtente.azzeraTabellaEvento();
+	}
+	
+	public void luogoCerca() {
+		azzeraTabellaLuogo();
+		String nome = luogotfNome.getText();
+		String citta = luogotfCitta.getText();
+		String stato = luogotfStato.getText();
+		String indirizzo = luogotfIndirizzo.getText();
+		messaggio.setText("");
+		LuogoController.cerca(nome, citta, stato, indirizzo);
+		luogoModifica.setEnabled(false);
+		luogoElimina.setEnabled(false);
+		luogoStatistiche.setEnabled(false);
+	}
+	
+	public void luogoInserisci() {
+		luogoModifica.setEnabled(false);
+		luogoElimina.setEnabled(false);
+		luogoStatistiche.setEnabled(false);
+		
+		String nome = luogotfNome.getText();
+		String citta = luogotfCitta.getText();
+		String stato = luogotfStato.getText();
+		String indirizzo = luogotfIndirizzo.getText();
+		LuogoController.inserisci(nome, citta, stato, indirizzo);	
+		popolaeventocbLuogo();
+	}
+	
+	public void luogoStatistiche() {
+		int row = luogotable.getSelectedRow();
+		Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		int year  = localDate.getYear();
+		String year2 = Integer.toString(year);
+		LuogoController.generaStatisticheLuogo(luogotable.getValueAt(row,luogotable.getColumn("Nome").getModelIndex()).toString(), year2);
+	}
+	
+	public void luogoModifica() {
+		if (luogoModifica.getText().equals("Modifica")){
+			
+			int row = luogotable.getSelectedRow();
+			luogotfNome.setText(luogotable.getValueAt(row,luogotable.getColumn("Nome").getModelIndex()).toString());
+			luogotfCitta.setText(luogotable.getValueAt(row,luogotable.getColumn("Città").getModelIndex()).toString());
+			luogotfStato.setText(luogotable.getValueAt(row,luogotable.getColumn("Stato").getModelIndex()).toString());
+			luogotfIndirizzo.setText(luogotable.getValueAt(row,luogotable.getColumn("Indirizzo").getModelIndex()).toString());
+			
+			luogoCerca.setEnabled(false);
+			luogoStatistiche.setEnabled(false);
+			luogoElimina.setEnabled(false);
+			luogoInserisci.setEnabled(false);
+			luogoClear.setEnabled(false);
+			luogotfNome.setEnabled(false);
+			
+			luogoModifica.setText("Conferma");
+			
+			}
+			else {
+				
+				
+				String nome = luogotfNome.getText();
+				String citta = luogotfCitta.getText();
+				String stato = luogotfStato.getText();
+				String indirizzo = luogotfIndirizzo.getText();
+				
+				
+				if (LuogoController.modifica(nome, citta, stato, indirizzo)) {	
+					popolaeventocbLuogo();
+					luogoCerca.setEnabled(true);
+					luogoStatistiche.setEnabled(true);
+					luogoElimina.setEnabled(true);
+					luogoInserisci.setEnabled(true);
+					luogoClear.setEnabled(true);
+					luogotfNome.setEnabled(true);
+					luogoClear.doClick();
+					luogoModifica.setText("Modifica");
+				}				
+			}
+	}
+	
+	public void luogoElimina() {
+		int row = luogotable.getSelectedRow();
+        String nome = luogotable.getValueAt(row,luogotable.getColumn("Nome").getModelIndex()).toString();
+        ConfermaEliminazione frame = new ConfermaEliminazione("Luogo",nome,FinestraUtente.this);
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
+		toggle();
+		popolaeventocbLuogo();
+		FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto </font></html>");
+	}
+	
+	public void luogoClear() {
+
+		luogotfNome.setText("");
+		luogotfCitta.setText("");
+		luogotfStato.setText("");
+		luogotfIndirizzo.setText("");
+		messaggio.setText("");
+		luogoModifica.setEnabled(false);
+		luogoElimina.setEnabled(false);
+		luogoStatistiche.setEnabled(false);
+
+		
+		FinestraUtente.azzeraTabellaLuogo();
+	}
 }
