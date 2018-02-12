@@ -926,7 +926,7 @@ public class FinestraUtente {
 		stat1.setFocusable(false);
 		Statistiche.add(stat1);
 		
-		stat2 = new JButton("Numero eventi per luogo");
+		stat2 = new JButton("Numero di eventi per luogo");
 		stat2.setEnabled(false);
 		stat2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -956,7 +956,7 @@ public class FinestraUtente {
 		stat3.setFocusable(false);
 		Statistiche.add(stat3);
 		
-		stat4 = new JButton("Fasce età clienti");
+		stat4 = new JButton("Fasce d'et\u00E0 dei clienti");
 		stat4.setEnabled(false);
 		stat4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

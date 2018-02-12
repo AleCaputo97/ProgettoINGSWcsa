@@ -45,7 +45,7 @@ public class StatisticheGeneraliController {
 				Valori[5]=Valori[5]+1;
 				
 		}
-		PieChart statistica1 = new PieChart("Tipo evento per luogo", 6, Tipologia, Valori);
+		PieChart statistica1 = new PieChart("Tipologie di eventi", 6, Tipologia, Valori);
 		ChartPanel chartPanel = new ChartPanel(statistica1.getChart());
 		chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
 		FinestraUtente.statPanel.removeAll();
@@ -68,7 +68,7 @@ public class StatisticheGeneraliController {
 		}
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
 				for(int j=0;j<count;j++) dataset.addValue( valore[j] , nomiluoghi[j] , "luogo");  
-				BarChart chart = new BarChart("Istogramma","Numero di eventi per luogo", "", "Numero", dataset);
+				BarChart chart = new BarChart("Istogramma","Numero di eventi per luogo", "", "Numero eventi", dataset);
 				ChartPanel chartPanel = new ChartPanel(chart.getChart());
 				chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
 				FinestraUtente.statPanel.removeAll();
@@ -135,8 +135,8 @@ public class StatisticheGeneraliController {
 				ricavatoCorrente=0;
 			}
 			DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
-			for(int k=0;k<i;k++) dataset.addValue( valori[k] , intervallo[k] , "Eventi");  
-			BarChart chart = new BarChart("Istogramma","Ricavato per evento", "", "Euro", dataset);
+			for(int k=0;k<i;k++) dataset.addValue( valori[k] , intervallo[k] , "evento");  
+			BarChart chart = new BarChart("Istogramma","Guadagno per evento", "", "Guadagno in €", dataset);
 			ChartPanel chartPanel = new ChartPanel(chart.getChart());
 			chartPanel.setPreferredSize(new java.awt.Dimension( 940 , 420 ));
 
