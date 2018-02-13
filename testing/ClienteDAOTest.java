@@ -58,7 +58,7 @@ class ClienteDAOTest {
 	}
 
 	@Test
-	void cercaConTuttiParametriTest() {
+	void testCercaConTuttiParametri() {
 		//Test1: si cerca il cliente inserito nell'operazione di setup
 		int count=0;
 		List<Cliente> risultati = clienteDAO.cerca("Michele", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");
@@ -79,7 +79,7 @@ class ClienteDAOTest {
 	
 	
 	@Test
-	void cercaPerCodiceFiscaleTest() {
+	void testCercaPerCodiceFiscale() {
 		Cliente risultato = clienteDAO.cerca("MCHSVM73R09F284X"); 
 		assertEquals("MCHSVM73R09F284X", risultato.getCodiceFiscale());
 		assertEquals("Michele", risultato.getNome());
@@ -90,7 +90,7 @@ class ClienteDAOTest {
 	
 	
 	@Test
-	void eliminaPerCodFiscaleTest(){
+	void testEliminaPerCodFiscale(){
 		int count=0,count2=0;
 		List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", "");
 					for(Cliente curr:risultati) count=count+1;
@@ -102,7 +102,7 @@ class ClienteDAOTest {
 		}
 
 	@Test
-	void inserisciModificaTest() {
+	void testInserisciModifica() {
 	    clienteDAO.inserisciModifica("Ani", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");
 	    List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
 	    for(Cliente curr:risultati) assertEquals("Ani", curr.getNome());
