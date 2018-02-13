@@ -43,7 +43,7 @@ class EventoDAOTest {
 	}
 
 	@Test
-	void cercaConTuttiParametriTest() {
+	void testCercaConTuttiParametri() {
 		//Test1: si cerca evento inserito nell'operazione di setup
 		int count=0;
 		List<Evento> risultati = eventoDAO.cerca("test2018", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park");
@@ -62,7 +62,7 @@ class EventoDAOTest {
 		assertEquals(1,count);
 	}
 	
-	void cercaPerNomeTest() {
+	void testCercaPerNome() {
 		Evento risultato = eventoDAO.cerca("test2018"); 
 		assertEquals("test2018", risultato.getNome());
 		assertEquals("4 giugno 2018", risultato.getData());
@@ -72,7 +72,7 @@ class EventoDAOTest {
 	}
 	
 	@Test
-	void eliminaPerNomeTest(){
+	void testEliminaPerNome(){
 		int count=0,count2=0;
 		List<Evento> risultati = eventoDAO.cerca("test2018", "", 00.00, 00.00, 0,"","");
 					for(Evento curr:risultati) count=count+1;
@@ -84,7 +84,7 @@ class EventoDAOTest {
 	}
 
 	@Test
-	void inserisciModificaTest() {
+	void testInserisciModifica() {
 		//test di un inserimento
 	    eventoDAO.inserisciModifica("test20_18", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park", "10 febbraio 2018");
 	    List<Evento> risultati = eventoDAO.cerca("test20_18", "", 00.00, 00.00, 0, "", "");
