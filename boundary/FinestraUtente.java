@@ -235,7 +235,7 @@ public class FinestraUtente {
 		
 		clienteCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clienteCerca();
+				cercaCliente();
 
 			}
 		});
@@ -246,7 +246,7 @@ public class FinestraUtente {
 		clienteInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				clienteInserisci();
+				inserisciCliente();
 			}
 		});
 		clienteInserisci.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -256,7 +256,7 @@ public class FinestraUtente {
 		
 		clienteElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clienteElimina();
+				eliminaCliente();
 			}
 		});
 		clienteElimina.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -264,7 +264,7 @@ public class FinestraUtente {
 		Cliente.add(clienteElimina);
 		clienteStatistiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clienteStatistiche();
+				visualizzaStatisticheCliente();
 			}
 		});
 		clienteStatistiche.setEnabled(false);
@@ -275,7 +275,7 @@ public class FinestraUtente {
 		
 		clienteClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clienteClear();		        
+				clearCliente();		        
 			}
 		});
 		clienteClear.setBounds(878, 10, 80, 23);
@@ -284,7 +284,7 @@ public class FinestraUtente {
 		clienteModifica.setEnabled(false);
 		clienteModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					clienteModifica();		
+					modificaCliente();		
 					}
 			}
 		);
@@ -378,7 +378,7 @@ public class FinestraUtente {
 		
 		eventoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				eventoCerca();
+				cercaEvento();
 
 			}
 			
@@ -390,7 +390,7 @@ public class FinestraUtente {
 		eventoInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				eventoInserisci();
+				inserisciEvento();
 				
 			}
 				
@@ -403,7 +403,7 @@ public class FinestraUtente {
 		eventoModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				eventoModifica();
+				modificaEvento();
 			}
 		});
 		
@@ -414,7 +414,7 @@ public class FinestraUtente {
 		eventoElimina.setEnabled(false);
 		eventoElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				eventoElimina();
+				eliminaEvento();
 				
 			}
 		});
@@ -423,7 +423,7 @@ public class FinestraUtente {
 		Evento.add(eventoElimina);
 		eventoStatistiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    eventoStatistiche();
+			    visualizzaStatisticheEvento();
 			}
 		});
 		
@@ -435,7 +435,7 @@ public class FinestraUtente {
 		eventoClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				eventoClear();
+				clearEvento();
 
 				
 			}
@@ -535,7 +535,7 @@ public class FinestraUtente {
 		Luogo.add(lblIndirizzo);
 		luogoCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				luogoCerca();
+				cercaLuogo();
 				
 			}
 		});
@@ -546,7 +546,7 @@ public class FinestraUtente {
 		luogoInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				luogoInserisci();
+				inserisciLuogo();
 			}
 		});
 
@@ -557,7 +557,7 @@ public class FinestraUtente {
 		luogoModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-					luogoModifica();
+					modificaLuogo();
 				}
 		});
 		
@@ -569,7 +569,7 @@ public class FinestraUtente {
 		luogoElimina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				luogoElimina();
+				eliminaLuogo();
 
 			}
 		});
@@ -580,7 +580,7 @@ public class FinestraUtente {
 		Luogo.add(luogoElimina);
 		luogoStatistiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				luogoStatistiche();
+				visualizzaStatisticheLuogo();
 			}
 		});
 		luogoStatistiche.setEnabled(false);
@@ -591,7 +591,7 @@ public class FinestraUtente {
 		Luogo.add(luogoStatistiche);
 		luogoClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				luogoClear();
+				clearLuogo();
 				
 			}
 		});
@@ -876,7 +876,7 @@ public class FinestraUtente {
 		 }
 		}
 	
-	public void clienteCerca() {
+	public void cercaCliente() {
 		azzeraTabellaCliente();
 		String nome = clientetfNome.getText();
 		String data = clienteData.getText();
@@ -891,7 +891,7 @@ public class FinestraUtente {
 		clienteStatistiche.setEnabled(false);
 	}
 	
-	public void clienteInserisci() {
+	public void inserisciCliente() {
 		clienteModifica.setEnabled(false);
 		clienteElimina.setEnabled(false);
 		clienteStatistiche.setEnabled(false);
@@ -904,7 +904,7 @@ public class FinestraUtente {
 		ClienteController.inserisci(nome, cognome, email, codicefiscale, data);
 	}
 	
-	public void clienteStatistiche() {
+	public void visualizzaStatisticheCliente() {
 		int row = clientetable.getSelectedRow();
 		Date date = new Date();
 		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -913,7 +913,7 @@ public class FinestraUtente {
 		ClienteController.generaStatisticheCliente(clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString(), year2);
 	}
 	
-	public void clienteModifica() {
+	public void modificaCliente() {
 		if (clienteModifica.getText().equals("Modifica")){
 			
 			int row = clientetable.getSelectedRow();
@@ -957,7 +957,7 @@ public class FinestraUtente {
 			}
 	}
 	
-	public void clienteElimina() {
+	public void eliminaCliente() {
 		int row = clientetable.getSelectedRow();
         String codicefiscale = clientetable.getValueAt(row,clientetable.getColumn("Codice fiscale").getModelIndex()).toString();
         ConfermaEliminazione frame = new ConfermaEliminazione("Cliente",codicefiscale,FinestraUtente.this);
@@ -966,7 +966,7 @@ public class FinestraUtente {
 		toggle();
 	}
 	
-	public void clienteClear() {
+	public void clearCliente() {
 		clientetfNome.setText("");
 		clientetfCognome.setText("");
 		clientetfEmail.setText("");
@@ -980,7 +980,7 @@ public class FinestraUtente {
 		FinestraUtente.azzeraTabellaCliente();
 	}
 	
-	public void eventoCerca() {
+	public void cercaEvento() {
 		clientetfNome.setText("");
 		clientetfCognome.setText("");
 		clientetfEmail.setText("");
@@ -994,7 +994,7 @@ public class FinestraUtente {
 		FinestraUtente.azzeraTabellaCliente();
 	}
 	
-	public void eventoInserisci() {
+	public void inserisciEvento() {
 		String nome = eventotfNome.getText();
 		String data = eventoData.getText();
 		String prezzoiniziale = eventotfPrezzoiniziale.getText();
@@ -1014,12 +1014,12 @@ public class FinestraUtente {
 		eventoStatistiche.setEnabled(false);
 	}
 	
-	public void eventoStatistiche() {
+	public void visualizzaStatisticheEvento() {
 		int row = eventotable.getSelectedRow();
 	    EventoController.generaStatisticheEvento(eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString());
 	}
 	
-	public void eventoModifica() {
+	public void modificaEvento() {
 		if (eventoModifica.getText().equals("Modifica")){
 			
 			int row = eventotable.getSelectedRow();
@@ -1069,7 +1069,7 @@ public class FinestraUtente {
 		}
 	}
 	
-	public void eventoElimina() {
+	public void eliminaEvento() {
 		
 		int row = eventotable.getSelectedRow();
         String nome = eventotable.getValueAt(row,eventotable.getColumn("Nome").getModelIndex()).toString();
@@ -1079,7 +1079,7 @@ public class FinestraUtente {
 		toggle();
 	}
 	
-	public void eventoClear() {
+	public void clearEvento() {
 		eventotfNome.setText("");
 		eventoData.setText("");
 		eventotfPrezzoiniziale.setText("");
@@ -1092,7 +1092,7 @@ public class FinestraUtente {
 		FinestraUtente.azzeraTabellaEvento();
 	}
 	
-	public void luogoCerca() {
+	public void cercaLuogo() {
 		azzeraTabellaLuogo();
 		String nome = luogotfNome.getText();
 		String citta = luogotfCitta.getText();
@@ -1105,7 +1105,7 @@ public class FinestraUtente {
 		luogoStatistiche.setEnabled(false);
 	}
 	
-	public void luogoInserisci() {
+	public void inserisciLuogo() {
 		luogoModifica.setEnabled(false);
 		luogoElimina.setEnabled(false);
 		luogoStatistiche.setEnabled(false);
@@ -1118,7 +1118,7 @@ public class FinestraUtente {
 		popolaeventocbLuogo();
 	}
 	
-	public void luogoStatistiche() {
+	public void visualizzaStatisticheLuogo() {
 		int row = luogotable.getSelectedRow();
 		Date date = new Date();
 		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -1127,7 +1127,7 @@ public class FinestraUtente {
 		LuogoController.generaStatisticheLuogo(luogotable.getValueAt(row,luogotable.getColumn("Nome").getModelIndex()).toString(), year2);
 	}
 	
-	public void luogoModifica() {
+	public void modificaLuogo() {
 		if (luogoModifica.getText().equals("Modifica")){
 			
 			int row = luogotable.getSelectedRow();
@@ -1169,7 +1169,7 @@ public class FinestraUtente {
 			}
 	}
 	
-	public void luogoElimina() {
+	public void eliminaLuogo() {
 		int row = luogotable.getSelectedRow();
         String nome = luogotable.getValueAt(row,luogotable.getColumn("Nome").getModelIndex()).toString();
         ConfermaEliminazione frame = new ConfermaEliminazione("Luogo",nome,FinestraUtente.this);
@@ -1180,7 +1180,7 @@ public class FinestraUtente {
 		FinestraUtente.messaggio.setText("<html><font color=\"red\">ERRORE: Almeno uno dei campi è vuoto </font></html>");
 	}
 	
-	public void luogoClear() {
+	public void clearLuogo() {
 
 		luogotfNome.setText("");
 		luogotfCitta.setText("");
