@@ -981,17 +981,25 @@ public class FinestraUtente {
 	}
 	
 	public void cercaEvento() {
-		clientetfNome.setText("");
-		clientetfCognome.setText("");
-		clientetfEmail.setText("");
-		clientetfCodicefiscale.setText("");
-		clienteData.setText("");
+		azzeraTabellaEvento();
 		messaggio.setText("");
-		clienteModifica.setEnabled(false);
-		clienteElimina.setEnabled(false);
-		clienteStatistiche.setEnabled(false);
+		String nome = eventotfNome.getText();
+		String data = eventoData.getText();
+		String prezzoiniziale = eventotfPrezzoiniziale.getText();
+		String prezzofinale = eventotfPrezzofinale.getText();
+		String maxspettatori = eventotfMassimoposti.getText();
+		String tipo = "";
+		String luogo = "";
+		if (!(eventocbTipo.getSelectedItem().equals("")))
+			tipo = eventocbTipo.getSelectedItem().toString();
+		if (!(eventocbLuogo.getSelectedItem().equals("")))
+			luogo = eventocbLuogo.getSelectedItem().toString();
 		
-		FinestraUtente.azzeraTabellaCliente();
+		EventoController.cerca(nome,  data, prezzoiniziale, prezzofinale,  maxspettatori,  tipo, luogo);
+		
+		eventoModifica.setEnabled(false);
+		eventoElimina.setEnabled(false);
+		eventoStatistiche.setEnabled(false);
 	}
 	
 	public void inserisciEvento() {
