@@ -128,7 +128,7 @@ public class EventoController {
 				if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale.replaceAll(",", "."));
 				if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale.replaceAll(",", "."));
 				if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);
-				if(doubleprezzoiniziale<=0 || doubleprezzofinale<=0 ) {
+				if(doubleprezzoiniziale<0 || doubleprezzofinale<0 ) {
 					FinestraUtente.messaggio.setText("<html><font color=\"red\">“ERRORE:  Prezzo iniziale e finale devono essere >=0! ”</font></html>");
 					return false;
 				}
@@ -179,7 +179,7 @@ public class EventoController {
 				if (!(prezzoiniziale.equals(""))) doubleprezzoiniziale=Double.parseDouble(prezzoiniziale.replaceAll(",", "."));
 				if (!(prezzofinale.equals(""))) doubleprezzofinale=Double.parseDouble(prezzofinale.replaceAll(",", "."));
 				if (!(maxspettatori.equals(""))) intmaxspettatori=Integer.parseInt(maxspettatori);
-				if(doubleprezzoiniziale<=0 || doubleprezzofinale<=0 ) {
+				if(doubleprezzoiniziale<0 || doubleprezzofinale<0 ) {
 					FinestraUtente.messaggio.setText("<html><font color=\"red\">“ERRORE:  Prezzo iniziale e finale devono essere >=0! ”</font></html>");
 					return;
 				}
