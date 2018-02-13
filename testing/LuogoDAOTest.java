@@ -57,7 +57,7 @@ class LuogoDAOTest {
 	}
 
 	@Test
-	void cercaConTuttiParametriTest() {
+	void testCercaConTuttiParametri() {
 		//Test1: si cerca il luogo inserito nell'operazione di setup
 		int count=0;
 		List<Luogo> risultati = luogoDAO.cerca("Test2018","Napoli","Italia","via Cinthia");
@@ -77,7 +77,7 @@ class LuogoDAOTest {
 	
 
 	@Test
-	void eliminaPerNomeTest(){
+	void testEliminaPerNome(){
 		int count=0,count2=0;
 		List<Luogo> risultati = luogoDAO.cerca("Test2018", "","","");
 		for(Luogo curr:risultati) count=count+1;
@@ -89,7 +89,7 @@ class LuogoDAOTest {
 		}
 
 	@Test
-	void inserisciModificaTest() {
+	void testInserisciModifica() {
 		//Test di inserimento
 	    luogoDAO.inserisciModifica("Test2019", "Roma","Italia","via Cinthia");
 	    List<Luogo> risultati = luogoDAO.cerca("Test2019", "","","");
