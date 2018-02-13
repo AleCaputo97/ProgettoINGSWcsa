@@ -24,6 +24,7 @@ class BigliettoDAOTest {
     static AmazonDynamoDB dynamoDB;
     private static DynamoDB connessione;
     private BigliettoDAO bigliettoDAO;
+    
 	@BeforeEach //crea la connessione con il database hostato su AWS
 	void setUp() throws Exception {
 		ProfileCredentialsProvider credentialsProvider = new ProfileCredentialsProvider();
@@ -54,7 +55,7 @@ class BigliettoDAOTest {
 	
 	
 	@Test
-	void cercaPerCodiceFiscaleTest() {
+	void testCercaPerCodiceFiscale() {
 		List<Biglietto> risultato = bigliettoDAO.cercaPerCodiceFiscale("MCHSVM73R09F284X"); 
 		for(Biglietto curr:risultato) {
 			if(curr.getNumeroBiglietto().equals("8710a")) {
@@ -69,7 +70,7 @@ class BigliettoDAOTest {
 	}
 	
 	@Test
-	void cercaPerEventoTest() {
+	void testCercaPerEventoTest() {
 		List<Biglietto> risultato = bigliettoDAO.cercaPerEvento("Test"); 
 		for(Biglietto curr:risultato) {
 			if(curr.getNumeroBiglietto().equals("8710a")) {
@@ -84,7 +85,7 @@ class BigliettoDAOTest {
 	}
 	
 	@Test
-	void cercaPerLuogoTest() {
+	void testCercaPerLuogo() {
 		List<Biglietto> risultato = bigliettoDAO.cercaPerLuogo("Croke park"); 
 		for(Biglietto curr:risultato) {
 			if(curr.getNumeroBiglietto().equals("8710a")) {
@@ -99,7 +100,7 @@ class BigliettoDAOTest {
 	}
 	
 	@Test
-	void eliminaPerCodFiscale(){
+	void testEliminaPerCodFiscale(){
 		int count=0,count2=0;
 		List<Biglietto> risultati = bigliettoDAO.cercaPerCodiceFiscale("MCHSVM73R09F284X");
 		for(Biglietto curr:risultati) count=count+1;
@@ -112,7 +113,7 @@ class BigliettoDAOTest {
 		}
 
 	@Test
-	void inserisciModificaTest() {
+	void testInserisciModifica() {
 	    bigliettoDAO.inserisciModifica("8710a","MCHSVM73R09F284X","1 MARZO 2018","Test","Croke park",112);
 	    List<Biglietto> risultati = bigliettoDAO.cercaPerCodiceFiscale("MCHSVM73R09F284X"); 
 	    for(Biglietto curr:risultati) {
