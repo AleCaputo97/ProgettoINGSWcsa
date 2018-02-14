@@ -651,11 +651,7 @@ public class FinestraUtente {
 		stat1 = new JButton("Tipologie di eventi");
 		stat1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StatisticheGeneraliController.GeneraStatisticaTipoEventoPerLuogo();
-				stat1.setEnabled(false);
-				stat2.setEnabled(true);
-				stat3.setEnabled(true);
-				stat4.setEnabled(true);
+				generaStatistiche1();
 				
 			}
 		});
@@ -667,11 +663,7 @@ public class FinestraUtente {
 		stat2.setEnabled(false);
 		stat2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StatisticheGeneraliController.GeneraStatisticaNumeroEventiLuogo();
-				stat1.setEnabled(true);
-				stat2.setEnabled(false);
-				stat3.setEnabled(true);
-				stat4.setEnabled(true);
+				generaStatistiche2();
 			}
 		});
 		stat2.setBounds(255, 431, 219, 23);
@@ -682,11 +674,7 @@ public class FinestraUtente {
 		stat3.setEnabled(false);
 		stat3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StatisticheGeneraliController.GeneraStatisticaEventiRicavati();
-				stat1.setEnabled(true);
-				stat2.setEnabled(true);
-				stat3.setEnabled(false);
-				stat4.setEnabled(true);
+				generaStatistiche3();
 			}
 		});
 		stat3.setBounds(492, 431, 219, 23);
@@ -697,11 +685,7 @@ public class FinestraUtente {
 		stat4.setEnabled(false);
 		stat4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StatisticheGeneraliController.GeneraStatisticaFasceEtaClienti();
-				stat1.setEnabled(true);
-				stat2.setEnabled(true);
-				stat3.setEnabled(true);
-				stat4.setEnabled(false);
+				generaStatistiche4();
 			}
 		});
 		stat4.setBounds(729, 431, 219, 23);
@@ -1207,5 +1191,37 @@ public class FinestraUtente {
 
 		
 		FinestraUtente.azzeraTabellaLuogo();
+	}
+	
+	public void generaStatistiche1() {
+		StatisticheGeneraliController.generaStatisticaTipoEventoPerLuogo();
+		stat1.setEnabled(false);
+		stat2.setEnabled(true);
+		stat3.setEnabled(true);
+		stat4.setEnabled(true);
+	}
+	
+	public void generaStatistiche2() {
+		StatisticheGeneraliController.generaStatisticaNumeroEventiLuogo();
+		stat1.setEnabled(true);
+		stat2.setEnabled(false);
+		stat3.setEnabled(true);
+		stat4.setEnabled(true);
+	}
+	
+	public void generaStatistiche3() {
+		StatisticheGeneraliController.generaStatisticaEventiRicavati();
+		stat1.setEnabled(true);
+		stat2.setEnabled(true);
+		stat3.setEnabled(false);
+		stat4.setEnabled(true);
+	}
+	
+	public void generaStatistiche4() {
+		StatisticheGeneraliController.generaStatisticaFasceEtaClienti();
+		stat1.setEnabled(true);
+		stat2.setEnabled(true);
+		stat3.setEnabled(true);
+		stat4.setEnabled(false);
 	}
 }

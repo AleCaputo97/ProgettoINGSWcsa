@@ -26,7 +26,7 @@ public class StatisticheGeneraliController {
 	LuogoController luogoController;
 	EventoController eventoController;
 	
-	public static void GeneraStatisticaTipoEventoPerLuogo () {
+	public static void generaStatisticaTipoEventoPerLuogo () {
 		String[] Tipologia = {"Concerto", "Evento sportivo", "Teatro", "Convegno", "Mostra","Altro"};
 		int[] Valori = {0,0,0,0,0,0};
 		List<Evento> risultati = EventoController.cercaTuttiEventi();	
@@ -54,7 +54,7 @@ public class StatisticheGeneraliController {
 	}
 	
 	
-	public static void GeneraStatisticaNumeroEventiLuogo () {
+	public static void generaStatisticaNumeroEventiLuogo () {
 		int i=0,count=0;
 		List<Luogo> Luoghi =  LuogoController.cercaTuttiLuoghi();
 		for (Luogo currluogo:Luoghi)count=count+1;
@@ -78,7 +78,7 @@ public class StatisticheGeneraliController {
 	
 	
 	
-	public static void GeneraStatisticaFasceEtaClienti () {
+	public static void generaStatisticaFasceEtaClienti () {
 		int classe1=0,classe2=0,classe3=0,classe4=0,classe5=0,classe6=0,classe7=0;
 		List<Cliente> Clienti=ClienteController.cercaTuttiClienti();
 		SimpleDateFormat sdfDate = new SimpleDateFormat("d MMMM yyyy", Locale.ITALIAN);//dd/MM/yyyy
@@ -114,7 +114,7 @@ public class StatisticheGeneraliController {
 		FinestraUtente.statPanel.revalidate();	
 	}
 	
-	public static void GeneraStatisticaEventiRicavati () {
+	public static void generaStatisticaEventiRicavati () {
 		List<Evento> Eventi=EventoController.cercaTuttiEventi();
 		int i=0;
 		for(Evento currEvento:Eventi) i=i+1; //numero eventi
