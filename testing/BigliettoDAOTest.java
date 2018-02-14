@@ -44,7 +44,6 @@ class BigliettoDAOTest {
 	}
 
 	/**
-	 * @throws java.lang.Exception
 	 */
 	@AfterEach 
 	void tearDown() throws Exception {
