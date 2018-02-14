@@ -66,14 +66,8 @@ class EventoDAOTest {
 
 	@Test
 	void testInserisciModifica() {
-		//test di un inserimento
-	    eventoDAO.inserisciModifica("test20_18", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park", "10 febbraio 2018");
-	    List<Evento> risultati = eventoDAO.cerca("test20_18", "", 00.00, 00.00, 0, "", "");
-	    for(Evento curr:risultati) assertEquals("test20_18", curr.getNome());
-	    eventoDAO.elimina("test20_18");
-	    //test di una modifica
 	    eventoDAO.inserisciModifica("Test2018", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park", "10 MARZO 2018");
-	    risultati = eventoDAO.cerca("Test2018", "", 00.00, 00.00, 0, "", "");
+	    List<Evento> risultati = eventoDAO.cerca("Test2018", "", 00.00, 00.00, 0, "", "");
 	    for(Evento curr:risultati) {
 	    	assertEquals("Test2018", curr.getNome());
 	    	assertEquals("10 MARZO 2018", curr.getDataInserimento());

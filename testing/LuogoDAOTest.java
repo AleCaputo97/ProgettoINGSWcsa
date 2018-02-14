@@ -70,18 +70,14 @@ class LuogoDAOTest {
 
 	@Test
 	void testInserisciModifica() {
-		//Test di inserimento
-	    luogoDAO.inserisciModifica("Test2019", "Roma","Italia","via Cinthia");
-	    List<Luogo> risultati = luogoDAO.cerca("Test2019", "","","");
-	    for(Luogo curr:risultati) assertEquals("Test2019", curr.getNome());
-	    //test di modifica
-	    luogoDAO.inserisciModifica("Test2019", "MILANO","Italia","via Cinthia");
-	    risultati = luogoDAO.cerca("Test2019", "","","");
+	    luogoDAO.inserisciModifica("Test2018", "MILANO","Italia","via Cinthia");
+	    List<Luogo>risultati = luogoDAO.cerca("Test2018", "","","");
 	    for(Luogo curr:risultati) {
-	    	assertEquals("Test2019", curr.getNome());
+	    	assertEquals("Test2018", curr.getNome());
 	    	assertEquals("MILANO", curr.getCittà());
 	    }
-	    luogoDAO.elimina("Test2019");
+	    //ripristina il vecchio valore della città
+	    luogoDAO.inserisciModifica("Test2018", "Napoli","Italia","via Cinthia");
 	}
 	
 	

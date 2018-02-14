@@ -86,6 +86,8 @@ class ClienteDAOTest {
 	    clienteDAO.inserisciModifica("Ani", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");
 	    List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
 	    for(Cliente curr:risultati) assertEquals("Ani", curr.getNome());
+	    //ripristina il vecchio nome
+	    clienteDAO.inserisciModifica("Michele", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");
 	  }
 	
 	
