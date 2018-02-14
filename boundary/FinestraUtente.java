@@ -1098,6 +1098,10 @@ public class FinestraUtente {
 		messaggio.setText("");
 
 		FinestraUtente.azzeraTabellaEvento();
+		
+		eventoModifica.setEnabled(false);
+		eventoElimina.setEnabled(false);
+		eventoStatistiche.setEnabled(false);
 	}
 	
 	public void cercaLuogo() {
@@ -1173,6 +1177,8 @@ public class FinestraUtente {
 					luogotfNome.setEnabled(true);
 					luogoClear.doClick();
 					luogoModifica.setText("Modifica");
+					FinestraUtente.messaggio.setText("<html><font color=\"blue\">Luogo modificato correttamente </font></html>");
+
 				}				
 			}
 	}
