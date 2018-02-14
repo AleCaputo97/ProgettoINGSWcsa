@@ -81,18 +81,6 @@ class ClienteDAOTest {
 		assertEquals("9 ottobre 1973", risultato.getData());
 	}
 	
-	/*
-	void testEliminaPerCodFiscale(){
-		int count=0,count2=0;
-		List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", "");
-					for(Cliente curr:risultati) count=count+1;
-		assertEquals(count, 1);
-		clienteDAO.elimina("MCHSVM73R09F284X");
-		List<Cliente> risultati2 = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", ""); 
-					for(Cliente curr2:risultati2) count2=count2+1;
-		assertEquals(0,count2);
-		}
-*/
 	@Test
 	void testInserisciModifica() {
 	    clienteDAO.inserisciModifica("Ani", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");
