@@ -38,20 +38,8 @@ class BigliettoDAOTest {
             .build();
 		connessione = new DynamoDB(dynamoDB);
 	    bigliettoDAO=new BigliettoDAO(connessione);
-	    //inserisce due righe così da poter testare l'elimina per codice fiscale su più elementi
-		bigliettoDAO.inserisciModifica("8710a","MCHSVM73R09F284X","1 aprile 2018","Test","Croke park",112);
-		bigliettoDAO.inserisciModifica("8710b","MCHSVM73R09F284X","1 aprile 2018","Test","Croke park",112);
 	}
 
-	/**
-	 */
-	@AfterEach 
-	void tearDown() throws Exception {
-		//al termine del test elimina la riga inserita all'inizio
-		bigliettoDAO.eliminaBiglietti("MCHSVM73R09F284X");
-	}
-
-	
 	
 	@Test
 	void testCercaPerCodiceFiscale() {
@@ -98,26 +86,16 @@ class BigliettoDAOTest {
 		}
 	}
 	
-	@Test
-	void testEliminaPerCodFiscale(){
-		int count=0,count2=0;
-		List<Biglietto> risultati = bigliettoDAO.cercaPerCodiceFiscale("MCHSVM73R09F284X");
-		for(Biglietto curr:risultati) count=count+1;
-		if(count>=0) count=1; 	//se ci sono almeno due elementi setta ad 1 count		
-		assertEquals(count, 1);
-		bigliettoDAO.eliminaBiglietti("MCHSVM73R09F284X");
-		List<Biglietto> risultati2 = bigliettoDAO.cercaPerCodiceFiscale("MCHSVM73R09F284X"); 
-		for(Biglietto curr2:risultati2) count2=count2+1;
-		assertEquals(count2, 0);
-		}
 
 	@Test
 	void testInserisciModifica() {
 	    bigliettoDAO.inserisciModifica("8710a","MCHSVM73R09F284X","1 MARZO 2018","Test","Croke park",112);
 	    List<Biglietto> risultati = bigliettoDAO.cercaPerCodiceFiscale("MCHSVM73R09F284X"); 
 	    for(Biglietto curr:risultati) {
-	    	if(curr.getNumeroBiglietto().equals("8710a")) assertEquals("1 MARZO 2018", curr.getDataAcquisto());
+	    	if(curr.getNumeroBiglietto().equals("8710a")) 	assertEquals("1 MARZO 2018", curr.getDataAcquisto());
 	    }
+	    //ripristina il vecchio ticket
+	    bigliettoDAO.inserisciModifica("8710a","MCHSVM73R09F284X","1 aprile 2018","Test","Croke park",112);
 	  }
 	
 	

@@ -44,18 +44,11 @@ class ClienteDAOTest {
             .build();
 		connessione = new DynamoDB(dynamoDB);
 	    clienteDAO=new ClienteDAO(connessione);
-	    //inserisce una nuova riga
-		clienteDAO.inserisciModifica("Michele", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");
 	}
 
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@AfterEach 
-	void tearDown() throws Exception {
-		//al termine del test elimina la riga inserita all'inizio
-		clienteDAO.elimina("MCHSVM73R09F284X");
-	}
 
 	@Test
 	void testCercaConTuttiParametri() {
@@ -88,8 +81,7 @@ class ClienteDAOTest {
 		assertEquals("9 ottobre 1973", risultato.getData());
 	}
 	
-	
-	@Test
+	/*
 	void testEliminaPerCodFiscale(){
 		int count=0,count2=0;
 		List<Cliente> risultati = clienteDAO.cerca("", "", "", "MCHSVM73R09F284X", "");
@@ -100,7 +92,7 @@ class ClienteDAOTest {
 					for(Cliente curr2:risultati2) count2=count2+1;
 		assertEquals(0,count2);
 		}
-
+*/
 	@Test
 	void testInserisciModifica() {
 	    clienteDAO.inserisciModifica("Ani", "Caparezza", "michelecaparezza@gmail.com", "MCHSVM73R09F284X", "9 ottobre 1973");

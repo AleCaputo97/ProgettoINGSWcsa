@@ -43,18 +43,8 @@ class LuogoDAOTest {
             .build();
 		connessione = new DynamoDB(dynamoDB);
 	    luogoDAO=new LuogoDAO(connessione);
-	    //inserisce una nuova riga
-		luogoDAO.inserisciModifica("Test2018", "Napoli","Italia","via Cinthia");
 	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterEach 
-	void tearDown() throws Exception {
-		//al termine del test elimina la riga inserita all'inizio
-		luogoDAO.elimina("Test2018");
-	}
+	
 
 	@Test
 	void testCercaConTuttiParametri() {
@@ -76,17 +66,7 @@ class LuogoDAOTest {
 	}
 	
 
-	@Test
-	void testEliminaPerNome(){
-		int count=0,count2=0;
-		List<Luogo> risultati = luogoDAO.cerca("Test2018", "","","");
-		for(Luogo curr:risultati) count=count+1;
-		assertEquals(count, 1);
-		luogoDAO.elimina("Test2018");
-		List<Luogo> risultati2 = luogoDAO.cerca("Test2018", "","","");
-		for(Luogo curr2:risultati2) count2=count2+1;
-		assertEquals(count2, 0);
-		}
+
 
 	@Test
 	void testInserisciModifica() {

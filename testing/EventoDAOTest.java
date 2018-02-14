@@ -33,22 +33,15 @@ class EventoDAOTest {
             .build();
 		connessione = new DynamoDB(dynamoDB);
 	    eventoDAO=new EventoDAO(connessione);
-	    //inserisce una nuova riga
-		eventoDAO.inserisciModifica("test2018", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park", "9 febbraio 2018");
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-		eventoDAO.elimina("test2018");
 	}
 
 	@Test
 	void testCercaConTuttiParametri() {
 		//Test1: si cerca evento inserito nell'operazione di setup
 		int count=0;
-		List<Evento> risultati = eventoDAO.cerca("test2018", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park");
+		List<Evento> risultati = eventoDAO.cerca("Test2018", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park");
 		for(Evento curr:risultati){
-			assertEquals("test2018", curr.getNome());
+			assertEquals("Test2018", curr.getNome());
 			assertEquals("4 giugno 2018", curr.getData());
 			assertEquals(10, curr.getPrezzoIniziale());
 			assertEquals(20, curr.getPrezzoFinale());
@@ -57,30 +50,18 @@ class EventoDAOTest {
 		//Test2: si cerca se tra tutti i risultati di una ricerca generica vi è quello inserito nel setup
 		risultati = eventoDAO.cerca("", "", 00.00, 00.00, 0,"","");
 		for(Evento curr2:risultati){
-			if (curr2.getNome().equals("test2018")) count++;
+			if (curr2.getNome().equals("Test2018")) count++;
 		}
 		assertEquals(1,count);
 	}
 	
 	void testCercaPerNome() {
-		Evento risultato = eventoDAO.cerca("test2018"); 
-		assertEquals("test2018", risultato.getNome());
+		Evento risultato = eventoDAO.cerca("Test2018"); 
+		assertEquals("Test2018", risultato.getNome());
 		assertEquals("4 giugno 2018", risultato.getData());
 		assertEquals(10, risultato.getPrezzoIniziale());
 		assertEquals(20, risultato.getPrezzoFinale());
 		assertEquals("altro", risultato.getTipo());
-	}
-	
-	@Test
-	void testEliminaPerNome(){
-		int count=0,count2=0;
-		List<Evento> risultati = eventoDAO.cerca("test2018", "", 00.00, 00.00, 0,"","");
-					for(Evento curr:risultati) count=count+1;
-		assertEquals(count, 1);
-		eventoDAO.elimina("test2018");
-		List<Evento> risultati2 = eventoDAO.cerca("test2018", "", 00.00, 00.00, 0,"","");
-					for(Evento curr2:risultati2) count2=count2+1;
-		assertEquals(count2, 0);
 	}
 
 	@Test
@@ -91,11 +72,13 @@ class EventoDAOTest {
 	    for(Evento curr:risultati) assertEquals("test20_18", curr.getNome());
 	    eventoDAO.elimina("test20_18");
 	    //test di una modifica
-	    eventoDAO.inserisciModifica("test2018", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park", "10 MARZO 2018");
-	    risultati = eventoDAO.cerca("test2018", "", 00.00, 00.00, 0, "", "");
+	    eventoDAO.inserisciModifica("Test2018", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park", "10 MARZO 2018");
+	    risultati = eventoDAO.cerca("Test2018", "", 00.00, 00.00, 0, "", "");
 	    for(Evento curr:risultati) {
-	    	assertEquals("test2018", curr.getNome());
+	    	assertEquals("Test2018", curr.getNome());
 	    	assertEquals("10 MARZO 2018", curr.getDataInserimento());
 	    }
+	    //ripristina il valore di test2018 per i prossimi test
+	    eventoDAO.inserisciModifica("Test2018", "4 giugno 2018", 10.00, 20.00, 200, "altro", "Croke park", "14 febbraio 2018");
 	}
 }
