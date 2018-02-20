@@ -161,7 +161,7 @@ public class FinestraUtente {
 	    frmProgettoingswcsa.setIconImage(newimg);
 		}
 	    catch(Exception e){ 
-	    	System.out.println(e);
+	    	//
 	    }
 		frmProgettoingswcsa.getContentPane().setLayout(null);
 		
