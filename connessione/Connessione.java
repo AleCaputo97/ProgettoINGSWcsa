@@ -39,6 +39,8 @@ public class Connessione {
 			window.frmProgettoingswcsa.setVisible(true);
 		}catch(Exception e){ 
 			FinestraMessaggioErrore errore=new FinestraMessaggioErrore(e);
+			errore.setTitle("Errore");
+			errore.setLocationRelativeTo(null);
 			errore.setVisible(true);
 	    }
 	}

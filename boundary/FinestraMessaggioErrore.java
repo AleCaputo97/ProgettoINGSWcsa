@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class FinestraMessaggioErrore extends JFrame {
 
@@ -31,19 +33,23 @@ public class FinestraMessaggioErrore extends JFrame {
 	 * Create the frame.
 	 */
 	public FinestraMessaggioErrore(Exception E) {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 563, 329);
+		setBounds(100, 100, 563, 304);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("ERRORE: "+E.getMessage());
-		lblNewLabel.setBounds(65, 80, 405, 80);
+		JLabel lblNewLabel = new JLabel("<html> <b>ERRORE</b>: "+E.getMessage());
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel.setBounds(65, 26, 405, 112);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Se il problema dovesse persistere, scrivere a stefanofalangone@gmail.com");
-		lblNewLabel_1.setBounds(45, 182, 479, 68);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(10, 186, 527, 68);
 		contentPane.add(lblNewLabel_1);
 	}
 }
