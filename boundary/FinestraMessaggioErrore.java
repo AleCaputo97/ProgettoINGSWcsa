@@ -39,11 +39,11 @@ public class FinestraMessaggioErrore extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("ERRORE: "+E.getMessage());
-		lblNewLabel.setBounds(65, 80, 381, 46);
+		lblNewLabel.setBounds(65, 80, 405, 80);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Se il problema dovesse persistere, scrivere a stefanofalangone@gmail.com");
-		lblNewLabel_1.setBounds(45, 144, 479, 68);
+		lblNewLabel_1.setBounds(45, 182, 479, 68);
 		contentPane.add(lblNewLabel_1);
 	}
 }
