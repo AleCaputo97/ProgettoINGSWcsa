@@ -35,6 +35,7 @@ public class BigliettoController {
 	}
 	
 	public static boolean isBigliettiVendutiEvento(String evento) {
+		//metodo che si interroga se vi sono biglietti venduti per questo luogo: se vi sono, torna vero, altrimenti falso
 		evento=normalizza(evento);
 		if (bigliettoDAO.cercaPerEvento(evento).isEmpty()) {
 			return false;
