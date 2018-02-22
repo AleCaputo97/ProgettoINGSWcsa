@@ -1,6 +1,8 @@
 package control;
 
 import java.awt.Color;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -44,6 +46,18 @@ public class ClienteController {
 		if (!(codicefiscale.equals(""))) codicefiscale = codicefiscale.toUpperCase();
 		return codicefiscale;
 		
+	}
+	
+	private static double normalizzaPrezzo (double prezzo) {
+		if (!(prezzo==0.00)) {
+			DecimalFormat df = new DecimalFormat("#.##");
+			df.setRoundingMode(RoundingMode.DOWN);
+			String prezzostringa;
+			prezzostringa = df.format(prezzo);
+			prezzostringa=prezzostringa.replaceAll(",",".");
+			prezzo = Double.parseDouble(prezzostringa);
+		}
+		return prezzo;
 	}
 		
 	public static void cerca (String nome, String cognome, String email, String codicefiscale, String data) {
@@ -191,7 +205,7 @@ public class ClienteController {
 		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
 		chartPanel2.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
 		
-		frame = new StatisticheCliente(chartPanel, chartPanel2, SpesaTotale, BigliettiAcquistati, CodiceFiscale);
+		frame = new StatisticheCliente(chartPanel, chartPanel2, normalizzaPrezzo(SpesaTotale), BigliettiAcquistati, CodiceFiscale);
 		frame.setTitle("Statistiche relative a: " + CodiceFiscale);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);	}

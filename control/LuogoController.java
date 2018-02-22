@@ -1,6 +1,8 @@
 package control;
 
 import java.awt.Color;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -27,6 +29,18 @@ public class LuogoController {
 	private static String normalizza (String string) {
 		if (!(string.equals(""))) string = string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
 		return string;
+	}
+	
+	private static double normalizzaPrezzo (double prezzo) {
+		if (!(prezzo==0.00)) {
+			DecimalFormat df = new DecimalFormat("#.##");
+			df.setRoundingMode(RoundingMode.DOWN);
+			String prezzostringa;
+			prezzostringa = df.format(prezzo);
+			prezzostringa=prezzostringa.replaceAll(",",".");
+			prezzo = Double.parseDouble(prezzostringa);
+		}
+		return prezzo;
 	}
 
 	public static void cerca (String nome, String città, String stato, String indirizzo) {
@@ -150,7 +164,7 @@ public class LuogoController {
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
 		chartPanel2.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
-		frame = new StatisticheLuogo(chartPanel, chartPanel2, SpesaTotale, num_eventi, GuadagnoMedio, NomeLuogo);
+		frame = new StatisticheLuogo(chartPanel, chartPanel2, normalizzaPrezzo(SpesaTotale), num_eventi, normalizzaPrezzo(GuadagnoMedio), NomeLuogo);
 		frame.setTitle("Statistiche relative a: " + NomeLuogo);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);	

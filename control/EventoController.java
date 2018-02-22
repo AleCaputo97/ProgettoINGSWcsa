@@ -314,7 +314,7 @@ public class EventoController {
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
 		chartPanel2.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
-		frame = new StatisticheEvento(chartPanel, chartPanel2, Ricavato, BigliettiVenduti);
+		frame = new StatisticheEvento(chartPanel, chartPanel2, normalizzaPrezzo(Ricavato), BigliettiVenduti);
 		frame.setTitle("Statistiche relative a: " + nome);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);	
