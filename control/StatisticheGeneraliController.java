@@ -102,7 +102,7 @@ public class StatisticheGeneraliController {
 					}
 						
 		}
-		String[] Età = {"<10","(10,20)","(20,30)","(30,40)","(40,50)","(50,60)","61+"};
+		String[] Età = {"<10","[10,20)","[20,30)","[30,40)","[40,50)","[50,60)","61+"};
 		int[] valori4 = {classe1,classe2,classe3,classe4,classe5,classe6,classe7};
 		DefaultCategoryDataset dataset4 = new DefaultCategoryDataset( ); 
 		for(int i=0;i<7;i++) dataset4.addValue( valori4[i] , "plot1" , Età[i]);
