@@ -118,7 +118,7 @@ public class BigliettoDAO {
 	   
 	   }
 	 //metodo utilizzato per popolare il database ed in fase di testing per poter testare gli altri
-	 public void inserisciModifica(String numero, String codicefiscale, String data, String evento, String luogo, float prezzo) {
+	 public void inserisciModifica(String numero, String codicefiscale, String data, String evento, String luogo, double prezzo) {
 		    String tableName = "Biglietto";
 		    Table table = connessione.getTable(tableName);
 		    //costruisce l'item e poi esegue un put inserendolo (se già presente lo modifica)

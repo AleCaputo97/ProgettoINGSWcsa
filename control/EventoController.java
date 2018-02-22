@@ -143,6 +143,7 @@ public class EventoController {
 				nome=normalizza(nome);
 				doubleprezzoiniziale=normalizzaPrezzo(doubleprezzoiniziale);
 				doubleprezzofinale=normalizzaPrezzo(doubleprezzofinale);
+				BigliettoController.aggiornaLuogo(BigliettoController.bigliettiVendutiEvento(nome),luogo);
 				eventoDAO.inserisciModifica(nome,  data,  doubleprezzoiniziale,  doubleprezzofinale,  intmaxspettatori,  tipo, luogo, datainserimento);
 				FinestraUtente.eventoClear.doClick();
 				FinestraUtente.messaggio.setText("<html><font color=\"green\">Evento modificato correttamente </font></html>");

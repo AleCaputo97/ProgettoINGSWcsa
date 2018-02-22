@@ -63,5 +63,10 @@ public class BigliettoController {
 		bigliettoDAO.eliminaBiglietti(CodiceFiscale);
 	}
 
+	
+	public static void aggiornaLuogo(List<Biglietto> Lista, String Luogo) {
+		for(Biglietto curr :Lista) bigliettoDAO.inserisciModifica(curr.getNumeroBiglietto(),curr.getCodFiscale(),curr.getDataAcquisto(),curr.getEvento(),Luogo,curr.getPrezzo());
+	}
+	
 }
 
