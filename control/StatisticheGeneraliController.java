@@ -85,17 +85,17 @@ public class StatisticheGeneraliController {
 		Date Datacurr = new Date();
 		String strDatacurr = sdfDate.format(Datacurr);
 		for(Cliente currCliente:Clienti){
-				if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<9){
+					if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<9){
 							classe1=classe1+1;
-					}else if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))>10 && ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<19 ) {
+					}else if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<19 ) {
 							classe2=classe2+1;
-					}else if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))>20 && ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<29 ) {
+					}else if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<29 ) {
 							classe3=classe3+1;
-					}else if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))>30 && ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<39 ) {
+					}else if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<39 ) {
 							classe4=classe4+1;
-					}else if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))>40 && ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<49 ) {
+					}else if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<49 ) {
 							classe5=classe5+1;
-					}else if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))>50 && ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<59 ) {
+					}else if(ChronoUnit.YEARS.between(convertiStringToDate(currCliente.getData()),convertiStringToDate(strDatacurr))<59 ) {
 							classe6=classe6+1;
 					}else{
 							classe7=classe7+1;
