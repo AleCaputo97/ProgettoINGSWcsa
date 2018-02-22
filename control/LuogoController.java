@@ -132,7 +132,6 @@ public class LuogoController {
 		chartPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		
 		//Statistica2: numero clienti del luogo per anno
-
 		List<Biglietto> Biglietti=BigliettoController.bigliettiVendutiLuogo(NomeLuogo);
 		int OspitiPerMese[]={0,0,0,0,0,0,0,0,0,0,0,0};
 		for(Biglietto curr:Biglietti) {
@@ -143,8 +142,10 @@ public class LuogoController {
 		}
 		GuadagnoMedio=SpesaTotale/num_eventi;
 		DefaultCategoryDataset dataset2 = new DefaultCategoryDataset( ); 
-		for(int i=0;i<12;i++) dataset2.addValue( OspitiPerMese[i] , intervallo[i] , "mese");  
-		BarChart chart2 = new BarChart("Istogramma","Numero ospiti del luogo nel " +anno, "", "Numero ospiti", dataset);
+		for(int i=0;i<12;i++) {
+			dataset2.addValue( OspitiPerMese[i] , intervallo[i] , "mese");  
+		}
+		BarChart chart2 = new BarChart("Istogramma","Numero biglietti acquistati nell'anno " +anno, "", "Numero biglietti", dataset2);
 		ChartPanel chartPanel2 = new ChartPanel(chart2.getChart());
 		chartPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		chartPanel.setPreferredSize(new java.awt.Dimension( 955 , 430 ));
