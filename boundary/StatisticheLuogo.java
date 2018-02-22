@@ -91,10 +91,10 @@ public class StatisticheLuogo extends JFrame {
 		lblTotaleGuadagno.setBounds(982, 187, 200, 27);
 		contentPane.add(lblTotaleGuadagno);
 		
-		JButton btn = new JButton("Clienti ospitati");
+		JButton btn = new JButton("Biglietti venduti");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					if (btn.getText().equals("Clienti ospitati")) {
+					if (btn.getText().equals("Biglietti venduti")) {
 						statPanel1.remove(chart);
 						statPanel1.add(chart2);
 						statPanel1.repaint();
@@ -104,7 +104,7 @@ public class StatisticheLuogo extends JFrame {
 						statPanel1.remove(chart2);
 						statPanel1.add(chart);
 						statPanel1.repaint();
-						btn.setText("Clienti ospitati");
+						btn.setText("Biglietti venduti");
 					}
 			}
 		});
