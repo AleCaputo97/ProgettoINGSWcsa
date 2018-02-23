@@ -49,7 +49,7 @@ class BigliettoDAOTest {
 						assertEquals("8710a", curr.getNumeroBiglietto());
 						assertEquals("MCHSVM73R09F284X", curr.getCodFiscale());
 						assertEquals("1 aprile 2018", curr.getDataAcquisto());
-						assertEquals("Test", curr.getEvento());
+						assertEquals("Test2018", curr.getEvento());
 						assertEquals("Croke park", curr.getLuogo());
 						assertEquals(112, curr.getPrezzo());
 			}
@@ -64,7 +64,7 @@ class BigliettoDAOTest {
 						assertEquals("8710a", curr.getNumeroBiglietto());
 						assertEquals("MCHSVM73R09F284X", curr.getCodFiscale());
 						assertEquals("1 aprile 2018", curr.getDataAcquisto());
-						assertEquals("Test", curr.getEvento());
+						assertEquals("Test2018", curr.getEvento());
 						assertEquals("Croke park", curr.getLuogo());
 						assertEquals(112, curr.getPrezzo());
 			}
@@ -79,7 +79,7 @@ class BigliettoDAOTest {
 						assertEquals("8710a", curr.getNumeroBiglietto());
 						assertEquals("MCHSVM73R09F284X", curr.getCodFiscale());
 						assertEquals("1 aprile 2018", curr.getDataAcquisto());
-						assertEquals("Test", curr.getEvento());
+						assertEquals("Test2018", curr.getEvento());
 						assertEquals("Croke park", curr.getLuogo());
 						assertEquals(112, curr.getPrezzo());
 			}
@@ -89,13 +89,13 @@ class BigliettoDAOTest {
 
 	@Test
 	void testInserisciModifica() {
-	    bigliettoDAO.inserisciModifica("8710a","MCHSVM73R09F284X","1 MARZO 2018","Test","Croke park",112);
+	    bigliettoDAO.inserisciModifica("8710a","MCHSVM73R09F284X","1 MARZO 2018","Test2018","Croke park",112);
 	    List<Biglietto> risultati = bigliettoDAO.cercaPerCodiceFiscale("MCHSVM73R09F284X"); 
 	    for(Biglietto curr:risultati) {
 	    	if(curr.getNumeroBiglietto().equals("8710a")) 	assertEquals("1 MARZO 2018", curr.getDataAcquisto());
 	    }
 	    //ripristina il vecchio ticket
-	    bigliettoDAO.inserisciModifica("8710a","MCHSVM73R09F284X","1 aprile 2018","Test","Croke park",112);
+	    bigliettoDAO.inserisciModifica("8710a","MCHSVM73R09F284X","1 aprile 2018","Test2018","Croke park",112);
 	  }
 	
 	
