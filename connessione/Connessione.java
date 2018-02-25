@@ -17,8 +17,6 @@ import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 import boundary.*;
 import control.*;
@@ -28,7 +26,7 @@ public class Connessione {
     
 	public static void main(String[] args) throws Exception {
 	    try{ 
-	    	UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	    	init();
 	    	connessione = new DynamoDB(dynamoDB);
 	    	LuogoDAO luogoDAO=new LuogoDAO(connessione);

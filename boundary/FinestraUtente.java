@@ -148,7 +148,7 @@ public class FinestraUtente {
 		frmProgettoingswcsa = new JFrame();
 		frmProgettoingswcsa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmProgettoingswcsa.setResizable(false);
-		frmProgettoingswcsa.setTitle("ProgettoINGSWcsa");
+		frmProgettoingswcsa.setTitle("ProgettoINGSW - Gruppo 17");
 		frmProgettoingswcsa.getContentPane().setBackground(Color.WHITE);
 		frmProgettoingswcsa.setSize(1008, 575);
 		frmProgettoingswcsa.setLocationRelativeTo(null);
