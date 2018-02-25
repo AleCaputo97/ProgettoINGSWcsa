@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -15,6 +17,8 @@ import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 import boundary.*;
 import control.*;
@@ -45,16 +49,16 @@ public class Connessione {
 	    }
 	}
 
+    
     public static void init() throws Exception {
-        ProfileCredentialsProvider credentialsProvider = new ProfileCredentialsProvider();
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJAXEAITBHDSGIJHA", "6icXD20+m0XecIUJAhWqAibiUUmt/lAjByO0X1W4");
         try {
-            credentialsProvider.getCredentials();
+            dynamoDB = AmazonDynamoDBClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
+                .withRegion("eu-central-1")
+                .build();
         } catch (Exception e) {
         }
-        dynamoDB = AmazonDynamoDBClientBuilder.standard()
-            .withCredentials(credentialsProvider)
-            .withRegion("eu-central-1")
-            .build();
        
     }
     
