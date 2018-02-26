@@ -114,7 +114,7 @@ public class StatisticheLuogo extends JFrame {
 		JTextPane textPaneGuadagnoMedio = new JTextPane();
 		textPaneGuadagnoMedio.setContentType("text/html");
 		textPaneGuadagnoMedio.setEditable(false);
-		textPaneGuadagnoMedio.setText("<html><center><b><font face=\"Tahoma\" size=20 color=rgb(1,1,1)>€ "+ soldispesi +"</font></b></center></html>");
+		textPaneGuadagnoMedio.setText("<html><center><b><font face=\"Tahoma\" size=20 color=rgb(1,1,1)>€ "+ guadagnomedio +"</font></b></center></html>");
 		textPaneGuadagnoMedio.setFont(new Font("Product Sans", Font.BOLD, 18));
 		textPaneGuadagnoMedio.setBounds(982, 236, 200, 50);
 		contentPane.add(textPaneGuadagnoMedio);
