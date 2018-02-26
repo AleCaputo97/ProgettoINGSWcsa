@@ -261,10 +261,7 @@ public class EventoController {
 		double Ricavato=0;
 		//2: calcola la differenza in mesi tra data finale e iniziale
 		long n=ChronoUnit.MONTHS.between(StringToDate(curr.getDataInserimento()), StringToDate(curr.getData()));
-		if(n==0) 
-			n=n+3;
-		else
-			n=n+1;
+		n=n+2;
 		//3: dichiara due array, uno per i valori e uno per mese e anno
 		String[] intervallo = new String[(int) n];
 		double valori[]=new double[(int) n];
