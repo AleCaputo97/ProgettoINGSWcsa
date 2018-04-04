@@ -29,7 +29,7 @@ class BigliettoDAOTest {
     
 	@BeforeEach //crea la connessione con il database hostato su AWS
 	void setUp() throws Exception {
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIK4NMHLFUMXA57QQ", "kabnaccrPC75Oy/0Qh1GwGbF7vka/J/X18nX9dgE");
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIK4NMHLFUMXA57QQ", "kabnaccrPC75Oy/0Qh1GwGbF7vka/J/X18nX9dgEa");
         dynamoDB = AmazonDynamoDBClientBuilder.standard()
             .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
             .withRegion("eu-central-1")
