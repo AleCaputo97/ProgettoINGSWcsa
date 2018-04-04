@@ -35,7 +35,7 @@ class LuogoDAOTest {
     
 	@BeforeEach //crea la connessione con il database hostato su AWS
 	void setUp() throws Exception {
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIK4NMHLFUMXA57QQ", "kabnaccrPC75Oy/0Qh1GwGbF7vka/J/X18nX9dgE");
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIK4NMHLFUMXA57QQ", "kabnaccrPC75Oy/0Qh1GwGbF7vka/J/X18nX9dgEa");
         dynamoDB = AmazonDynamoDBClientBuilder.standard()
             .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
             .withRegion("eu-central-1")
@@ -52,11 +52,11 @@ class LuogoDAOTest {
 		List<Luogo> risultati = luogoDAO.cerca("Test2018","Napoli","Italia","via Cinthia");
 		for(Luogo curr:risultati){
 			assertEquals("Test2018", curr.getNome());
-			assertEquals("Napoli", curr.getCitt‡());
+			assertEquals("Napoli", curr.getCitt√†());
 			assertEquals("Italia", curr.getStato());
 			assertEquals("via Cinthia", curr.getIndirizzo());
 		}
-		//Test2: si cerca se tra tutti i risultati di una ricerca generica vi Ë quello inserito nel setup
+		//Test2: si cerca se tra tutti i risultati di una ricerca generica vi √® quello inserito nel setup
 		risultati = luogoDAO.cerca("", "", "", "");
 		for(Luogo curr2:risultati){
 			if (curr2.getNome().equals("Test2018")) count++;
@@ -73,9 +73,9 @@ class LuogoDAOTest {
 	    List<Luogo>risultati = luogoDAO.cerca("Test2018", "","","");
 	    for(Luogo curr:risultati) {
 	    	assertEquals("Test2018", curr.getNome());
-	    	assertEquals("MILANO", curr.getCitt‡());
+	    	assertEquals("MILANO", curr.getCitt√†());
 	    }
-	    //ripristina il vecchio valore della citt‡
+	    //ripristina il vecchio valore della citt√†
 	    luogoDAO.inserisciModifica("Test2018", "Napoli","Italia","via Cinthia");
 	}
 	
