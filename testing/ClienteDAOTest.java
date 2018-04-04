@@ -36,7 +36,7 @@ class ClienteDAOTest {
 	 */
 	@BeforeEach //crea la connessione con il database hostato su AWS
 	void setUp() throws Exception {
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIK4NMHLFUMXA57QQ", "kabnaccrPC75Oy/0Qh1GwGbF7vka/J/X18nX9dgE");
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIK4NMHLFUMXA57QQ", "kabnaccrPC75Oy/0Qh1GwGbF7vka/J/X18nX9dgEa");
         dynamoDB = AmazonDynamoDBClientBuilder.standard()
             .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
             .withRegion("eu-central-1")
@@ -61,7 +61,7 @@ class ClienteDAOTest {
 			assertEquals("michelecaparezza@gmail.com", curr.getEmail());
 			assertEquals("9 ottobre 1973", curr.getData());
 		}
-		//Test2: si cerca se tra tutti i risultati di una ricerca generica vi è quello inserito nel setup
+		//Test2: si cerca se tra tutti i risultati di una ricerca generica vi Ã¨ quello inserito nel setup
 		risultati = clienteDAO.cerca("", "", "", "", "");
 		for(Cliente curr2:risultati){
 			if (curr2.getCodiceFiscale().equals("MCHSVM73R09F284X")) count++;
