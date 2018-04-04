@@ -25,7 +25,7 @@ class EventoDAOTest {
     private EventoDAO eventoDAO;
 	@BeforeEach
 	void setUp() throws Exception {
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIK4NMHLFUMXA57QQ", "kabnaccrPC75Oy/0Qh1GwGbF7vka/J/X18nX9dgE");
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIK4NMHLFUMXA57QQ", "kabnaccrPC75Oy/0Qh1GwGbF7vka/J/X18nX9dgEa");
         dynamoDB = AmazonDynamoDBClientBuilder.standard()
             .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
             .withRegion("eu-central-1")
@@ -46,7 +46,7 @@ class EventoDAOTest {
 			assertEquals(20, curr.getPrezzoFinale());
 			assertEquals("altro", curr.getTipo());
 		}
-		//Test2: si cerca se tra tutti i risultati di una ricerca generica vi è quello inserito nel setup
+		//Test2: si cerca se tra tutti i risultati di una ricerca generica vi Ã¨ quello inserito nel setup
 		risultati = eventoDAO.cerca("", "", 00.00, 00.00, 0,"","");
 		for(Evento curr2:risultati){
 			if (curr2.getNome().equals("Test2018")) count++;
