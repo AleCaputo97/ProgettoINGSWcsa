@@ -9,6 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -27,19 +29,14 @@ class BigliettoDAOTest {
     
 	@BeforeEach //crea la connessione con il database hostato su AWS
 	void setUp() throws Exception {
-		ProfileCredentialsProvider credentialsProvider = new ProfileCredentialsProvider();
-        try {
-            credentialsProvider.getCredentials();
-        } catch (Exception e) {
-        }
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIK4NMHLFUMXA57QQ", "kabnaccrPC75Oy/0Qh1GwGbF7vka/J/X18nX9dgE");
         dynamoDB = AmazonDynamoDBClientBuilder.standard()
-            .withCredentials(credentialsProvider)
+            .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
             .withRegion("eu-central-1")
             .build();
-		connessione = new DynamoDB(dynamoDB);
-	    bigliettoDAO=new BigliettoDAO(connessione);
-	}
-
+    connessione = new DynamoDB(dynamoDB);
+      bigliettoDAO=new BigliettoDAO(connessione);
+  }
 	
 	@Test
 	void testCercaPerCodiceFiscale() {
